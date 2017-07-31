@@ -55,4 +55,4 @@
 * 브라우저는 크롬, 파폭, ie 사용
 
 # 기획서
-[구글드라이브 문서](https://docs.google.com/document/d/1AHdONY6_3FR-DGF7IWhJUiFNdX7lf49PIo1fCVrTros/edit)
+[구글드라이브 문서 링크](https://docs.google.com/document/d/1AHdONY6_3FR-DGF7IWhJUiFNdX7lf49PIo1fCVrTros/edit)
