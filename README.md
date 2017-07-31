@@ -53,3 +53,6 @@
 * `Handlebar.js` 사용.
 * 최대한 `evt.preventDefault()`를 이벤트 붙일때 마다 쓰기
 * 브라우저는 크롬, 파폭, ie 사용
+
+# 기획서
+[구글드라이브 문서](https://docs.google.com/document/d/1AHdONY6_3FR-DGF7IWhJUiFNdX7lf49PIo1fCVrTros/edit)
