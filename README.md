@@ -56,3 +56,4 @@
 
 # 기획서
 [구글드라이브 문서 링크](https://docs.google.com/document/d/1AHdONY6_3FR-DGF7IWhJUiFNdX7lf49PIo1fCVrTros/edit)
+[iOS 백로그](https://docs.google.com/spreadsheets/d/1sQyVqDMxfOASDL2I1s4a0OMeQKsRfXXmT3WpCvXb9EU/edit#gid=1994204054)
