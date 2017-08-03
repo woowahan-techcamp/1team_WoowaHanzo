@@ -55,14 +55,15 @@
 * 브라우저는 크롬, 파폭, ie 사용
 
 ### iOS Branch 전략: 아래 형식 반복.
-          web
-        /
- master -- ios --- zedd ----------------------------------------
-                \          \-- dev_i ------------- --/
-                 \                 \--function_i--/
-                   - dain --------------------------------------
-                           \-- dev_i ------------- --/
-                                   \--function_i--/
+
+* 오리진마스터(원격) - 마스터 - 웹 또는 iOS - 담당자이름 - dev - 기능단위
+* 계층순서를 반드시 지켜서 Merge한다.
+* push와 pull은 origin/master와 master간에만 이루어진다.
+* 기능단위 하나가 구현이 완료되면, dev(기능구현 테스트용)와 Merge한다.
+* 그리고 담당자 이름 브랜치로 Merge한다.
+* 그리고 기존의 기능들과 함께 잘 작동하는지 테스트 한다.
+* 그 다음, 다른 담당자와 Merge해서 다른 담당자의 기능과 함께 잘 작동하는지 테스트한다.
+* 이후, 웹과 같이 마스터에 Merge한다. 
 
 # 기획서
 [구글드라이브 문서 링크](https://docs.google.com/document/d/1AHdONY6_3FR-DGF7IWhJUiFNdX7lf49PIo1fCVrTros/edit)     
