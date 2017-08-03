@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		9854BF591F331203008FA337 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF581F331203008FA337 /* AppDelegate.swift */; };
 		9854BF5B1F331203008FA337 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF5A1F331203008FA337 /* ViewController.swift */; };
-		9854BF5E1F331203008FA337 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BF5C1F331203008FA337 /* Main.storyboard */; };
+		9854BF5E1F331203008FA337 /* MainLayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BF5C1F331203008FA337 /* MainLayout.storyboard */; };
 		9854BF601F331203008FA337 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9854BF5F1F331203008FA337 /* Assets.xcassets */; };
 		9854BF631F331203008FA337 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BF611F331203008FA337 /* LaunchScreen.storyboard */; };
 		9854BF6E1F331203008FA337 /* WoowaHanzo_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF6D1F331203008FA337 /* WoowaHanzo_iOSTests.swift */; };
@@ -37,7 +37,7 @@
 		9854BF551F331203008FA337 /* WoowaHanzo_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WoowaHanzo_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9854BF581F331203008FA337 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9854BF5A1F331203008FA337 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9854BF5D1F331203008FA337 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9854BF5D1F331203008FA337 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainLayout.storyboard; sourceTree = "<group>"; };
 		9854BF5F1F331203008FA337 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9854BF621F331203008FA337 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9854BF641F331203008FA337 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 			children = (
 				9854BF581F331203008FA337 /* AppDelegate.swift */,
 				9854BF5A1F331203008FA337 /* ViewController.swift */,
-				9854BF5C1F331203008FA337 /* Main.storyboard */,
+				9854BF5C1F331203008FA337 /* MainLayout.storyboard */,
 				9854BF5F1F331203008FA337 /* Assets.xcassets */,
 				9854BF611F331203008FA337 /* LaunchScreen.storyboard */,
 				9854BF641F331203008FA337 /* Info.plist */,
@@ -234,7 +234,7 @@
 			files = (
 				9854BF631F331203008FA337 /* LaunchScreen.storyboard in Resources */,
 				9854BF601F331203008FA337 /* Assets.xcassets in Resources */,
-				9854BF5E1F331203008FA337 /* Main.storyboard in Resources */,
+				9854BF5E1F331203008FA337 /* MainLayout.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,12 +296,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9854BF5C1F331203008FA337 /* Main.storyboard */ = {
+		9854BF5C1F331203008FA337 /* MainLayout.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				9854BF5D1F331203008FA337 /* Base */,
 			);
-			name = Main.storyboard;
+			name = MainLayout.storyboard;
 			sourceTree = "<group>";
 		};
 		9854BF611F331203008FA337 /* LaunchScreen.storyboard */ = {
@@ -507,6 +507,7 @@
 				9854BF7F1F331203008FA337 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9854BF801F331203008FA337 /* Build configuration list for PBXNativeTarget "WoowaHanzo_iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +516,7 @@
 				9854BF821F331203008FA337 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9854BF831F331203008FA337 /* Build configuration list for PBXNativeTarget "WoowaHanzo_iOSUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +525,7 @@
 				9854BF851F331203008FA337 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
