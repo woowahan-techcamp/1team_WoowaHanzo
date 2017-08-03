@@ -55,13 +55,14 @@
 * 브라우저는 크롬, 파폭, ie 사용
 
 ### iOS Branch 전략: 아래 형식 반복.
-*       / web
-* master -- ios --- zedd ----------------------------------------
-*                \          \-- dev_i ------------- --/
-*                 \                 \--function_i--/
-*                   - dain --------------------------------------
-*                           \-- dev_i ------------- --/
-*                                   \--function_i--/
+          web
+        /
+ master -- ios --- zedd ----------------------------------------
+                \          \-- dev_i ------------- --/
+                 \                 \--function_i--/
+                   - dain --------------------------------------
+                           \-- dev_i ------------- --/
+                                   \--function_i--/
 
 # 기획서
 [구글드라이브 문서 링크](https://docs.google.com/document/d/1AHdONY6_3FR-DGF7IWhJUiFNdX7lf49PIo1fCVrTros/edit)     
