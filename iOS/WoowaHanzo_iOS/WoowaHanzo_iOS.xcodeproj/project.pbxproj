@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F10E2BA0BAF317FC7A4959C /* Pods_WoowaHanzo_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 909564EDFB812762707B73D3 /* Pods_WoowaHanzo_iOSTests.framework */; };
+		46E28E67646E142540CAD262 /* Pods_WoowaHanzo_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D5CC4370F12E290005AF3A4 /* Pods_WoowaHanzo_iOSUITests.framework */; };
+		984950F81F331EDB000D1B9A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 984950F71F331EDB000D1B9A /* Login.storyboard */; };
 		9854BF591F331203008FA337 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF581F331203008FA337 /* AppDelegate.swift */; };
 		9854BF5B1F331203008FA337 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF5A1F331203008FA337 /* ViewController.swift */; };
 		9854BF5E1F331203008FA337 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BF5C1F331203008FA337 /* Main.storyboard */; };
@@ -14,6 +17,7 @@
 		9854BF631F331203008FA337 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BF611F331203008FA337 /* LaunchScreen.storyboard */; };
 		9854BF6E1F331203008FA337 /* WoowaHanzo_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF6D1F331203008FA337 /* WoowaHanzo_iOSTests.swift */; };
 		9854BF791F331203008FA337 /* WoowaHanzo_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF781F331203008FA337 /* WoowaHanzo_iOSUITests.swift */; };
+		A7F8A18AE59B28D098A77634 /* Pods_WoowaHanzo_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D022C3C3B53C3AAFFF6E60 /* Pods_WoowaHanzo_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +38,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B66C3E68CA7DA50571A6329 /* Pods-WoowaHanzo_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoowaHanzo_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WoowaHanzo_iOS/Pods-WoowaHanzo_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		0D5CC4370F12E290005AF3A4 /* Pods_WoowaHanzo_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WoowaHanzo_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29454F81AD25365A8CE872A8 /* Pods-WoowaHanzo_iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoowaHanzo_iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WoowaHanzo_iOSTests/Pods-WoowaHanzo_iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2ADA4EAEB6FEE122623B023E /* Pods-WoowaHanzo_iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoowaHanzo_iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WoowaHanzo_iOSTests/Pods-WoowaHanzo_iOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		3D458092094D3C53A4EE8E1B /* Pods-WoowaHanzo_iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoowaHanzo_iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WoowaHanzo_iOSUITests/Pods-WoowaHanzo_iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		56D022C3C3B53C3AAFFF6E60 /* Pods_WoowaHanzo_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WoowaHanzo_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B02C04E88C9EF0021B1E2A5 /* Pods-WoowaHanzo_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoowaHanzo_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-WoowaHanzo_iOS/Pods-WoowaHanzo_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		909564EDFB812762707B73D3 /* Pods_WoowaHanzo_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WoowaHanzo_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		984950F71F331EDB000D1B9A /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		9854BF551F331203008FA337 /* WoowaHanzo_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WoowaHanzo_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9854BF581F331203008FA337 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9854BF5A1F331203008FA337 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9854BF5A1F331203008FA337 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = WoowaHanzo_iOS/ViewController.swift; sourceTree = "<group>"; };
 		9854BF5D1F331203008FA337 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9854BF5F1F331203008FA337 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9854BF621F331203008FA337 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +60,7 @@
 		9854BF741F331203008FA337 /* WoowaHanzo_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WoowaHanzo_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9854BF781F331203008FA337 /* WoowaHanzo_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoowaHanzo_iOSUITests.swift; sourceTree = "<group>"; };
 		9854BF7A1F331203008FA337 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E459D393C37B726F862674C0 /* Pods-WoowaHanzo_iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoowaHanzo_iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WoowaHanzo_iOSUITests/Pods-WoowaHanzo_iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7F8A18AE59B28D098A77634 /* Pods_WoowaHanzo_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F10E2BA0BAF317FC7A4959C /* Pods_WoowaHanzo_iOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,19 +84,72 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46E28E67646E142540CAD262 /* Pods_WoowaHanzo_iOSUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22A7065FCF52D31968BCF705 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				56D022C3C3B53C3AAFFF6E60 /* Pods_WoowaHanzo_iOS.framework */,
+				909564EDFB812762707B73D3 /* Pods_WoowaHanzo_iOSTests.framework */,
+				0D5CC4370F12E290005AF3A4 /* Pods_WoowaHanzo_iOSUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		22F12074372DFC2AE14E3B09 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0B66C3E68CA7DA50571A6329 /* Pods-WoowaHanzo_iOS.debug.xcconfig */,
+				7B02C04E88C9EF0021B1E2A5 /* Pods-WoowaHanzo_iOS.release.xcconfig */,
+				29454F81AD25365A8CE872A8 /* Pods-WoowaHanzo_iOSTests.debug.xcconfig */,
+				2ADA4EAEB6FEE122623B023E /* Pods-WoowaHanzo_iOSTests.release.xcconfig */,
+				E459D393C37B726F862674C0 /* Pods-WoowaHanzo_iOSUITests.debug.xcconfig */,
+				3D458092094D3C53A4EE8E1B /* Pods-WoowaHanzo_iOSUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		984950F91F331F11000D1B9A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9854BF5C1F331203008FA337 /* Main.storyboard */,
+				9854BF611F331203008FA337 /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		984950FA1F331F1B000D1B9A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9854BF5A1F331203008FA337 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		984950FB1F331F37000D1B9A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		9854BF4C1F331203008FA337 = {
 			isa = PBXGroup;
 			children = (
+				984950FB1F331F37000D1B9A /* Model */,
+				984950FA1F331F1B000D1B9A /* Controller */,
+				984950F91F331F11000D1B9A /* View */,
 				9854BF571F331203008FA337 /* WoowaHanzo_iOS */,
 				9854BF6C1F331203008FA337 /* WoowaHanzo_iOSTests */,
 				9854BF771F331203008FA337 /* WoowaHanzo_iOSUITests */,
 				9854BF561F331203008FA337 /* Products */,
+				22F12074372DFC2AE14E3B09 /* Pods */,
+				22A7065FCF52D31968BCF705 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,11 +167,9 @@
 			isa = PBXGroup;
 			children = (
 				9854BF581F331203008FA337 /* AppDelegate.swift */,
-				9854BF5A1F331203008FA337 /* ViewController.swift */,
-				9854BF5C1F331203008FA337 /* Main.storyboard */,
 				9854BF5F1F331203008FA337 /* Assets.xcassets */,
-				9854BF611F331203008FA337 /* LaunchScreen.storyboard */,
 				9854BF641F331203008FA337 /* Info.plist */,
+				984950F71F331EDB000D1B9A /* Login.storyboard */,
 			);
 			path = WoowaHanzo_iOS;
 			sourceTree = "<group>";
@@ -132,9 +199,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9854BF7D1F331203008FA337 /* Build configuration list for PBXNativeTarget "WoowaHanzo_iOS" */;
 			buildPhases = (
+				DE3653AAB17F16949CF83993 /* [CP] Check Pods Manifest.lock */,
 				9854BF511F331203008FA337 /* Sources */,
 				9854BF521F331203008FA337 /* Frameworks */,
 				9854BF531F331203008FA337 /* Resources */,
+				E7BDE5B05776F6434A00CC13 /* [CP] Embed Pods Frameworks */,
+				2B3C0DFA104663D12C22C5B7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +219,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9854BF801F331203008FA337 /* Build configuration list for PBXNativeTarget "WoowaHanzo_iOSTests" */;
 			buildPhases = (
+				85FEF8F40ED3032CF32D6C4C /* [CP] Check Pods Manifest.lock */,
 				9854BF651F331203008FA337 /* Sources */,
 				9854BF661F331203008FA337 /* Frameworks */,
 				9854BF671F331203008FA337 /* Resources */,
+				B67F107A0230F8F481249BB8 /* [CP] Embed Pods Frameworks */,
+				EEBCDE39CCDBDCEC81D88C87 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +240,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9854BF831F331203008FA337 /* Build configuration list for PBXNativeTarget "WoowaHanzo_iOSUITests" */;
 			buildPhases = (
+				B636084C7CA11700F6DE686F /* [CP] Check Pods Manifest.lock */,
 				9854BF701F331203008FA337 /* Sources */,
 				9854BF711F331203008FA337 /* Frameworks */,
 				9854BF721F331203008FA337 /* Resources */,
+				167C42517DE9372803C0150C /* [CP] Embed Pods Frameworks */,
+				CABC8012E44915B3A5BB4DE6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -193,6 +269,7 @@
 				TargetAttributes = {
 					9854BF541F331203008FA337 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = B3PWYBKFUK;
 						ProvisioningStyle = Automatic;
 					};
 					9854BF681F331203008FA337 = {
@@ -232,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				984950F81F331EDB000D1B9A /* Login.storyboard in Resources */,
 				9854BF631F331203008FA337 /* LaunchScreen.storyboard in Resources */,
 				9854BF601F331203008FA337 /* Assets.xcassets in Resources */,
 				9854BF5E1F331203008FA337 /* Main.storyboard in Resources */,
@@ -253,6 +331,144 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		167C42517DE9372803C0150C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WoowaHanzo_iOSUITests/Pods-WoowaHanzo_iOSUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2B3C0DFA104663D12C22C5B7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WoowaHanzo_iOS/Pods-WoowaHanzo_iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		85FEF8F40ED3032CF32D6C4C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B636084C7CA11700F6DE686F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B67F107A0230F8F481249BB8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WoowaHanzo_iOSTests/Pods-WoowaHanzo_iOSTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CABC8012E44915B3A5BB4DE6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WoowaHanzo_iOSUITests/Pods-WoowaHanzo_iOSUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE3653AAB17F16949CF83993 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E7BDE5B05776F6434A00CC13 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WoowaHanzo_iOS/Pods-WoowaHanzo_iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EEBCDE39CCDBDCEC81D88C87 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WoowaHanzo_iOSTests/Pods-WoowaHanzo_iOSTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9854BF511F331203008FA337 /* Sources */ = {
@@ -302,6 +518,7 @@
 				9854BF5D1F331203008FA337 /* Base */,
 			);
 			name = Main.storyboard;
+			path = WoowaHanzo_iOS;
 			sourceTree = "<group>";
 		};
 		9854BF611F331203008FA337 /* LaunchScreen.storyboard */ = {
@@ -310,6 +527,7 @@
 				9854BF621F331203008FA337 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = WoowaHanzo_iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -412,8 +630,10 @@
 		};
 		9854BF7E1F331203008FA337 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B66C3E68CA7DA50571A6329 /* Pods-WoowaHanzo_iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				INFOPLIST_FILE = WoowaHanzo_iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.woowahan.WoowaHanzo-iOS";
@@ -424,8 +644,10 @@
 		};
 		9854BF7F1F331203008FA337 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B02C04E88C9EF0021B1E2A5 /* Pods-WoowaHanzo_iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				INFOPLIST_FILE = WoowaHanzo_iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.woowahan.WoowaHanzo-iOS";
@@ -436,6 +658,7 @@
 		};
 		9854BF811F331203008FA337 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29454F81AD25365A8CE872A8 /* Pods-WoowaHanzo_iOSTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -450,6 +673,7 @@
 		};
 		9854BF821F331203008FA337 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2ADA4EAEB6FEE122623B023E /* Pods-WoowaHanzo_iOSTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -464,6 +688,7 @@
 		};
 		9854BF841F331203008FA337 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E459D393C37B726F862674C0 /* Pods-WoowaHanzo_iOSUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = WoowaHanzo_iOSUITests/Info.plist;
@@ -477,6 +702,7 @@
 		};
 		9854BF851F331203008FA337 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D458092094D3C53A4EE8E1B /* Pods-WoowaHanzo_iOSUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = WoowaHanzo_iOSUITests/Info.plist;
@@ -507,6 +733,7 @@
 				9854BF7F1F331203008FA337 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9854BF801F331203008FA337 /* Build configuration list for PBXNativeTarget "WoowaHanzo_iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +742,7 @@
 				9854BF821F331203008FA337 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9854BF831F331203008FA337 /* Build configuration list for PBXNativeTarget "WoowaHanzo_iOSUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +751,7 @@
 				9854BF851F331203008FA337 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
