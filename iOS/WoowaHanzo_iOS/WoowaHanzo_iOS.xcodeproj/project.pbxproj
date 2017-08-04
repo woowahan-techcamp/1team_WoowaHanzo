@@ -8,12 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		9854BF591F331203008FA337 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF581F331203008FA337 /* AppDelegate.swift */; };
-		9854BF5B1F331203008FA337 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF5A1F331203008FA337 /* ViewController.swift */; };
 		9854BF5E1F331203008FA337 /* MainLayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BF5C1F331203008FA337 /* MainLayout.storyboard */; };
 		9854BF601F331203008FA337 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9854BF5F1F331203008FA337 /* Assets.xcassets */; };
 		9854BF631F331203008FA337 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BF611F331203008FA337 /* LaunchScreen.storyboard */; };
 		9854BF6E1F331203008FA337 /* WoowaHanzo_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF6D1F331203008FA337 /* WoowaHanzo_iOSTests.swift */; };
 		9854BF791F331203008FA337 /* WoowaHanzo_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF781F331203008FA337 /* WoowaHanzo_iOSUITests.swift */; };
+		9854BF981F3407CF008FA337 /* ReviewPostPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF971F3407CF008FA337 /* ReviewPostPageViewController.swift */; };
+		9854BF9B1F3407F1008FA337 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF9A1F3407F1008FA337 /* MainPageViewController.swift */; };
+		9854BF9D1F3407FC008FA337 /* RankPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF9C1F3407FC008FA337 /* RankPageViewController.swift */; };
+		9854BF9F1F340806008FA337 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF9E1F340806008FA337 /* MyPageViewController.swift */; };
+		9854BFA81F340ADE008FA337 /* ReivewPostPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BFA71F340ADE008FA337 /* ReivewPostPage.storyboard */; };
+		9854BFAA1F340AEF008FA337 /* RankPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BFA91F340AEF008FA337 /* RankPage.storyboard */; };
+		9854BFAC1F340AFC008FA337 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BFAB1F340AFC008FA337 /* MyPage.storyboard */; };
+		9854BFAE1F340B4E008FA337 /* MainPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BFAD1F340B4E008FA337 /* MainPage.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +43,6 @@
 /* Begin PBXFileReference section */
 		9854BF551F331203008FA337 /* WoowaHanzo_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WoowaHanzo_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9854BF581F331203008FA337 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9854BF5A1F331203008FA337 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9854BF5D1F331203008FA337 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainLayout.storyboard; sourceTree = "<group>"; };
 		9854BF5F1F331203008FA337 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9854BF621F331203008FA337 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +53,14 @@
 		9854BF741F331203008FA337 /* WoowaHanzo_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WoowaHanzo_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9854BF781F331203008FA337 /* WoowaHanzo_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoowaHanzo_iOSUITests.swift; sourceTree = "<group>"; };
 		9854BF7A1F331203008FA337 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9854BF971F3407CF008FA337 /* ReviewPostPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewPostPageViewController.swift; sourceTree = "<group>"; };
+		9854BF9A1F3407F1008FA337 /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
+		9854BF9C1F3407FC008FA337 /* RankPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankPageViewController.swift; sourceTree = "<group>"; };
+		9854BF9E1F340806008FA337 /* MyPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		9854BFA71F340ADE008FA337 /* ReivewPostPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ReivewPostPage.storyboard; sourceTree = "<group>"; };
+		9854BFA91F340AEF008FA337 /* RankPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RankPage.storyboard; sourceTree = "<group>"; };
+		9854BFAB1F340AFC008FA337 /* MyPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
+		9854BFAD1F340B4E008FA337 /* MainPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainPage.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,11 +111,14 @@
 		9854BF571F331203008FA337 /* WoowaHanzo_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				9854BF881F340213008FA337 /* MainLayout */,
+				9854BF891F340223008FA337 /* MainPage */,
+				9854BF8A1F34022D008FA337 /* ReviewPostPage */,
+				9854BF8D1F340454008FA337 /* RankPage */,
+				9854BF901F3404A3008FA337 /* MyPage */,
 				9854BF581F331203008FA337 /* AppDelegate.swift */,
-				9854BF5A1F331203008FA337 /* ViewController.swift */,
-				9854BF5C1F331203008FA337 /* MainLayout.storyboard */,
-				9854BF5F1F331203008FA337 /* Assets.xcassets */,
 				9854BF611F331203008FA337 /* LaunchScreen.storyboard */,
+				9854BF5F1F331203008FA337 /* Assets.xcassets */,
 				9854BF641F331203008FA337 /* Info.plist */,
 			);
 			path = WoowaHanzo_iOS;
@@ -123,6 +140,50 @@
 				9854BF7A1F331203008FA337 /* Info.plist */,
 			);
 			path = WoowaHanzo_iOSUITests;
+			sourceTree = "<group>";
+		};
+		9854BF881F340213008FA337 /* MainLayout */ = {
+			isa = PBXGroup;
+			children = (
+				9854BF5C1F331203008FA337 /* MainLayout.storyboard */,
+			);
+			name = MainLayout;
+			sourceTree = "<group>";
+		};
+		9854BF891F340223008FA337 /* MainPage */ = {
+			isa = PBXGroup;
+			children = (
+				9854BFAD1F340B4E008FA337 /* MainPage.storyboard */,
+				9854BF9A1F3407F1008FA337 /* MainPageViewController.swift */,
+			);
+			name = MainPage;
+			sourceTree = "<group>";
+		};
+		9854BF8A1F34022D008FA337 /* ReviewPostPage */ = {
+			isa = PBXGroup;
+			children = (
+				9854BFA71F340ADE008FA337 /* ReivewPostPage.storyboard */,
+				9854BF971F3407CF008FA337 /* ReviewPostPageViewController.swift */,
+			);
+			name = ReviewPostPage;
+			sourceTree = "<group>";
+		};
+		9854BF8D1F340454008FA337 /* RankPage */ = {
+			isa = PBXGroup;
+			children = (
+				9854BFA91F340AEF008FA337 /* RankPage.storyboard */,
+				9854BF9C1F3407FC008FA337 /* RankPageViewController.swift */,
+			);
+			name = RankPage;
+			sourceTree = "<group>";
+		};
+		9854BF901F3404A3008FA337 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				9854BFAB1F340AFC008FA337 /* MyPage.storyboard */,
+				9854BF9E1F340806008FA337 /* MyPageViewController.swift */,
+			);
+			name = MyPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +293,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9854BFAA1F340AEF008FA337 /* RankPage.storyboard in Resources */,
+				9854BFA81F340ADE008FA337 /* ReivewPostPage.storyboard in Resources */,
+				9854BFAE1F340B4E008FA337 /* MainPage.storyboard in Resources */,
+				9854BFAC1F340AFC008FA337 /* MyPage.storyboard in Resources */,
 				9854BF631F331203008FA337 /* LaunchScreen.storyboard in Resources */,
 				9854BF601F331203008FA337 /* Assets.xcassets in Resources */,
 				9854BF5E1F331203008FA337 /* MainLayout.storyboard in Resources */,
@@ -259,7 +324,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9854BF5B1F331203008FA337 /* ViewController.swift in Sources */,
+				9854BF9B1F3407F1008FA337 /* MainPageViewController.swift in Sources */,
+				9854BF9F1F340806008FA337 /* MyPageViewController.swift in Sources */,
+				9854BF981F3407CF008FA337 /* ReviewPostPageViewController.swift in Sources */,
+				9854BF9D1F3407FC008FA337 /* RankPageViewController.swift in Sources */,
 				9854BF591F331203008FA337 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
