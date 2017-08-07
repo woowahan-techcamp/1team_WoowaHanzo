@@ -28,6 +28,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $(this).children(".tagger_input").focus();
   });
 
+  $(".post_submit").on("click", function(evt) {
+    uploadPost();
+  });
+
 });
 
 var keyCodes = [13, 32];
@@ -103,29 +107,45 @@ function isLastTaggerEmpty() {
   return false;
 }
 
-
-function uploadPost() {
-
+function refineText(text) {
+  var ret = text.trim();
+  return ret;
 }
 
-function writeNewPost(uid, username, picture, title, body) {
+function uploadPost() {
+  var postText = refineText($(".textbox").first().val());
+  var postTags = [];
+  $(".tagger_input").each(function(index) {
+    postTags.push(refineText($(this).val()));
+  });
+  $( "li" ).each(function() {
+    $( this ).addClass( "foo" );
+  });
+  var promise = writeNewPost("아무거나", "jhyang12345", postText, postTags);
+  promise.then(function() {
+     window.location="./index.html";
+  });
+}
+
+function writeNewPost(uid, username, body, tags) {
   // A post entry.
   var postData = {
     author: username,
     uid: uid,
     body: body,
-    title: title,
-    starCount: 0,
-    authorPic: picture
+    tags: tags,
+    time: new Date(),
+    starCount: 0
   };
 
+  console.log(postData);
   // Get a key for a new Post.
   var newPostKey = firebase.database().ref().child('posts').push().key;
 
   // Write the new post's data simultaneously in the posts list and the user's post list.
   var updates = {};
   updates['/posts/' + newPostKey] = postData;
-  updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+  //updates['/user-posts/' + uid + '/' + newPostKey] = postData;
 
   return firebase.database().ref().update(updates);
 }
