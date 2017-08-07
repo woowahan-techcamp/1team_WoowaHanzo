@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAot_xscB-brcQ1A3V3g0Ka-DEhKr_HlP8",
+        authDomain: "woowaproject.firebaseapp.com",
+        databaseURL: "https://woowaproject.firebaseio.com",
+        projectId: "woowaproject",
+        storageBucket: "woowaproject.appspot.com",
+        messagingSenderId: "609034471288"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/autogrow.js"></script>
+    <script src="js/autosize.js"></script>
+    <script src="js/main.js" ></script>
+    <script src="js/post.js"></script>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"  />
+    <link href="css/post.css" rel="stylesheet" type="text/css" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div class="container_box">
+
+      <div class="post">
+        <div class="post-header">
+          <div class="img-divgo">
+            <img class="profilePic" src="pictures/profile.png" style="vertical-align:bottom;"/>
+        	</div>
+        	<span class="Name">choihyeseoni</span>
+          <span class="Category">치킨 > BBQ > 양념치킨</span>
+
+        </div>
+
+        <textarea class="textbox element" placeholder="당신의 귀한 생각..." spellcheck="false" id="elemnum"></textarea>
+
+        <div class="tags_holder">
+            <span class="tagger tag_holder">
+              <span class="starting_sharp">#</span><input type="text" class="tagger_input" placeholder="" spellcheck="false" />
+            </span>
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+  </body>
+</html>
