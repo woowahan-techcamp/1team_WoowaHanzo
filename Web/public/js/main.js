@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   var database = firebase.database();
 
-
+  var ref = database.ref("/posts");
+  ref.orderByChild("time").on("child_added", function(snapshot) {
+    console.log(snapshot.val().time);
+    console.log("GO");
+  });
 
 });

@@ -121,7 +121,10 @@ function uploadPost() {
   $( "li" ).each(function() {
     $( this ).addClass( "foo" );
   });
-  writeNewPost("아무거나", "jhyang12345", postText, postTags);
+  var promise = writeNewPost("아무거나", "jhyang12345", postText, postTags);
+  promise.then(function() {
+     window.location="./index.html";
+  });
 }
 
 function writeNewPost(uid, username, body, tags) {
@@ -131,6 +134,7 @@ function writeNewPost(uid, username, body, tags) {
     uid: uid,
     body: body,
     tags: tags,
+    time: new Date(),
     starCount: 0
   };
 
