@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>먹소리</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"  />
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAot_xscB-brcQ1A3V3g0Ka-DEhKr_HlP8",
+        authDomain: "woowaproject.firebaseapp.com",
+        databaseURL: "https://woowaproject.firebaseio.com",
+        projectId: "woowaproject",
+        storageBucket: "woowaproject.appspot.com",
+        messagingSenderId: "609034471288"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" data-toggle="tab" href="#home">먹소리</a>
+      </div>
+
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a data-toggle="tab" href="#tab1">Tab 1</a></li>
+          <li><a data-toggle="tab" href="#tab2">Tab 2</a></li>
+          <li><a data-toggle="tab" href="#tab3">Tab 3</a></li>
+          <li><a data-toggle="tab" href="#tab4">Tab 4</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <form class="navbar-form">
+              <input class="form-control mr-sm-2" type="text" placeholder="Search">
+              <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </li>
+          <li>
+            <form class="navbar-form">
+              <button type="submit" class="btn btn-success">Sign in</button>
+            </form>
+          </li>
+        </ul>
+      </div><!--/.navbar-collapse -->
+    </div>
+  </nav>
+
+    <div class="tab-content container">
+      <div id="home" class="tab-pane fade in active">
+        <h3>HOME</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+      <div id="tab1" class="tab-pane fade">
+        <h3>Menu 1</h3>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+      <div id="tab2" class="tab-pane fade">
+        <h3>Menu 2</h3>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+      </div>
+      <div id="tab3" class="tab-pane fade">
+        <h3>Menu 3</h3>
+        <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+      </div>
+      <div id="tab4" class="tab-pane fade">
+        <h3>Menu 4</h3>
+        <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+      </div>
+    </div>
+
+    <div class="container_box">
+      <div class="post">
+        <div class="post-header">
+          <div class="img-divgo">
+            <img class="profilePic" src="pictures/profile.png" style="vertical-align:bottom;"/>
+          </div>
+          <span class="Name">choihyeseoni</span>
+          <span class="Category">치킨 > BBQ > 양념치킨</span>
+
+        </div>
+
+        <textarea class="textbox element" placeholder="당신의 귀한 생각..." spellcheck="false" id="elemnum"></textarea>
+
+        <div class="tags_holder">
+
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+    <script id="post_template" type="template">
+      <div class="post">
+        <div class="post-header">
+          <div class="img-divgo">
+            <img class="profilePic" src="pictures/profile.png" style="vertical-align:bottom;"/>
+          </div>
+          <span class="Name">{{author}}</span>
+          <span class="Category">치킨 > BBQ > 양념치킨</span>
+        </div>
+        <textarea class="textbox element" placeholder="당신의 귀한 생각..." spellcheck="false" id="elemnum">{{body}}</textarea>
+        <div class="tags_holder">
+        </div>
+      </div>
+    </script>
+
+  </body>
+</html>
