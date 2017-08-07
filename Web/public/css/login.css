@@ -1,0 +1,97 @@
+
+.login_holder {
+  width: 510px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color : #AAA;
+
+}
+
+.login_holder input {
+  font-size: 1.2em;
+  border: none;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  background-color: transparent;
+  margin-left: 8px;
+}
+
+.form_container {
+
+  border-color: #BBB;
+  border-style: solid;
+  border-width: 1px;
+
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 14px;
+  padding-right: 14px;
+
+}
+
+.form_container .fa {
+  font-size: 1.5em;
+}
+
+.email_container {
+  margin-bottom: 20px;
+}
+
+.login_title {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.input_holder {
+  padding-top: 25px;
+}
+
+.buttons_holder {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.buttons_holder button {
+  font-size: 1.3em;
+  padding-left: 18px;
+  padding-right: 18px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+
+
+.splitter {
+  color: #AAA;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.signin {
+  background-color: #5cb85c;
+}
+
+.signin:hover {
+  background-color: #449d44;
+}
+
+.signup {
+  background-color: #70b6e5;
+}
+
+.signup:hover {
+  background-color: #246a99;
+}

@@ -6,6 +6,13 @@ body {
   vertical-align: baseline;
 }
 
+/*
+darker: #246a99
+normal: #3498db
+lighter: #70b6e5
+success_green: #5cb85c
+*/
+
 .navbar {
   background-color: #09273a;
   position: fixed;
@@ -25,5 +32,5 @@ body {
 }
 
 .navtab {
-  
+
 }
