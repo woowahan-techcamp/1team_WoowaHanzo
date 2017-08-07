@@ -10,9 +10,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   var database = firebase.database();
 
+  var templatetext = document.querySelector("#post_template").innerHTML;
+  var template = Handlebars.compile(templatetext);
+
   var ref = database.ref("/posts");
   ref.orderByChild("time").on("child_added", function(snapshot) {
     console.log(snapshot.val().time);
+    $(".container_box").append(template(snapshot.val()));
     console.log("GO");
   });
 
