@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAot_xscB-brcQ1A3V3g0Ka-DEhKr_HlP8",
+        authDomain: "woowaproject.firebaseapp.com",
+        databaseURL: "https://woowaproject.firebaseio.com",
+        projectId: "woowaproject",
+        storageBucket: "woowaproject.appspot.com",
+        messagingSenderId: "609034471288"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js" ></script>
+    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"  />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/login.css" rel="stylesheet" type="text/css"  />
+
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div class="container_box">
+      <div class="login_holder">
+        <div class="login_title">
+          로고
+        </div>
+        <div class="input_holder">
+          <div class="form_container email_container">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" name="email" id="email" placeholder="이메일" />
+          </div>
+
+          <div class="form_container">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <input type="password" name="password" id="password" placeholder="비밀번호"/>
+          </div>
+
+        </div>
+
+        <div class="buttons_holder">
+          <button type="submit" class="signin custom_button">로그인</button>
+          <div class="splitter">
+            - 혹은 -
+          </div>
+          <button type="submit" class="signup custom_button">회원가입</button>
+        </div>
+
+
+      </div>
+    </div>
+
+  </body>
+</html>

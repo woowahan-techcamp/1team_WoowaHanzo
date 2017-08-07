@@ -31,3 +31,15 @@
 .post .tagger_complete:hover {
   cursor: pointer;
 }
+
+.post_submit {
+  display: inline-block;
+  float: right;
+  background-color: #3498db;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  font-size: 1.8em;
+  line-height: normal;
+}

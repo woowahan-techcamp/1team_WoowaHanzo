@@ -6,6 +6,13 @@ body {
   vertical-align: baseline;
 }
 
+/*
+darker: #246a99
+normal: #3498db
+lighter: #70b6e5
+success_green: #5cb85c
+*/
+
 .navbar {
   background-color: #09273a;
   position: fixed;
@@ -23,6 +30,39 @@ body {
   margin-top: 51px;
   font-size: 16px;
 
+}
+
+input:focus {
+  border-color: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  outline: -webkit-focus-ring-color none 5px;
+}
+
+.btn {
+  border-color: transparent;
+}
+
+.custom_button {
+  color: #FFF;
+  border: none;
+  box-shadow: none;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+
+}
+
+.custom_button:focus {
+  border-color: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  outline: -webkit-focus-ring-color none 5px;
+
+}
+
+.custom_button:hover {
+  cursor: pointer;
 }
 
 .post {
