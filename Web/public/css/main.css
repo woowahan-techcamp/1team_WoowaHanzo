@@ -1,36 +1,6 @@
-body {
-  font-family: NotoSans !important;
-  font-size: 0px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  vertical-align: baseline;
-}
-
 /*
 darker: #246a99
 normal: #3498db
 lighter: #70b6e5
 success_green: #5cb85c
 */
-
-.navbar {
-  background-color: #09273a;
-  position: fixed;
-}
-
-.navbar-brand {
-  color: #FFF !important;
-}
-
-.container_box {
-  width: 600px;
-  padding-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 51px;
-  font-size: 16px;
-}
-
-.navtab {
-
-}
