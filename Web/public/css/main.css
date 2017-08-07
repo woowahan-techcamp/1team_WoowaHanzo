@@ -5,15 +5,6 @@ lighter: #70b6e5
 success_green: #5cb85c
 */
 
-.navbar {
-  background-color: #09273a;
-  position: fixed;
-}
-
-.navbar-brand {
-  color: #FFF !important;
-}
-
 .container_box {
   width: 600px;
   padding-top: 20px;
@@ -21,7 +12,6 @@ success_green: #5cb85c
   margin-right: auto;
   margin-top: 51px;
   font-size: 16px;
-
 }
 
 input:focus {
