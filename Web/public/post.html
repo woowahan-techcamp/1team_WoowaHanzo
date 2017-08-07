@@ -3,10 +3,30 @@
   <head>
     <meta charset="utf-8" />
 
-    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"  />
-    <link href="css/post.css" rel="stylesheet" type="text/css" />
-    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"  />
+    <link href="/css/post.css" rel="stylesheet" type="text/css" />
+    <link href="/css/main.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAot_xscB-brcQ1A3V3g0Ka-DEhKr_HlP8",
+        authDomain: "woowaproject.firebaseapp.com",
+        databaseURL: "https://woowaproject.firebaseio.com",
+        projectId: "woowaproject",
+        storageBucket: "woowaproject.appspot.com",
+        messagingSenderId: "609034471288"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/autogrow.js"></script>
+    <script src="js/autosize.js"></script>
+    <script src="js/main.js" ></script>
+    <script src="js/post.js"></script>
 
   </head>
   <body>
@@ -59,25 +79,5 @@
 
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyAot_xscB-brcQ1A3V3g0Ka-DEhKr_HlP8",
-        authDomain: "woowaproject.firebaseapp.com",
-        databaseURL: "https://woowaproject.firebaseio.com",
-        projectId: "woowaproject",
-        storageBucket: "woowaproject.appspot.com",
-        messagingSenderId: "609034471288"
-      };
-      firebase.initializeApp(config);
-    </script>
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/autogrow.js"></script>
-    <script src="js/autosize.js"></script>
-    <script src="js/main.js" ></script>
-    <script src="js/post.js"></script>
-    
   </body>
 </html>
