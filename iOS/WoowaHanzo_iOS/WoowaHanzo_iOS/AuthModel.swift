@@ -18,5 +18,14 @@ class AuthModel{
             return false
         }
     }
+    static func login(){
+        
+    }
+    static func register(){
+        //있는 닉네임인지 체크.
+        
+    }
+    
+    
     
 }

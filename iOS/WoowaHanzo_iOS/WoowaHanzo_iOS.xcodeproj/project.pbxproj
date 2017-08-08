@@ -38,6 +38,7 @@
 		98C563C91F39BD870017E68A /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98C563C81F39BD870017E68A /* Auth.storyboard */; };
 		98C563CB1F39BD930017E68A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C563CA1F39BD930017E68A /* LoginViewController.swift */; };
 		98C563CD1F39BE310017E68A /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C563CC1F39BE310017E68A /* AuthModel.swift */; };
+		98C563CF1F39C3840017E68A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C563CE1F39C3840017E68A /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		98C563C81F39BD870017E68A /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		98C563CA1F39BD930017E68A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		98C563CC1F39BE310017E68A /* AuthModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
+		98C563CE1F39C3840017E68A /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B1F64866749E63894066246D /* Pods_WoowaHanzo_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WoowaHanzo_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9025DB6C60E4ACC8554AB0B /* Pods-WoowaHanzo_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoowaHanzo_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-WoowaHanzo_iOS/Pods-WoowaHanzo_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		E39D9BBE4AAB04D908A0206E /* Pods-WoowaHanzo_iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoowaHanzo_iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WoowaHanzo_iOSTests/Pods-WoowaHanzo_iOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				98C563C81F39BD870017E68A /* Auth.storyboard */,
 				98C563CA1F39BD930017E68A /* LoginViewController.swift */,
 				98C563CC1F39BE310017E68A /* AuthModel.swift */,
+				98C563CE1F39C3840017E68A /* RegisterViewController.swift */,
 			);
 			name = LoginPage;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				9854BF9F1F340806008FA337 /* MyPageViewController.swift in Sources */,
 				984397501F3835E800743B63 /* TagPageViewController.swift in Sources */,
 				98C5637B1F3955180017E68A /* MainPageTableViewCell.swift in Sources */,
+				98C563CF1F39C3840017E68A /* RegisterViewController.swift in Sources */,
 				9843975D1F39704A00743B63 /* FirebaseModel.swift in Sources */,
 				98C563C41F39B6AC0017E68A /* SearchViewController.swift in Sources */,
 				9843975B1F3952C000743B63 /* CustomLabelCell.swift in Sources */,
