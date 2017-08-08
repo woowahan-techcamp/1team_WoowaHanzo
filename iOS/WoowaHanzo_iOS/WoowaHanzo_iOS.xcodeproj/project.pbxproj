@@ -35,9 +35,9 @@
 		98C5637B1F3955180017E68A /* MainPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C5637A1F3955180017E68A /* MainPageTableViewCell.swift */; };
 		98C563C21F39B69D0017E68A /* SearchPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98C563C11F39B69D0017E68A /* SearchPage.storyboard */; };
 		98C563C41F39B6AC0017E68A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C563C31F39B6AC0017E68A /* SearchViewController.swift */; };
-		98C563C91F39BD870017E68A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98C563C81F39BD870017E68A /* Login.storyboard */; };
+		98C563C91F39BD870017E68A /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98C563C81F39BD870017E68A /* Auth.storyboard */; };
 		98C563CB1F39BD930017E68A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C563CA1F39BD930017E68A /* LoginViewController.swift */; };
-		98C563CD1F39BE310017E68A /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C563CC1F39BE310017E68A /* LoginModel.swift */; };
+		98C563CD1F39BE310017E68A /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C563CC1F39BE310017E68A /* AuthModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,9 +94,9 @@
 		98C5637A1F3955180017E68A /* MainPageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageTableViewCell.swift; sourceTree = "<group>"; };
 		98C563C11F39B69D0017E68A /* SearchPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchPage.storyboard; sourceTree = "<group>"; };
 		98C563C31F39B6AC0017E68A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		98C563C81F39BD870017E68A /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		98C563C81F39BD870017E68A /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		98C563CA1F39BD930017E68A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		98C563CC1F39BE310017E68A /* LoginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		98C563CC1F39BE310017E68A /* AuthModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		B1F64866749E63894066246D /* Pods_WoowaHanzo_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WoowaHanzo_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9025DB6C60E4ACC8554AB0B /* Pods-WoowaHanzo_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoowaHanzo_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-WoowaHanzo_iOS/Pods-WoowaHanzo_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		E39D9BBE4AAB04D908A0206E /* Pods-WoowaHanzo_iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoowaHanzo_iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WoowaHanzo_iOSTests/Pods-WoowaHanzo_iOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -284,9 +284,9 @@
 		98C563C71F39BD720017E68A /* LoginPage */ = {
 			isa = PBXGroup;
 			children = (
-				98C563C81F39BD870017E68A /* Login.storyboard */,
+				98C563C81F39BD870017E68A /* Auth.storyboard */,
 				98C563CA1F39BD930017E68A /* LoginViewController.swift */,
-				98C563CC1F39BE310017E68A /* LoginModel.swift */,
+				98C563CC1F39BE310017E68A /* AuthModel.swift */,
 			);
 			name = LoginPage;
 			sourceTree = "<group>";
@@ -425,7 +425,7 @@
 				984397581F393A7100743B63 /* GoogleService-Info.plist in Resources */,
 				9854BFAC1F340AFC008FA337 /* MyPage.storyboard in Resources */,
 				9854BF631F331203008FA337 /* LaunchScreen.storyboard in Resources */,
-				98C563C91F39BD870017E68A /* Login.storyboard in Resources */,
+				98C563C91F39BD870017E68A /* Auth.storyboard in Resources */,
 				9854BF601F331203008FA337 /* Assets.xcassets in Resources */,
 				98C563C21F39B69D0017E68A /* SearchPage.storyboard in Resources */,
 				9854BF5E1F331203008FA337 /* MainLayout.storyboard in Resources */,
@@ -592,7 +592,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9854BF9B1F3407F1008FA337 /* MainPageViewController.swift in Sources */,
-				98C563CD1F39BE310017E68A /* LoginModel.swift in Sources */,
+				98C563CD1F39BE310017E68A /* AuthModel.swift in Sources */,
 				984397621F39A4F800743B63 /* CustomTextFieldCell.swift in Sources */,
 				9854BF9F1F340806008FA337 /* MyPageViewController.swift in Sources */,
 				984397501F3835E800743B63 /* TagPageViewController.swift in Sources */,

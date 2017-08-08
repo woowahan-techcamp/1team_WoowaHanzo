@@ -8,7 +8,7 @@
 
 import Foundation
 import Firebase
-class LoginModel{
+class AuthModel{
 
     static func isLoginStatus()->Bool{
         if Auth.auth().currentUser != nil{
