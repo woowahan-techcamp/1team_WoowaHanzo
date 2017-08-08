@@ -10,6 +10,12 @@ import UIKit
 
 class MainPageViewController: UIViewController {
 
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var contentsTextView: UITextView!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var nickNameButton: UIButton!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var MainPageTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,15 +27,5 @@ class MainPageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

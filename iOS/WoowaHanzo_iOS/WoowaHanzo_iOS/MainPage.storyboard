@@ -74,6 +74,14 @@
                         <barButtonItem key="rightBarButtonItem" title="검색아이콘" id="o0t-RJ-QLX"/>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="MainPageTableView" destination="laF-bT-XL8" id="X6t-mF-s8r"/>
+                        <outlet property="categoryLabel" destination="gB7-EA-GQE" id="L2z-Nc-KKF"/>
+                        <outlet property="contentsTextView" destination="HCI-CU-uVs" id="aDS-Lo-tDO"/>
+                        <outlet property="likeButton" destination="37g-Sg-JPF" id="pk5-Ca-16R"/>
+                        <outlet property="nickNameButton" destination="1uC-VA-8di" id="ZKL-z8-OZv"/>
+                        <outlet property="profileImageView" destination="Cx9-sr-l7K" id="6jX-Gz-b4F"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nMu-8B-LCH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
