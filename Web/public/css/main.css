@@ -74,6 +74,7 @@ body {
   border: 1px solid white;
   !background-color: #3498db;
   padding: 10px;
+  position: relative;
 }
 
 .category_picker .image_holder {
@@ -89,10 +90,40 @@ body {
   border-style: solid;
   border-width: 1px;
   border-color: #AAA;
+
+  position: relative;
 }
 
 .category_picker .image_holder:hover {
   cursor: pointer;
+}
+
+.brand_check {
+  display: none;
+}
+
+.shader {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  background-color: #333;
+  opacity: 0.5;
+  display: none;
+}
+
+.category_picker td .fa-check-circle {
+  z-index: 3;
+  position: absolute;
+  font-size: 40px;
+  color: #3498db;
+  right: 0px;
+  top: 0px;
 }
 
 .category_picker img {
@@ -103,6 +134,52 @@ body {
 
   width: 100%;
   position: absolute;
+}
+
+.menu_list {
+  width: 100%;
+  padding: 10px;
+  border-style: solid;
+  border-color: transparent;
+  !border-radius: 14px;
+  !-moz-border-radius: 14px;
+  !-webkit-border-radius: 14px;
+  color: #777;
+
+}
+
+
+.menu_item {
+  font-weight: normal;
+  font-size: 1.4em;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  !border-bottom: solid 1px #70b6e5;
+  border: solid 1px #888;
+  margin-bottom: 10px;
+
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  overflow: hidden;
+}
+
+
+.menu_item:hover {
+  background-color: #f8f8f8;
+  cursor: pointer;
+  font-weight: bold;
+  !font-style: oblique;
+}
+
+.menu_item span {
+  /*display: table-cell;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 14px;
+  padding-right: 14px;*/
 }
 
 input:focus {
