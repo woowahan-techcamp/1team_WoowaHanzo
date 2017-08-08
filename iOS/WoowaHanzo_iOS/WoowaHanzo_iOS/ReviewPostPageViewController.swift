@@ -191,6 +191,10 @@ extension ReviewPostPageViewController: UICollectionViewDataSource, UICollection
 extension ReviewPostPageViewController:  UITextFieldDelegate{
 
     //not working now.
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        //textField.sizeToFit()
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
         textField.resignFirstResponder()
         if textField.text != ""{
