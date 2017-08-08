@@ -15,16 +15,16 @@ class MainPageViewController: UIViewController {
     var firebaseModel = FirebaseModel()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: NSNotification.Name(rawValue: "reload"), object: nil)
-            self.firebaseModel.loadFeed()
+        self.firebaseModel.loadFeed()
         mainpageTableView.delegate = self
         mainpageTableView.dataSource = self
     }
     
     func reloadTableData(){
         mainpageTableView.reloadData()
-        print("Dd")
     }
 
     
@@ -34,11 +34,12 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return User.users.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as!MainPageTableViewCell
         cell.contentsTextView.text = User.users[indexPath.row].contents
         cell.nickNameButton.setTitle(User.users[indexPath.row].nickName, for: .normal)
-        
         return cell
     }
     
