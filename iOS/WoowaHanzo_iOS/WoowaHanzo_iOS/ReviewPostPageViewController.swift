@@ -15,6 +15,7 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var myTextField: UITextField!
+    @IBOutlet weak var dummyLabel: UILabel!
     
     var placeholder = "당신의 귀한 생각.."
     var tagArray = ["#test1", "#test2", "#test3", "#test4", "#test5"]
@@ -42,6 +43,12 @@ class ReviewPostPageViewController: UIViewController {
         //imageview border setting
         myImageView.layer.cornerRadius = myImageView.frame.width / 2
         myImageView.layer.masksToBounds = true
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 2.5, left: 5, bottom: 2.5, right: 5)
+        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 10
+        myCollectionView!.collectionViewLayout = layout
     
     
     }
@@ -129,20 +136,26 @@ extension ReviewPostPageViewController: UICollectionViewDataSource, UICollection
         print("updating cell: \(indexPath.row + 1), \(tagArray[indexPath.row])")
         
         cell.label.text = tagArray[indexPath.row]
-        
-        
-        //cell.imageView.image = bach
+        cell.label.sizeToFit()
+        cell.layer.cornerRadius = 5.0
+        //cell.frame.size.width = cell.label.frame.width
+        ///print("\(cell.label.text!) \(cell.label.frame.width)" )
+        //cell.frame.size.height = 25
         
         //reload 나중에 추가해야 함.
         //cell 선택하면 삭제시키고 다시 reload도 추가해야함.
         
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let kWhateverHeightYouWant = 40
-        return CGSize(width: collectionView.bounds.size.width, height:CGFloat(kWhateverHeightYouWant))
+        //let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomLabelCell", for: indexPath) as! CustomLabelCell
+        dummyLabel.text = tagArray[indexPath.row]
+        dummyLabel.sizeToFit()
+        print(String(describing: dummyLabel.frame.width))
+        return CGSize(width: CGFloat(dummyLabel.frame.width + 10), height:CGFloat(25))
     }
     
     
@@ -157,6 +170,7 @@ extension ReviewPostPageViewController:  UITextFieldDelegate{
         print("insert tag: \(String(describing: textField.text!))")
         tagArray.append("#"+textField.text!)
         textField.text = ""
+        //print(tagArray)
         myCollectionView.reloadData()
         }
         return true
