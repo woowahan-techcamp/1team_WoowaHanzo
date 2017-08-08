@@ -66,6 +66,14 @@
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
+                                                <tableViewCell key="backgroundView" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="d71-jH-RFK">
+                                                    <rect key="frame" x="0.0" y="0.0" width="333" height="136"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d71-jH-RFK" id="2Li-Ah-9u9">
+                                                        <rect key="frame" x="0.0" y="0.0" width="333" height="135.5"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                    </tableViewCellContentView>
+                                                </tableViewCell>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CustomLabelCell" id="o8l-8H-1Ix" customClass="CustomLabelCell" customModule="WoowaHanzo_iOS" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="80" height="31"/>
@@ -75,7 +83,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="#tag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="QFb-xJ-ehg">
-                                                                    <rect key="frame" x="5" y="3.6666666666666661" width="33.666666666666664" height="19.333333333333336"/>
+                                                                    <rect key="frame" x="5" y="3.6666666666667425" width="33.666666666666664" height="19.333333333333336"/>
                                                                     <color key="backgroundColor" red="0.20392156859999999" green="0.59607843140000005" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="24d-xu-mfv"/>
@@ -95,6 +103,29 @@
                                                         <size key="customSize" width="80" height="31"/>
                                                         <connections>
                                                             <outlet property="label" destination="QFb-xJ-ehg" id="wkg-Ss-UMJ"/>
+                                                        </connections>
+                                                    </collectionViewCell>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CustomTextFieldCell" id="782-9i-DSl" customClass="CustomTextFieldCell" customModule="WoowaHanzo_iOS" customModuleProvider="target">
+                                                        <rect key="frame" x="90" y="0.0" width="89" height="31"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                            <rect key="frame" x="0.0" y="0.0" width="89" height="31"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="#" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WRG-R3-aBd">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="89" height="30"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <color key="backgroundColor" red="0.20392156859999999" green="0.59607843140000005" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                </textField>
+                                                            </subviews>
+                                                        </view>
+                                                        <color key="backgroundColor" red="0.20392156859999999" green="0.59607843140000005" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <size key="customSize" width="89" height="31"/>
+                                                        <connections>
+                                                            <outlet property="textfield" destination="WRG-R3-aBd" id="S41-kX-Dw4"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>

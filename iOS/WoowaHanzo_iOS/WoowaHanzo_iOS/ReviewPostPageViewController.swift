@@ -130,21 +130,33 @@ extension ReviewPostPageViewController: UITextViewDelegate{
 
 extension ReviewPostPageViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return tagArray.count
+        return tagArray.count + 1
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomLabelCell", for: indexPath) as! CustomLabelCell
+        //if it's label, not textfield
+        if indexPath.row < tagArray.count {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomLabelCell", for: indexPath) as! CustomLabelCell
+            print("updating tag: \(indexPath.row + 1). \(tagArray[indexPath.row])")
         
-        print("updating cell: \(indexPath.row + 1), \(tagArray[indexPath.row])")
-        
-        cell.label.text = tagArray[indexPath.row]
-        cell.label.sizeToFit()
-        cell.layer.cornerRadius = 5.0
+            cell.label.text = tagArray[indexPath.row]
+            cell.label.sizeToFit()
+            cell.layer.cornerRadius = 5.0
+            
+            return cell
+        }
+            
+        //if it's textfield
+        else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomTextFieldCell", for: indexPath) as! CustomTextFieldCell
+            cell.textfield.sizeToFit()
+            cell.layer.cornerRadius = 5.0
+            
+            return cell
+        }
         
         //reload 나중에 추가해야 함.
         //cell 선택하면 삭제시키고 다시 reload도 추가해야함.
         
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -153,7 +165,6 @@ extension ReviewPostPageViewController: UICollectionViewDataSource, UICollection
         //can not load cell. so make dummylabel and calculate the width of text by sizeTofit()
         dummyLabel.text = tagArray[indexPath.row]
         dummyLabel.sizeToFit()
-        print(String(describing: dummyLabel.frame.width))
         return CGSize(width: CGFloat(dummyLabel.frame.width + 10), height:CGFloat(25))
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
