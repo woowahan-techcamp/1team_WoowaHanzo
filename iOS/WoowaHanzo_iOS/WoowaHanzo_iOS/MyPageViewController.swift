@@ -32,7 +32,7 @@ class MyPageViewController: UIViewController {
             })
             var ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
                 let storyboard = UIStoryboard(name: "Login", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "loginView")
+                let controller = storyboard.instantiateViewController(withIdentifier: "loginNavigation")
                 //self.present(controller, animated: true, completion: nil)
                 //self.navigationController?.pushViewController(controller, animated: true)
                 self.show(controller, sender: self)
