@@ -16,7 +16,6 @@ class MainPageViewController: UIViewController {
         super.viewDidLoad()
         mainpageTableView.delegate = self
         mainpageTableView.dataSource = self
-        
     }
 
     
