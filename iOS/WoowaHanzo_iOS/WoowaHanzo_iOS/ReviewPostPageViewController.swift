@@ -119,7 +119,7 @@ extension ReviewPostPageViewController: UITextViewDelegate{
     }
 }
 
-extension ReviewPostPageViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+extension ReviewPostPageViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return tagArray.count
     }
@@ -130,6 +130,7 @@ extension ReviewPostPageViewController: UICollectionViewDataSource, UICollection
         
         cell.label.text = tagArray[indexPath.row]
         
+        
         //cell.imageView.image = bach
         
         //reload 나중에 추가해야 함.
@@ -137,11 +138,29 @@ extension ReviewPostPageViewController: UICollectionViewDataSource, UICollection
         
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let kWhateverHeightYouWant = 40
+        return CGSize(width: collectionView.bounds.size.width, height:CGFloat(kWhateverHeightYouWant))
+    }
+    
+    
 }
 
 extension ReviewPostPageViewController:  UITextFieldDelegate{
 
     //not working now.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
+        textField.resignFirstResponder()
+        if textField.text != ""{
+        print("insert tag: \(String(describing: textField.text!))")
+        tagArray.append("#"+textField.text!)
+        textField.text = ""
+        myCollectionView.reloadData()
+        }
+        return true
+    }
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if range.length>0  && range.location == 0 {
             print("false")
