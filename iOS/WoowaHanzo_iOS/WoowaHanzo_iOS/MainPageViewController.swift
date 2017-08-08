@@ -17,25 +17,12 @@ class MainPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: NSNotification.Name(rawValue: "reload"), object: nil)
-        DispatchQueue.global().async{
             self.firebaseModel.loadFeed()
-            DispatchQueue.main.async {
-                self.mainpageTableView.reloadData()
-            }
-            
-        }
         mainpageTableView.delegate = self
         mainpageTableView.dataSource = self
-        DispatchQueue.main.async {
-            self.mainpageTableView.reloadData()
-        }
-        
-        
-        
     }
     
-    func reloadTableData()
-    {
+    func reloadTableData(){
         mainpageTableView.reloadData()
         print("Dd")
     }
@@ -43,12 +30,14 @@ class MainPageViewController: UIViewController {
     
 }
 extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return User.users.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as!MainPageTableViewCell
         cell.contentsTextView.text = User.users[indexPath.row].contents
+        cell.nickNameButton.setTitle(User.users[indexPath.row].nickName, for: .normal)
         
         return cell
     }
