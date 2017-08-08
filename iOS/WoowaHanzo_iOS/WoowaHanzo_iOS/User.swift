@@ -10,6 +10,9 @@ import Foundation
 import Firebase
 
 class User {
+    
+    static var users = Array<User>()
+    
     let key : String
     let nickName : String
     var contents : String
@@ -18,6 +21,7 @@ class User {
         self.contents = contents
         self.key = key
     }
+    
     init(snapshot: DataSnapshot) {
         key = snapshot.key
         let snapshotValue = snapshot.value as! [String: AnyObject]
