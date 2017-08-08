@@ -17,6 +17,10 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myTextField: UITextField!
     @IBOutlet weak var dummyLabel: UILabel!
     
+    
+    
+    //@IBOutlet weak var cellTextField: UITextField!
+    
     var placeholder = "당신의 귀한 생각.."
     var tagArray = ["#test1", "#test2", "#test3", "#test4", "#test5"]
     override func viewDidLoad() {
@@ -150,6 +154,7 @@ extension ReviewPostPageViewController: UICollectionViewDataSource, UICollection
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomTextFieldCell", for: indexPath) as! CustomTextFieldCell
             cell.textfield.sizeToFit()
             cell.layer.cornerRadius = 5.0
+            cell.textfield.delegate = self
             
             return cell
         }
@@ -163,13 +168,22 @@ extension ReviewPostPageViewController: UICollectionViewDataSource, UICollection
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         //can not load cell. so make dummylabel and calculate the width of text by sizeTofit()
-        dummyLabel.text = tagArray[indexPath.row]
-        dummyLabel.sizeToFit()
+        //if it's label
+        if indexPath.row < tagArray.count{
+            dummyLabel.text = tagArray[indexPath.row]
+            dummyLabel.sizeToFit()
+        }
+        else{
+            //should make textfield text variable outside and update continuously.
+        }
         return CGSize(width: CGFloat(dummyLabel.frame.width + 10), height:CGFloat(25))
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        tagArray.remove(at:indexPath.row)
-        collectionView.deleteItems(at: [indexPath])
+        //delete only labels
+        if indexPath.row < tagArray.count {
+            tagArray.remove(at:indexPath.row)
+            collectionView.deleteItems(at: [indexPath])
+        }
     }
     
 }

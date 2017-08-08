@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -82,8 +83,8 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="31"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="#tag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="QFb-xJ-ehg">
-                                                                    <rect key="frame" x="5" y="3.6666666666667425" width="33.666666666666664" height="19.333333333333336"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#tag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="QFb-xJ-ehg">
+                                                                    <rect key="frame" x="5" y="4" width="34" height="19"/>
                                                                     <color key="backgroundColor" red="0.20392156859999999" green="0.59607843140000005" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="24d-xu-mfv"/>
@@ -97,6 +98,7 @@
                                                         </view>
                                                         <color key="backgroundColor" red="0.20392156859999999" green="0.59607843140000005" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
+                                                            <constraint firstItem="QFb-xJ-ehg" firstAttribute="bottom" secondItem="o8l-8H-1Ix" secondAttribute="bottomMargin" id="8vq-5s-woN"/>
                                                             <constraint firstItem="QFb-xJ-ehg" firstAttribute="leading" secondItem="o8l-8H-1Ix" secondAttribute="leading" constant="5" id="e5n-Tz-mQO"/>
                                                         </constraints>
                                                         <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
@@ -125,7 +127,7 @@
                                                         <color key="backgroundColor" red="0.20392156859999999" green="0.59607843140000005" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <size key="customSize" width="89" height="31"/>
                                                         <connections>
-                                                            <outlet property="textfield" destination="WRG-R3-aBd" id="S41-kX-Dw4"/>
+                                                            <outlet property="textfield" destination="WRG-R3-aBd" id="bNF-1v-iBW"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
@@ -205,7 +207,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="dummyLabel" destination="Hre-DV-OV9" id="IQn-Nn-dTT"/>
-                        <outlet property="myCollectionView" destination="3Qj-fK-PpQ" id="ezK-sX-mCa"/>
+                        <outlet property="myCollectionView" destination="3Qj-fK-PpQ" id="Ing-YD-2zM"/>
                         <outlet property="myImageView" destination="ffA-TX-D2K" id="Iwz-Vd-nls"/>
                         <outlet property="myTextField" destination="JuD-Wv-NDd" id="Mnp-e6-7Za"/>
                         <outlet property="myTextView" destination="7jD-BC-1iR" id="dh3-bN-yAF"/>
