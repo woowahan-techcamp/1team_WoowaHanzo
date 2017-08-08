@@ -78,7 +78,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="FR9-AM-KRn">
-                        <barButtonItem key="rightBarButtonItem" title="검색아이콘" id="o0t-RJ-QLX"/>
+                        <barButtonItem key="rightBarButtonItem" title="검색아이콘" id="o0t-RJ-QLX">
+                            <connections>
+                                <action selector="searchIconTouched:" destination="klR-Hm-AeJ" id="cRO-fA-VoO"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

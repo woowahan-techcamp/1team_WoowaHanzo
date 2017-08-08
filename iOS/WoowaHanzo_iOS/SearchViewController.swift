@@ -12,8 +12,10 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        var searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 0, y:0, width: 500, height:40))
+        searchBar.placeholder = "Search for Places"
+        self.navigationItem.titleView = searchBar
+        self.navigationController?.navigationBar.topItem?.title = ""
     }
 
     override func didReceiveMemoryWarning() {

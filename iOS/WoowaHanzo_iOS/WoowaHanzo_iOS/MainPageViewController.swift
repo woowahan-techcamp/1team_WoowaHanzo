@@ -27,6 +27,13 @@ class MainPageViewController: UIViewController {
         mainpageTableView.reloadData()
     }
 
+    @IBAction func searchIconTouched(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "SearchPage", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "searchView")
+        //self.present(controller, animated: true, completion: nil)
+        //self.navigationController?.pushViewController(controller, animated: true)
+        self.show(controller, sender: self)
+    }
     
 }
 extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
