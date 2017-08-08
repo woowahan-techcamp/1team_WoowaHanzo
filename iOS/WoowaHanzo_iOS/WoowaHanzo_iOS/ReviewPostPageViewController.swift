@@ -13,10 +13,16 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myView: UIView!
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var myImageView: UIImageView!
+    @IBOutlet weak var myCollectionView: UICollectionView!
     var placeholder = "당신의 귀한 생각.."
+    var tagArray = ["#test1", "#test2", "#test3", "#test4", "#test5"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        //delegates
         myTextView.delegate = self as! UITextViewDelegate
+        myCollectionView.dataSource = self
+        myCollectionView.delegate = self
+        
         //view border setting
         myView.layer.borderColor = UIColor.gray.cgColor
         myView.layer.borderWidth = 0.5
@@ -107,5 +113,25 @@ extension ReviewPostPageViewController: UITextViewDelegate{
                 textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
             }
         }
+    }
+}
+
+extension ReviewPostPageViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        return tagArray.count
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomLabelCell", for: indexPath) as! CustomLabelCell
+        
+        print("updating cell: \(indexPath.row + 1), \(tagArray[indexPath.row])")
+        
+        cell.label.text = tagArray[indexPath.row]
+        
+        //cell.imageView.image = bach
+        
+        //reload 나중에 추가해야 함.
+        //cell 선택하면 삭제시키고 다시 reload도 추가해야함.
+        
+        return cell
     }
 }
