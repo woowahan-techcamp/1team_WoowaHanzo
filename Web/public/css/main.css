@@ -53,7 +53,9 @@ body {
 }
 
 .container_box {
-  width: 600px;
+  width: inherit;
+  max-width: 600px;
+  min-width: 360px;
   padding-top: 20px;
   margin-left: auto;
   margin-right: auto;
@@ -126,7 +128,6 @@ input:focus {
   box-shadow: none;
   -webkit-box-shadow: none;
   outline: -webkit-focus-ring-color none 5px;
-
 }
 
 .custom_button:hover {
@@ -134,14 +135,14 @@ input:focus {
 }
 
 .post {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   border-radius: 18px;
   -moz-border-radius: 18px;
   -webkit-border-radius: 18px;
   border-style: solid;
   border-width: 1px;
   border-color : #CCC;
-  padding: 20px;
+  padding: 2vw;
 }
 
 .post-header {
@@ -149,7 +150,7 @@ input:focus {
 }
 
 .post .Name {
-  font-size: 2.5em;
+  font-size: 4vw;
   font-weight: bold;
   margin-left: 15px;
   top: 1px;
@@ -160,7 +161,7 @@ input:focus {
   bottom: 1px;
   margin-left: 15px;
   color: #1e83c3;
-  font-size: 1.5em;
+  font-size: 1.7vw;
 }
 
 .post .textbox {
@@ -170,12 +171,10 @@ input:focus {
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 6px;
-  padding-bottom: 6px;
   border-color: #AAA;
   border-style: solid;
   border-width: 1px;
   margin-top: 10px;
-  margin-bottom: 10px;
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -239,8 +238,8 @@ input:focus {
 }
 
 div.img-divgo{
-  height: 80px;
-  width: 80px;
+  height: 7vw;
+  width: 7vw;
   overflow: hidden;
   border-radius: 50%;
   -moz-border-radius: 50%;
@@ -256,6 +255,6 @@ div.img-divgo{
   -ms-transform: translate(-50%); /* IE 9 */
   transform: translate(-50%);
   margin-left: 50%;
-  max-height: 80px;
+  max-height: 7vw;
   position: absolute;
 }
