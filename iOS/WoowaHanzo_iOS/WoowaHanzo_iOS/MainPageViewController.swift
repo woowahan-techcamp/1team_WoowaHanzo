@@ -11,9 +11,11 @@ import UIKit
 class MainPageViewController: UIViewController {
 
     
+    @IBOutlet weak var mainpageTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        mainpageTableView.delegate = self
+        mainpageTableView.dataSource = self
         
     }
 
@@ -22,10 +24,11 @@ class MainPageViewController: UIViewController {
 }
 extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 1
+        return 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainPageTableViewCell
+        cell.contentsTextView.text = "dd"
         return cell
     }
     
