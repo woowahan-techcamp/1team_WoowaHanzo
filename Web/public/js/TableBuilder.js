@@ -40,15 +40,6 @@ class TableBuilder {
         logo_id: this.templateObject[keys[i]]["logo"] + "_holder"});
       }
 
-
-      console.log("#" + this.templateObject[keys[i]]["logo"] + "_holder");
-      $("#" + this.templateObject[keys[i]]["logo"] + "_holder").on("click", function(evt) {
-        console.log("Clicked!");
-        // if($(evt.target).is(".logo_holder")) {
-        //   $(evt.target).parent().click();
-        // }
-      });
-
     }
 
     $(".container_box").append(this.table);
@@ -57,17 +48,41 @@ class TableBuilder {
     $(".brand_picker").last().css("display", "none");
 
     var category_elem = $("." + this.key + "_category");
-    console.log(this.key);
+
     category_elem.on("click", function(evt) {
-      console.log(evt.target);
       $(".brand_picker").css("display", "none");
       $("#" + this.key + "_table").css("display", "table");
-      console.log(this.key);
+
+      $(".logo_holder .shader").css("display", "none");
+
     }.bind(this));
 
     for(var i = 0; i < keys.length; ++i) {
       $(".container_box").append(this.makeMenuList(keys[i], this.value[keys[i]]["menu"]));
       $("#" + keys[i] + "_list").css("display", "none");
+
+      $("#" + this.templateObject[keys[i]]["logo"] + "_holder").on("click", function(evt) {
+        if(!$(evt.target).is(".logo_holder")) {
+          $(evt.target).parent().click();
+          return;
+        }
+
+        var curElem = $(evt.target);
+        $(".logo_holder").parent().children(".brand_check").css("display", "none");
+        curElem.parent().children(".brand_check").css("display", "block");
+
+        $(".logo_holder .shader").each(function(index, el) {
+
+          if($(el).parent().attr("id") == $(this).attr("id")) {
+            console.log("Found");
+            $(el).css("display", "none");
+          } else {
+            $(el).css("display", "block");
+          }
+        }.bind(curElem));
+        console.log($(evt.target).attr("id"));
+        console.log("clicked");
+      });
     }
   }
 
