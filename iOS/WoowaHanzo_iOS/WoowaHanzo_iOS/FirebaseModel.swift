@@ -22,6 +22,7 @@ class FirebaseModel{
     }
     
     func loadFeed(){
+        ref = Database.database().reference()
         ref.child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.children.allObjects as? [DataSnapshot] {
                 for child in result {
