@@ -27,7 +27,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZE-Yo-CnC">
                                         <rect key="frame" x="21" y="42" width="374" height="557"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7jD-BC-1iR">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jD-BC-1iR">
                                                 <rect key="frame" x="20" y="132" width="333" height="210"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
@@ -54,11 +54,11 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3Qj-fK-PpQ">
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3Qj-fK-PpQ">
                                                 <rect key="frame" x="20" y="400" width="333" height="136"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="196" id="s8o-0g-IUG"/>
+                                                    <constraint firstAttribute="height" constant="136" id="s8o-0g-IUG"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WSC-61-YoB">
                                                     <size key="itemSize" width="80" height="31"/>
@@ -90,20 +90,20 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="태그 추가:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zd5-OJ-EoD">
-                                                <rect key="frame" x="20" y="362" width="83" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="#" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JuD-Wv-NDd">
-                                                <rect key="frame" x="72" y="362" width="264" height="30"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JuD-Wv-NDd">
+                                                <rect key="frame" x="34" y="365" width="322" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBr-Dr-kSH">
+                                                <rect key="frame" x="20" y="371" width="11" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -113,7 +113,7 @@
                                             <constraint firstItem="7jD-BC-1iR" firstAttribute="top" secondItem="ffA-TX-D2K" secondAttribute="bottom" constant="22" id="F33-Oa-Xoo"/>
                                             <constraint firstItem="7jD-BC-1iR" firstAttribute="leading" secondItem="oZE-Yo-CnC" secondAttribute="leading" constant="20" id="Fq0-aH-VYB"/>
                                             <constraint firstItem="3Qj-fK-PpQ" firstAttribute="leading" secondItem="oZE-Yo-CnC" secondAttribute="leading" constant="20" id="HmP-Gm-WAk"/>
-                                            <constraint firstItem="3Qj-fK-PpQ" firstAttribute="top" secondItem="7jD-BC-1iR" secondAttribute="bottom" constant="8" id="Ycp-h1-cos"/>
+                                            <constraint firstItem="3Qj-fK-PpQ" firstAttribute="top" secondItem="7jD-BC-1iR" secondAttribute="bottom" constant="58" id="Ycp-h1-cos"/>
                                             <constraint firstAttribute="height" constant="557" id="i3x-UH-Luz"/>
                                             <constraint firstItem="ffA-TX-D2K" firstAttribute="leading" secondItem="oZE-Yo-CnC" secondAttribute="leading" constant="20" id="jkU-U4-Odf"/>
                                             <constraint firstAttribute="trailing" secondItem="7jD-BC-1iR" secondAttribute="trailing" constant="21" id="rFY-Gr-F6a"/>
@@ -159,6 +159,7 @@
                     <connections>
                         <outlet property="myCollectionView" destination="3Qj-fK-PpQ" id="ezK-sX-mCa"/>
                         <outlet property="myImageView" destination="ffA-TX-D2K" id="Iwz-Vd-nls"/>
+                        <outlet property="myTextField" destination="JuD-Wv-NDd" id="Mnp-e6-7Za"/>
                         <outlet property="myTextView" destination="7jD-BC-1iR" id="dh3-bN-yAF"/>
                         <outlet property="myView" destination="oZE-Yo-CnC" id="haW-fJ-20s"/>
                     </connections>

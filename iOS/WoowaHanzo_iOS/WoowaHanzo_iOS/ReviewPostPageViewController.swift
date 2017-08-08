@@ -14,6 +14,8 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var myCollectionView: UICollectionView!
+    @IBOutlet weak var myTextField: UITextField!
+    
     var placeholder = "당신의 귀한 생각.."
     var tagArray = ["#test1", "#test2", "#test3", "#test4", "#test5"]
     override func viewDidLoad() {
@@ -22,6 +24,7 @@ class ReviewPostPageViewController: UIViewController {
         myTextView.delegate = self as! UITextViewDelegate
         myCollectionView.dataSource = self
         myCollectionView.delegate = self
+        myTextField.delegate = self
         
         //view border setting
         myView.layer.borderColor = UIColor.gray.cgColor
@@ -133,5 +136,18 @@ extension ReviewPostPageViewController: UICollectionViewDataSource, UICollection
         //cell 선택하면 삭제시키고 다시 reload도 추가해야함.
         
         return cell
+    }
+}
+
+extension ReviewPostPageViewController:  UITextFieldDelegate{
+
+    //not working now.
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if range.length>0  && range.location == 0 {
+            print("false")
+            return false
+        }
+        print("true")
+        return true
     }
 }
