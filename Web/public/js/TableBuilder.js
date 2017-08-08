@@ -58,6 +58,3 @@ class TableBuilder {
 
   }
 }
-
-
-var key
