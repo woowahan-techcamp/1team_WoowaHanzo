@@ -13,6 +13,35 @@ body {
   vertical-align: baseline;
 }
 
+.right_side {
+  display: none;
+}
+
+.right_side_icon {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .right_side {
+    display: block;
+  }
+
+  .right_side_icon {
+    display: none;
+  }
+}
+
+.fa-search {
+  font-size: 20px;
+  color: #fff;
+}
+
+.custom_search_btn {
+  width: 44px !important;
+  height: 34px !important;
+  padding-top: 5px !important;
+}
+
 .navbar {
   background-color: #09273a;
   position: fixed;

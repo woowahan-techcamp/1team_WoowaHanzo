@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"  />
+    <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css"  />
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
 
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
@@ -40,6 +41,9 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" data-toggle="tab" href="#home">먹소리</a>
+        <button type="button" class="navbar-toggle collapsed custom_search_btn" aria-expanded="false" aria-controls="navbar">
+          <i class="fa fa-search fa-1x" aria-hidden="true"></i>
+        </button>
       </div>
 
       <div id="navbar" class="navbar-collapse collapse">
@@ -50,7 +54,7 @@
           <li><a data-toggle="tab" href="#tab4">Tab 4</a></li>
         </ul>
 
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right right_side">
           <li>
             <form class="navbar-form">
               <input class="form-control mr-sm-2" type="text" placeholder="Search">
@@ -62,6 +66,13 @@
               <button type="submit" class="btn btn-success">Sign in</button>
             </form>
           </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right right_side_icon">
+          <li>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </li>
+        </li>
         </ul>
       </div><!--/.navbar-collapse -->
     </div>
