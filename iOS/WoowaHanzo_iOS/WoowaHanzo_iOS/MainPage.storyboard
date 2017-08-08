@@ -12,7 +12,7 @@
         <!--Main Page View Controller-->
         <scene sceneID="tpi-Gj-xep">
             <objects>
-                <viewController id="klR-Hm-AeJ" customClass="MainPageViewController" customModule="WoowaHanzo_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainPage" id="klR-Hm-AeJ" customClass="MainPageViewController" customModule="WoowaHanzo_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QpY-tU-WY9"/>
                         <viewControllerLayoutGuide type="bottom" id="M1q-fT-exJ"/>
