@@ -11,16 +11,24 @@ import UIKit
 class MainPageViewController: UIViewController {
 
     
+    @IBOutlet weak var mainpageTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        mainpageTableView.delegate = self
+        mainpageTableView.dataSource = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
 
+}
+extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return 0
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainPageTableViewCell
+        cell.contentsTextView.text = "dd"
+        return cell
+    }
+    
 }

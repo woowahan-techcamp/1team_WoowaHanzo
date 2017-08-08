@@ -82,7 +82,7 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="MainPageTableView" destination="laF-bT-XL8" id="X6t-mF-s8r"/>
+                        <outlet property="mainpageTableView" destination="laF-bT-XL8" id="gig-sT-s9O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nMu-8B-LCH" userLabel="First Responder" sceneMemberID="firstResponder"/>
