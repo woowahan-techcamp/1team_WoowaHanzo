@@ -20,6 +20,11 @@ class TagPageViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func tagButtonTouched(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "SearchPage", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "searchView")
+        self.show(controller, sender: self)
+    }
     
 
     /*
