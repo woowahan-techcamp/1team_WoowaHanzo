@@ -13,6 +13,7 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myView: UIView!
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var myImageView: UIImageView!
+    var placeholder = "당신의 귀한 생각.."
     override func viewDidLoad() {
         super.viewDidLoad()
         myTextView.delegate = self as! UITextViewDelegate
@@ -25,7 +26,7 @@ class ReviewPostPageViewController: UIViewController {
         myTextView.layer.borderWidth = 0.5
         myTextView.layer.cornerRadius = 3.0
         //setting placeholder
-        myTextView.text = "당신의 귀한 생각.."
+        myTextView.text = placeholder
         myTextView.textColor = UIColor.lightGray
         myTextView.becomeFirstResponder()
         myTextView.selectedTextRange = myTextView.textRange(from: myTextView.beginningOfDocument, to: myTextView.beginningOfDocument)
@@ -36,7 +37,15 @@ class ReviewPostPageViewController: UIViewController {
     
     }
     @IBAction func postButtonTouched(_ sender: Any) {
-        PostModel().postReview(review: myTextView.text, userID: "kim")
+        //if user insert same text as placeholder, it will not send post.
+        //지금은 그냥 놔두지만 나중에 user가 placeholder와 똑같은 글을 쓸때도 send가되게 바꿔야 함.
+        if myTextView.text != placeholder{
+            PostModel().postReview(review: myTextView.text, userID: "kim")
+            print("sent post")
+        }
+        else{
+            print("the post is empty")
+        }
     }
     
     
@@ -73,7 +82,7 @@ extension ReviewPostPageViewController: UITextViewDelegate{
         // and set the cursor to the beginning of the text view
         if updatedText!.isEmpty {
             
-            textView.text = "당신의 귀한 생각.."
+            textView.text = placeholder
             textView.textColor = UIColor.lightGray
             
             textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
