@@ -10,8 +10,10 @@ import Foundation
 import Firebase
 
 class FirebaseModel{
-    var users = [User]()
+    
+    
     var ref: DatabaseReference!
+    
     func postReview(review: String, userID: String){
         ref = Database.database().reference()
         let key = ref.child("posts").childByAutoId().key
@@ -21,20 +23,27 @@ class FirebaseModel{
         ref.updateChildValues(childUpdates)
     }
     
+    
     func loadFeed(){
-        ref = Database.database().reference()
-        ref.child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let result = snapshot.children.allObjects as? [DataSnapshot] {
-                for child in result {
-                    var userKey = child.key as! String
-                    print(child.childSnapshot(forPath: "author").value!)
-                    let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String)
-                    self.users.append(user)
-                    
+    
+        self.ref = Database.database().reference()
+        DispatchQueue.global().async {
+            self.ref.child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
+                if let result = snapshot.children.allObjects as? [DataSnapshot] {
+                    for child in result {
+                        print(child)
+                        var userKey = child.key as! String
+                        //print(child.childSnapshot(forPath: "author").value!)
+                        let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String)
+                        User.users.append(user)
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
+                    }
                 }
-            }
-        })
+            })
+            
+        }
         
     }
+    
     
 }
