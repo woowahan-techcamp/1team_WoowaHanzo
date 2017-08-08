@@ -13,8 +13,8 @@
 		9843974D1F38355100743B63 /* TagPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9843974C1F38355100743B63 /* TagPage.storyboard */; };
 		984397501F3835E800743B63 /* TagPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9843974F1F3835E800743B63 /* TagPageViewController.swift */; };
 		984397521F38389100743B63 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 984397511F38389100743B63 /* profile.png */; };
-		984397541F38548500743B63 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 984397531F38548500743B63 /* GoogleService-Info.plist */; };
 		984397561F3855C300743B63 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984397551F3855C300743B63 /* PostModel.swift */; };
+		984397581F393A7100743B63 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 984397571F393A7100743B63 /* GoogleService-Info.plist */; };
 		9854BF591F331203008FA337 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF581F331203008FA337 /* AppDelegate.swift */; };
 		9854BF5E1F331203008FA337 /* MainLayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BF5C1F331203008FA337 /* MainLayout.storyboard */; };
 		9854BF601F331203008FA337 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9854BF5F1F331203008FA337 /* Assets.xcassets */; };
@@ -57,8 +57,8 @@
 		9843974C1F38355100743B63 /* TagPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TagPage.storyboard; sourceTree = "<group>"; };
 		9843974F1F3835E800743B63 /* TagPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagPageViewController.swift; sourceTree = "<group>"; };
 		984397511F38389100743B63 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
-		984397531F38548500743B63 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		984397551F3855C300743B63 /* PostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		984397571F393A7100743B63 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9854BF551F331203008FA337 /* WoowaHanzo_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WoowaHanzo_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9854BF581F331203008FA337 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9854BF5D1F331203008FA337 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainLayout.storyboard; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 				9854BF611F331203008FA337 /* LaunchScreen.storyboard */,
 				9854BF5F1F331203008FA337 /* Assets.xcassets */,
 				9854BF641F331203008FA337 /* Info.plist */,
-				984397531F38548500743B63 /* GoogleService-Info.plist */,
+				984397571F393A7100743B63 /* GoogleService-Info.plist */,
 			);
 			path = WoowaHanzo_iOS;
 			sourceTree = "<group>";
@@ -370,9 +370,9 @@
 				9843974D1F38355100743B63 /* TagPage.storyboard in Resources */,
 				9854BFAE1F340B4E008FA337 /* MainPage.storyboard in Resources */,
 				984397521F38389100743B63 /* profile.png in Resources */,
+				984397581F393A7100743B63 /* GoogleService-Info.plist in Resources */,
 				9854BFAC1F340AFC008FA337 /* MyPage.storyboard in Resources */,
 				9854BF631F331203008FA337 /* LaunchScreen.storyboard in Resources */,
-				984397541F38548500743B63 /* GoogleService-Info.plist in Resources */,
 				9854BF601F331203008FA337 /* Assets.xcassets in Resources */,
 				9854BF5E1F331203008FA337 /* MainLayout.storyboard in Resources */,
 			);
