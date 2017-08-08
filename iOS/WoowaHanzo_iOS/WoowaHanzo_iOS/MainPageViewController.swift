@@ -10,12 +10,7 @@ import UIKit
 
 class MainPageViewController: UIViewController {
 
-    @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var contentsTextView: UITextView!
-    @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var nickNameButton: UIButton!
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var MainPageTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

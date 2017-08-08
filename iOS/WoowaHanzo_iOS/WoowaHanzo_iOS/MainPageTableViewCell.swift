@@ -10,6 +10,11 @@ import UIKit
 
 class MainPageTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var contentsTextView: UITextView!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var nickNameButton: UIButton!
+    @IBOutlet weak var profileImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
