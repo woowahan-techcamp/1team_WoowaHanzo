@@ -12,10 +12,13 @@ class MainPageViewController: UIViewController {
 
     
     @IBOutlet weak var mainpageTableView: UITableView!
+    var firebaseModel = FirebaseModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         mainpageTableView.delegate = self
         mainpageTableView.dataSource = self
+        firebaseModel.loadFeed()
+        mainpageTableView.reloadData()
     }
 
     
