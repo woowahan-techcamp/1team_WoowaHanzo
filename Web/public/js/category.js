@@ -13,5 +13,4 @@ document.addEventListener("DOMContentLoaded", function(event) {
     data[snapshot.key] = snapshot.val();
     var tableBuilder = new TableBuilder(snapshot.key, snapshot.val());
   });
-
 });
