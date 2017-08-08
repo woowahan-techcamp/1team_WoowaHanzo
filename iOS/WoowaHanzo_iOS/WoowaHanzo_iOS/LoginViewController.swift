@@ -18,6 +18,9 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func loginCancelButtonTouched(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
 
     /*
