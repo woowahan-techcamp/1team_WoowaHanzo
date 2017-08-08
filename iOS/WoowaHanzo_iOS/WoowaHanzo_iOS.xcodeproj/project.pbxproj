@@ -16,6 +16,7 @@
 		984397561F3855C300743B63 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984397551F3855C300743B63 /* PostModel.swift */; };
 		984397581F393A7100743B63 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 984397571F393A7100743B63 /* GoogleService-Info.plist */; };
 		9843975B1F3952C000743B63 /* CustomLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9843975A1F3952C000743B63 /* CustomLabelCell.swift */; };
+		9843975D1F39704A00743B63 /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9843975C1F39704A00743B63 /* FirebaseModel.swift */; };
 		9854BF591F331203008FA337 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF581F331203008FA337 /* AppDelegate.swift */; };
 		9854BF5E1F331203008FA337 /* MainLayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BF5C1F331203008FA337 /* MainLayout.storyboard */; };
 		9854BF601F331203008FA337 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9854BF5F1F331203008FA337 /* Assets.xcassets */; };
@@ -62,6 +63,7 @@
 		984397551F3855C300743B63 /* PostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		984397571F393A7100743B63 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9843975A1F3952C000743B63 /* CustomLabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLabelCell.swift; sourceTree = "<group>"; };
+		9843975C1F39704A00743B63 /* FirebaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseModel.swift; sourceTree = "<group>"; };
 		9854BF551F331203008FA337 /* WoowaHanzo_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WoowaHanzo_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9854BF581F331203008FA337 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9854BF5D1F331203008FA337 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainLayout.storyboard; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		9854BF571F331203008FA337 /* WoowaHanzo_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				9843975C1F39704A00743B63 /* FirebaseModel.swift */,
 				9854BF881F340213008FA337 /* MainLayout */,
 				9854BF891F340223008FA337 /* MainPage */,
 				9843974E1F38357300743B63 /* TagPage */,
@@ -547,6 +550,7 @@
 				9854BF9F1F340806008FA337 /* MyPageViewController.swift in Sources */,
 				984397501F3835E800743B63 /* TagPageViewController.swift in Sources */,
 				98C5637B1F3955180017E68A /* MainPageTableViewCell.swift in Sources */,
+				9843975D1F39704A00743B63 /* FirebaseModel.swift in Sources */,
 				9843975B1F3952C000743B63 /* CustomLabelCell.swift in Sources */,
 				984397561F3855C300743B63 /* PostModel.swift in Sources */,
 				9854BF981F3407CF008FA337 /* ReviewPostPageViewController.swift in Sources */,
