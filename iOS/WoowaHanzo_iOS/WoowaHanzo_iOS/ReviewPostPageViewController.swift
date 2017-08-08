@@ -43,7 +43,9 @@ class ReviewPostPageViewController: UIViewController {
         //imageview border setting
         myImageView.layer.cornerRadius = myImageView.frame.width / 2
         myImageView.layer.masksToBounds = true
+        //collectionview layout
         
+        //left allign layout: 다른 layout 예제를 그대로 덮어쓰는 방법 알아보기.
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 2.5, left: 5, bottom: 2.5, right: 5)
         layout.minimumInteritemSpacing = 10
@@ -138,9 +140,6 @@ extension ReviewPostPageViewController: UICollectionViewDataSource, UICollection
         cell.label.text = tagArray[indexPath.row]
         cell.label.sizeToFit()
         cell.layer.cornerRadius = 5.0
-        //cell.frame.size.width = cell.label.frame.width
-        ///print("\(cell.label.text!) \(cell.label.frame.width)" )
-        //cell.frame.size.height = 25
         
         //reload 나중에 추가해야 함.
         //cell 선택하면 삭제시키고 다시 reload도 추가해야함.
@@ -151,13 +150,16 @@ extension ReviewPostPageViewController: UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomLabelCell", for: indexPath) as! CustomLabelCell
+        //can not load cell. so make dummylabel and calculate the width of text by sizeTofit()
         dummyLabel.text = tagArray[indexPath.row]
         dummyLabel.sizeToFit()
         print(String(describing: dummyLabel.frame.width))
         return CGSize(width: CGFloat(dummyLabel.frame.width + 10), height:CGFloat(25))
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        tagArray.remove(at:indexPath.row)
+        collectionView.deleteItems(at: [indexPath])
+    }
     
 }
 
@@ -175,6 +177,7 @@ extension ReviewPostPageViewController:  UITextFieldDelegate{
         }
         return true
     }
+    //not using now. later set for # in textfield
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if range.length>0  && range.location == 0 {
             print("false")
