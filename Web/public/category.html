@@ -41,42 +41,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" data-toggle="tab" href="#home">먹소리</a>
-          <button type="button" class="navbar-toggle collapsed custom_search_btn" aria-expanded="false" aria-controls="navbar">
-            <i class="fa fa-search fa-1x" aria-hidden="true"></i>
-          </button>
+          <a class="navbar-brand" href="#">Project name</a>
         </div>
-
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a data-toggle="tab" href="#tab1">Tab 1</a></li>
-            <li><a data-toggle="tab" href="#tab2">Tab 2</a></li>
-            <li><a data-toggle="tab" href="#tab3">Tab 3</a></li>
-            <li><a data-toggle="tab" href="#tab4">Tab 4</a></li>
-          </ul>
+          <form class="navbar-form navbar-right">
 
-          <ul class="nav navbar-nav navbar-right right_side">
-            <li>
-              <form class="navbar-form">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
-              </form>
-            </li>
-            <li>
-              <form class="navbar-form" action="../public/login.html">
-                <button type="submit" class="btn btn-success sign_in">Sign in</button>
-              </form>
-            </li>
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right right_side_icon">
-            <li>
-              <form class="navbar-form" action="../public/login.html">
-                <button type="submit" class="btn btn-success sign_in">Sign in</button>
-              </form>
-            </li>
-          </li>
-          </ul>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form>
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
@@ -86,17 +57,20 @@
         <tr>
           <td>
             <div class="image_holder 치킨_category">
-              <img src="pictures/food_images/치킨_커버.png"  />
+              <img class="cover" src="pictures/food_images/치킨_커버.png"  />
+              <img src="pictures/food_images/치킨.png"  />
             </div>
           </td>
           <td>
             <div class="image_holder 족발_category">
-              <img src="pictures/food_images/족발_커버.png"  />
+              <img class="cover" src="pictures/food_images/족발_커버.png"  />
+              <img src="pictures/food_images/족발.png"  />
             </div>
           </td>
           <td>
             <div class="image_holder 피자_category">
-              <img src="pictures/food_images/피자_커버.png"  />
+              <img class="cover" src="pictures/food_images/피자_커버.png"  />
+              <img src="pictures/food_images/피자.png"  />
             </div>
           </td>
         </tr>
@@ -121,6 +95,8 @@
     <script type="template" id="menu_item">
       <div class="menu_item">
         <span>{{name}}</span>
+        <i class="fa fa-check-circle menu_check" aria-hidden="true"></i>
+        <div class="menu_item_cover"></div>
       </div>
     </script>
 
