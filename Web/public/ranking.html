@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>먹소리-랭킹</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css"  />
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/ranking.css">
+
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAot_xscB-brcQ1A3V3g0Ka-DEhKr_HlP8",
+        authDomain: "woowaproject.firebaseapp.com",
+        databaseURL: "https://woowaproject.firebaseio.com",
+        projectId: "woowaproject",
+        storageBucket: "woowaproject.appspot.com",
+        messagingSenderId: "609034471288"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" data-toggle="tab" href="#home">먹소리</a>
+          <button type="button" class="navbar-toggle collapsed custom_search_btn" aria-expanded="false" aria-controls="navbar">
+            <i class="fa fa-search fa-1x" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a data-toggle="tab" href="#tab1">글쓰기</a></li>
+            <li><a data-toggle="tab" href="#tab2">랭킹</a></a></li>
+            <li><a data-toggle="tab" href="#tab3">태그</a></li>
+            <li><a data-toggle="tab" href="#tab4">마이페이지</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right right_side">
+            <li>
+              <form class="navbar-form">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </li>
+            <li>
+              <form class="navbar-form" action="../public/login.html">
+                <button type="submit" class="btn btn-success sign_in">Sign in</button>
+              </form>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right right_side_icon">
+            <li>
+              <form class="navbar-form" action="../public/login.html">
+                <button type="submit" class="btn btn-success sign_in">Sign in</button>
+              </form>
+            </li>
+          </li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div class="container_box">
+      <div class="ranking_item">
+        <div class="ranking_num">1</div>
+        <div class="ranking_content">
+          <div class="ranking_profile_pic_box">
+            <img class="ranking_profile_pic" src="pictures/profile.png"/>
+          </div>
+          <div class="ranking_center_side">
+            <div class="ranking_title">
+              <span class="ranking_title_img"><i class="fa fa-camera-retro"></i></span>
+              <span class="ranking_title_text">오늘의 신</span>
+            </div>
+            <div class="ranking_username">choi_hyeseoni</div>
+          </div>
+          <div class="ranking_right_side">
+            <span>1500</span>
+            <span><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </body>
+</html>
