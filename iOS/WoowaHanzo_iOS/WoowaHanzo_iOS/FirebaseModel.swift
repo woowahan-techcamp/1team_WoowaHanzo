@@ -30,6 +30,7 @@ class FirebaseModel{
         DispatchQueue.global().async {
             self.ref.child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
                 if let result = snapshot.children.allObjects as? [DataSnapshot] {
+                    User.users = [User]()
                     for child in result {
                         print(child)
                         var userKey = child.key as! String

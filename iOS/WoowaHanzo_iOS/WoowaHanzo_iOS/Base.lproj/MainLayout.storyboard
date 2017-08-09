@@ -34,7 +34,7 @@
         <scene sceneID="0Vg-j8-eCJ">
             <objects>
                 <viewControllerPlaceholder storyboardName="ReivewPostPage" id="40A-hr-U8H" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="JOG-Uv-fx0"/>
+                    <tabBarItem key="tabBarItem" title="글쓰기" id="JOG-Uv-fx0"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3KU-Nl-OdD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -23,7 +23,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="9AS-ap-5AP">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="1YD-5H-ADh">
+                        <barButtonItem key="rightBarButtonItem" title="태그" id="1YD-5H-ADh">
                             <connections>
                                 <action selector="tagButtonTouched:" destination="ZcH-k0-xu7" id="y68-u2-EgY"/>
                             </connections>

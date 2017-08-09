@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YiP-LH-sjR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YiP-LH-sjR">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--글쓰기-->
         <scene sceneID="rCo-RQ-gT9">
             <objects>
                 <viewController id="YiP-LH-sjR" customClass="ReviewPostPageViewController" customModule="WoowaHanzo_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -71,7 +71,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="333" height="136"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d71-jH-RFK" id="2Li-Ah-9u9">
-                                                        <rect key="frame" x="0.0" y="0.0" width="333" height="135.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="333" height="135.66666666666666"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </tableViewCellContentView>
                                                 </tableViewCell>
@@ -203,7 +203,7 @@
                             <constraint firstItem="ezh-sH-mRQ" firstAttribute="top" secondItem="BQf-bt-2at" secondAttribute="bottom" id="ryU-1m-eFh"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="O9b-Is-O5c"/>
+                    <tabBarItem key="tabBarItem" title="글쓰기" id="O9b-Is-O5c"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="dummyLabel" destination="Hre-DV-OV9" id="IQn-Nn-dTT"/>

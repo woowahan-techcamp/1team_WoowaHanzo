@@ -93,11 +93,11 @@
             </objects>
             <point key="canvasLocation" x="335.19999999999999" y="274.81259370314842"/>
         </scene>
-        <!--Item-->
+        <!--뉴스피드-->
         <scene sceneID="yy0-p6-76Q">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PW2-AP-TL9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="fNJ-fU-46m"/>
+                    <tabBarItem key="tabBarItem" title="뉴스피드" id="fNJ-fU-46m"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gZp-ft-tvX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
