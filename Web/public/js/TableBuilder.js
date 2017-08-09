@@ -45,9 +45,12 @@ class TableBuilder {
     $(".container_box").append(this.table);
     $(".brand_picker").last().attr("id", this.key + "_table");
 
-    console.log($(".category_picker td").width());
-    $(".category_picker td").outerHeight($(".category_picker td").width());
-    console.log($(".category_picker td").height());
+    $(".category_picker td").each(function(index, elem) {
+      console.log($(".category_picker td").width());
+      var bufferWidth = $(".category_picker td")[0].offsetWidth;
+      elem.style.height = bufferWidth + "px";
+    });
+
     $(".brand_picker").last().css("display", "none");
 
     // clicking a category
