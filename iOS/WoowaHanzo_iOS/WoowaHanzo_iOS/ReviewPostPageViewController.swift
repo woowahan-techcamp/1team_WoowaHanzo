@@ -93,7 +93,7 @@ class ReviewPostPageViewController: UIViewController {
     */
 
 }
-
+/////////////////////textview_delegate/////////////////////////
 extension ReviewPostPageViewController: UITextViewDelegate{
     
     //setting placeholder to appear only when textview is empty
@@ -133,6 +133,8 @@ extension ReviewPostPageViewController: UITextViewDelegate{
     }
 }
 
+
+/////////////////////collectionview_delegate//////////////////////////
 extension ReviewPostPageViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return tagArray.count + 1
@@ -196,18 +198,23 @@ extension ReviewPostPageViewController: UICollectionViewDataSource, UICollection
     }
 }
 
+
+///////////////////////textfield_delegate/////////////////////////
 extension ReviewPostPageViewController:  UITextFieldDelegate{
     //when textfield enter!
     
     //textfield 크기가 이전 입력값보다 10 크게 하는 꼼수
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
-        textFieldText = newString
-        print(textFieldText)
-        DispatchQueue.main.async{
-        self.myCollectionView.reloadData()
+        if TagFilter().isValid3(newString){
+            textFieldText = newString
+            print(textFieldText)
+            DispatchQueue.main.async{
+                self.myCollectionView.reloadData()
+            }
+            return true
         }
-        return true
+        return false
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
