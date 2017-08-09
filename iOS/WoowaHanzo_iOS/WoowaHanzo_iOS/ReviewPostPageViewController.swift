@@ -14,26 +14,20 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var myCollectionView: UICollectionView!
-    @IBOutlet weak var myTextField: UITextField!
     @IBOutlet weak var dummyLabel: UILabel!
     @IBOutlet weak var dummyLabel2: UILabel!
     
-    
-    
-    
-    //@IBOutlet weak var cellTextField: UITextField!
-    
     var placeholder = "당신의 귀한 생각.."
-    var tagArray = ["#test1", "#test2", "#test3", "#test4", "#test5"]
+    var tagArray = [String]()
     var textFieldWidth = CGFloat(30)
     var textFieldText = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //delegates
         myTextView.delegate = self as! UITextViewDelegate
         myCollectionView.dataSource = self
         myCollectionView.delegate = self
-        myTextField.delegate = self
         
         //view border setting
         myView.layer.borderColor = UIColor.gray.cgColor
@@ -61,8 +55,14 @@ class ReviewPostPageViewController: UIViewController {
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 10
         myCollectionView!.collectionViewLayout = layout
-    
-    
+        //keyboard
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     @IBAction func postButtonTouched(_ sender: Any) {
         //if user insert same text as placeholder, it will not send post.
@@ -74,11 +74,6 @@ class ReviewPostPageViewController: UIViewController {
         else{
             print("the post is empty")
         }
-    }
-    
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -98,7 +93,7 @@ class ReviewPostPageViewController: UIViewController {
     */
 
 }
-
+/////////////////////textview_delegate/////////////////////////
 extension ReviewPostPageViewController: UITextViewDelegate{
     
     //setting placeholder to appear only when textview is empty
@@ -138,6 +133,8 @@ extension ReviewPostPageViewController: UITextViewDelegate{
     }
 }
 
+
+/////////////////////collectionview_delegate//////////////////////////
 extension ReviewPostPageViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return tagArray.count + 1
@@ -164,7 +161,7 @@ extension ReviewPostPageViewController: UICollectionViewDataSource, UICollection
             cell.textfield.text = textFieldText
             cell.textfield.sizeToFit()
             cell.layer.cornerRadius = 5.0
-            if tagArray.count > 0 {
+            if tagArray.count > 0 || textFieldText != "" {
                 DispatchQueue.main.async{
                 cell.textfield.becomeFirstResponder()
                 }
@@ -201,17 +198,23 @@ extension ReviewPostPageViewController: UICollectionViewDataSource, UICollection
     }
 }
 
+
+///////////////////////textfield_delegate/////////////////////////
 extension ReviewPostPageViewController:  UITextFieldDelegate{
     //when textfield enter!
     
     //textfield 크기가 이전 입력값보다 10 크게 하는 꼼수
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        textFieldText = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
-        print(textFieldText)
-        DispatchQueue.main.async{
-        self.myCollectionView.reloadData()
+        let newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
+        if TagFilter().isValid3(newString){
+            textFieldText = newString
+            print(textFieldText)
+            DispatchQueue.main.async{
+                self.myCollectionView.reloadData()
+            }
+            return true
         }
-        return true
+        return false
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

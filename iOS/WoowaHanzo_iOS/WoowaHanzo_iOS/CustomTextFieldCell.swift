@@ -10,6 +10,5 @@ import Foundation
 import UIKit
 
 class CustomTextFieldCell: UICollectionViewCell {
-    
     @IBOutlet weak var textfield: UITextField!
 }
