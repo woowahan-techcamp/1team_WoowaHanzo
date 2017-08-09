@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DGCollectionViewLeftAlignFlowLayout
 
 class ReviewPostPageViewController: UIViewController {
 
@@ -28,7 +29,7 @@ class ReviewPostPageViewController: UIViewController {
         myTextView.delegate = self as! UITextViewDelegate
         myCollectionView.dataSource = self
         myCollectionView.delegate = self
-        
+        myCollectionView.register(UINib(nibName: String(describing: ReusableView.self), bundle: Bundle.main), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ReusableView.Identifier)
         //view border setting
         myView.layer.borderColor = UIColor.gray.cgColor
         myView.layer.borderWidth = 0.5
@@ -204,6 +205,14 @@ extension ReviewPostPageViewController: UICollectionViewDataSource, UICollection
             collectionView.deleteItems(at: [indexPath])
         }
     }
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let view: ReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: ReusableView.Identifier, for: indexPath) as? ReusableView else {
+            fatalError("Cannot dequeue reusable view with identigier: \(ReusableView.Identifier)")
+        }
+        
+        return view
+    }
+
 }
 
 
