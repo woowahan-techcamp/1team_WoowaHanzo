@@ -39,13 +39,40 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" data-toggle="tab" href="#home">먹소리</a>
+          <button type="button" class="navbar-toggle collapsed custom_search_btn" aria-expanded="false" aria-controls="navbar">
+            <i class="fa fa-search fa-1x" aria-hidden="true"></i>
+          </button>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
 
-            <button type="submit" class="btn btn-success">Sign in</button>
-          </form>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a data-toggle="tab" href="#tab1">Tab 1</a></li>
+            <li><a data-toggle="tab" href="#tab2">Tab 2</a></li>
+            <li><a data-toggle="tab" href="#tab3">Tab 3</a></li>
+            <li><a data-toggle="tab" href="#tab4">Tab 4</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right right_side">
+            <li>
+              <form class="navbar-form">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </li>
+            <li>
+              <form class="navbar-form">
+                <button type="submit" class="btn btn-success">Sign in</button>
+              </form>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right right_side_icon">
+            <li>
+              <button type="submit" class="btn btn-success">Sign in</button>
+            </li>
+          </li>
+          </ul>
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
