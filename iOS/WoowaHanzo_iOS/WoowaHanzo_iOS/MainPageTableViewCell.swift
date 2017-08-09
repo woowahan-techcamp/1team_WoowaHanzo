@@ -61,28 +61,7 @@ extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDe
             }
             return cell
         }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-//   {
-////        let collectionViewWidth = self.collectionView.bounds.size.width
-////        cell.frame.size.width = collectionViewWidth
-////        cell.locationLabel.frame.size.width = collectionViewWidth
-//
-//       return CGSize(width: (User.users[indexPath.section].tagsArray?[indexPath.row]., height: 100)
-//    }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        
-//        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-//        if indexPath.item % 3 == 0 {
-//            let cellWidth = (collectionView.frame.width - (flowLayout.sectionInset.left + flowLayout.sectionInset.right))
-//            return CGSize(width: cellWidth, height: cellWidth / 2)
-//        } else {
-//            let cellWidth = (collectionView.frame.width - (flowLayout.sectionInset.left + flowLayout.sectionInset.right) - flowLayout.minimumInteritemSpacing) / 2
-//            return CGSize(width: cellWidth, height: cellWidth)
-//        }
-//        
-//    }
+
     
 }
 
