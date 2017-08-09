@@ -134,7 +134,7 @@
                                                         <color key="backgroundColor" red="0.20392156859999999" green="0.59607843140000005" blue="0.85882352939999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <size key="customSize" width="89" height="31"/>
                                                         <connections>
-                                                            <outlet property="textfield" destination="WRG-R3-aBd" id="bNF-1v-iBW"/>
+                                                            <outlet property="textfield" destination="WRG-R3-aBd" id="8Zm-Ws-Hrz"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
@@ -158,6 +158,13 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dummy Label2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MxW-Rn-LgA">
+                                                <rect key="frame" x="292" y="362" width="42" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -214,6 +221,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="dummyLabel" destination="Hre-DV-OV9" id="IQn-Nn-dTT"/>
+                        <outlet property="dummyLabel2" destination="MxW-Rn-LgA" id="Hxl-uz-fMa"/>
                         <outlet property="myCollectionView" destination="3Qj-fK-PpQ" id="Ing-YD-2zM"/>
                         <outlet property="myImageView" destination="ffA-TX-D2K" id="Iwz-Vd-nls"/>
                         <outlet property="myTextField" destination="JuD-Wv-NDd" id="Mnp-e6-7Za"/>
