@@ -8,9 +8,7 @@
 
 import UIKit
 
-class MainPageViewController: UIViewController {
-    
-    
+class MainPageViewController: UIViewController{
     
     
     @IBOutlet weak var mainpageTableView: UITableView!
@@ -23,11 +21,12 @@ class MainPageViewController: UIViewController {
         self.firebaseModel.loadFeed()
         mainpageTableView.delegate = self
         mainpageTableView.dataSource = self
-        
+                
     }
     
     func reloadTableData(){
         mainpageTableView.reloadData()
+
     }
 
     @IBAction func searchIconTouched(_ sender: Any) {
@@ -57,6 +56,5 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
         cell.nickNameButton.setTitle(User.users[indexPath.row].nickName, for: .normal)
         return cell
     }
-    
-}
 
+}

@@ -10,58 +10,80 @@ import UIKit
 
 
 class MainPageTableViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var tagTextView: UITextView!
     @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var mainpageCollectionView: UICollectionView!
+    //@IBOutlet weak var mainpageCollectionView: UICollectionView!
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var nickNameButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadCollectionView), name: NSNotification.Name(rawValue: "reload"), object: nil)
-        mainpageCollectionView.dataSource = self
-        mainpageCollectionView.delegate = self
-        self.contentView.translatesAutoresizingMaskIntoConstraints = false
-        let screenWidth = UIScreen.main.bounds.size.width
-       // self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        // Initialization code
-        
-
-        
+        tagTextView.text = "#안녕 #바보 #ddㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ"
+        tagTextView.resolveHashTags()
+        tagTextView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.blue]
+        tagTextView.isScrollEnabled = false
+        tagTextView.delegate = self
+ 
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-    func reloadCollectionView(){
-         print("dd")
-        mainpageCollectionView.reloadData()
-        print(User.users[0].tagsArray)
     
-    }
-
+    
 }
 extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     //MARK: CollectionView extension
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-            return (User.users[section].tagsArray?.count)!
-        }
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-            var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MainPageCollectionViewCell
-            cell.tagLabel.layer.cornerRadius = 10
-            cell.tagLabel.layer.masksToBounds = true
-           
-            if let tagArray = User.users[indexPath.section].tagsArray
-            {
-                cell.tagLabel.text = "#\(tagArray[indexPath.row])"
-            }
-            return cell
-        }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        return (User.users[section].tagsArray?.count)!
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MainPageCollectionViewCell
+        cell.tagLabel.layer.cornerRadius = 10
+        cell.tagLabel.layer.masksToBounds = true
+        
+        cell.tagLabel.preferredMaxLayoutWidth = cell.tagLabel.frame.width
+        //            cell.contentView.bounds = cell.bounds
+        //            cell.layoutIfNeeded()
+        
+        
 
+        if let tagArray = User.users[indexPath.section].tagsArray
+        {
+            cell.tagLabel.text = "#\(tagArray[indexPath.row])"
+        }
+        return cell
+    }
+    
+    
+    
     
 }
+extension MainPageTableViewCell : UITextViewDelegate{
+    func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        if let URL = url.scheme {
+            let arrId = Int(URL)
+            print(hashtagArr?[arrId!])
+            
+//            let alertController = UIAlertController(title: "AZHashtagTextViewExample", message: "\(hashtagArr![arrId!])", preferredStyle: .alert)
+//            let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+//                UIAlertAction in
+//                alertController.dismiss(animated: true, completion: nil)
+//            }
+//            alertController.addAction(okBtn)
+//            
+            //self.present(alertController, animated: true, completion: nil)
+            
+        }
+        return false
+    }
+}
+
 
