@@ -10,6 +10,10 @@ import UIKit
 
 class SelectBrandTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var brandMenuNumLabel: UILabel!
+    
+    @IBOutlet weak var brandNameLabel: UILabel!
+    @IBOutlet weak var brandLogoImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
