@@ -90,7 +90,7 @@
                                                                 </subviews>
                                                             </view>
                                                             <connections>
-                                                                <outlet property="tagLabel" destination="af7-Bb-aRY" id="ER9-lQ-IOo"/>
+                                                                <outlet property="tagLabel" destination="af7-Bb-aRY" id="0nL-Et-7Jk"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -101,6 +101,7 @@
                                             <outlet property="categoryLabel" destination="gB7-EA-GQE" id="QBW-V1-Vth"/>
                                             <outlet property="contentsTextView" destination="HCI-CU-uVs" id="li5-xg-o97"/>
                                             <outlet property="likeButton" destination="37g-Sg-JPF" id="xxD-XD-5vR"/>
+                                            <outlet property="mainpageCollectionView" destination="g4p-aZ-8ac" id="KHe-iD-eg8"/>
                                             <outlet property="nickNameButton" destination="1uC-VA-8di" id="hcg-aH-wQy"/>
                                             <outlet property="profileImageView" destination="Cx9-sr-l7K" id="qNt-Ud-iaa"/>
                                         </connections>
@@ -119,7 +120,6 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="mainpageCollectionView" destination="g4p-aZ-8ac" id="iOq-3j-Leb"/>
                         <outlet property="mainpageTableView" destination="laF-bT-XL8" id="gig-sT-s9O"/>
                     </connections>
                 </viewController>

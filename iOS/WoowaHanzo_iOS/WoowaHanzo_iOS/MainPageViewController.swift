@@ -11,7 +11,8 @@ import UIKit
 class MainPageViewController: UIViewController {
     
     
-    @IBOutlet weak var mainpageCollectionView: UICollectionView!
+    
+    
     @IBOutlet weak var mainpageTableView: UITableView!
     var firebaseModel = FirebaseModel()
     
@@ -22,6 +23,7 @@ class MainPageViewController: UIViewController {
         self.firebaseModel.loadFeed()
         mainpageTableView.delegate = self
         mainpageTableView.dataSource = self
+        
     }
     
     func reloadTableData(){
@@ -37,7 +39,12 @@ class MainPageViewController: UIViewController {
     }
     
 }
+
+//MARK: TableView extension
 extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
+    
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return User.users.count
@@ -52,3 +59,4 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
     }
     
 }
+
