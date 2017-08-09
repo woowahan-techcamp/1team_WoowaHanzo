@@ -17,9 +17,6 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var dummyLabel: UILabel!
     @IBOutlet weak var dummyLabel2: UILabel!
     
-    
-    
-    
     //@IBOutlet weak var cellTextField: UITextField!
     
     var placeholder = "당신의 귀한 생각.."
