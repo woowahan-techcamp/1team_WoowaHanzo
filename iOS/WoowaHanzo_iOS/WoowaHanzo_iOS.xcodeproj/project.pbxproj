@@ -32,6 +32,7 @@
 		9854BFAA1F340AEF008FA337 /* RankPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BFA91F340AEF008FA337 /* RankPage.storyboard */; };
 		9854BFAC1F340AFC008FA337 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BFAB1F340AFC008FA337 /* MyPage.storyboard */; };
 		9854BFAE1F340B4E008FA337 /* MainPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BFAD1F340B4E008FA337 /* MainPage.storyboard */; };
+		986C8B5F1F3AD59400FC42ED /* HashTagTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C8B5E1F3AD59400FC42ED /* HashTagTextView.swift */; };
 		98C5637B1F3955180017E68A /* MainPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C5637A1F3955180017E68A /* MainPageTableViewCell.swift */; };
 		98C563C21F39B69D0017E68A /* SearchPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98C563C11F39B69D0017E68A /* SearchPage.storyboard */; };
 		98C563C41F39B6AC0017E68A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C563C31F39B6AC0017E68A /* SearchViewController.swift */; };
@@ -93,6 +94,7 @@
 		9854BFA91F340AEF008FA337 /* RankPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RankPage.storyboard; sourceTree = "<group>"; };
 		9854BFAB1F340AFC008FA337 /* MyPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		9854BFAD1F340B4E008FA337 /* MainPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainPage.storyboard; sourceTree = "<group>"; };
+		986C8B5E1F3AD59400FC42ED /* HashTagTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashTagTextView.swift; sourceTree = "<group>"; };
 		98C5637A1F3955180017E68A /* MainPageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageTableViewCell.swift; sourceTree = "<group>"; };
 		98C563C11F39B69D0017E68A /* SearchPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchPage.storyboard; sourceTree = "<group>"; };
 		98C563C31F39B6AC0017E68A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				9854BF9A1F3407F1008FA337 /* MainPageViewController.swift */,
 				98C5637A1F3955180017E68A /* MainPageTableViewCell.swift */,
 				98C563D01F3A91B70017E68A /* MainPageCollectionViewCell.swift */,
+				986C8B5E1F3AD59400FC42ED /* HashTagTextView.swift */,
 			);
 			name = MainPage;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 				984397501F3835E800743B63 /* TagPageViewController.swift in Sources */,
 				98C5637B1F3955180017E68A /* MainPageTableViewCell.swift in Sources */,
 				98C563CF1F39C3840017E68A /* RegisterViewController.swift in Sources */,
+				986C8B5F1F3AD59400FC42ED /* HashTagTextView.swift in Sources */,
 				9843975D1F39704A00743B63 /* FirebaseModel.swift in Sources */,
 				98C563D11F3A91B70017E68A /* MainPageCollectionViewCell.swift in Sources */,
 				98C563C41F39B6AC0017E68A /* SearchViewController.swift in Sources */,

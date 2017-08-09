@@ -28,6 +28,7 @@ class MainPageViewController: UIViewController {
     
     func reloadTableData(){
         mainpageTableView.reloadData()
+
     }
 
     @IBAction func searchIconTouched(_ sender: Any) {
@@ -57,6 +58,11 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
         cell.nickNameButton.setTitle(User.users[indexPath.row].nickName, for: .normal)
         return cell
     }
-    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+//        return UITableViewAutomaticDimension
+//    }
+//    public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat{
+//        return UITableViewAutomaticDimension
+//    }
 }
 
