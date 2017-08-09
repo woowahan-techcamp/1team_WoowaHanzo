@@ -3,6 +3,7 @@
   height: 80px;
   margin-bottom: 20px;
   /*outline: 1px solid black;*/
+  min-width: 400px;
 }
 
 .ranking_num {
