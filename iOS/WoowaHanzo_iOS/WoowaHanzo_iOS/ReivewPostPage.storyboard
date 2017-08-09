@@ -29,7 +29,7 @@
                                         <rect key="frame" x="21" y="42" width="374" height="557"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jD-BC-1iR">
-                                                <rect key="frame" x="20" y="132" width="333" height="210"/>
+                                                <rect key="frame" x="20" y="132" width="333" height="248"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -71,7 +71,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="333" height="136"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d71-jH-RFK" id="2Li-Ah-9u9">
-                                                        <rect key="frame" x="0.0" y="0.0" width="333" height="135.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="333" height="135.66666666666666"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </tableViewCellContentView>
                                                 </tableViewCell>
@@ -139,20 +139,6 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JuD-Wv-NDd">
-                                                <rect key="frame" x="34" y="357" width="322" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBr-Dr-kSH">
-                                                <rect key="frame" x="20" y="363" width="11" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="dummyLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hre-DV-OV9">
                                                 <rect key="frame" x="165" y="363" width="99" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -176,7 +162,7 @@
                                             <constraint firstItem="7jD-BC-1iR" firstAttribute="top" secondItem="ffA-TX-D2K" secondAttribute="bottom" constant="22" id="F33-Oa-Xoo"/>
                                             <constraint firstItem="7jD-BC-1iR" firstAttribute="leading" secondItem="oZE-Yo-CnC" secondAttribute="leading" constant="20" id="Fq0-aH-VYB"/>
                                             <constraint firstItem="3Qj-fK-PpQ" firstAttribute="leading" secondItem="oZE-Yo-CnC" secondAttribute="leading" constant="20" id="HmP-Gm-WAk"/>
-                                            <constraint firstItem="3Qj-fK-PpQ" firstAttribute="top" secondItem="7jD-BC-1iR" secondAttribute="bottom" constant="58" id="Ycp-h1-cos"/>
+                                            <constraint firstItem="3Qj-fK-PpQ" firstAttribute="top" secondItem="7jD-BC-1iR" secondAttribute="bottom" constant="20" id="RuQ-gI-F7l"/>
                                             <constraint firstAttribute="height" constant="557" id="i3x-UH-Luz"/>
                                             <constraint firstItem="ffA-TX-D2K" firstAttribute="leading" secondItem="oZE-Yo-CnC" secondAttribute="leading" constant="20" id="jkU-U4-Odf"/>
                                             <constraint firstAttribute="trailing" secondItem="7jD-BC-1iR" secondAttribute="trailing" constant="21" id="rFY-Gr-F6a"/>
@@ -224,7 +210,6 @@
                         <outlet property="dummyLabel2" destination="MxW-Rn-LgA" id="Hxl-uz-fMa"/>
                         <outlet property="myCollectionView" destination="3Qj-fK-PpQ" id="Ing-YD-2zM"/>
                         <outlet property="myImageView" destination="ffA-TX-D2K" id="Iwz-Vd-nls"/>
-                        <outlet property="myTextField" destination="JuD-Wv-NDd" id="Mnp-e6-7Za"/>
                         <outlet property="myTextView" destination="7jD-BC-1iR" id="dh3-bN-yAF"/>
                         <outlet property="myView" destination="oZE-Yo-CnC" id="haW-fJ-20s"/>
                     </connections>

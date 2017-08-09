@@ -14,7 +14,6 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var myCollectionView: UICollectionView!
-    @IBOutlet weak var myTextField: UITextField!
     @IBOutlet weak var dummyLabel: UILabel!
     @IBOutlet weak var dummyLabel2: UILabel!
     
@@ -24,7 +23,7 @@ class ReviewPostPageViewController: UIViewController {
     //@IBOutlet weak var cellTextField: UITextField!
     
     var placeholder = "당신의 귀한 생각.."
-    var tagArray = ["#test1", "#test2", "#test3", "#test4", "#test5"]
+    var tagArray = [String]()
     var textFieldWidth = CGFloat(30)
     var textFieldText = ""
     override func viewDidLoad() {
@@ -33,7 +32,6 @@ class ReviewPostPageViewController: UIViewController {
         myTextView.delegate = self as! UITextViewDelegate
         myCollectionView.dataSource = self
         myCollectionView.delegate = self
-        myTextField.delegate = self
         
         //view border setting
         myView.layer.borderColor = UIColor.gray.cgColor
@@ -61,8 +59,14 @@ class ReviewPostPageViewController: UIViewController {
         layout.minimumInteritemSpacing = 10
         layout.minimumLineSpacing = 10
         myCollectionView!.collectionViewLayout = layout
-    
-    
+        //keyboard
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     @IBAction func postButtonTouched(_ sender: Any) {
         //if user insert same text as placeholder, it will not send post.
@@ -74,11 +78,6 @@ class ReviewPostPageViewController: UIViewController {
         else{
             print("the post is empty")
         }
-    }
-    
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -164,7 +163,7 @@ extension ReviewPostPageViewController: UICollectionViewDataSource, UICollection
             cell.textfield.text = textFieldText
             cell.textfield.sizeToFit()
             cell.layer.cornerRadius = 5.0
-            if tagArray.count > 0 {
+            if tagArray.count > 0 || textFieldText != "" {
                 DispatchQueue.main.async{
                 cell.textfield.becomeFirstResponder()
                 }
