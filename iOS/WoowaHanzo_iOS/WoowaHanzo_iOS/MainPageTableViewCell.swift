@@ -22,6 +22,7 @@ class MainPageTableViewCell: UITableViewCell {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadCollectionView), name: NSNotification.Name(rawValue: "reload"), object: nil)
         mainpageCollectionView.dataSource = self
         mainpageCollectionView.delegate = self
+        
         // Initialization code
         
     }
@@ -45,7 +46,10 @@ extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDe
         }
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
             var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MainPageCollectionViewCell
+            cell.tagLabel.layer.cornerRadius = 10
+            cell.tagLabel.layer.masksToBounds = true
             cell.tagLabel.text = User.users[indexPath.section].tagsArray?[indexPath.row]
+            
             return cell
         }
     
