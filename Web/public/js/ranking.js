@@ -33,13 +33,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   console.log(rankingList);
 
+  Handlebars.registerHelper("counter", function (index){
+    return index + 1;
+  });
+
 
   var source = document.getElementById("ranking_template").innerHTML;
 	var template = Handlebars.compile(source);
 	document.querySelector(".container_box").innerHTML += template(rankingList);
-
-
-
 
 
 });
