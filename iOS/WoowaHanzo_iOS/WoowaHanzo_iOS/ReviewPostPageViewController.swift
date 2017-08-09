@@ -206,7 +206,8 @@ extension ReviewPostPageViewController:  UITextFieldDelegate{
     
     //textfield 크기가 이전 입력값보다 10 크게 하는 꼼수
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        textFieldText = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
+        let newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
+        textFieldText = newString
         print(textFieldText)
         DispatchQueue.main.async{
         self.myCollectionView.reloadData()
