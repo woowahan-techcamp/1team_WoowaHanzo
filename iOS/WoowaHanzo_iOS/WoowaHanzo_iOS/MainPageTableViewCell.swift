@@ -22,9 +22,9 @@ class MainPageTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        tagTextView.text = "#안녕 #바보 #dd"
+        tagTextView.text = "#안녕 #바보 #ddㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ"
         tagTextView.resolveHashTags()
-        tagTextView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.red]
+        tagTextView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.blue]
         tagTextView.isScrollEnabled = false
         tagTextView.delegate = self
  
