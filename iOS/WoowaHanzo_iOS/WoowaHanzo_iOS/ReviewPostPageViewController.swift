@@ -193,6 +193,12 @@ extension ReviewPostPageViewController:  UITextFieldDelegate{
     //not working now.
     func textFieldDidEndEditing(_ textField: UITextField) {
         //textField.sizeToFit()
+        
+        
+        //textfield크기 Cell과 함께 자동으로 줄어들고 늘어나는 부분 고쳐야함.
+        //label이랑 textfield 위치 조정.
+        
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
