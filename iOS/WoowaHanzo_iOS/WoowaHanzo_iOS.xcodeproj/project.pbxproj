@@ -18,6 +18,7 @@
 		9843975D1F39704A00743B63 /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9843975C1F39704A00743B63 /* FirebaseModel.swift */; };
 		984397601F397F6E00743B63 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9843975F1F397F6E00743B63 /* User.swift */; };
 		984397621F39A4F800743B63 /* CustomTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984397611F39A4F800743B63 /* CustomTextFieldCell.swift */; };
+		984397641F3ACD3200743B63 /* TagFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984397631F3ACD3200743B63 /* TagFilter.swift */; };
 		9854BF591F331203008FA337 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF581F331203008FA337 /* AppDelegate.swift */; };
 		9854BF5E1F331203008FA337 /* MainLayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BF5C1F331203008FA337 /* MainLayout.storyboard */; };
 		9854BF601F331203008FA337 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9854BF5F1F331203008FA337 /* Assets.xcassets */; };
@@ -73,6 +74,7 @@
 		9843975C1F39704A00743B63 /* FirebaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseModel.swift; sourceTree = "<group>"; };
 		9843975F1F397F6E00743B63 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		984397611F39A4F800743B63 /* CustomTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextFieldCell.swift; sourceTree = "<group>"; };
+		984397631F3ACD3200743B63 /* TagFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagFilter.swift; sourceTree = "<group>"; };
 		9854BF551F331203008FA337 /* WoowaHanzo_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WoowaHanzo_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9854BF581F331203008FA337 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9854BF5D1F331203008FA337 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainLayout.storyboard; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				9854BF971F3407CF008FA337 /* ReviewPostPageViewController.swift */,
 				9843975A1F3952C000743B63 /* CustomLabelCell.swift */,
 				984397611F39A4F800743B63 /* CustomTextFieldCell.swift */,
+				984397631F3ACD3200743B63 /* TagFilter.swift */,
 			);
 			name = ReviewPostPage;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				9854BF9B1F3407F1008FA337 /* MainPageViewController.swift in Sources */,
 				98C563CD1F39BE310017E68A /* AuthModel.swift in Sources */,
 				984397621F39A4F800743B63 /* CustomTextFieldCell.swift in Sources */,
+				984397641F3ACD3200743B63 /* TagFilter.swift in Sources */,
 				9854BF9F1F340806008FA337 /* MyPageViewController.swift in Sources */,
 				984397501F3835E800743B63 /* TagPageViewController.swift in Sources */,
 				98C5637B1F3955180017E68A /* MainPageTableViewCell.swift in Sources */,
