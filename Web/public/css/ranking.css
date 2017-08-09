@@ -1,0 +1,88 @@
+.ranking_item {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 20px;
+  /*outline: 1px solid black;*/
+  min-width: 400px;
+}
+
+.ranking_num {
+  width: 50px;
+  height: 80px;
+  line-height: 80px;
+  font-size: 30px;
+  /*outline: 1px solid red;*/
+  margin-right: 10px;
+  text-align: center;
+  float: left;
+}
+
+.ranking_content {
+  width: calc(100% - 80px);
+  background-color: rgb(246, 246, 246);
+  border: 2px solid rgb(66, 156, 240);
+  padding: 0 20px 0 10px;
+  border-radius: 25px;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  float: left;
+}
+
+.ranking_profile_pic_box {
+  width: 70px;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  /*outline: 1px solid black;*/
+  margin-right: 10px;
+  float: left;
+}
+
+.ranking_profile_pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+}
+
+.ranking_center_side {
+  width: auto;
+  height: 80px;
+  /*outline: 1px solid pink;*/
+  float: left;
+}
+
+.ranking_title {
+  width: auto;
+  height: 40px;
+  /*outline: 1px solid green;*/
+  position: relative;
+}
+
+.ranking_title_img {
+  position: absolute;
+  bottom: 0;
+}
+
+.ranking_title_text {
+  width: 200px;
+  color: rgb(93, 205, 240);
+  margin-right: 5px;
+  position: absolute;
+  bottom: 0;
+  left: 25px;
+}
+
+.ranking_username {
+  width: auto;
+  height: 40px;
+  /*outline: 1px solid purple;*/
+  color: #736f6f;
+}
+
+.ranking_right_side {
+  width: auto;
+  height: 80px;
+  line-height: 80px;
+  /*outline: 1px solid yellow;*/
+  float: right;
+}
