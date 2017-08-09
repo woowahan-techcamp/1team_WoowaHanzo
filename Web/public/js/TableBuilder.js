@@ -44,7 +44,10 @@ class TableBuilder {
 
     $(".container_box").append(this.table);
     $(".brand_picker").last().attr("id", this.key + "_table");
-    $(".category_picker td").height($(".category_picker td").width());
+
+    console.log($(".category_picker td").width());
+    $(".category_picker td").outerHeight($(".category_picker td").width());
+    console.log($(".category_picker td").height());
     $(".brand_picker").last().css("display", "none");
 
     // clicking a category
@@ -53,8 +56,8 @@ class TableBuilder {
       $(".brand_picker").css("display", "none");
 
       $("#" + this.key + "_table").css("display", "table");
-      $(".menu_list").css("display", "none");
-      $(".logo_holder .shader").css("display", "none");
+
+      this.resetView("category");
 
       scrollTo($("#" + this.key + "_table"));
 
@@ -88,9 +91,11 @@ class TableBuilder {
         var brand = $(evt.target).attr("id").split("_")[0];
         $(".menu_list").css("display", "none");
         $("#" + brand + "_list").css("display", "block");
+
         scrollTo($("#" + brand + "_list"));
+        this.resetView("brand");
         console.log("clicked");
-      });
+      }.bind(this));
     }
 
     $(".menu_item").each(function(index, el) {
@@ -100,8 +105,11 @@ class TableBuilder {
           $(evt.target).parent().click();
           return;
         }
-
         var menuName = $(evt.target).text().trim();
+        $(".menu_item .menu_item_cover").css("display", "block");
+        $(el).children(".menu_item_cover").css("display", "none");
+        $(".menu_check").css("display", "none");
+        $(el).children(".menu_check").css("display", "inline");
         console.log(menuName);
       });
     });
@@ -119,6 +127,18 @@ class TableBuilder {
     ret += "</div>";
 
     return ret;
+  }
+
+  resetView(hierarchy) {
+    if(hierarchy == "category") {
+      $(".menu_list").css("display", "none");
+      $(".logo_holder .shader").css("display", "none");
+      $(".menu_item .menu_item_cover").css("display", "none");
+      $(".menu_check").css("display", "none");
+    } else if (hierarchy == "brand") {
+      $(".menu_item .menu_item_cover").css("display", "none");
+      $(".menu_check").css("display", "none");
+    }
   }
 }
 

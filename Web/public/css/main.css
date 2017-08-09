@@ -98,6 +98,11 @@ body {
   cursor: pointer;
 }
 
+.category_picker .cover {
+  z-index: 10;
+  visibility: hidden;
+}
+
 .brand_check {
   display: none;
 }
@@ -145,7 +150,6 @@ body {
   !-moz-border-radius: 14px;
   !-webkit-border-radius: 14px;
   color: #777;
-
 }
 
 
@@ -154,8 +158,8 @@ body {
   font-size: 1.4em;
   padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 18px;
+  padding-right: 18px;
   !border-bottom: solid 1px #70b6e5;
   border-bottom: solid 1px #888;
 
@@ -185,8 +189,8 @@ body {
 .menu_check {
   color: #70b6e5;
   margin-left: 10px;
+  display: none;
 }
-
 
 .menu_item_cover {
   width: 100%;
@@ -194,10 +198,14 @@ body {
   position: absolute;
   background-color: #333;
   display: none;
-  opacity: 0.7;
+  opacity: 0.3;
   z-index: 3;
   left: 0px;
   top: 0px;
+}
+
+.menu_item_cover:hover {
+  display: none;
 }
 
 input:focus {

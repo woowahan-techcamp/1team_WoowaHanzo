@@ -1,8 +1,17 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   console.log("category.js started!");
   console.log($(".category_picker td").width());
-  $(".category_picker td").height($(".category_picker td").width());
+  $(".category_picker td").outerHeight($(".category_picker td").width());
   $(".fa-check-circle").width($(".category_picker td").width());
+
+  $(".image_holder").on("mouseover", function(evt) {
+    console.log("hovering!");
+    $(this).children(".cover").css("visibility", "visible");
+  });
+
+  $(".image_holder").on("mouseout", function(evt) {
+    $(this).children(".cover").css("visibility", "hidden");
+  });
 
   var database = firebase.database();
   var ref = database.ref("/categories");
