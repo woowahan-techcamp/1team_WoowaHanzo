@@ -11,6 +11,7 @@ import UIKit
 class MainPageViewController: UIViewController {
     
     
+    @IBOutlet weak var mainpageCollectionView: UICollectionView!
     @IBOutlet weak var mainpageTableView: UITableView!
     var firebaseModel = FirebaseModel()
     

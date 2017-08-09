@@ -9,5 +9,6 @@
 import UIKit
 
 class MainPageCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var tagLabel: UILabel!
     
 }
