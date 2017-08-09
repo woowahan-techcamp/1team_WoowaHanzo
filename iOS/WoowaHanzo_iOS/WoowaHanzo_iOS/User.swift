@@ -16,10 +16,14 @@ class User {
     let key : String
     let nickName : String
     var contents : String
-    init(key: String,nickName : String, contents :  String) {
+    
+    //tag는 없을 수도 있으니, Optional로 선언.
+    var tagsArray : [String]?
+    init(key: String,nickName :String, contents :  String, tagsArray : [String]?) {
         self.nickName = nickName
         self.contents = contents
         self.key = key
+        self.tagsArray = tagsArray
     }
     
     init(snapshot: DataSnapshot) {
@@ -27,5 +31,6 @@ class User {
         let snapshotValue = snapshot.value as! [String: AnyObject]
         nickName = snapshotValue["author"] as! String
         contents = snapshotValue["body"] as! String
+        tagsArray = snapshotValue["tagArray"] as! [String]?
     }
 }
