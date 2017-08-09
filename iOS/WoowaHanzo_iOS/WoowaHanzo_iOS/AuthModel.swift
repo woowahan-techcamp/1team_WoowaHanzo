@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+
 class AuthModel{
 
     static func isLoginStatus()->Bool{
@@ -24,6 +25,18 @@ class AuthModel{
     static func register(){
         //있는 닉네임인지 체크.
         
+    }
+    func validPassword(pwText: String)->Bool{
+        if pwText.length() < 7 { return false }
+        else{ return true }
+    }
+    func logout(){
+        let firebaseAuth = FIRAuth.auth()
+        do {
+            try firebaseAuth?.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
     }
     
     
