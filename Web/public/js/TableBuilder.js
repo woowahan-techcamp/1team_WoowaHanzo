@@ -51,8 +51,9 @@ class TableBuilder {
     var category_elem = $("." + this.key + "_category");
     category_elem.on("click", function(evt) {
       $(".brand_picker").css("display", "none");
-      $("#" + this.key + "_table").css("display", "table");
 
+      $("#" + this.key + "_table").css("display", "table");
+      $(".menu_list").css("display", "none");
       $(".logo_holder .shader").css("display", "none");
 
       scrollTo($("#" + this.key + "_table"));
@@ -91,6 +92,20 @@ class TableBuilder {
         console.log("clicked");
       });
     }
+
+    $(".menu_item").each(function(index, el) {
+      $(el).off("click");
+      $(el).on("click", function(evt) {
+        if(!$(evt.target).is(".menu_item")) {
+          $(evt.target).parent().click();
+          return;
+        }
+
+        var menuName = $(evt.target).text().trim();
+        console.log(menuName);
+      });
+    });
+
   }
 
   makeMenuList(key, menuList) {
