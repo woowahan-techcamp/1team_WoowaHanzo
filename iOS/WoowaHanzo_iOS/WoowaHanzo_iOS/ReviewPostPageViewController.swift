@@ -58,7 +58,14 @@ class ReviewPostPageViewController: UIViewController {
         //keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
     }
+    func textFieldDidChange(_ textField: UITextField) {
+        print(textField.text!)
+        textFieldText = textField.text!
+    }
+    
+
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
@@ -158,6 +165,7 @@ extension ReviewPostPageViewController: UICollectionViewDataSource, UICollection
             //cell.textfield.sizeToFit()
             //여기서 다른 작용을 해주어야 한다.
             cell.textfield.delegate = self
+            cell.textfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
             cell.textfield.text = textFieldText
             cell.textfield.sizeToFit()
             cell.layer.cornerRadius = 5.0
@@ -207,8 +215,9 @@ extension ReviewPostPageViewController:  UITextFieldDelegate{
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
         if TagFilter().isValid3(newString){
-            textFieldText = newString
-            print(textFieldText)
+            //textFieldText = newString
+            //print(textFieldText)
+            //print(string)
             DispatchQueue.main.async{
                 self.myCollectionView.reloadData()
             }
