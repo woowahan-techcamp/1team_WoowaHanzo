@@ -19,9 +19,11 @@ class MainPageTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadCollectionView), name: NSNotification.Name(rawValue: "reload"), object: nil)
         mainpageCollectionView.dataSource = self
         mainpageCollectionView.delegate = self
         // Initialization code
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -29,15 +31,21 @@ class MainPageTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    func reloadCollectionView(){
+        mainpageCollectionView.reloadData()
+        print(User.users[0].tagsArray)
+        print("dd")
+    }
 
 }
 extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDelegate{
     //MARK: CollectionView extension
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-            return 1
+            return (User.users[section].tagsArray?.count)!
         }
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
             var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MainPageCollectionViewCell
+            cell.tagLabel.text = User.users[indexPath.section].tagsArray?[indexPath.row]
             return cell
         }
     
