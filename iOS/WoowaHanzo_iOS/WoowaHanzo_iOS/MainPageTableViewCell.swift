@@ -11,8 +11,9 @@ import UIKit
 
 class MainPageTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var tagTextView: UITextView!
     @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var mainpageCollectionView: UICollectionView!
+    //@IBOutlet weak var mainpageCollectionView: UICollectionView!
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var nickNameButton: UIButton!
@@ -21,21 +22,12 @@ class MainPageTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadCollectionView), name: NSNotification.Name(rawValue: "reload"), object: nil)
-        mainpageCollectionView.dataSource = self
-        mainpageCollectionView.delegate = self
-        mainpageCollectionView.reloadData()
-        if let flowLayout = mainpageCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.estimatedItemSize = CGSize(
-                width: 50, height: mainpageCollectionView.bounds.size.height)
-        }
-        //        self.contentView.translatesAutoresizingMaskIntoConstraints = false
-        //        let screenWidth = UIScreen.main.bounds.size.width
-        // self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        // Initialization code
-        
-        
-        
+        tagTextView.text = "#안녕 #바보 #dd"
+        tagTextView.resolveHashTags()
+        tagTextView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.red]
+        tagTextView.isScrollEnabled = false
+        tagTextView.delegate = self
+ 
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -43,12 +35,7 @@ class MainPageTableViewCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
-    func reloadCollectionView(){
-        print("dd")
-        mainpageCollectionView.reloadData()
-        print(User.users[0].tagsArray)
-        
-    }
+    
     
 }
 extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
@@ -79,3 +66,24 @@ extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDe
     
     
 }
+extension MainPageTableViewCell : UITextViewDelegate{
+    func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        if let URL = url.scheme {
+            let arrId = Int(URL)
+            print(hashtagArr?[arrId!])
+            
+//            let alertController = UIAlertController(title: "AZHashtagTextViewExample", message: "\(hashtagArr![arrId!])", preferredStyle: .alert)
+//            let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+//                UIAlertAction in
+//                alertController.dismiss(animated: true, completion: nil)
+//            }
+//            alertController.addAction(okBtn)
+//            
+            //self.present(alertController, animated: true, completion: nil)
+            
+        }
+        return false
+    }
+}
+
+
