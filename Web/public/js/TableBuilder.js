@@ -47,13 +47,15 @@ class TableBuilder {
     $(".category_picker td").height($(".category_picker td").width());
     $(".brand_picker").last().css("display", "none");
 
+    // clicking a category
     var category_elem = $("." + this.key + "_category");
-
     category_elem.on("click", function(evt) {
       $(".brand_picker").css("display", "none");
       $("#" + this.key + "_table").css("display", "table");
 
       $(".logo_holder .shader").css("display", "none");
+
+      scrollTo($("#" + this.key + "_table"));
 
     }.bind(this));
 
@@ -80,7 +82,12 @@ class TableBuilder {
             $(el).css("display", "block");
           }
         }.bind(curElem));
-        console.log($(evt.target).attr("id"));
+
+        // getting menus for brand
+        var brand = $(evt.target).attr("id").split("_")[0];
+        $(".menu_list").css("display", "none");
+        $("#" + brand + "_list").css("display", "block");
+        scrollTo($("#" + brand + "_list"));
         console.log("clicked");
       });
     }
@@ -98,4 +105,9 @@ class TableBuilder {
 
     return ret;
   }
+}
+
+function scrollTo(elem) {
+  console.log(elem.offset());
+  $('html, body').animate({scrollTop: elem.offset().top - 80 }, 500);
 }
