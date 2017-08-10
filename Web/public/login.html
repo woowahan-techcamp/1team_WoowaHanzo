@@ -35,7 +35,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" data-toggle="tab" href="#home">먹소리</a>
+          <a class="navbar-brand" data-toggle="tab" onclick="document.location.href = 'index.html'">먹소리</a>
           <button type="button" class="navbar-toggle collapsed custom_search_btn" aria-expanded="false" aria-controls="navbar">
             <i class="fa fa-search fa-1x" aria-hidden="true"></i>
           </button>
@@ -43,21 +43,21 @@
 
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a data-toggle="tab" href="#tab1">Tab 1</a></li>
-            <li><a data-toggle="tab" href="#tab2">Tab 2</a></li>
-            <li><a data-toggle="tab" href="#tab3">Tab 3</a></li>
-            <li><a data-toggle="tab" href="#tab4">Tab 4</a></li>
+            <li><a data-toggle="tab" onclick="document.location.href = 'post.html'">글쓰기</a></li>
+            <li><a data-toggle="tab" onclick="document.location.href = 'ranking.html'">랭킹</a></li>
+            <li><a data-toggle="tab" onclick="document.location.href = 'test-tag.html'">태그</a></li>
+            <li><a data-toggle="tab" onclick="document.location.href = 'mypage.html'">마이페이지</a></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right right_side">
             <li>
               <form class="navbar-form">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <input class="form-control mr-sm-2" type="text" placeholder="#검색">
                 <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
               </form>
             </li>
             <li>
-              <form class="navbar-form">
+              <form class="navbar-form" action="login.html">
                 <button type="submit" class="btn btn-success">Sign in</button>
               </form>
             </li>
@@ -65,7 +65,9 @@
 
           <ul class="nav navbar-nav navbar-right right_side_icon">
             <li>
-              <button type="submit" class="btn btn-success">Sign in</button>
+              <form class="navbar-form" action="login.html">
+                <button type="submit" class="btn btn-success">Sign in</button>
+              </form>
             </li>
           </li>
           </ul>

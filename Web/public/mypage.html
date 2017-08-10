@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
+    <title>먹소리</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"  />
-    <link href="css/post.css" rel="stylesheet" type="text/css" />
-    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css"  />
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main_post.css">
 
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
     <script>
@@ -21,14 +23,13 @@
       };
       firebase.initializeApp(config);
     </script>
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/autogrow.js"></script>
-    <script src="js/autosize.js"></script>
-    <script src="js/main.js" ></script>
-    <script src="js/post.js"></script>
 
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- <script src="js/main.js"></script> -->
   </head>
+
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -80,32 +81,7 @@
     </nav>
 
     <div class="container_box">
-
-      <div class="post">
-        <div class="post-header">
-          <div class="img-divgo">
-            <img class="profilePic" src="pictures/profile.png" style="vertical-align:bottom;"/>
-        	</div>
-        	<span class="Name">choihyeseoni</span>
-          <span class="Category">치킨 > BBQ > 양념치킨</span>
-
-        </div>
-
-        <textarea class="textbox element" placeholder="당신의 귀한 생각..." spellcheck="false" id="elemnum"></textarea>
-
-        <div class="tags_holder">
-
-
-        </div>
-
-
-
-      </div>
-
-      <div class="post_submit custom_button">
-        리뷰 게시
-      </div>
-
+      마이페이지. 로그인 되어있지 않으면 로그인으로 보내야함....
     </div>
 
   </body>
