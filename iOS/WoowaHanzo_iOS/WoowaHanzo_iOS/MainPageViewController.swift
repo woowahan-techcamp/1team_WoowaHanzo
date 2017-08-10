@@ -79,8 +79,9 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource,UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as!MainPageTableViewCell
         cell.contentsTextView.text = User.users[indexPath.row].contents
         cell.nickNameButton.setTitle(User.users[indexPath.row].nickName, for: .normal)
+        //print(User.users[indexPath.row].tagsArray)
         if let tagArr = User.users[indexPath.row].tagsArray{
-            cell.tagTextView.text = User.users[indexPath.row].tagsArray!.joined()
+            cell.tags.tags = tagArr
 
         }
         return cell

@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import UITags
 
 
-class MainPageTableViewCell: UITableViewCell {
+class MainPageTableViewCell: UITableViewCell,UITagsViewDelegate {
     
     @IBOutlet weak var reviewView: UIView!
     @IBOutlet weak var tagTextView: UITextView!
@@ -19,19 +20,22 @@ class MainPageTableViewCell: UITableViewCell {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var nickNameButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
-    
+    @IBOutlet weak var tags: UITags!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.tags.delegate = self
+
         reviewView.layer.borderWidth = 1.0
         reviewView.layer.borderColor = UIColor.black.cgColor
         reviewView.layer.cornerRadius = 30.0
         reviewView.clipsToBounds = true
-        tagTextView.resolveHashTags()
-        tagTextView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.blue]
-        tagTextView.isScrollEnabled = false
-        tagTextView.delegate = self
+//        tagTextView.resolveHashTags()
+//        tagTextView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.blue]
+//        tagTextView.isScrollEnabled = false
+//        tagTextView.delegate = self
  
     }
     
@@ -39,6 +43,13 @@ class MainPageTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
+    }
+    func tagSelected(atIndex index:Int) -> Void {
+        print("Tag at index:\(index) selected")
+    }
+    
+    func tagDeselected(atIndex index:Int) -> Void {
+        print("Tag at index:\(index) deselected")
     }
     
     
