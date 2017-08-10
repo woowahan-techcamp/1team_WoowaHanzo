@@ -17,8 +17,8 @@ class MainPageViewController: UIViewController,UISearchBarDelegate{
     @IBOutlet weak var searchIconButton: UIBarButtonItem!
     var searchBar = UISearchBar()
     override func viewDidLoad() {
-        
-        
+                //mainpageTableView.rowHeight =
+        //mainpageTableView.rowHeight = UITableViewAutomaticDimension
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: NSNotification.Name(rawValue: "reload"), object: nil)
         self.firebaseModel.loadFeed()
@@ -36,6 +36,7 @@ class MainPageViewController: UIViewController,UISearchBarDelegate{
 
     }
 
+   
     @IBAction func searchIconTouched(_ sender: Any) {
 //        let storyboard = UIStoryboard(name: "SearchPage", bundle: nil)
 //        let controller = storyboard.instantiateViewController(withIdentifier: "searchView")
@@ -84,9 +85,12 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource,UIT
             cell.tags.tags = tagArr
 
         }
+        //tableView.estimatedRowHeight = 336
+        //tableView.rowHeight = UITableViewAutomaticDimension
+
         return cell
     }
-   
+    
 
 
 }

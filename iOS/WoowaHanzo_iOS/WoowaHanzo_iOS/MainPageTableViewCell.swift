@@ -36,6 +36,7 @@ class MainPageTableViewCell: UITableViewCell,UITagsViewDelegate {
 //        tagTextView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.blue]
 //        tagTextView.isScrollEnabled = false
 //        tagTextView.delegate = self
+        
  
     }
     
