@@ -1,0 +1,16 @@
+.signup_holder {
+  width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border: 1px solid #AAA;
+}
+
+.signup_title {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+}
