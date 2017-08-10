@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import DGCollectionViewLeftAlignFlowLayout
-
 class ReviewPostPageViewController: UIViewController {
 
     @IBOutlet weak var myView: UIView!
@@ -69,7 +67,7 @@ class ReviewPostPageViewController: UIViewController {
         //if user insert same text as placeholder, it will not send post.
         //지금은 그냥 놔두지만 나중에 user가 placeholder와 똑같은 글을 쓸때도 send가되게 바꿔야 함.
         if myTextView.text != placeholder{
-            FirebaseModel().postReview(review: myTextView.text, userID: "kim")
+            FirebaseModel().postReview(review: myTextView.text, userID: "kim", tagArray: myTagView.getTags(withPrefix: false))
             print("sent post")
         }
         else{

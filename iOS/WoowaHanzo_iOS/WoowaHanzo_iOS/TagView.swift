@@ -49,7 +49,7 @@ class TagView: UIView, UITextFieldDelegate
     var _tagSelectedColor			: UIColor			  = UIColor.white
     var _tagTextColor				: UIColor			  = UIColor.black
     var _tagPrefix					: String			  = "#"
-    var _tagMaxCharactors			: Int				  = 30
+    var _tagMaxCharactors			: Int				  = 100
     var _tagCharCountLabel			: UILabel!
     var _addButtonBackgroundColor	: UIColor			  = UIColor.white
     var _addButtonTextColor			: UIColor			  = UIColor.black
@@ -144,7 +144,7 @@ class TagView: UIView, UITextFieldDelegate
         _tagCharCountLabel.layer.borderColor	= _addButtonTextColor.cgColor
         _tagCharCountLabel.layer.borderWidth	= 1.5
         _tagCharCountLabel.isHidden				= true
-        self.addSubview( _tagCharCountLabel )
+        //self.addSubview( _tagCharCountLabel )
     }
     
     // --------------------------------------------------------------------------------------------
