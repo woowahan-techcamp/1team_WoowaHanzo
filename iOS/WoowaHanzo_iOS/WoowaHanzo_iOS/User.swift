@@ -31,6 +31,6 @@ class User {
         let snapshotValue = snapshot.value as! [String: AnyObject]
         nickName = snapshotValue["author"] as! String
         contents = snapshotValue["body"] as! String
-        tagsArray = snapshotValue["tagArray"] as! [String]?
+        tagsArray = snapshotValue["tagArray"] as? [String] ?? []
     }
 }

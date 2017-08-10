@@ -65,7 +65,7 @@ class MainPageViewController: UIViewController,UISearchBarDelegate{
 }
 
 //MARK: TableView extension
-extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
+extension MainPageViewController : UITableViewDelegate,UITableViewDataSource,UITextViewDelegate{
     
     
     
@@ -79,7 +79,14 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as!MainPageTableViewCell
         cell.contentsTextView.text = User.users[indexPath.row].contents
         cell.nickNameButton.setTitle(User.users[indexPath.row].nickName, for: .normal)
+        if let tagArr = User.users[indexPath.row].tagsArray{
+            cell.tagTextView.text = User.users[indexPath.row].tagsArray!.joined()
+
+        }
         return cell
     }
+   
+
 
 }
+
