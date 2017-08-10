@@ -248,7 +248,7 @@ input:focus {
   border-style: solid;
   border-width: 1px;
   border-color : #CCC;
-  padding: 2vw;
+  padding: 20px;
 }
 
 .post-header {
@@ -256,18 +256,20 @@ input:focus {
 }
 
 .post .Name {
-  font-size: 3.5vw;
+  font-size: 30px;
   font-weight: bold;
-  margin-left: 15px;
+  margin-left: 20px;
   top: 1px;
   position: absolute;
+  line-height: 80px;
 }
 
 .post .Category {
   bottom: 1px;
   margin-left: 15px;
   color: #1e83c3;
-  font-size: 1.7vw;
+  font-size: 16px;
+  display: none;
 }
 
 .post .textbox {
@@ -330,6 +332,25 @@ input:focus {
   outline: -webkit-focus-ring-color none 5px;
 }
 
+.post_footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.post_footer hr {
+  margin: 13px 0;
+}
+
+.like_btn {
+  font-size: 25px;
+}
+
+.post_time {
+  font-size: 14px;
+  float: right;
+  margin-top: 4px;
+}
+
 .tagger::-webkit-input-placeholder {
   color: #f5f5f5;
 }
@@ -345,7 +366,7 @@ input:focus {
 
 .post div.post_body {
   border: none;
-  font-size: 2.2vw;
+  font-size: 1.6em;
   padding: 0px 6px 0px 6px;
 }
 
@@ -361,8 +382,8 @@ input:focus {
 }
 
 div.img-divgo{
-  height: 8vw;
-  width: 8vw;
+  height: 80px;
+  width: 80px;
   overflow: hidden;
   border-radius: 50%;
   -moz-border-radius: 50%;
@@ -378,6 +399,6 @@ div.img-divgo{
   -ms-transform: translate(-50%); /* IE 9 */
   transform: translate(-50%);
   margin-left: 50%;
-  max-height: 8vw;
+  max-height: 80px;
   position: absolute;
 }

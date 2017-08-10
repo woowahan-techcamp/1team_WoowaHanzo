@@ -18,14 +18,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // replacing new lines with line breaks
     buffer["body"] = buffer["body"].replace(/\n/g, "<br>");
+    buffer["time"] = getCurrentTime(-buffer["time"]);
     console.log(buffer);
     $(".container_box").append(template(buffer));
     var $curPost = $("#post_" + buffer.id);
     $curPost.css("display", "none");
-    $curPost.children(".tags_holder");
-    $curPost.children(".post_body").html(buffer["body"]);
-    for(var i = 0; i < buffer["tags"].length; ++i) {
 
+    $curPost.children(".post_body").html(buffer["body"]);
+    if(buffer["tags"] && buffer["tags"].length == 0) {
+      $curPost.children(".tags_holder").css("display", "none");
     }
     $curPost.css("display", "block");
     console.log("GO");
