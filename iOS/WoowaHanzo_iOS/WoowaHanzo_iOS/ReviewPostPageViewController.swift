@@ -140,18 +140,6 @@ extension ReviewPostPageViewController: UITextViewDelegate{
 extension ReviewPostPageViewController:  UITextFieldDelegate{
     //when textfield enter!
     
-    //textfield 크기가 이전 입력값보다 10 크게 하는 꼼수
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
-        if TagFilter().isValid3(newString){
-            //textFieldText = newString
-            //print(textFieldText)
-            //print(string)
-            return true
-        }
-        return false
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         if textField.text != ""{

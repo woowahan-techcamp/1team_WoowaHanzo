@@ -35,6 +35,17 @@ class TagFilter{
         }
         return true
     }
+    func isValid4(_ id: String) -> Bool{
+        if id[0] != "#"{
+            return false
+        }
+        for i in id[1..<id.characters.count].characters{
+            let num = UnicodeScalar(String(i))!.value
+            if ((num>=123 && num<=127) || (num>=91 && num<=94) || num==96 || (num>=58 && num<=63) || (num>=32 && num<=47)) { return false }
+        }
+        return true
+    }
+
     
 
 }

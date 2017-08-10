@@ -332,8 +332,12 @@ class TagView: UIView, UITextFieldDelegate
     // --------------------------------------------------------------------------------------------
     func textField( _ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String ) -> Bool
     {
-        Timer.scheduledTimer( timeInterval: 0.05, target: self, selector: #selector( onTimerTextField ), userInfo: _tagFields[ textField.tag ]!, repeats: false )
-        return true
+        let newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
+        if TagFilter().isValid4(newString){
+            Timer.scheduledTimer( timeInterval: 0.05, target: self, selector: #selector( onTimerTextField ), userInfo: _tagFields[ textField.tag ]!, repeats: false )
+            return true
+        }
+        return false
     }
     // --------------------------------------------------------------------------------------------
     func onTimerTextField( timer: Timer )
