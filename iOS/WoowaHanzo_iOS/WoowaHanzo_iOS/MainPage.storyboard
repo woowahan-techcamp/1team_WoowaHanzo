@@ -115,6 +115,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mainpageTableView" destination="laF-bT-XL8" id="gig-sT-s9O"/>
+                        <outlet property="searchIconButton" destination="o0t-RJ-QLX" id="1SZ-a2-sUb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nMu-8B-LCH" userLabel="First Responder" sceneMemberID="firstResponder"/>

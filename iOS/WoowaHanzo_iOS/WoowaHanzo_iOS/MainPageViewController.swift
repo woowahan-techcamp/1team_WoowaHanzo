@@ -8,20 +8,27 @@
 
 import UIKit
 
-class MainPageViewController: UIViewController{
+class MainPageViewController: UIViewController,UISearchBarDelegate{
     
     
     @IBOutlet weak var mainpageTableView: UITableView!
     var firebaseModel = FirebaseModel()
     
+    @IBOutlet weak var searchIconButton: UIBarButtonItem!
+    var searchBar = UISearchBar()
     override func viewDidLoad() {
+        
         
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: NSNotification.Name(rawValue: "reload"), object: nil)
         self.firebaseModel.loadFeed()
         mainpageTableView.delegate = self
         mainpageTableView.dataSource = self
-                
+//        mainpageTableView.rowHeight = UITableViewAutomaticDimension
+//        mainpageTableView.estimatedRowHeight = 400
+        searchBar.delegate = self
+        searchBar.alpha = 0
+        searchBar.searchBarStyle = UISearchBarStyle.minimal
     }
     
     func reloadTableData(){
@@ -30,12 +37,28 @@ class MainPageViewController: UIViewController{
     }
 
     @IBAction func searchIconTouched(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "SearchPage", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "searchView")
-        //self.present(controller, animated: true, completion: nil)
-        //self.navigationController?.pushViewController(controller, animated: true)
-        self.show(controller, sender: self)
+//        let storyboard = UIStoryboard(name: "SearchPage", bundle: nil)
+//        let controller = storyboard.instantiateViewController(withIdentifier: "searchView")
+//        //self.present(controller, animated: true, completion: nil)
+//        //self.navigationController?.pushViewController(controller, animated: true)
+//        self.show(controller, sender: self)
+        if navigationItem.titleView != nil{
+            navigationItem.titleView = nil
+        }else{
+        showSearchBar()
+        }
     }
+    func showSearchBar() {
+        searchBar.alpha = 0
+        navigationItem.titleView = searchBar
+        //navigationItem.setLeftBarButton(nil, animated: true)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.searchBar.alpha = 1
+        }, completion: { finished in
+            self.searchBar.becomeFirstResponder()
+        })
+    }
+    
     
 }
 
