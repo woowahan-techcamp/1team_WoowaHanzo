@@ -11,6 +11,7 @@ import UIKit
 
 class MainPageTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var reviewView: UIView!
     @IBOutlet weak var tagTextView: UITextView!
     @IBOutlet weak var likeButton: UIButton!
     //@IBOutlet weak var mainpageCollectionView: UICollectionView!
@@ -23,6 +24,10 @@ class MainPageTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         tagTextView.text = "#안녕 #바보 #ddㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ"
+        reviewView.layer.borderWidth = 1.0
+        reviewView.layer.borderColor = UIColor.black.cgColor
+        reviewView.layer.cornerRadius = 30.0
+        reviewView.clipsToBounds = true
         tagTextView.resolveHashTags()
         tagTextView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.blue]
         tagTextView.isScrollEnabled = false
