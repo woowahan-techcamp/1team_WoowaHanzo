@@ -51,7 +51,7 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cx9-sr-l7K">
                                                             <rect key="frame" x="15" y="8" width="70" height="75"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         </imageView>
                                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HCI-CU-uVs">
                                                             <rect key="frame" x="8" y="106" width="343" height="94"/>
@@ -130,6 +130,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="FR9-AM-KRn">
                         <barButtonItem key="rightBarButtonItem" title="검색아이콘" id="o0t-RJ-QLX">
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
                                 <action selector="searchIconTouched:" destination="klR-Hm-AeJ" id="cRO-fA-VoO"/>
                             </connections>
