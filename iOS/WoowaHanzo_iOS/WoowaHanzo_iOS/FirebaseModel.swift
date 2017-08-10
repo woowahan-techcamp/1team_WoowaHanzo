@@ -26,6 +26,7 @@ class FirebaseModel{
     
     func loadFeed(){
         
+        let date = Date()
         self.ref = Database.database().reference().child("posts")
         //        DispatchQueue.global().async {
         //            self.ref.child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
