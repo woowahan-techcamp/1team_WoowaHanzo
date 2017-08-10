@@ -248,7 +248,7 @@ input:focus {
   border-style: solid;
   border-width: 1px;
   border-color : #CCC;
-  padding: 20px;
+  padding: 20px 20px 0 20px;
 }
 
 .post-header {
@@ -337,18 +337,19 @@ input:focus {
   padding-right: 15px;
 }
 
-.post_footer hr {
-  margin: 13px 0;
+.post hr {
+  margin: 0;
 }
 
 .like_btn {
   font-size: 25px;
+  padding: 10px 15px;
 }
 
 .post_time {
   font-size: 14px;
   float: right;
-  margin-top: 4px;
+  line-height: 44px;
 }
 
 .tagger::-webkit-input-placeholder {
