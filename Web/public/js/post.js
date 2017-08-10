@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 '<input type="text" class="tagger_input" placeholder="" spellcheck="false" />' +
               '</span>');
 
+  $(".tagger_input").val("태그");
   $(".tagger_input").autoGrowInput({minWidth:1,comfortZone:3});
   $(".tagger_input").trigger("input");
   $(".tagger_input").last().on("keyup", function(evt) {
@@ -19,8 +20,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 
   $(".tagger_input").last().on("focus", function(evt){
-
+    $(".tagger_input").last().off("focus");
+    $(".tagger_input").last().val("");
+    $(".tagger_input").trigger("update");
   });
+
+
 
 
 
@@ -68,7 +73,7 @@ function taggerKeyup(evt) {
     $curElem.val(buffer);
 
     if(!isLastTaggerEmpty()) {
-      $curElem.addClass("tagger_complete");
+      $curElem.parent().addClass("tagger_complete");
       //$(".tagger_input").last().prop("readonly", true);
       $(".tags_holder").append('<span class="tagger tag_holder">' +
                     '<span class="starting_sharp">#</span>' +
@@ -118,9 +123,7 @@ function uploadPost() {
   $(".tagger_input").each(function(index) {
     postTags.push(refineText($(this).val()));
   });
-  $( "li" ).each(function() {
-    $( this ).addClass( "foo" );
-  });
+
   var promise = writeNewPost("아무거나", "jhyang12345", postText, postTags);
   promise.then(function() {
      window.location="./index.html";

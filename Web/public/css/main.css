@@ -256,7 +256,7 @@ input:focus {
 }
 
 .post .Name {
-  font-size: 4vw;
+  font-size: 3.5vw;
   font-weight: bold;
   margin-left: 15px;
   top: 1px;
@@ -277,6 +277,7 @@ input:focus {
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 6px;
+  padding-bottom: 6px;
   border-color: #AAA;
   border-style: solid;
   border-width: 1px;
@@ -288,11 +289,17 @@ input:focus {
 
 }
 
+.tags_holder {
+  line-height: 50px;
+  vertical-align: baseline;
+  margin-top: 10px;
+}
+
 .post .tagger {
+  line-height: normal;
   display: inline-block;
-  background-color: rgb(52, 152, 219);
-  color: #FFF;
-  width: none;
+  background-color: transparent;
+  color: #246a99;
   font-size: 1.2em;
   border-style: solid;
   border: none;
@@ -300,14 +307,14 @@ input:focus {
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   outline: -webkit-focus-ring-color none 5px;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  padding-left: 6px;
-  padding-right: 4px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
+  border-radius: 50px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
 
   border-style: solid;
   border-width: 1px;
@@ -336,6 +343,16 @@ input:focus {
   color: #f5f5f5;
 }
 
+.post div.post_body {
+  border: none;
+  font-size: 2.2vw;
+  padding: 0px 6px 0px 6px;
+}
+
+.starting_sharp {
+  font-weight: bold;
+}
+
 .post .textbox:focus {
   border-color: #a0b7da;
   box-shadow: none;
@@ -344,8 +361,8 @@ input:focus {
 }
 
 div.img-divgo{
-  height: 7vw;
-  width: 7vw;
+  height: 8vw;
+  width: 8vw;
   overflow: hidden;
   border-radius: 50%;
   -moz-border-radius: 50%;
@@ -361,6 +378,6 @@ div.img-divgo{
   -ms-transform: translate(-50%); /* IE 9 */
   transform: translate(-50%);
   margin-left: 50%;
-  max-height: 7vw;
+  max-height: 8vw;
   position: absolute;
 }

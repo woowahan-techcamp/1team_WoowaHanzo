@@ -1,12 +1,11 @@
 .post .tags_holder {
-  line-height: 40px;
-  vertical-align: baseline;
+
 }
 
 .tagger_input {
-  background-color: rgb(52, 152, 219);
+  background-color: transparent;
   margin-left: 1px;
-  color: #FFF;
+  !color: #FFF;
   border: none;
   box-shadow: none;
   -moz-box-shadow: none;
