@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css"  />
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main_post.css">
 
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
     <script>
@@ -115,11 +116,16 @@
           {{body}}
         </div>
         <div class="tags_holder">
-        {{#each tags}}
-          <span class="tagger tag_holder">
-            #{{this}}
-          </span>
-        {{/each}}
+          {{#each tags}}
+            <span class="tagger tag_holder">
+              #{{this}}
+            </span>
+          {{/each}}
+        </div>
+        <hr />
+        <div class="post_footer">
+          <i class="fa fa-thumbs-o-up like_btn" aria-hidden="true"></i>
+          <div class="post_time">1 분전</div>
         </div>
       </div>
     </script>
