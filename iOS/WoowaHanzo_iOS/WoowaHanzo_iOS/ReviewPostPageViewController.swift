@@ -50,12 +50,7 @@ class ReviewPostPageViewController: UIViewController {
         view.addGestureRecognizer(tap)
         
     }
-    func textFieldDidChange(_ textField: UITextField) {
-        print(textField.text!)
-        textFieldText = textField.text!
-    }
     
-
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
@@ -97,8 +92,19 @@ class ReviewPostPageViewController: UIViewController {
 /////////////////////textview_delegate/////////////////////////
 extension ReviewPostPageViewController: UITextViewDelegate{
     
+    func fitTextView(){
+        let contentSize = self.myTextView.sizeThatFits(self.myTextView.bounds.size)
+        var frame = self.myTextView.frame
+        frame.size.height = max(contentSize.height, 70)
+        self.myTextView.frame = frame
+        
+        var aspectRatioTextViewConstraint = NSLayoutConstraint(item: self.myTextView, attribute: .height, relatedBy: .equal, toItem: self.myTextView, attribute: .width, multiplier: myTextView.bounds.height/myTextView.bounds.width, constant: 1)
+        self.myTextView.addConstraint(aspectRatioTextViewConstraint)
+        
+    }
     //setting placeholder to appear only when textview is empty
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        fitTextView()
         let currentText = textView.text as NSString?
         let updatedText = currentText?.replacingCharacters(in: range, with: text)
         
@@ -131,23 +137,5 @@ extension ReviewPostPageViewController: UITextViewDelegate{
                 textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
             }
         }
-    }
-}
-
-
-
-///////////////////////textfield_delegate/////////////////////////
-extension ReviewPostPageViewController:  UITextFieldDelegate{
-    //when textfield enter!
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        if textField.text != ""{
-        print("insert tag: \(String(describing: textField.text!))")
-        tagArray.append("#"+textField.text!)
-        textField.text = ""
-        textFieldText = ""
-        }
-        return true
     }
 }
