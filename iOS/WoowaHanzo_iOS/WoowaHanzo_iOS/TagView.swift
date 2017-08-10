@@ -59,6 +59,9 @@ class TagView: UIView, UITextFieldDelegate
     var _targetTextField			: UITextField!
     weak var delegate				: TagViewDelegate?
     
+    var positionx = 0
+    var positiony = 0
+    
     // --------------------------------------------------------------------------------------------
     required init( coder aDecoder: NSCoder )
     {
@@ -255,7 +258,13 @@ class TagView: UIView, UITextFieldDelegate
     // --------------------------------------------------------------------------------------------
     func updateLayout()
     {
-        _tagFieldMaxX = 0.0
+        
+        //print(self.frame.origin.y)
+        //print(positiony)
+        //let editdist = CGFloat(positiony) - self.frame.origin.y
+        var temp = _outerMergine
+        
+        _tagFieldMaxX = 0
         _tagFieldMinY = _outerMergine
         var tagFieldMaxY = CGFloat( 0.0 )
         for ( _, value ) in _tagFields.sorted( by: { $0.0 < $1.0 } )
@@ -299,6 +308,8 @@ class TagView: UIView, UITextFieldDelegate
             _scrollView.frame = CGRect( x: 0, y: 0, width: frame.width, height: frame.height )
             delegate?.onChangedLayoutTag!( sender: self )
         }
+        
+        _outerMergine = temp
     }
     // --------------------------------------------------------------------------------------------
     func updateCharactorCount()

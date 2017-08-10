@@ -19,6 +19,7 @@ class ReviewPostPageViewController: UIViewController {
     var textFieldWidth = CGFloat(30)
     var textFieldText = ""
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //delegates
@@ -32,9 +33,15 @@ class ReviewPostPageViewController: UIViewController {
         myTextView.layer.borderColor = UIColor(red: CGFloat(112.0/255.0), green: CGFloat(182.0/255.0), blue: CGFloat(229.0/255.0), alpha: CGFloat(1.0)).cgColor
         myTextView.layer.borderWidth = 0.5
         myTextView.layer.cornerRadius = 3.0
+        //textview line spacing
+        //let style = NSMutableParagraphStyle()
+        //style.lineSpacing = 50
+        //let attributes = [NSParagraphStyleAttributeName : style]
+        //myTextView.attributedText = NSAttributedString(string: myTextView.text, attributes: attributes)
         //setting placeholder
         myTextView.text = placeholder
         myTextView.textColor = UIColor.lightGray
+        
         //determine whether it is editting tags or not
         if tagArray.count == 0 {
             myTextView.becomeFirstResponder() }
@@ -51,6 +58,29 @@ class ReviewPostPageViewController: UIViewController {
         view.addGestureRecognizer(tap)
         
     }
+    
+    func fitView(){
+        let contentSize = self.myTextView.sizeThatFits(self.myTextView.bounds.size)
+        var frame = self.myTextView.frame
+        frame.size.height = max(contentSize.height, 70)
+        self.myTextView.frame = frame
+        
+        let aspectRatioTextViewConstraint = NSLayoutConstraint(item: self.myTextView, attribute: .height, relatedBy: .equal, toItem: self.myTextView, attribute: .width, multiplier: myTextView.bounds.height/myTextView.bounds.width, constant: 1)
+        self.myTextView.addConstraint(aspectRatioTextViewConstraint)
+        
+        var frame2 = self.myTagView.frame
+        frame2.origin.y = self.myTextView.frame.origin.y + myTextView.frame.height + 80
+        self.myTagView.frame = frame2
+        self.myTagView._basePosition = CGPoint(x: frame2.origin.x, y: frame2.origin.y)
+        
+        //let contentSize2 = self.myView.sizeThatFits(self.myView.bounds.size)
+        //var frame2 = self.myView.frame
+        //frame2.size.height = contentSize2.height
+        //myView.frame = frame2
+        //myScrollView.contentSize = CGSize(width: Int(self.view.frame.width), height: Int(contentSize2.height))
+        
+    }
+
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
@@ -93,27 +123,7 @@ class ReviewPostPageViewController: UIViewController {
 /////////////////////textview_delegate/////////////////////////
 extension ReviewPostPageViewController: UITextViewDelegate{
     
-    func fitView(){
-        let contentSize = self.myTextView.sizeThatFits(self.myTextView.bounds.size)
-        var frame = self.myTextView.frame
-        frame.size.height = max(contentSize.height, 70)
-        self.myTextView.frame = frame
-        
-        let aspectRatioTextViewConstraint = NSLayoutConstraint(item: self.myTextView, attribute: .height, relatedBy: .equal, toItem: self.myTextView, attribute: .width, multiplier: myTextView.bounds.height/myTextView.bounds.width, constant: 1)
-        self.myTextView.addConstraint(aspectRatioTextViewConstraint)
-        
-        self.myTagView.frame.origin.y = self.myTextView.frame.origin.y + myTextView.frame.height + 80
-        
-        let contentSize2 = self.myView.sizeThatFits(self.myView.bounds.size)
-        var frame2 = self.myView.frame
-        frame2.size.height = contentSize2.height
-        myView.frame = frame2
-        myScrollView.contentSize = CGSize(width: Int(self.view.frame.width), height: Int(contentSize2.height))
-
-        
-        
-    }
-    //setting placeholder to appear only when textview is empty
+        //setting placeholder to appear only when textview is empty
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let currentText = textView.text as NSString?
         let updatedText = currentText?.replacingCharacters(in: range, with: text)
