@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>먹소리-랭킹</title>
+    <title>먹소리</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css"  />
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/ranking.css">
+    <link rel="stylesheet" href="css/main_post.css">
 
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
     <script>
@@ -27,9 +27,8 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/ranking.js">
-
-    </script>
+    <script src="js/main.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
   </head>
 
   <body>
@@ -81,32 +80,8 @@
     </nav>
 
     <div class="container_box">
-
+      마이페이지. 로그인 되어있지 않으면 로그인으로 보내야함....
     </div>
 
   </body>
-
-  <script id="ranking_template" type="ranking_template">
-    {{#each this}}
-      <div class="ranking_item">
-        <div class="ranking_num">{{counter @index}}</div>
-        <div class="ranking_content">
-          <div class="ranking_profile_pic_box">
-            <img class="ranking_profile_pic" src="pictures/profile.png"/>
-          </div>
-          <div class="ranking_center_side">
-            <div class="ranking_title">
-              <span class="ranking_title_img">{{{titlePic}}}</span>
-              <span class="ranking_title_text">{{titleText}}</span>
-            </div>
-            <div class="ranking_username">{{username}}</div>
-          </div>
-          <div class="ranking_right_side">
-            <span>{{like}}</span>
-            <span><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span>
-          </div>
-        </div>
-      </div>
-    {{/each}}
-  </script>
 </html>
