@@ -49,6 +49,7 @@ class MainPageViewController: UIViewController,UISearchBarDelegate{
 //        self.show(controller, sender: self)
         if navigationItem.titleView != nil{
             navigationItem.titleView = nil
+             searchIconButton.title = "검색"
             
         }else{
             searchIconButton.title = "취소"
@@ -59,7 +60,7 @@ class MainPageViewController: UIViewController,UISearchBarDelegate{
         searchBar.alpha = 0
         navigationItem.titleView = searchBar
         //navigationItem.setLeftBarButton(nil, animated: true)
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 0, animations: {
             self.searchBar.alpha = 1
         }, completion: { finished in
             self.searchBar.becomeFirstResponder()

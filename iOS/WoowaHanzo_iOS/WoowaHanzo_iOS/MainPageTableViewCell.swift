@@ -27,9 +27,11 @@ class MainPageTableViewCell: UITableViewCell,UITagsViewDelegate {
         super.awakeFromNib()
         
         self.tags.delegate = self
-
+        profileImageView.layer.cornerRadius = 0.5 * profileImageView.bounds.size.width
+        
+        
         reviewView.layer.borderWidth = 1.0
-        reviewView.layer.borderColor = UIColor.black.cgColor
+        reviewView.layer.borderColor = UIColor.gray.cgColor
         reviewView.layer.cornerRadius = 30.0
         reviewView.clipsToBounds = true
 //        tagTextView.resolveHashTags()
