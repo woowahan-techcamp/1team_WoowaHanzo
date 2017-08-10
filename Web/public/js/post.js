@@ -121,7 +121,10 @@ function uploadPost() {
   var postText = refineText($(".textbox").first().val());
   var postTags = [];
   $(".tagger_input").each(function(index) {
-    postTags.push(refineText($(this).val()));
+    var tagValue = refineText($(this).val());
+    if(tagValue.length > 0) {
+      postTags.push(refineText(tagValue));
+    }
   });
 
   var promise = writeNewPost("아무거나", "jhyang12345", postText, postTags);
@@ -137,7 +140,7 @@ function writeNewPost(uid, username, body, tags) {
     uid: uid,
     body: body,
     tags: tags,
-    time: new Date(),
+    time: -Date.now(),
     starCount: 0
   };
 
