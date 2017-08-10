@@ -12,8 +12,8 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myView: UIView!
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var myImageView: UIImageView!
-    @IBOutlet weak var myTagView: TagView!
     
+    var myTagView = TagView( position: CGPoint( x: 35, y: 450 ), size: CGSize( width: 329, height: 128 ) )
     var placeholder = "당신의 귀한 생각.."
     var tagArray = [String]()
     var textFieldWidth = CGFloat(30)
@@ -43,9 +43,7 @@ class ReviewPostPageViewController: UIViewController {
         myImageView.layer.cornerRadius = myImageView.frame.width / 2
         myImageView.layer.masksToBounds = true
         
-        
-        let tagView = TagView( position: CGPoint( x: 35, y: 450 ), size: CGSize( width: self.view.frame.width, height: self.view.frame.height ) )
-        self.view.addSubview( tagView )
+        self.view.addSubview( myTagView )
         
         //keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
@@ -68,6 +66,7 @@ class ReviewPostPageViewController: UIViewController {
         //지금은 그냥 놔두지만 나중에 user가 placeholder와 똑같은 글을 쓸때도 send가되게 바꿔야 함.
         if myTextView.text != placeholder{
             FirebaseModel().postReview(review: myTextView.text, userID: "kim", tagArray: myTagView.getTags(withPrefix: false))
+            //print(myTagView.getTags(withPrefix: true))
             print("sent post")
         }
         else{

@@ -57,21 +57,13 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BXe-5a-kbN" customClass="TagView" customModule="WoowaHanzo_iOS" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="407" width="329" height="128"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="BXe-5a-kbN" firstAttribute="top" secondItem="7jD-BC-1iR" secondAttribute="bottom" constant="27" id="29x-gs-o4K"/>
-                                            <constraint firstAttribute="bottom" secondItem="BXe-5a-kbN" secondAttribute="bottom" constant="22" id="2UU-ZA-H6R"/>
                                             <constraint firstAttribute="width" constant="374" id="6S1-cM-h61"/>
                                             <constraint firstItem="ffA-TX-D2K" firstAttribute="top" secondItem="oZE-Yo-CnC" secondAttribute="top" constant="25" id="A21-ym-lFR"/>
                                             <constraint firstItem="7jD-BC-1iR" firstAttribute="top" secondItem="ffA-TX-D2K" secondAttribute="bottom" constant="22" id="F33-Oa-Xoo"/>
                                             <constraint firstItem="7jD-BC-1iR" firstAttribute="leading" secondItem="oZE-Yo-CnC" secondAttribute="leading" constant="20" id="Fq0-aH-VYB"/>
-                                            <constraint firstItem="BXe-5a-kbN" firstAttribute="leading" secondItem="oZE-Yo-CnC" secondAttribute="leading" constant="24" id="WHQ-G2-d2f"/>
-                                            <constraint firstItem="7jD-BC-1iR" firstAttribute="trailing" secondItem="BXe-5a-kbN" secondAttribute="trailing" id="YP8-mW-a4Z"/>
                                             <constraint firstAttribute="height" constant="557" id="i3x-UH-Luz"/>
                                             <constraint firstItem="ffA-TX-D2K" firstAttribute="leading" secondItem="oZE-Yo-CnC" secondAttribute="leading" constant="20" id="jkU-U4-Odf"/>
                                             <constraint firstAttribute="trailing" secondItem="7jD-BC-1iR" secondAttribute="trailing" constant="21" id="rFY-Gr-F6a"/>
@@ -115,7 +107,6 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="myImageView" destination="ffA-TX-D2K" id="Iwz-Vd-nls"/>
-                        <outlet property="myTagView" destination="BXe-5a-kbN" id="SEn-t5-CX8"/>
                         <outlet property="myTextView" destination="7jD-BC-1iR" id="dh3-bN-yAF"/>
                         <outlet property="myView" destination="oZE-Yo-CnC" id="haW-fJ-20s"/>
                     </connections>
