@@ -49,16 +49,16 @@
 
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a data-toggle="tab" href="#tab1">Tab 1</a></li>
-            <li><a data-toggle="tab" href="#tab2">Tab 2</a></li>
-            <li><a data-toggle="tab" href="#tab3">Tab 3</a></li>
-            <li><a data-toggle="tab" href="#tab4">Tab 4</a></li>
+            <li><a data-toggle="tab" onclick="document.location.href = 'post.html'">글쓰기</a></li>
+            <li><a data-toggle="tab" onclick="document.location.href = 'ranking.html'">랭킹</a></li>
+            <li><a data-toggle="tab" onclick="document.location.href = 'test-tag.html'">태그</a></li>
+            <li><a data-toggle="tab" onclick="">마이페이지</a></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right right_side">
             <li>
               <form class="navbar-form">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <input class="form-control mr-sm-2" type="text" placeholder="#검색">
                 <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
               </form>
             </li>
@@ -79,28 +79,8 @@
       </div>
     </nav>
 
-    <div class="tab-content container">
-      <div id="home" class="tab-pane fade in active">
-        <div class="container_box">
+    <div class="container_box">
 
-        </div>
-      </div>
-      <div id="tab1" class="tab-pane fade">
-        <h3>Menu 1</h3>
-        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      </div>
-      <div id="tab2" class="tab-pane fade">
-        <h3>Menu 2</h3>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-      </div>
-      <div id="tab3" class="tab-pane fade">
-        <h3>Menu 3</h3>
-        <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-      </div>
-      <div id="tab4" class="tab-pane fade">
-        <h3>Menu 4</h3>
-        <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-      </div>
     </div>
 
     <script id="post_template" type="template">
