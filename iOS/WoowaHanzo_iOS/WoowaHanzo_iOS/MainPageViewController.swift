@@ -44,7 +44,9 @@ class MainPageViewController: UIViewController,UISearchBarDelegate{
 //        self.show(controller, sender: self)
         if navigationItem.titleView != nil{
             navigationItem.titleView = nil
+            
         }else{
+            searchIconButton.title = "취소"
         showSearchBar()
         }
     }
