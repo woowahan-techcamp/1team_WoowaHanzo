@@ -42,7 +42,7 @@ class TagView: UIView, UITextFieldDelegate
     var _baseSize					: CGSize!
     var _addButton					: UIButton!
     var _outerMergine				: CGFloat			  = 5.0
-    var _innerMergine				: CGFloat			  = 2.5
+    var _innerMergine				: CGFloat			  = 7.0
     var _autoGlowHeight				: Bool				  = true
     var _font						: UIFont!
     var _tagBackgroundColor			: UIColor			  = UIColor.white
@@ -223,10 +223,6 @@ class TagView: UIView, UITextFieldDelegate
         tagField.isEnabled			= _enableEdit
         tagField.becomeFirstResponder()
         tagField.sizeToFit()
-        
-        var frame = tagField.frame
-        frame.size.width = frame.size.width + 20
-        tagField.frame = frame
         
         _scrollView.addSubview( tagField )
         _tagFields[ _tagIndex ] = tagField

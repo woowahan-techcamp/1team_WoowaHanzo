@@ -12,7 +12,7 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myView: UIView!
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var myImageView: UIImageView!
-    
+    @IBOutlet weak var myScrollView: UIScrollView!
     var myTagView = TagView( position: CGPoint( x: 35, y: 450 ), size: CGSize( width: 320, height: 128 ) )
     var placeholder = "당신의 귀한 생각.."
     var tagArray = [String]()
@@ -39,7 +39,7 @@ class ReviewPostPageViewController: UIViewController {
         if tagArray.count == 0 {
             myTextView.becomeFirstResponder() }
         myTextView.selectedTextRange = myTextView.textRange(from: myTextView.beginningOfDocument, to: myTextView.beginningOfDocument)
-        fitTextView()
+        fitView()
         //imageview border setting
         myImageView.layer.cornerRadius = myImageView.frame.width / 2
         myImageView.layer.masksToBounds = true
@@ -61,7 +61,7 @@ class ReviewPostPageViewController: UIViewController {
         //if user insert same text as placeholder, it will not send post.
         //지금은 그냥 놔두지만 나중에 user가 placeholder와 똑같은 글을 쓸때도 send가되게 바꿔야 함.
         if myTextView.text != placeholder{
-            FirebaseModel().postReview(review: myTextView.text, userID: "kim", tagArray: myTagView.getTags(withPrefix: false), timestamp: String(-1.0 * Date().timeIntervalSince1970))
+            FirebaseModel().postReview(review: myTextView.text, userID: "kim", tagArray: myTagView.getTags(withPrefix: false), timestamp: Int(-1.0 * Date().timeIntervalSince1970))
             //print(myTagView.getTags(withPrefix: true))
             print("sent post")
             self.tabBarController?.selectedIndex = 0
@@ -93,7 +93,7 @@ class ReviewPostPageViewController: UIViewController {
 /////////////////////textview_delegate/////////////////////////
 extension ReviewPostPageViewController: UITextViewDelegate{
     
-    func fitTextView(){
+    func fitView(){
         let contentSize = self.myTextView.sizeThatFits(self.myTextView.bounds.size)
         var frame = self.myTextView.frame
         frame.size.height = max(contentSize.height, 70)
@@ -103,6 +103,14 @@ extension ReviewPostPageViewController: UITextViewDelegate{
         self.myTextView.addConstraint(aspectRatioTextViewConstraint)
         
         self.myTagView.frame.origin.y = self.myTextView.frame.origin.y + myTextView.frame.height + 80
+        
+        let contentSize2 = self.myView.sizeThatFits(self.myView.bounds.size)
+        var frame2 = self.myView.frame
+        frame2.size.height = contentSize2.height
+        myView.frame = frame2
+        myScrollView.contentSize = CGSize(width: Int(self.view.frame.width), height: Int(contentSize2.height))
+
+        
         
     }
     //setting placeholder to appear only when textview is empty
@@ -134,7 +142,7 @@ extension ReviewPostPageViewController: UITextViewDelegate{
     }
     
     func textViewDidChangeSelection(_ textView: UITextView) {
-        fitTextView()
+        fitView()
         if self.view.window != nil {
             if textView.textColor == UIColor.lightGray {
                 textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
