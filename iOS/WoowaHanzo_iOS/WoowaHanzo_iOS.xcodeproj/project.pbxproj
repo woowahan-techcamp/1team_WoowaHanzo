@@ -14,10 +14,8 @@
 		984397501F3835E800743B63 /* TagPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9843974F1F3835E800743B63 /* TagPageViewController.swift */; };
 		984397521F38389100743B63 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 984397511F38389100743B63 /* profile.png */; };
 		984397581F393A7100743B63 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 984397571F393A7100743B63 /* GoogleService-Info.plist */; };
-		9843975B1F3952C000743B63 /* CustomLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9843975A1F3952C000743B63 /* CustomLabelCell.swift */; };
 		9843975D1F39704A00743B63 /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9843975C1F39704A00743B63 /* FirebaseModel.swift */; };
 		984397601F397F6E00743B63 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9843975F1F397F6E00743B63 /* User.swift */; };
-		984397621F39A4F800743B63 /* CustomTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984397611F39A4F800743B63 /* CustomTextFieldCell.swift */; };
 		984397641F3ACD3200743B63 /* TagFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984397631F3ACD3200743B63 /* TagFilter.swift */; };
 		984397A01F3C14A000743B63 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9843979F1F3C14A000743B63 /* TagView.swift */; };
 		984397A21F3C34B800743B63 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984397A11F3C34B800743B63 /* StringExtension.swift */; };
@@ -76,10 +74,8 @@
 		9843974F1F3835E800743B63 /* TagPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagPageViewController.swift; sourceTree = "<group>"; };
 		984397511F38389100743B63 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		984397571F393A7100743B63 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		9843975A1F3952C000743B63 /* CustomLabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLabelCell.swift; sourceTree = "<group>"; };
 		9843975C1F39704A00743B63 /* FirebaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseModel.swift; sourceTree = "<group>"; };
 		9843975F1F397F6E00743B63 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		984397611F39A4F800743B63 /* CustomTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextFieldCell.swift; sourceTree = "<group>"; };
 		984397631F3ACD3200743B63 /* TagFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagFilter.swift; sourceTree = "<group>"; };
 		9843979F1F3C14A000743B63 /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		984397A11F3C34B800743B63 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -260,8 +256,6 @@
 				984397511F38389100743B63 /* profile.png */,
 				9854BFA71F340ADE008FA337 /* ReivewPostPage.storyboard */,
 				9854BF971F3407CF008FA337 /* ReviewPostPageViewController.swift */,
-				9843975A1F3952C000743B63 /* CustomLabelCell.swift */,
-				984397611F39A4F800743B63 /* CustomTextFieldCell.swift */,
 				984397631F3ACD3200743B63 /* TagFilter.swift */,
 				9843979F1F3C14A000743B63 /* TagView.swift */,
 			);
@@ -629,7 +623,6 @@
 			files = (
 				9854BF9B1F3407F1008FA337 /* MainPageViewController.swift in Sources */,
 				98C563CD1F39BE310017E68A /* AuthModel.swift in Sources */,
-				984397621F39A4F800743B63 /* CustomTextFieldCell.swift in Sources */,
 				984397641F3ACD3200743B63 /* TagFilter.swift in Sources */,
 				9854BF9F1F340806008FA337 /* MyPageViewController.swift in Sources */,
 				984397501F3835E800743B63 /* TagPageViewController.swift in Sources */,
@@ -641,7 +634,6 @@
 				984397A01F3C14A000743B63 /* TagView.swift in Sources */,
 				98C563C41F39B6AC0017E68A /* SearchViewController.swift in Sources */,
 				986C8B641F3AEA9E00FC42ED /* SelectBrandTableViewController.swift in Sources */,
-				9843975B1F3952C000743B63 /* CustomLabelCell.swift in Sources */,
 				986C8B661F3AEAB200FC42ED /* SelectBrandTableViewCell.swift in Sources */,
 				9854BF981F3407CF008FA337 /* ReviewPostPageViewController.swift in Sources */,
 				9854BF9D1F3407FC008FA337 /* RankPageViewController.swift in Sources */,
