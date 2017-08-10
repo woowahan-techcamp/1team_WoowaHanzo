@@ -14,6 +14,7 @@ class MainPageViewController: UIViewController,UISearchBarDelegate{
     @IBOutlet weak var mainpageTableView: UITableView!
     var firebaseModel = FirebaseModel()
     
+    
     @IBOutlet weak var searchIconButton: UIBarButtonItem!
     var searchBar = UISearchBar()
     override func viewDidLoad() {
@@ -34,6 +35,9 @@ class MainPageViewController: UIViewController,UISearchBarDelegate{
     func reloadTableData(){
         mainpageTableView.reloadData()
 
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        firebaseModel.loadFeed()
     }
 
    

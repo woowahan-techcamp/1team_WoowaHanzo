@@ -53,11 +53,14 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37g-Sg-JPF">
-                                                            <rect key="frame" x="7" y="252" width="351" height="30"/>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HCI-CU-uVs">
+                                                            <rect key="frame" x="8" y="106" width="343" height="94"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <state key="normal" title="좋아요그림들어갈 자리"/>
-                                                        </button>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        </textView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x9b-U1-4mY" customClass="UITags" customModule="UITags">
                                                             <rect key="frame" x="8" y="218" width="343" height="26"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -76,17 +79,21 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HCI-CU-uVs">
-                                                            <rect key="frame" x="7" y="165" width="343" height="94"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                        </textView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37g-Sg-JPF">
+                                                            <rect key="frame" x="4" y="231" width="351" height="30"/>
+                                                            <state key="normal" title="좋아요그림들어갈 자리"/>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstItem="x9b-U1-4mY" firstAttribute="top" secondItem="HCI-CU-uVs" secondAttribute="bottom" constant="24" id="uxc-oB-sXo"/>
+                                                        <constraint firstItem="37g-Sg-JPF" firstAttribute="leading" secondItem="af8-gO-cAU" secondAttribute="leading" constant="4" id="3br-1E-E7u"/>
+                                                        <constraint firstItem="x9b-U1-4mY" firstAttribute="leading" secondItem="af8-gO-cAU" secondAttribute="leading" constant="8" id="5dx-4b-BmN"/>
+                                                        <constraint firstAttribute="trailing" secondItem="37g-Sg-JPF" secondAttribute="trailing" constant="4" id="96B-SM-bLn"/>
+                                                        <constraint firstItem="37g-Sg-JPF" firstAttribute="top" secondItem="af8-gO-cAU" secondAttribute="top" constant="244" id="M1F-JQ-cgr"/>
+                                                        <constraint firstItem="x9b-U1-4mY" firstAttribute="top" secondItem="af8-gO-cAU" secondAttribute="top" constant="218" id="VEf-rS-FsT"/>
+                                                        <constraint firstAttribute="trailing" secondItem="x9b-U1-4mY" secondAttribute="trailing" constant="8" id="Wqz-Fz-wRH"/>
+                                                        <constraint firstAttribute="bottom" secondItem="x9b-U1-4mY" secondAttribute="bottom" constant="38" id="cPt-hN-foo"/>
+                                                        <constraint firstAttribute="bottom" secondItem="37g-Sg-JPF" secondAttribute="bottom" constant="8" id="iik-es-VzR"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
