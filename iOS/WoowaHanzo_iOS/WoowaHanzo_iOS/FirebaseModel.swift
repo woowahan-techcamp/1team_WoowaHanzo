@@ -46,7 +46,7 @@ class FirebaseModel{
         //            })
         //
         //        }
-        self.ref.queryOrdered(byChild: "author").observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.queryOrdered(byChild: "timestamp").observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
                 User.users = [User]()
                 for child in result {
