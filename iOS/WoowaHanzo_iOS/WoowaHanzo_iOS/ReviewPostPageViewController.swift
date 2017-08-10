@@ -13,7 +13,7 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var myImageView: UIImageView!
     
-    var myTagView = TagView( position: CGPoint( x: 35, y: 450 ), size: CGSize( width: 329, height: 128 ) )
+    var myTagView = TagView( position: CGPoint( x: 35, y: 450 ), size: CGSize( width: 320, height: 128 ) )
     var placeholder = "당신의 귀한 생각.."
     var tagArray = [String]()
     var textFieldWidth = CGFloat(30)
@@ -39,6 +39,7 @@ class ReviewPostPageViewController: UIViewController {
         if tagArray.count == 0 {
             myTextView.becomeFirstResponder() }
         myTextView.selectedTextRange = myTextView.textRange(from: myTextView.beginningOfDocument, to: myTextView.beginningOfDocument)
+        fitTextView()
         //imageview border setting
         myImageView.layer.cornerRadius = myImageView.frame.width / 2
         myImageView.layer.masksToBounds = true
@@ -98,13 +99,14 @@ extension ReviewPostPageViewController: UITextViewDelegate{
         frame.size.height = max(contentSize.height, 70)
         self.myTextView.frame = frame
         
-        var aspectRatioTextViewConstraint = NSLayoutConstraint(item: self.myTextView, attribute: .height, relatedBy: .equal, toItem: self.myTextView, attribute: .width, multiplier: myTextView.bounds.height/myTextView.bounds.width, constant: 1)
+        let aspectRatioTextViewConstraint = NSLayoutConstraint(item: self.myTextView, attribute: .height, relatedBy: .equal, toItem: self.myTextView, attribute: .width, multiplier: myTextView.bounds.height/myTextView.bounds.width, constant: 1)
         self.myTextView.addConstraint(aspectRatioTextViewConstraint)
+        
+        self.myTagView.frame.origin.y = self.myTextView.frame.origin.y + myTextView.frame.height + 80
         
     }
     //setting placeholder to appear only when textview is empty
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        fitTextView()
         let currentText = textView.text as NSString?
         let updatedText = currentText?.replacingCharacters(in: range, with: text)
         
@@ -132,6 +134,7 @@ extension ReviewPostPageViewController: UITextViewDelegate{
     }
     
     func textViewDidChangeSelection(_ textView: UITextView) {
+        fitTextView()
         if self.view.window != nil {
             if textView.textColor == UIColor.lightGray {
                 textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)

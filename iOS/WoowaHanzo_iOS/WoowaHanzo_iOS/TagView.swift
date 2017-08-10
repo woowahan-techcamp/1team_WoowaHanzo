@@ -47,12 +47,12 @@ class TagView: UIView, UITextFieldDelegate
     var _font						: UIFont!
     var _tagBackgroundColor			: UIColor			  = UIColor.white
     var _tagSelectedColor			: UIColor			  = UIColor.white
-    var _tagTextColor				: UIColor			  = UIColor.black
+    var _tagTextColor				: UIColor			  = UIColor(red: CGFloat(52.0/255.0), green: CGFloat(152.0/255.0), blue: CGFloat(219.0/255.0), alpha: CGFloat(1.0))
     var _tagPrefix					: String			  = "#"
     var _tagMaxCharactors			: Int				  = 100
     var _tagCharCountLabel			: UILabel!
     var _addButtonBackgroundColor	: UIColor			  = UIColor.white
-    var _addButtonTextColor			: UIColor			  = UIColor.black
+    var _addButtonTextColor			: UIColor			  = UIColor(red: CGFloat(112.0/255.0), green: CGFloat(182.0/255.0), blue: CGFloat(229.0/255.0), alpha: CGFloat(1.0))
     var _enableEdit					: Bool				  = true
     var _maxTagCount				: Int				  = 1000
     var _tagCount					: Int				  = 0
@@ -211,15 +211,23 @@ class TagView: UIView, UITextFieldDelegate
         tagField.textColor			= _tagTextColor
         tagField.text				= tagString
         tagField.tintColor			= _addButtonTextColor
+        tagField.layer.borderColor = UIColor(red: CGFloat(52.0/255.0), green: CGFloat(152.0/255.0), blue: CGFloat(219.0/255.0), alpha: CGFloat(1.0)).cgColor
+        tagField.layer.borderWidth = 1.0
         tagField.font				= _font
         tagField.textAlignment		= NSTextAlignment.center
+        tagField.layer.cornerRadius = 12
         tagField.delegate			= self
-        tagField.borderStyle		= UITextBorderStyle.roundedRect
+        //tagField.borderStyle		= UITextBorderStyle.roundedRect
         tagField.returnKeyType		= UIReturnKeyType.done
         tagField.tag				= _tagIndex
         tagField.isEnabled			= _enableEdit
         tagField.becomeFirstResponder()
         tagField.sizeToFit()
+        
+        var frame = tagField.frame
+        frame.size.width = frame.size.width + 20
+        tagField.frame = frame
+        
         _scrollView.addSubview( tagField )
         _tagFields[ _tagIndex ] = tagField
         _userDatum[ _tagIndex ] = userData
