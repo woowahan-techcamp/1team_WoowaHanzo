@@ -101,11 +101,34 @@
         </div>
         <div class="tags_holder">
           {{#each tags}}
-            <span class="tagger tag_holder">
+            <span class="tagger tag_holder unselectable">
               #{{this}}
             </span>
           {{/each}}
         </div>
+        <table class="image_thumbnails">
+          <tr>
+            <td>
+              <div class="single_thumbnail">
+                <img src="pictures/chicken003.jpg"  />
+              </div>
+            </td>
+            <td>
+              <div class="single_thumbnail">
+                <img src="pictures/chicken004.jpg"  />
+              </div>
+            </td>
+            <td>
+              <div class="single_thumbnail">
+                <img src="pictures/chicken005.jpg"  />
+                <div class="thumbnail_cover">
+                  +3
+                </div>
+              </div>
+
+            </td>
+          </tr>
+        </table>
         <hr />
         <div class="post_footer">
           <i class="fa fa-thumbs-o-up like_btn" aria-hidden="true"></i>

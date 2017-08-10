@@ -22,13 +22,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
     console.log(buffer);
     $(".container_box").append(template(buffer));
     var $curPost = $("#post_" + buffer.id);
-    $curPost.css("display", "none");
 
+    // keeping the post invisible while loading
+    $curPost.css("display", "none");
     $curPost.children(".post_body").html(buffer["body"]);
     if(buffer["tags"] && buffer["tags"].length == 0) {
       $curPost.children(".tags_holder").css("display", "none");
     }
     $curPost.css("display", "block");
+
+    $(".image_thumbnails td").each(function(index, elem) {
+      console.log($(".image_thumbnails td").width());
+      console.log(elem.outerHTML);
+      var bufferWidth = $(".image_thumbnails td")[0].offsetWidth;
+      elem.style.height = bufferWidth + "px";
+      $(".thumbnail_cover").last()[0].style.lineHeight = bufferWidth - 20 + "px";
+    });
     console.log("GO");
   });
 
