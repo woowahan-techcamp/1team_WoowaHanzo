@@ -23,7 +23,7 @@ class MainPageTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        tagTextView.text = "#안녕 #바보 #ddㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ"
+        
         reviewView.layer.borderWidth = 1.0
         reviewView.layer.borderColor = UIColor.black.cgColor
         reviewView.layer.cornerRadius = 30.0
@@ -57,7 +57,6 @@ extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDe
         cell.tagLabel.preferredMaxLayoutWidth = cell.tagLabel.frame.width
         //            cell.contentView.bounds = cell.bounds
         //            cell.layoutIfNeeded()
-        
         
 
         if let tagArray = User.users[indexPath.section].tagsArray

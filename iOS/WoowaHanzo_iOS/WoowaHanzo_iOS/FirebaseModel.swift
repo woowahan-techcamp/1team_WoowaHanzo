@@ -30,32 +30,15 @@ class FirebaseModel{
         
         let date = Date()
         self.ref = Database.database().reference().child("posts")
-        //        DispatchQueue.global().async {
-        //            self.ref.child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
-        //                if let result = snapshot.children.allObjects as? [DataSnapshot] {
-        //
-        //                    User.users = [User]()
-        //                    for child in result {
-        //                        print(child)
-        //                        var userKey = child.key as! String
-        //                        //print(child.childSnapshot(forPath: "author").value!)
-        //                        let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tagsArray: child.childSnapshot(forPath: "tagArray").value as? [String] ?? [] )
-        //                        User.users.append(user)
-        //                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
-        //
-        //                    }
-        //                }
-        //            })
-        //
-        //        }
-        self.ref.queryOrdered(byChild: "author").observeSingleEvent(of: .value, with: { (snapshot) in
+       
+        self.ref.queryOrdered(byChild: "timestamp").observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
                 User.users = [User]()
                 for child in result {
                     print(child)
                     var userKey = child.key as! String
                     //print(child.childSnapshot(forPath: "author").value!)
-                    let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tagsArray: child.childSnapshot(forPath: "tagArray").value as? [String] ?? [] )
+                    let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tagsArray: child.childSnapshot(forPath: "tagArray").value as? [String] ?? nil )
                     User.users.append(user)
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
                 }
