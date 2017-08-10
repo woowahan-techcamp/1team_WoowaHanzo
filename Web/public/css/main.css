@@ -214,6 +214,13 @@ input:focus {
   -webkit-box-shadow: none;
   outline: -webkit-focus-ring-color none 5px;
 }
+.unselectable {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
 .btn {
   border-color: transparent;
@@ -332,6 +339,10 @@ input:focus {
   outline: -webkit-focus-ring-color none 5px;
 }
 
+.post .tagger:hover {
+  cursor: pointer;
+}
+
 .post_footer {
   padding-left: 15px;
   padding-right: 15px;
@@ -349,6 +360,8 @@ input:focus {
   font-size: 14px;
   float: right;
   margin-top: 4px;
+  font-weight: bold;
+  color: #AAA;
 }
 
 .tagger::-webkit-input-placeholder {
@@ -373,6 +386,7 @@ input:focus {
 .starting_sharp {
   font-weight: bold;
 }
+
 
 .post .textbox:focus {
   border-color: #a0b7da;
