@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAot_xscB-brcQ1A3V3g0Ka-DEhKr_HlP8",
+        authDomain: "woowaproject.firebaseapp.com",
+        databaseURL: "https://woowaproject.firebaseio.com",
+        projectId: "woowaproject",
+        storageBucket: "woowaproject.appspot.com",
+        messagingSenderId: "609034471288"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js" ></script>
+
+    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"  />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/signup.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" data-toggle="tab" onclick="document.location.href = 'index.html'">먹소리</a>
+          <button type="button" class="navbar-toggle collapsed custom_search_btn" aria-expanded="false" aria-controls="navbar">
+            <i class="fa fa-search fa-1x" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a data-toggle="tab" onclick="document.location.href = 'post.html'">글쓰기</a></li>
+            <li><a data-toggle="tab" onclick="document.location.href = 'ranking.html'">랭킹</a></li>
+            <li><a data-toggle="tab" onclick="document.location.href = 'test-tag.html'">태그</a></li>
+            <li><a data-toggle="tab" onclick="document.location.href = 'mypage.html'">마이페이지</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right right_side">
+            <li>
+              <form class="navbar-form">
+                <input class="form-control mr-sm-2" type="text" placeholder="#검색">
+                <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </li>
+            <li>
+              <form class="navbar-form" action="login.html">
+                <button type="submit" class="btn btn-success">Sign in</button>
+              </form>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right right_side_icon">
+            <li>
+              <form class="navbar-form" action="login.html">
+                <button type="submit" class="btn btn-success">Sign in</button>
+              </form>
+            </li>
+          </li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div class="container_box">
+      <div class="signup_holder">
+        <div class="signup_title">
+          회원가입
+        </div>
+        <div class="input_holder">
+          <div class="form_container email_container">
+            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            <input type="text" name="email" id="email" placeholder="이메일" />
+          </div>
+
+          <div class="form_container username_container">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" name="username" id="username" placeholder="유저네임" />
+          </div>
+
+          <div class="form_container">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <input type="password" name="password" id="password" placeholder="비밀번호"/>
+          </div>
+
+          <div class="form_container">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <input type="text" name="sayhi" id="sayhi" placeholder="한 줄 소개"/>
+          </div>
+
+        </div>
+
+        <div class="tos_container">
+          이용약관 이용....
+        </div>
+
+        <div class="buttons_holder">
+          <button type="submit" class="signup custom_button">회원가입</button>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>
