@@ -7,15 +7,14 @@
 //
 
 import UIKit
+import DGCollectionViewLeftAlignFlowLayout
 
 class ReviewPostPageViewController: UIViewController {
 
     @IBOutlet weak var myView: UIView!
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var myImageView: UIImageView!
-    @IBOutlet weak var myCollectionView: UICollectionView!
-    @IBOutlet weak var dummyLabel: UILabel!
-    @IBOutlet weak var dummyLabel2: UILabel!
+    @IBOutlet weak var myTagView: TagView!
     
     var placeholder = "당신의 귀한 생각.."
     var tagArray = [String]()
@@ -26,8 +25,6 @@ class ReviewPostPageViewController: UIViewController {
         super.viewDidLoad()
         //delegates
         myTextView.delegate = self as! UITextViewDelegate
-        myCollectionView.dataSource = self
-        myCollectionView.delegate = self
         
         //view border setting
         myView.layer.borderColor = UIColor.gray.cgColor
@@ -47,14 +44,11 @@ class ReviewPostPageViewController: UIViewController {
         //imageview border setting
         myImageView.layer.cornerRadius = myImageView.frame.width / 2
         myImageView.layer.masksToBounds = true
-        //collectionview layout
         
-        //left allign layout: 다른 layout 예제를 그대로 덮어쓰는 방법 알아보기.
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 2.5, left: 5, bottom: 2.5, right: 5)
-        layout.minimumInteritemSpacing = 10
-        layout.minimumLineSpacing = 10
-        myCollectionView!.collectionViewLayout = layout
+        
+        let tagView = TagView( position: CGPoint( x: 35, y: 450 ), size: CGSize( width: self.view.frame.width, height: self.view.frame.height ) )
+        self.view.addSubview( tagView )
+        
         //keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -141,71 +135,6 @@ extension ReviewPostPageViewController: UITextViewDelegate{
 }
 
 
-/////////////////////collectionview_delegate//////////////////////////
-extension ReviewPostPageViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return tagArray.count + 1
-    }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-        //if it's label, not textfield
-        if indexPath.row < tagArray.count {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomLabelCell", for: indexPath) as! CustomLabelCell
-            print("updating tag: \(indexPath.row + 1). \(tagArray[indexPath.row])")
-        
-            cell.label.text = tagArray[indexPath.row]
-            cell.label.sizeToFit()
-            cell.layer.cornerRadius = 5.0
-            
-            return cell
-        }
-            
-        //if it's textfield
-        else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomTextFieldCell", for: indexPath) as! CustomTextFieldCell
-            //cell.textfield.sizeToFit()
-            //여기서 다른 작용을 해주어야 한다.
-            cell.textfield.delegate = self
-            cell.textfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-            cell.textfield.text = textFieldText
-            cell.textfield.sizeToFit()
-            cell.layer.cornerRadius = 5.0
-            if tagArray.count > 0 || textFieldText != "" {
-                DispatchQueue.main.async{
-                cell.textfield.becomeFirstResponder()
-                }
-            }
-            
-            return cell
-        }
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //can not load cell. so make dummylabel and calculate the width of text by sizeTofit()
-        //if it's label
-        if indexPath.row < tagArray.count{
-            dummyLabel.text = tagArray[indexPath.row]
-            dummyLabel.sizeToFit()
-            return CGSize(width: CGFloat(dummyLabel.frame.width + 10), height:CGFloat(25))
-        }
-        else{
-            dummyLabel.text = textFieldText
-            dummyLabel.sizeToFit()
-            return CGSize(width: CGFloat(dummyLabel.frame.width + 20), height:CGFloat(25))
-        }
-        
-    }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //delete only labels
-        if indexPath.row < tagArray.count {
-            tagArray.remove(at:indexPath.row)
-            collectionView.deleteItems(at: [indexPath])
-        }
-    }
-}
-
 
 ///////////////////////textfield_delegate/////////////////////////
 extension ReviewPostPageViewController:  UITextFieldDelegate{
@@ -218,9 +147,6 @@ extension ReviewPostPageViewController:  UITextFieldDelegate{
             //textFieldText = newString
             //print(textFieldText)
             //print(string)
-            DispatchQueue.main.async{
-                self.myCollectionView.reloadData()
-            }
             return true
         }
         return false
@@ -233,7 +159,6 @@ extension ReviewPostPageViewController:  UITextFieldDelegate{
         tagArray.append("#"+textField.text!)
         textField.text = ""
         textFieldText = ""
-        myCollectionView.reloadData()
         }
         return true
     }
