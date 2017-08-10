@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezh-sH-mRQ">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ezh-sH-mRQ">
                                 <rect key="frame" x="0.0" y="20" width="414" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZE-Yo-CnC">
@@ -107,6 +107,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="myImageView" destination="ffA-TX-D2K" id="Iwz-Vd-nls"/>
+                        <outlet property="myScrollView" destination="ezh-sH-mRQ" id="kaS-j4-pOp"/>
                         <outlet property="myTextView" destination="7jD-BC-1iR" id="dh3-bN-yAF"/>
                         <outlet property="myView" destination="oZE-Yo-CnC" id="haW-fJ-20s"/>
                     </connections>
