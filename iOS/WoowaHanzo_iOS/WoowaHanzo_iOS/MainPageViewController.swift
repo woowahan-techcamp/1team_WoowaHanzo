@@ -10,19 +10,22 @@ import UIKit
 
 class MainPageViewController: UIViewController{
     
-    
-    @IBOutlet weak var mainpageTableView: UITableView!
     var firebaseModel = FirebaseModel()
-    
-    
-    @IBOutlet weak var searchIconButton: UIBarButtonItem!
     var searchBar = UISearchBar()
+
+
+    @IBOutlet weak var mainpageTableView: UITableView!
+    @IBOutlet weak var searchIconButton: UIBarButtonItem!
+    
+    
     override func viewDidLoad() {
-                //mainpageTableView.rowHeight =
-        //mainpageTableView.rowHeight = UITableViewAutomaticDimension
+        
         super.viewDidLoad()
+        
+        //firebase에서 loadFeed하는것에 옵저버를 걸어준다.
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: NSNotification.Name(rawValue: "reload"), object: nil)
-        self.firebaseModel.loadFeed()
+        
+        //self.firebaseModel.loadFeed()
         mainpageTableView.delegate = self
         mainpageTableView.dataSource = self
 //        mainpageTableView.rowHeight = UITableViewAutomaticDimension
@@ -51,6 +54,7 @@ class MainPageViewController: UIViewController{
         showSearchBar()
         }
     }
+    
     func showSearchBar() {
         searchBar.alpha = 0
         navigationItem.titleView = searchBar
