@@ -24,11 +24,18 @@ class ReviewPostPageViewController: UIViewController {
     var keyboardmove = CGFloat(0)
     var savedkeyboardSize = CGRect()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //delegates
+    }
+    
+    //게시를 누르지 않고 다른 탭을 누르는 경우 알림을 띄우도록
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
         
+        //delegates
+        myTagView.removeFromSuperview()
+        myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
         myTextView.delegate = self as! UITextViewDelegate
                 //keyboard notification
         NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -71,6 +78,7 @@ class ReviewPostPageViewController: UIViewController {
         //keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        //myView.addGestureRecognizer(tap)
         
     }
     func keyboardWillShow(notification: NSNotification) {
@@ -79,14 +87,14 @@ class ReviewPostPageViewController: UIViewController {
             if self.view.frame.origin.y == 0{
                 //keyboardSize.height
                 keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView._scrollView.contentSize.height - 65 - keyboardSize.height), (CGFloat)(0))
-                self.view.frame.origin.y += keyboardmove
+                self.myView.frame.origin.y += keyboardmove
             }
         }
         else{
             print("called")
             self.view.frame.origin.y -= keyboardmove
             keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView._scrollView.contentSize.height - 65 - savedkeyboardSize.height), (CGFloat)(0))
-            self.view.frame.origin.y += keyboardmove
+            self.myView.frame.origin.y += keyboardmove
             print(savedkeyboardSize.height)
         }
     }
@@ -94,7 +102,7 @@ class ReviewPostPageViewController: UIViewController {
     func keyboardWillHide(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             //if self.view.frame.origin.y != 0{
-            self.view.frame.origin.y -= keyboardmove
+            self.myView.frame.origin.y -= keyboardmove
             //}
         }
     }
