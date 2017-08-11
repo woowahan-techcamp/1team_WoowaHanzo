@@ -25,12 +25,9 @@ class MainPageViewController: UIViewController{
         //firebase에서 loadFeed하는것에 옵저버를 걸어준다.
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: NSNotification.Name(rawValue: "reload"), object: nil)
         
-        //self.firebaseModel.loadFeed()
         mainpageTableView.delegate = self
         mainpageTableView.dataSource = self
-//        mainpageTableView.rowHeight = UITableViewAutomaticDimension
-//        mainpageTableView.estimatedRowHeight = 400
-        //searchBar.delegate = self
+
         searchBar.alpha = 0
         searchBar.searchBarStyle = UISearchBarStyle.minimal
     }
@@ -41,10 +38,12 @@ class MainPageViewController: UIViewController{
     }
     override func viewWillAppear(_ animated: Bool) {
         firebaseModel.loadFeed()
+        searchIconButton.tintColor = UIColor.white
     }
 
    
     @IBAction func searchIconTouched(_ sender: Any) {
+        
         if navigationItem.titleView != nil{
             navigationItem.titleView = nil
              searchIconButton.title = "검색"
@@ -59,7 +58,7 @@ class MainPageViewController: UIViewController{
         searchBar.alpha = 0
         navigationItem.titleView = searchBar
         //navigationItem.setLeftBarButton(nil, animated: true)
-        UIView.animate(withDuration: 0, animations: {
+        UIView.animate(withDuration: 2, animations: {
             self.searchBar.alpha = 1
         }, completion: { finished in
             self.searchBar.becomeFirstResponder()
@@ -96,9 +95,7 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource,UIT
 
         return cell
     }
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat{
-        return tableView.contentSize.height 
-    }
+   
 
 
 }
