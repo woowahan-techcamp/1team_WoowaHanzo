@@ -17,7 +17,7 @@ class MainPageTableViewCell: UITableViewCell,UITagsViewDelegate {
     @IBOutlet weak var likeButton: UIButton!
     //@IBOutlet weak var mainpageCollectionView: UICollectionView!
     @IBOutlet weak var contentsTextView: UITextView!
-    @IBOutlet weak var categoryLabel: UILabel!
+    //@IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var nickNameButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var tags: UITags!
@@ -31,7 +31,7 @@ class MainPageTableViewCell: UITableViewCell,UITagsViewDelegate {
         //print(tags.collectionView?.contentSize.height)
         reviewView.layer.borderWidth = 1.0
         reviewView.layer.borderColor = UIColor.gray.cgColor
-        reviewView.layer.cornerRadius = 15.0
+        reviewView.layer.cornerRadius = 30.0
         reviewView.clipsToBounds = true
 //        tagTextView.resolveHashTags()
 //        tagTextView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.blue]

@@ -37,14 +37,6 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="af8-gO-cAU">
                                                     <rect key="frame" x="8" y="8" width="359" height="320"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1uC-VA-8di">
-                                                            <rect key="frame" x="94" y="8" width="257" height="30"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                            <state key="normal" title="닉네임">
-                                                                <color key="titleColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                            </state>
-                                                        </button>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cx9-sr-l7K">
                                                             <rect key="frame" x="15" y="8" width="75" height="75"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -80,13 +72,14 @@
                                                             <rect key="frame" x="4" y="286" width="351" height="34"/>
                                                             <state key="normal" title="좋아요그림들어갈 자리"/>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="카테고리 라벨" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gB7-EA-GQE">
-                                                            <rect key="frame" x="94" y="46" width="265" height="21"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1uC-VA-8di">
+                                                            <rect key="frame" x="94" y="30" width="257" height="30"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                            <state key="normal" title="닉네임">
+                                                                <color key="titleColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </state>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -107,13 +100,12 @@
                                                 <constraint firstAttribute="leadingMargin" secondItem="af8-gO-cAU" secondAttribute="leading" id="j6W-tv-ral"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.89411764705882346" green="0.94509803921568625" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="af8-gO-cAU" firstAttribute="top" secondItem="zoP-3i-oeZ" secondAttribute="top" constant="8" id="qgX-7X-Thh"/>
                                             <constraint firstAttribute="bottom" secondItem="af8-gO-cAU" secondAttribute="bottom" constant="8" id="y6W-cA-53i"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="categoryLabel" destination="gB7-EA-GQE" id="QBW-V1-Vth"/>
                                             <outlet property="contentsTextView" destination="HCI-CU-uVs" id="li5-xg-o97"/>
                                             <outlet property="likeButton" destination="37g-Sg-JPF" id="xxD-XD-5vR"/>
                                             <outlet property="nickNameButton" destination="1uC-VA-8di" id="hcg-aH-wQy"/>
