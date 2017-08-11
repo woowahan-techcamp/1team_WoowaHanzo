@@ -71,7 +71,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEc-XB-17I">
-                                                <rect key="frame" x="281" y="411" width="113" height="35"/>
+                                                <rect key="frame" x="281" y="391" width="113" height="35"/>
                                                 <color key="backgroundColor" red="0.25878592652925403" green="0.60072733182719973" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="9sC-H7-wWr"/>
@@ -91,9 +91,9 @@
                                             <constraint firstAttribute="bottom" secondItem="oZE-Yo-CnC" secondAttribute="bottom" constant="293" id="145-kc-vrm"/>
                                             <constraint firstItem="oZE-Yo-CnC" firstAttribute="trailing" secondItem="mEc-XB-17I" secondAttribute="trailing" id="7U8-ie-Zxd"/>
                                             <constraint firstItem="oZE-Yo-CnC" firstAttribute="centerX" secondItem="3vS-wK-4Ht" secondAttribute="centerX" id="GMb-3L-zuJ"/>
+                                            <constraint firstItem="mEc-XB-17I" firstAttribute="top" secondItem="oZE-Yo-CnC" secondAttribute="bottom" constant="17" id="OYf-wE-R5I"/>
                                             <constraint firstItem="oZE-Yo-CnC" firstAttribute="leading" secondItem="3vS-wK-4Ht" secondAttribute="leading" constant="21" id="c04-4Q-vA0"/>
                                             <constraint firstItem="oZE-Yo-CnC" firstAttribute="top" secondItem="3vS-wK-4Ht" secondAttribute="top" constant="23" id="lUR-mA-mUV"/>
-                                            <constraint firstItem="mEc-XB-17I" firstAttribute="top" secondItem="oZE-Yo-CnC" secondAttribute="bottom" constant="37" id="wao-U5-fbd"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -118,6 +118,7 @@
                     <tabBarItem key="tabBarItem" title="글쓰기" id="O9b-Is-O5c"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="myButton" destination="mEc-XB-17I" id="1pD-yD-o9u"/>
                         <outlet property="myContentView" destination="3vS-wK-4Ht" id="qT7-IO-M7E"/>
                         <outlet property="myImageView" destination="ffA-TX-D2K" id="Iwz-Vd-nls"/>
                         <outlet property="myScrollView" destination="ezh-sH-mRQ" id="kaS-j4-pOp"/>

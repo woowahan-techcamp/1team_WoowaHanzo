@@ -15,6 +15,8 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myScrollView: UIScrollView!
     @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var myContentView: UIView!
+    @IBOutlet weak var myButton: UIButton!
+    
     
     var myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
     var placeholder = "당신의 귀한 생각.."
@@ -34,6 +36,7 @@ class ReviewPostPageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         //delegates
+        
         myTagView.removeFromSuperview()
         myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
         myTextView.delegate = self as! UITextViewDelegate
@@ -87,14 +90,16 @@ class ReviewPostPageViewController: UIViewController {
             if self.view.frame.origin.y == 0{
                 //keyboardSize.height
                 keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView._scrollView.contentSize.height - 65 - keyboardSize.height), (CGFloat)(0))
-                self.myView.frame.origin.y += keyboardmove
+                self.view.frame.origin.y += keyboardmove
+                //self.myView.frame.origin.y += keyboardmove
             }
         }
         else{
             print("called")
             self.view.frame.origin.y -= keyboardmove
             keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView._scrollView.contentSize.height - 65 - savedkeyboardSize.height), (CGFloat)(0))
-            self.myView.frame.origin.y += keyboardmove
+            self.view.frame.origin.y += keyboardmove
+            //self.myView.frame.origin.y += keyboardmove
             print(savedkeyboardSize.height)
         }
     }
@@ -102,7 +107,8 @@ class ReviewPostPageViewController: UIViewController {
     func keyboardWillHide(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             //if self.view.frame.origin.y != 0{
-            self.myView.frame.origin.y -= keyboardmove
+            self.view.frame.origin.y -= keyboardmove
+            //self.myView.frame.origin.y -= keyboardmove
             //}
         }
     }
@@ -129,10 +135,13 @@ class ReviewPostPageViewController: UIViewController {
         
         //var frame4 = self.myView.frame
         myView.frame.size.height = shadowView.frame.origin.y + shadowView.frame.height + 10
+        myButton.frame.origin.y = myView.frame.origin.y + myView.frame.height + 17
         
         var contentSize2 = myScrollView.contentSize
-        contentSize2.height = myView.frame.size.height + 40
+        contentSize2.height = myView.frame.size.height + 80
         self.myScrollView.contentSize = contentSize2
+        
+        
         //let contentSize2 = self.myView.sizeThatFits(self.myView.bounds.size)
         //var frame3 = self.myView.frame
         //frame3.size.height = contentSize2.height
