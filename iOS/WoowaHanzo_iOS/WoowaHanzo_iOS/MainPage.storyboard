@@ -37,7 +37,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="af8-gO-cAU">
                                                     <rect key="frame" x="8" y="8" width="359" height="320"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cx9-sr-l7K">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baemin.png" translatesAutoresizingMaskIntoConstraints="NO" id="Cx9-sr-l7K">
                                                             <rect key="frame" x="15" y="8" width="75" height="75"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="0.41960784313725491" green="0.72549019607843135" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
@@ -163,4 +163,7 @@
             <point key="canvasLocation" x="-604" y="274.81259370314842"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="baemin.png" width="300" height="300"/>
+    </resources>
 </document>
