@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="336" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="laF-bT-XL8">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -54,7 +54,7 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         </imageView>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HCI-CU-uVs">
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCI-CU-uVs">
                                                             <rect key="frame" x="8" y="106" width="343" height="94"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -127,7 +127,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="laF-bT-XL8" secondAttribute="trailing" constant="-16" id="K16-Yo-j2A"/>
                             <constraint firstItem="laF-bT-XL8" firstAttribute="leading" secondItem="ba0-Gh-gdv" secondAttribute="leadingMargin" constant="-16" id="biH-OL-PgP"/>
                             <constraint firstItem="laF-bT-XL8" firstAttribute="top" secondItem="QpY-tU-WY9" secondAttribute="bottom" constant="-64" id="cIs-yJ-tQb"/>
-                            <constraint firstItem="M1q-fT-exJ" firstAttribute="top" secondItem="laF-bT-XL8" secondAttribute="bottom" id="sKc-fL-JHc"/>
+                            <constraint firstItem="M1q-fT-exJ" firstAttribute="top" secondItem="laF-bT-XL8" secondAttribute="bottom" constant="-49" id="sKc-fL-JHc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FR9-AM-KRn">
