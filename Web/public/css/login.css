@@ -1,21 +1,17 @@
-
 .login_holder {
-  width: 510px;
-  margin-left: auto;
-  margin-right: auto;
+  min-width: 320px;
   padding: 30px;
+  margin: 150px 20px 0 20px;
 
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  border-style: solid;
-  border-width: 1px;
-  border-color : #AAA;
-
+  border: 1px solid #AAA;
 }
 
 .login_holder input {
   font-size: 1.2em;
+  width: 85%;
   border: none;
   box-shadow: none;
   -moz-box-shadow: none;
@@ -25,10 +21,7 @@
 }
 
 .form_container {
-
-  border-color: #BBB;
-  border-style: solid;
-  border-width: 1px;
+  border: 1px solid #BBB;
 
   border-radius: 4px;
   -moz-border-radius: 4px;
@@ -38,7 +31,6 @@
   padding-top: 10px;
   padding-left: 14px;
   padding-right: 14px;
-
 }
 
 .form_container .fa {
@@ -72,8 +64,6 @@
   padding-bottom: 6px;
 }
 
-
-
 .splitter {
   color: #AAA;
   margin-top: 8px;
@@ -94,4 +84,12 @@
 
 .signup:hover {
   background-color: #246a99;
+}
+
+@media (max-width: 600px) {
+  .login_holder {
+    padding: 25px 20px 20px 20px;
+    margin-top: 100px;
+  }
+
 }
