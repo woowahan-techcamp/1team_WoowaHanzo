@@ -36,7 +36,8 @@ class ReviewPostPageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         //delegates
-        
+        //self.view.frame.origin.x = 0
+        //self.view.frame.origin.y = 0
         myTagView.removeFromSuperview()
         myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
         myTextView.delegate = self as! UITextViewDelegate
