@@ -13,17 +13,38 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var myScrollView: UIScrollView!
-    var myTagView = TagView( position: CGPoint( x: 35, y: 450 ), size: CGSize( width: 320, height: 128 ) )
+    @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var myContentView: UIView!
+    @IBOutlet weak var myButton: UIButton!
+    
+    
+    var myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
     var placeholder = "당신의 귀한 생각.."
     var tagArray = [String]()
     var textFieldWidth = CGFloat(30)
     var textFieldText = ""
-    
+    var keyboardmove = CGFloat(0)
+    var savedkeyboardSize = CGRect()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    //게시를 누르지 않고 다른 탭을 누르는 경우 알림을 띄우도록
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
         //delegates
+        
+        myTagView.removeFromSuperview()
+        myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
         myTextView.delegate = self as! UITextViewDelegate
+                //keyboard notification
+        NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillShow), name: NSNotification.Name(rawValue: "keyboard"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.fitView), name: NSNotification.Name(rawValue: "fitview"), object: nil)
         
         //view border setting
         myView.layer.borderColor = UIColor.gray.cgColor
@@ -51,14 +72,46 @@ class ReviewPostPageViewController: UIViewController {
         myImageView.layer.cornerRadius = myImageView.frame.width / 2
         myImageView.layer.masksToBounds = true
         
-        self.view.addSubview( myTagView )
+        self.myView.addSubview( myTagView )
+        myContentView.addSubview(myView)
+        myScrollView.addSubview(myContentView)
+        myScrollView.contentSize.height = 1500
+        
         
         //keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        //myView.addGestureRecognizer(tap)
         
     }
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            savedkeyboardSize = keyboardSize
+            if self.view.frame.origin.y == 0{
+                //keyboardSize.height
+                keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView._scrollView.contentSize.height - 65 - keyboardSize.height), (CGFloat)(0))
+                self.view.frame.origin.y += keyboardmove
+                //self.myView.frame.origin.y += keyboardmove
+            }
+        }
+        else{
+            print("called")
+            self.view.frame.origin.y -= keyboardmove
+            keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView._scrollView.contentSize.height - 65 - savedkeyboardSize.height), (CGFloat)(0))
+            self.view.frame.origin.y += keyboardmove
+            //self.myView.frame.origin.y += keyboardmove
+            print(savedkeyboardSize.height)
+        }
+    }
     
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            //if self.view.frame.origin.y != 0{
+            self.view.frame.origin.y -= keyboardmove
+            //self.myView.frame.origin.y -= keyboardmove
+            //}
+        }
+    }
     func fitView(){
         let contentSize = self.myTextView.sizeThatFits(self.myTextView.bounds.size)
         var frame = self.myTextView.frame
@@ -69,18 +122,37 @@ class ReviewPostPageViewController: UIViewController {
         self.myTextView.addConstraint(aspectRatioTextViewConstraint)
         
         var frame2 = self.myTagView.frame
-        frame2.origin.y = self.myTextView.frame.origin.y + myTextView.frame.height + 80
+        frame2.origin.y = self.myTextView.frame.origin.y + myTextView.frame.height + 10
         self.myTagView.frame = frame2
         self.myTagView._basePosition = CGPoint(x: frame2.origin.x, y: frame2.origin.y)
         
+        
+        var frame3 = self.shadowView.frame
+        frame3.origin.y = self.myTextView.frame.origin.y + myTextView.frame.height + 10
+        frame3.size.height = self.myTagView._scrollView.frame.height
+        shadowView.frame = frame3
+        //print(myTagView._scrollView.contentSize.height)
+        
+        //var frame4 = self.myView.frame
+        myView.frame.size.height = shadowView.frame.origin.y + shadowView.frame.height + 10
+        myButton.frame.origin.y = myView.frame.origin.y + myView.frame.height + 17
+        
+        var contentSize2 = myScrollView.contentSize
+        contentSize2.height = myView.frame.size.height + 80
+        self.myScrollView.contentSize = contentSize2
+        
+        
         //let contentSize2 = self.myView.sizeThatFits(self.myView.bounds.size)
-        //var frame2 = self.myView.frame
-        //frame2.size.height = contentSize2.height
-        //myView.frame = frame2
+        //var frame3 = self.myView.frame
+        //frame3.size.height = contentSize2.height
+        //myView.frame = frame3
         //myScrollView.contentSize = CGSize(width: Int(self.view.frame.width), height: Int(contentSize2.height))
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "keyboard"), object: nil)
         
     }
-
+    
+    
+    
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
@@ -134,7 +206,6 @@ extension ReviewPostPageViewController: UITextViewDelegate{
             
             textView.text = placeholder
             textView.textColor = UIColor.lightGray
-            
             textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
             
             return false

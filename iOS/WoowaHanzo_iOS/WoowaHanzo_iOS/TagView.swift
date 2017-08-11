@@ -258,11 +258,10 @@ class TagView: UIView, UITextFieldDelegate
     // --------------------------------------------------------------------------------------------
     func updateLayout()
     {
-        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "fitview"), object: nil)
         //print(self.frame.origin.y)
         //print(positiony)
         //let editdist = CGFloat(positiony) - self.frame.origin.y
-        var temp = _outerMergine
         
         _tagFieldMaxX = 0
         _tagFieldMinY = _outerMergine
@@ -306,10 +305,11 @@ class TagView: UIView, UITextFieldDelegate
         {
             frame = CGRect( x: _basePosition.x, y: _basePosition.y, width: _baseSize.width, height: max( _baseSize.height, _scrollView.contentSize.height ) )
             _scrollView.frame = CGRect( x: 0, y: 0, width: frame.width, height: frame.height )
+            //_baseSize = CGSize(width: frame.width, height: frame.height)
+            //self.frame = frame
             delegate?.onChangedLayoutTag!( sender: self )
         }
         
-        _outerMergine = temp
     }
     // --------------------------------------------------------------------------------------------
     func updateCharactorCount()
