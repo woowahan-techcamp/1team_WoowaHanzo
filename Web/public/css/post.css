@@ -2,6 +2,10 @@
 
 }
 
+.post_input {
+  margin-top: 100px;
+}
+
 .tagger_input {
   background-color: transparent;
   margin-left: 1px;
@@ -44,13 +48,12 @@ div.post {
 }
 
 .add_photos {
+  width: 70px;
+  height: 45px;
+  line-height: 45px;
   background-color: #70b6e5;
-  padding-left: 24px;
-  padding-right: 24px;
-  padding-top: 7px;
-  padding-bottom: 7px;
-  font-size: 1.8em;
-  line-height: normal;
+  font-size: 24px;
+  text-align: center;
 }
 
 .add_photos:hover {
@@ -58,15 +61,14 @@ div.post {
 }
 
 .post_submit {
+  width: 70px;
+  height: 45px;
+  line-height: 46px;
+  text-align: center;
   display: inline-block;
   float: right;
   background-color: #3498db;
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-top: 7px;
-  padding-bottom: 7px;
-  font-size: 1.8em;
-  line-height: normal;
+  font-size: 21px;
 }
 
 #image_input {
