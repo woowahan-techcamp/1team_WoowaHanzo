@@ -33,14 +33,10 @@ class MainPageTableViewCell: UITableViewCell,UITagsViewDelegate {
         reviewView.layer.borderColor = UIColor.gray.cgColor
         reviewView.layer.cornerRadius = 30.0
         reviewView.clipsToBounds = true
-//        tagTextView.resolveHashTags()
-//        tagTextView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.blue]
-//        tagTextView.isScrollEnabled = false
-//        tagTextView.delegate = self
+
         
  
     }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
@@ -57,51 +53,4 @@ class MainPageTableViewCell: UITableViewCell,UITagsViewDelegate {
     
     
 }
-extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
-    //MARK: CollectionView extension
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return (User.users[section].tagsArray?.count)!
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MainPageCollectionViewCell
-        cell.tagLabel.layer.cornerRadius = 10
-        cell.tagLabel.layer.masksToBounds = true
-        
-        cell.tagLabel.preferredMaxLayoutWidth = cell.tagLabel.frame.width
-        //            cell.contentView.bounds = cell.bounds
-        //            cell.layoutIfNeeded()
-        
-
-        if let tagArray = User.users[indexPath.section].tagsArray
-        {
-            cell.tagLabel.text = "#\(tagArray[indexPath.row])"
-        }
-        return cell
-    }
-    
-    
-    
-    
-}
-extension MainPageTableViewCell : UITextViewDelegate{
-    func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        if let URL = url.scheme {
-            let arrId = Int(URL)
-            print(hashtagArr?[arrId!])
-            
-//            let alertController = UIAlertController(title: "AZHashtagTextViewExample", message: "\(hashtagArr![arrId!])", preferredStyle: .alert)
-//            let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-//                UIAlertAction in
-//                alertController.dismiss(animated: true, completion: nil)
-//            }
-//            alertController.addAction(okBtn)
-//            
-            //self.present(alertController, animated: true, completion: nil)
-            
-        }
-        return false
-    }
-}
-
 

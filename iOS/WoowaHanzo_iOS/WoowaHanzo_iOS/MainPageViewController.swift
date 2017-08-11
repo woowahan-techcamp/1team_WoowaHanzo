@@ -24,7 +24,8 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         
         super.viewDidLoad()
         
-        
+        mainpageTableView.keyboardDismissMode = .onDrag
+       
         //firebase에서 loadFeed하는것에 옵저버를 걸어준다.
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: NSNotification.Name(rawValue: "reload"), object: nil)
         
@@ -34,7 +35,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
 
         searchBar.alpha = 0
         searchBar.searchBarStyle = UISearchBarStyle.minimal
-        
+       
     }
     
     func reloadTableData(){
@@ -114,8 +115,8 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource,UIT
 
         return cell
     }
+    
+
    
-
-
 }
 
