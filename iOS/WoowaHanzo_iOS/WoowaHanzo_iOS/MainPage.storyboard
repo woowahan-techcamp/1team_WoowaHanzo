@@ -35,7 +35,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="af8-gO-cAU">
-                                                    <rect key="frame" x="8" y="26" width="359" height="282"/>
+                                                    <rect key="frame" x="8" y="8" width="359" height="320"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="카테고리 라벨" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gB7-EA-GQE">
                                                             <rect key="frame" x="86" y="46" width="265" height="21"/>
@@ -104,11 +104,14 @@
                                                 <constraint firstItem="x9b-U1-4mY" firstAttribute="top" secondItem="r1N-Ib-I4E" secondAttribute="topMargin" constant="236" id="Fue-Vq-Egm"/>
                                                 <constraint firstItem="x9b-U1-4mY" firstAttribute="leading" secondItem="r1N-Ib-I4E" secondAttribute="leadingMargin" constant="8" id="cUc-OM-P7U"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="af8-gO-cAU" secondAttribute="bottom" constant="19.5" id="fgF-Qp-Ybg"/>
-                                                <constraint firstItem="af8-gO-cAU" firstAttribute="top" secondItem="r1N-Ib-I4E" secondAttribute="topMargin" constant="18" id="i84-Sm-3sT"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="af8-gO-cAU" secondAttribute="leading" id="j6W-tv-ral"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="af8-gO-cAU" firstAttribute="top" secondItem="zoP-3i-oeZ" secondAttribute="top" constant="8" id="qgX-7X-Thh"/>
+                                            <constraint firstAttribute="bottom" secondItem="af8-gO-cAU" secondAttribute="bottom" constant="8" id="y6W-cA-53i"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="categoryLabel" destination="gB7-EA-GQE" id="QBW-V1-Vth"/>
                                             <outlet property="contentsTextView" destination="HCI-CU-uVs" id="li5-xg-o97"/>

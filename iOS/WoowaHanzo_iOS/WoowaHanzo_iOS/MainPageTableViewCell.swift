@@ -44,6 +44,7 @@ class MainPageTableViewCell: UITableViewCell,UITagsViewDelegate {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
+
         // Configure the view for the selected state
     }
     func tagSelected(atIndex index:Int) -> Void {

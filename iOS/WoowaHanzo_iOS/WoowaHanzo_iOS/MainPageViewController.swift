@@ -33,6 +33,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
 
         searchBar.alpha = 0
         searchBar.searchBarStyle = UISearchBarStyle.minimal
+        
     }
     
     func reloadTableData(){
@@ -55,7 +56,9 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         }
 
     }
-
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
    
     @IBAction func searchIconTouched(_ sender: Any) {
         
