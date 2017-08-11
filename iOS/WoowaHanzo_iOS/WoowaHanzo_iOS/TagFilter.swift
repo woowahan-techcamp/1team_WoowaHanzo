@@ -36,6 +36,9 @@ class TagFilter{
         return true
     }
     func isValid4(_ id: String) -> Bool{
+        if id.characters.count == 0{
+            return true
+        }
         if id[0] != "#"{
             return false
         }
