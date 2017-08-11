@@ -80,13 +80,17 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource,UIT
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as!MainPageTableViewCell
         cell.contentsTextView.text = User.users[indexPath.row].contents
         cell.nickNameButton.setTitle(User.users[indexPath.row].nickName, for: .normal)
         //print(User.users[indexPath.row].tagsArray)
+        
         if let tagArr = User.users[indexPath.row].tagsArray{
             cell.tags.tags = tagArr
 
+        }else{
+            cell.tags.tags = nil
         }
         //tableView.estimatedRowHeight = 336
         //tableView.rowHeight = UITableViewAutomaticDimension

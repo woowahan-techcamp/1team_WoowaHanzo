@@ -53,7 +53,7 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         </imageView>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HCI-CU-uVs">
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HCI-CU-uVs">
                                                             <rect key="frame" x="8" y="106" width="343" height="94"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -92,7 +92,7 @@
                                                         <constraint firstItem="37g-Sg-JPF" firstAttribute="top" secondItem="af8-gO-cAU" secondAttribute="top" constant="244" id="M1F-JQ-cgr"/>
                                                         <constraint firstItem="x9b-U1-4mY" firstAttribute="top" secondItem="af8-gO-cAU" secondAttribute="top" constant="218" id="VEf-rS-FsT"/>
                                                         <constraint firstAttribute="trailing" secondItem="x9b-U1-4mY" secondAttribute="trailing" constant="8" id="Wqz-Fz-wRH"/>
-                                                        <constraint firstAttribute="bottom" secondItem="x9b-U1-4mY" secondAttribute="bottom" constant="38" id="cPt-hN-foo"/>
+                                                        <constraint firstItem="37g-Sg-JPF" firstAttribute="top" secondItem="x9b-U1-4mY" secondAttribute="bottom" id="iEG-y3-rne"/>
                                                         <constraint firstAttribute="bottom" secondItem="37g-Sg-JPF" secondAttribute="bottom" constant="8" id="iik-es-VzR"/>
                                                     </constraints>
                                                 </view>
