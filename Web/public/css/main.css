@@ -290,17 +290,17 @@ div.img-divgo{
   font-size: 30px;
   font-weight: bold;
   margin-left: 20px;
-  top: 1px;
+  top: 8px;
   position: absolute;
-  line-height: 2em;
 }
 
-.post .Category {
+.post .Title {
   bottom: 1px;
-  margin-left: 15px;
+  margin-left: 20px;
   color: #1e83c3;
-  font-size: 16px;
-  display: none;
+  font-size: 19px;
+  top: 48px;
+  position: absolute;
 }
 
 .post .textbox {
@@ -412,8 +412,8 @@ div.img-divgo{
 }
 
 .post_footer {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 0;
+  padding-right: 10px;
 }
 
 .post hr {
@@ -432,7 +432,7 @@ div.img-divgo{
 .post_time {
   font-size: 14px;
   float: right;
-  margin-top: 4px;
+  margin-top: 12px;
   font-weight: bold;
   color: #AAA;
 }
@@ -478,20 +478,32 @@ div.img-divgo{
   }
 
   .post .Name {
-    font-size: 25px;
-    margin-left: 12px;
+    font-size: 23px;
+    margin-left: 11px;
+    top: 7px;
+  }
+
+  .post .Title {
+    font-size: 15px;
+    margin-left: 11px;
+    top: 38px;
   }
 
   .post div.post_body {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .tags_holder .tag_holder {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .post {
     margin: 0 20px 20px;
+  }
+
+  .tags_holder {
+    line-height: 40px;
+    margin-top: 7px;
   }
 
 }
