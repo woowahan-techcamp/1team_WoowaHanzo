@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainPageViewController: UIViewController,UISearchBarDelegate{
+class MainPageViewController: UIViewController{
     
     
     @IBOutlet weak var mainpageTableView: UITableView!
@@ -27,7 +27,7 @@ class MainPageViewController: UIViewController,UISearchBarDelegate{
         mainpageTableView.dataSource = self
 //        mainpageTableView.rowHeight = UITableViewAutomaticDimension
 //        mainpageTableView.estimatedRowHeight = 400
-        searchBar.delegate = self
+        //searchBar.delegate = self
         searchBar.alpha = 0
         searchBar.searchBarStyle = UISearchBarStyle.minimal
     }
@@ -42,11 +42,6 @@ class MainPageViewController: UIViewController,UISearchBarDelegate{
 
    
     @IBAction func searchIconTouched(_ sender: Any) {
-//        let storyboard = UIStoryboard(name: "SearchPage", bundle: nil)
-//        let controller = storyboard.instantiateViewController(withIdentifier: "searchView")
-//        //self.present(controller, animated: true, completion: nil)
-//        //self.navigationController?.pushViewController(controller, animated: true)
-//        self.show(controller, sender: self)
         if navigationItem.titleView != nil{
             navigationItem.titleView = nil
              searchIconButton.title = "검색"
