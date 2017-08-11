@@ -73,9 +73,7 @@ class MainPageViewController: UIViewController,UISearchBarDelegate{
 //MARK: TableView extension
 extension MainPageViewController : UITableViewDelegate,UITableViewDataSource,UITextViewDelegate{
     
-    
-    
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return User.users.count
     }
@@ -95,7 +93,9 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource,UIT
 
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat{
+        return tableView.contentSize.height 
+    }
 
 
 }

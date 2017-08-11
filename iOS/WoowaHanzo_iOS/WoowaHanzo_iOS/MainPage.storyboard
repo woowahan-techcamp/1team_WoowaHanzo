@@ -80,7 +80,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37g-Sg-JPF">
-                                                            <rect key="frame" x="4" y="231" width="351" height="30"/>
+                                                            <rect key="frame" x="4" y="244" width="351" height="30"/>
                                                             <state key="normal" title="좋아요그림들어갈 자리"/>
                                                         </button>
                                                     </subviews>
