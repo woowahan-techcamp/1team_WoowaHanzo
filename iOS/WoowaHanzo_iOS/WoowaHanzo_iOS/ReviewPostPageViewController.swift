@@ -21,6 +21,7 @@ class ReviewPostPageViewController: UIViewController {
     var textFieldWidth = CGFloat(30)
     var textFieldText = ""
     var keyboardmove = CGFloat(0)
+    var savedkeyboardSize = CGRect()
     
     
     override func viewDidLoad() {
@@ -65,9 +66,32 @@ class ReviewPostPageViewController: UIViewController {
         view.addGestureRecognizer(tap)
         
     }
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            savedkeyboardSize = keyboardSize
+            if self.view.frame.origin.y == 0{
+                //keyboardSize.height
+                keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView.frame.height - keyboardSize.height), (CGFloat)(0))
+                self.view.frame.origin.y += keyboardmove
+            }
+        }
+        else{
+            print("called")
+            self.view.frame.origin.y -= keyboardmove
+            keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView.frame.height - savedkeyboardSize.height), (CGFloat)(0))
+            self.view.frame.origin.y += keyboardmove
+            print(savedkeyboardSize.height)
+        }
+    }
     
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            //if self.view.frame.origin.y != 0{
+            self.view.frame.origin.y -= keyboardmove
+            //}
+        }
+    }
     func fitView(){
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "fitview"), object: nil)
         let contentSize = self.myTextView.sizeThatFits(self.myTextView.bounds.size)
         var frame = self.myTextView.frame
         frame.size.height = max(contentSize.height, 70)
@@ -81,31 +105,18 @@ class ReviewPostPageViewController: UIViewController {
         self.myTagView.frame = frame2
         self.myTagView._basePosition = CGPoint(x: frame2.origin.x, y: frame2.origin.y)
         
+        
+        
         //let contentSize2 = self.myView.sizeThatFits(self.myView.bounds.size)
-        //var frame2 = self.myView.frame
-        //frame2.size.height = contentSize2.height
-        //myView.frame = frame2
+        //var frame3 = self.myView.frame
+        //frame3.size.height = contentSize2.height
+        //myView.frame = frame3
         //myScrollView.contentSize = CGSize(width: Int(self.view.frame.width), height: Int(contentSize2.height))
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "fitview"), object: nil)
         
     }
     
-    func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                //keyboardSize.height
-                keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView.frame.height - keyboardSize.height), (CGFloat)(0))
-                self.view.frame.origin.y += keyboardmove
-            }
-        }
-    }
     
-    func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            //if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y -= keyboardmove
-            //}
-        }
-    }
     
     
     //Calls this function when the tap is recognized.
