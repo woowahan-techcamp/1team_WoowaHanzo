@@ -28,11 +28,10 @@ class MainPageTableViewCell: UITableViewCell,UITagsViewDelegate {
         
         self.tags.delegate = self
         profileImageView.layer.cornerRadius = 0.5 * profileImageView.bounds.size.width
-        
-        
+        //print(tags.collectionView?.contentSize.height)
         reviewView.layer.borderWidth = 1.0
         reviewView.layer.borderColor = UIColor.gray.cgColor
-        reviewView.layer.cornerRadius = 30.0
+        reviewView.layer.cornerRadius = 15.0
         reviewView.clipsToBounds = true
 //        tagTextView.resolveHashTags()
 //        tagTextView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.blue]

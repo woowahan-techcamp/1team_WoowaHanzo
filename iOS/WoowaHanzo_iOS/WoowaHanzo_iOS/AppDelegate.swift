@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         UINavigationBar.appearance().barTintColor = UIColor.darkGray
+        UINavigationBar.appearance().tintColor = UIColor.white
 
         return true
     }

@@ -25,6 +25,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="336" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="laF-bT-XL8">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="336" id="zoP-3i-oeZ" customClass="MainPageTableViewCell" customModule="WoowaHanzo_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="336"/>
@@ -53,7 +54,7 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         </imageView>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HCI-CU-uVs">
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HCI-CU-uVs">
                                                             <rect key="frame" x="8" y="106" width="343" height="94"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -61,7 +62,7 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         </textView>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x9b-U1-4mY" customClass="UITags" customModule="UITags">
+                                                        <view contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="x9b-U1-4mY" customClass="UITags" customModule="UITags">
                                                             <rect key="frame" x="8" y="218" width="343" height="26"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <userDefinedRuntimeAttributes>
@@ -80,7 +81,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37g-Sg-JPF">
-                                                            <rect key="frame" x="4" y="231" width="351" height="30"/>
+                                                            <rect key="frame" x="4" y="244" width="351" height="30"/>
                                                             <state key="normal" title="좋아요그림들어갈 자리"/>
                                                         </button>
                                                     </subviews>
@@ -92,7 +93,7 @@
                                                         <constraint firstItem="37g-Sg-JPF" firstAttribute="top" secondItem="af8-gO-cAU" secondAttribute="top" constant="244" id="M1F-JQ-cgr"/>
                                                         <constraint firstItem="x9b-U1-4mY" firstAttribute="top" secondItem="af8-gO-cAU" secondAttribute="top" constant="218" id="VEf-rS-FsT"/>
                                                         <constraint firstAttribute="trailing" secondItem="x9b-U1-4mY" secondAttribute="trailing" constant="8" id="Wqz-Fz-wRH"/>
-                                                        <constraint firstAttribute="bottom" secondItem="x9b-U1-4mY" secondAttribute="bottom" constant="38" id="cPt-hN-foo"/>
+                                                        <constraint firstItem="37g-Sg-JPF" firstAttribute="top" secondItem="x9b-U1-4mY" secondAttribute="bottom" id="iEG-y3-rne"/>
                                                         <constraint firstAttribute="bottom" secondItem="37g-Sg-JPF" secondAttribute="bottom" constant="8" id="iik-es-VzR"/>
                                                     </constraints>
                                                 </view>
@@ -107,6 +108,7 @@
                                                 <constraint firstAttribute="leadingMargin" secondItem="af8-gO-cAU" secondAttribute="leading" id="j6W-tv-ral"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <connections>
                                             <outlet property="categoryLabel" destination="gB7-EA-GQE" id="QBW-V1-Vth"/>
                                             <outlet property="contentsTextView" destination="HCI-CU-uVs" id="li5-xg-o97"/>
@@ -120,7 +122,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="laF-bT-XL8" secondAttribute="trailing" constant="-16" id="K16-Yo-j2A"/>
                             <constraint firstItem="laF-bT-XL8" firstAttribute="leading" secondItem="ba0-Gh-gdv" secondAttribute="leadingMargin" constant="-16" id="biH-OL-PgP"/>

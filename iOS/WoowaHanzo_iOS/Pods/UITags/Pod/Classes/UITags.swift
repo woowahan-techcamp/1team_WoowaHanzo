@@ -45,7 +45,7 @@ open class UITags: UIView, UICollectionViewDataSource, UICollectionViewDelegate,
     
     open var delegate: UITagsViewDelegate?
     
-    open var tags: [String] = [] {
+    open var tags: [String]? = [] {
         didSet {
             self.selectedTags.removeAll()
             self.createTags()
@@ -100,7 +100,12 @@ open class UITags: UIView, UICollectionViewDataSource, UICollectionViewDelegate,
     
     //MARK: - collection view dataSource implemantation
     open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tags.count
+        if let count = tags?.count{
+            return count
+        }
+        else {
+            return 0
+        }
     }
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -117,14 +122,14 @@ open class UITags: UIView, UICollectionViewDataSource, UICollectionViewDelegate,
         cellToConfigure.fontSize = self.fontSize
         cellToConfigure.textColor = self.selectedTags.contains(indexPath.row) ? self.textColorSelected : self.textColor
         cellToConfigure.contentView.backgroundColor = self.selectedTags.contains(indexPath.row) ? self.tagSelectedColor : self.tagColor
-        cellToConfigure.title = self.tags[indexPath.row]
+        cellToConfigure.title = (self.tags?[indexPath.row])!
         return cellToConfigure
     }
     
     //MARK: - util methods
     fileprivate func sizeForCellAt(_ indexPath:IndexPath) -> CGSize {
         let tempLabel = UILabel()
-        tempLabel.text = self.tags[indexPath.row]
+        tempLabel.text = self.tags?[indexPath.row]
         tempLabel.font = UIFont(name: fontFamily, size: fontSize)
         tempLabel.textColor = textColor
         tempLabel.textAlignment = .center
