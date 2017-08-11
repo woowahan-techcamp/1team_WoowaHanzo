@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="q05-Yh-OsF">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tag Page View Controller-->
+        <scene sceneID="NsG-RZ-zTF">
+            <objects>
+                <viewController id="ZcH-k0-xu7" customClass="TagPageViewController" customModule="WoowaHanzo_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2dV-ew-PJV"/>
+                        <viewControllerLayoutGuide type="bottom" id="aIj-PO-N7q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rbq-wI-TO6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9AS-ap-5AP">
+                        <barButtonItem key="rightBarButtonItem" title="태그" id="1YD-5H-ADh">
+                            <connections>
+                                <action selector="tagButtonTouched:" destination="ZcH-k0-xu7" id="y68-u2-EgY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0u6-PK-XqZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="40.799999999999997" y="530.28485757121439"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="peg-Q4-fw8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="q05-Yh-OsF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Fgl-fc-Jyd" userLabel="Item"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ewo-Ub-HSh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ZcH-k0-xu7" kind="relationship" relationship="rootViewController" id="gkm-Ph-ccC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fUe-nZ-8dg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-898.39999999999998" y="530.28485757121439"/>
+        </scene>
+    </scenes>
+</document>
