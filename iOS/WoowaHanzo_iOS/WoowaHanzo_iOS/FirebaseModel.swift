@@ -40,6 +40,7 @@ class FirebaseModel{
                     let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tagsArray: child.childSnapshot(forPath: "tagArray").value as? [String] ?? nil )
                     User.users.append(user)
                     
+                    
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
                 }
                 
