@@ -14,6 +14,7 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var myScrollView: UIScrollView!
     @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var myContentView: UIView!
     
     var myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
     var placeholder = "당신의 귀한 생각.."
@@ -62,8 +63,10 @@ class ReviewPostPageViewController: UIViewController {
         myImageView.layer.masksToBounds = true
         
         self.myView.addSubview( myTagView )
-        
+        myContentView.addSubview(myView)
+        myScrollView.addSubview(myContentView)
         myScrollView.contentSize.height = 1500
+        
         
         //keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
@@ -116,7 +119,12 @@ class ReviewPostPageViewController: UIViewController {
         shadowView.frame = frame3
         //print(myTagView._scrollView.contentSize.height)
         
+        //var frame4 = self.myView.frame
+        myView.frame.size.height = shadowView.frame.origin.y + shadowView.frame.height + 10
         
+        var contentSize2 = myScrollView.contentSize
+        contentSize2.height = myView.frame.size.height + 40
+        self.myScrollView.contentSize = contentSize2
         //let contentSize2 = self.myView.sizeThatFits(self.myView.bounds.size)
         //var frame3 = self.myView.frame
         //frame3.size.height = contentSize2.height
