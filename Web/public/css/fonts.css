@@ -3,3 +3,15 @@
   src: url("fonts/NotoSansKR_Regular.woff") format('woff');
 
 }
+
+@font-face {
+  font-family: 'NotoSans-Regular';
+  src: url("fonts/NotoSans-Regular.ttf") format('ttf');
+
+}
+
+@font-face {
+  font-family: 'NotoSansUI-Regular';
+  src: url("fonts/NotoSansUI-Regular.ttf") format('ttf');
+
+}

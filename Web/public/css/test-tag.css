@@ -1,0 +1,40 @@
+#tagholder {
+  line-height: 40px;
+  vertical-align: baseline;
+}
+
+.tag_holder_tmp {
+  padding: 7px 15px 7px 15px !important;
+  border-radius: 12px !important;
+  margin-bottom: 10px;
+}
+
+.starting_sharp_tmp, .tag_name_tmp {
+  font-size: 30px;
+}
+
+.tag_count_tmp {
+  font-size: 18px;
+  color: #dfdfdf;
+}
+
+@media (max-width: 600px) {
+  .tag_holder_tmp {
+    padding: 4px 10px 4px 10px !important;
+    border-radius: 8px !important;
+    margin-bottom: 7px;
+  }
+
+  .starting_sharp_tmp, .tag_name_tmp {
+    font-size: 20px;
+  }
+
+  .tag_count_tmp {
+    font-size: 13px;
+    color: #dfdfdf;
+  }
+
+  .tag_tmp {
+    padding: 7px 12px;
+  }
+}

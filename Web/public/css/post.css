@@ -1,12 +1,15 @@
 .post .tags_holder {
-  line-height: 40px;
-  vertical-align: baseline;
+
+}
+
+.post_input {
+  margin-top: 100px;
 }
 
 .tagger_input {
-  background-color: rgb(52, 152, 219);
+  background-color: transparent;
   margin-left: 1px;
-  color: #FFF;
+  !color: #FFF;
   border: none;
   box-shadow: none;
   -moz-box-shadow: none;
@@ -24,6 +27,10 @@
   outline: -webkit-focus-ring-color none 5px;
 }
 
+div.post {
+  padding-bottom: 10px;
+}
+
 .post .tagger {
   line-height: normal;
 }
@@ -32,14 +39,38 @@
   cursor: pointer;
 }
 
+.buttons_holder .custom_button {
+  display: inline-block;
+}
+
+.buttons_holder {
+  margin: 0 20px;
+}
+
+.add_photos {
+  width: 70px;
+  height: 45px;
+  line-height: 45px;
+  background-color: #70b6e5;
+  font-size: 24px;
+  text-align: center;
+}
+
+.add_photos:hover {
+  background-color: #99cbed;
+}
+
 .post_submit {
+  width: 70px;
+  height: 45px;
+  line-height: 46px;
+  text-align: center;
   display: inline-block;
   float: right;
   background-color: #3498db;
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-top: 7px;
-  padding-bottom: 7px;
-  font-size: 1.8em;
-  line-height: normal;
+  font-size: 21px;
+}
+
+#image_input {
+  display: none;
 }

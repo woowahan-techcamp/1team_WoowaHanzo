@@ -1,14 +1,9 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <title>먹소리</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-    <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css"  />
-    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/main.css">
-
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
     <script>
       // Initialize Firebase
@@ -22,15 +17,15 @@
       };
       firebase.initializeApp(config);
     </script>
-
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/utility.js"></script>
-    <script src="js/index.js"></script>
-    <script src="js/main.js"></script>
-  </head>
+    <script src="js/main.js" ></script>
 
+    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"  />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/signup.css" rel="stylesheet" type="text/css">
+  </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -63,10 +58,8 @@
               </form>
             </li>
             <li>
-              <form class="navbar-form">
-                <form class="navbar-form" action="login.html">
-                  <button type="submit" class="btn btn-success">Sign in</button>
-                </form>
+              <form class="navbar-form" action="login.html">
+                <button type="submit" class="btn btn-success">Sign in</button>
               </form>
             </li>
           </ul>
@@ -84,58 +77,42 @@
     </nav>
 
     <div class="container_box">
-
-    </div>
-
-    <script id="post_template" type="template">
-      <div class="post" id="post_{{id}}">
-        <div class="post-header">
-          <div class="img-divgo">
-            <img class="profilePic" src="pictures/profile.png" style="vertical-align:bottom;"/>
+      <div class="signup_holder">
+        <div class="signup_title">
+          회원가입
+        </div>
+        <div class="input_holder">
+          <div class="form_container email_container">
+            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            <input type="text" name="email" id="email" placeholder="이메일" />
           </div>
-          <span class="Name">{{author}}</span>
-          <span class="Title">오늘의 신</span>
-        </div>
-        <div class="textbox post_body">
-          {{body}}
-        </div>
-        <div class="tags_holder">
-          {{#each tags}}
-            <span class="tagger tag_holder unselectable">
-              #{{this}}
-            </span>
-          {{/each}}
-        </div>
-        <table class="image_thumbnails">
-          <tr>
-            <td>
-              <div class="single_thumbnail">
-                <img src="pictures/chicken003.jpg"  />
-              </div>
-            </td>
-            <td>
-              <div class="single_thumbnail">
-                <img src="pictures/chicken004.jpg"  />
-              </div>
-            </td>
-            <td>
-              <div class="single_thumbnail">
-                <img src="pictures/chicken005.jpg"  />
-                <div class="thumbnail_cover">
-                  +3
-                </div>
-              </div>
 
-            </td>
-          </tr>
-        </table>
-        <hr />
-        <div class="post_footer">
-          <i class="fa fa-thumbs-o-up like_btn" aria-hidden="true"></i>
-          <div class="post_time">{{time}}</div>
+          <div class="form_container username_container">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" name="username" id="username" placeholder="유저네임" />
+          </div>
+
+          <div class="form_container">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <input type="password" name="password" id="password" placeholder="비밀번호"/>
+          </div>
+
+          <div class="form_container">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <input type="text" name="sayhi" id="sayhi" placeholder="한 줄 소개"/>
+          </div>
+
         </div>
+
+        <div class="tos_container">
+          이용약관 이용....
+        </div>
+
+        <div class="buttons_holder">
+          <button type="submit" class="signup custom_button">회원가입</button>
+        </div>
+
       </div>
-    </script>
-
+    </div>
   </body>
 </html>

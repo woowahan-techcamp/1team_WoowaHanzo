@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>먹소리</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css"  />
-    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"  />
+    <link href="css/post.css" rel="stylesheet" type="text/css" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
     <script>
       // Initialize Firebase
@@ -24,13 +25,13 @@
     </script>
 
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/utility.js"></script>
-    <script src="js/index.js"></script>
-    <script src="js/main.js"></script>
-  </head>
+    <script src="js/autogrow.js"></script>
+    <script src="js/autosize.js"></script>
+    <script src="js/TableBuilder.js"></script>
+    <script src="js/category.js"></script>
 
+  </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -63,10 +64,8 @@
               </form>
             </li>
             <li>
-              <form class="navbar-form">
-                <form class="navbar-form" action="login.html">
-                  <button type="submit" class="btn btn-success">Sign in</button>
-                </form>
+              <form class="navbar-form" action="login.html">
+                <button type="submit" class="btn btn-success">Sign in</button>
               </form>
             </li>
           </ul>
@@ -84,56 +83,50 @@
     </nav>
 
     <div class="container_box">
+      <table class="category_picker">
+        <tr>
+          <td>
+            <div class="image_holder 치킨_category">
+              <img class="cover" src="pictures/food_images/치킨_커버.png"  />
+              <img src="pictures/food_images/치킨.png"  />
+            </div>
+          </td>
+          <td>
+            <div class="image_holder 족발_category">
+              <img class="cover" src="pictures/food_images/족발_커버.png"  />
+              <img src="pictures/food_images/족발.png"  />
+            </div>
+          </td>
+          <td>
+            <div class="image_holder 피자_category">
+              <img class="cover" src="pictures/food_images/피자_커버.png"  />
+              <img src="pictures/food_images/피자.png"  />
+            </div>
+          </td>
+        </tr>
+
+      </table>
 
     </div>
 
-    <script id="post_template" type="template">
-      <div class="post" id="post_{{id}}">
-        <div class="post-header">
-          <div class="img-divgo">
-            <img class="profilePic" src="pictures/profile.png" style="vertical-align:bottom;"/>
+    <script type="template" id="table_element">
+      <td>
+        <div class="image_holder logo_holder" id="{{logo_id}}">
+          <img class="logo_image" src="{{{image}}}" />
+          <div class="shader">
           </div>
-          <span class="Name">{{author}}</span>
-          <span class="Title">오늘의 신</span>
         </div>
-        <div class="textbox post_body">
-          {{body}}
-        </div>
-        <div class="tags_holder">
-          {{#each tags}}
-            <span class="tagger tag_holder unselectable">
-              #{{this}}
-            </span>
-          {{/each}}
-        </div>
-        <table class="image_thumbnails">
-          <tr>
-            <td>
-              <div class="single_thumbnail">
-                <img src="pictures/chicken003.jpg"  />
-              </div>
-            </td>
-            <td>
-              <div class="single_thumbnail">
-                <img src="pictures/chicken004.jpg"  />
-              </div>
-            </td>
-            <td>
-              <div class="single_thumbnail">
-                <img src="pictures/chicken005.jpg"  />
-                <div class="thumbnail_cover">
-                  +3
-                </div>
-              </div>
 
-            </td>
-          </tr>
-        </table>
-        <hr />
-        <div class="post_footer">
-          <i class="fa fa-thumbs-o-up like_btn" aria-hidden="true"></i>
-          <div class="post_time">{{time}}</div>
-        </div>
+        <i class="fa fa-check-circle brand_check" aria-hidden="true"></i>
+      </td>
+    </script>
+
+
+    <script type="template" id="menu_item">
+      <div class="menu_item">
+        <span>{{name}}</span>
+        <i class="fa fa-check-circle menu_check" aria-hidden="true"></i>
+        <div class="menu_item_cover"></div>
       </div>
     </script>
 

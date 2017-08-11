@@ -1,19 +1,19 @@
-
 document.addEventListener("DOMContentLoaded", function(event) {
-  console.log("DOM fully loaded and parsed");
-
   var storage = firebase.storage();
 
   // Create a storage reference from our storage service
   var storageRef = storage.ref();
 
-
-  var database = firebase.database();
-
-  var ref = database.ref("/posts");
-  ref.orderByChild("time").on("child_added", function(snapshot) {
-    console.log(snapshot.val().time);
-    console.log("GO");
-  });
-
 });
+
+function resizeThumbnails() {
+  $(".image_thumbnails td").each(function(index, elem) {
+
+    var bufferWidth = $(".image_thumbnails td")[0].offsetWidth;
+    elem.style.height = bufferWidth + "px";
+    if($(".thumbnail_cover").last().length > 0) {
+        $(".thumbnail_cover").last()[0].style.lineHeight = bufferWidth - 20 + "px";
+    }
+
+  });
+}
