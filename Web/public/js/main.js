@@ -31,14 +31,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
     $curPost.css("display", "block");
 
-    $(".image_thumbnails td").each(function(index, elem) {
-      console.log($(".image_thumbnails td").width());
-      console.log(elem.outerHTML);
-      var bufferWidth = $(".image_thumbnails td")[0].offsetWidth;
-      elem.style.height = bufferWidth + "px";
-      $(".thumbnail_cover").last()[0].style.lineHeight = bufferWidth - 20 + "px";
-    });
     console.log("GO");
+    resizeThumbnails();
   });
 
 });
+
+function resizeThumbnails() {
+  $(".image_thumbnails td").each(function(index, elem) {
+    console.log($(".image_thumbnails td").width());
+    console.log(elem.outerHTML);
+    var bufferWidth = $(".image_thumbnails td")[0].offsetWidth;
+    elem.style.height = bufferWidth + "px";
+    if($(".thumbnail_cover").last().length > 0) {
+        $(".thumbnail_cover").last()[0].style.lineHeight = bufferWidth - 20 + "px";
+    }
+
+  });
+}

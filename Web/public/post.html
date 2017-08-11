@@ -23,9 +23,12 @@
       firebase.initializeApp(config);
     </script>
     <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/exif.js"></script>
     <script src="js/autogrow.js"></script>
     <script src="js/autosize.js"></script>
+    <script src="js/utility.js"></script>
     <script src="js/main.js" ></script>
     <script src="js/post.js"></script>
 
@@ -93,12 +96,33 @@
         <div class="tags_holder">
         </div>
       </div>
+      <div class="thumbnails_holder">
+        <table class="image_thumbnails">
+          <tr>
+          </tr>
+        </table>
+      </div>
+    </div>
 
-      <div class="post_submit custom_button">
-        리뷰 게시
+      <div class="buttons_holder">
+        <div class="add_photos custom_button">
+          <i class="fa fa-camera" aria-hidden="true"></i>
+        </div>
+        <div class="post_submit custom_button">
+          리뷰 게시
+        </div>
       </div>
 
+      <input type="file" id="image_input" name="files[]" accept="image/*" multiple></input>
+
     </div>
+
+    <script id="image_preview" type="template">
+      <td>
+        <div class="single_thumbnail" id="{{id}}">
+        </div>
+      </td>
+    </script>
 
   </body>
 </html>

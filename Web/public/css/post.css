@@ -23,12 +23,34 @@
   outline: -webkit-focus-ring-color none 5px;
 }
 
+div.post {
+  padding-bottom: 10px;
+}
+
 .post .tagger {
   line-height: normal;
 }
 
 .post .tagger_complete:hover {
   cursor: pointer;
+}
+
+.buttons_holder .custom_button {
+  display: inline-block;
+}
+
+.add_photos {
+  background-color: #70b6e5;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  font-size: 1.8em;
+  line-height: normal;
+}
+
+.add_photos:hover {
+  background-color: #99cbed;
 }
 
 .post_submit {
@@ -41,4 +63,8 @@
   padding-bottom: 7px;
   font-size: 1.8em;
   line-height: normal;
+}
+
+#image_input {
+  display: none;
 }
