@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   autosize($("textarea"));
 
+  $(".textbox").focus();
+
   $(".tags_holder").append('<span class="tagger tag_holder">' +
                 '<span class="starting_sharp">#</span>' +
                 '<input type="text" class="tagger_input" placeholder="" spellcheck="false" />' +
@@ -25,16 +27,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $(".tagger_input").trigger("update");
   });
 
-
-
-
-
   $(".tag_holder").on("click", function(evt) {
     $(this).children(".tagger_input").focus();
   });
 
   $(".post_submit").on("click", function(evt) {
     uploadPost();
+  });
+
+  var imageInput = document.getElementById("image_input");
+
+  imageInput.addEventListener('change', function(evt) {
+    imageHandle(evt);
+
+    resizeThumbnails();
+  });
+
+  $(".add_photos").on("click", function() {
+    $(imageInput).click();
   });
 
 });
@@ -115,6 +125,83 @@ function isLastTaggerEmpty() {
 function refineText(text) {
   var ret = text.trim();
   return ret;
+}
+
+function imageHandle(evt) {
+
+  var templatetext = document.querySelector("#image_preview").innerHTML;
+  var template = Handlebars.compile(templatetext);
+
+  var fileInput = document.getElementById('image_input');
+
+  var files = evt.target.files;
+  var i = 0;
+  var f;
+  console.log("FILEINPUT: "+fileInput.files.length);
+  for(i = 0, f; f = files[i]; i++) {
+
+    if (!f.type.match('image.*')) {
+      continue;
+    }
+
+    var reader = new FileReader();
+    reader.id = i;
+
+    $(".container_box").append(template(reader));
+
+    if($(".image_thumbnails tr").last().children("td").length < 3) {
+      $(".image_thumbnails tr").last().append(template(reader));
+    } else {
+      $(".image_thumbnails").append("<tr></tr>");
+      $(".image_thumbnails tr").last().append(template(reader));
+    }
+
+    var filename = "";
+    reader.onload = function(e) {
+      console.log("FILE ATTRIBUTE SAVED", this.id);
+
+      var fileDisplayArea = document.getElementById(this.id.toString());
+
+      fileDisplayArea.innerHTML = "";
+      // Create a new image.
+      var img = new Image();
+      // Set the img src property using the data URL.
+      img.src = this.result;
+
+      // hide image until rotation is figured out
+      $('#' + this.id).attr('display', 'none');
+
+      $('#' + this.id).attr('src', img.src);
+
+      console.log("html here", $('#'+this.id).html());
+      fixExifOrientation($(img));
+      // Add the image to the page.
+
+      var fullPath = fileInput.value;
+      if (fullPath) {
+        var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+        filename = fullPath.substring(startIndex);
+        if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+          filename = filename.substring(1);
+        }
+      }
+
+      fileDisplayArea.appendChild(img);
+
+      var newfilename = (new Date().getTime()).toString() + '.' + filename.split('.')[1];
+
+      img.filename = filename;
+
+      // what to do during image load
+      img.addEventListener("load", function() {
+        resizeThumbnails();
+      });
+
+    }
+    reader.readAsDataURL(f);
+
+  }
+
 }
 
 function uploadPost() {

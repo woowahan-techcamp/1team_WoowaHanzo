@@ -2,6 +2,7 @@
 darker: #246a99
 normal: #3498db
 lighter: #70b6e5
+more lighter: #99cbed
 success_green: #5cb85c
 */
 
@@ -54,7 +55,7 @@ body {
 
 .container_box {
   width: inherit;
-  max-width: 600px;
+  max-width: 720px;
   min-width: 360px;
 
   margin-left: auto;
