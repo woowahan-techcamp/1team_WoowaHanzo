@@ -54,7 +54,7 @@ body {
 
 .container_box {
   width: inherit;
-  max-width: 600px;
+  max-width: 720px;
   min-width: 360px;
 
   margin-left: auto;

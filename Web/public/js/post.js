@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   autosize($("textarea"));
 
+  $(".textbox").focus();
+
   $(".tags_holder").append('<span class="tagger tag_holder">' +
                 '<span class="starting_sharp">#</span>' +
                 '<input type="text" class="tagger_input" placeholder="" spellcheck="false" />' +
@@ -24,10 +26,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $(".tagger_input").last().val("");
     $(".tagger_input").trigger("update");
   });
-
-
-
-
 
   $(".tag_holder").on("click", function(evt) {
     $(this).children(".tagger_input").focus();
