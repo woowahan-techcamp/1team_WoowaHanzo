@@ -111,6 +111,7 @@ class ReviewPostPageViewController: UIViewController {
         
         
         var frame3 = self.shadowView.frame
+        frame3.origin.y = self.myTextView.frame.origin.y + myTextView.frame.height + 10
         frame3.size.height = self.myTagView._scrollView.frame.height
         shadowView.frame = frame3
         //print(myTagView._scrollView.contentSize.height)
