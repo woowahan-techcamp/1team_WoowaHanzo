@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
-class MainPageViewController: UIViewController{
+
+class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
     var firebaseModel = FirebaseModel()
     var searchBar = UISearchBar()
@@ -22,14 +24,17 @@ class MainPageViewController: UIViewController{
         
         super.viewDidLoad()
         
+        
         //firebase에서 loadFeed하는것에 옵저버를 걸어준다.
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: NSNotification.Name(rawValue: "reload"), object: nil)
+        
         
         mainpageTableView.delegate = self
         mainpageTableView.dataSource = self
 
         searchBar.alpha = 0
         searchBar.searchBarStyle = UISearchBarStyle.minimal
+        
     }
     
     func reloadTableData(){
@@ -39,8 +44,22 @@ class MainPageViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         firebaseModel.loadFeed()
         searchIconButton.tintColor = UIColor.white
-    }
+        let size = CGSize(width: 30, height: 30)
+        
+        startAnimating(size, message: "Loading...", type: .ballTrianglePath)
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+            NVActivityIndicatorPresenter.sharedInstance.setMessage("Authenticating...")
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+            self.stopAnimating()
+        }
 
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
    
     @IBAction func searchIconTouched(_ sender: Any) {
         

@@ -19,7 +19,7 @@ class FirebaseModel{
         let key = ref.child("posts").childByAutoId().key
         let post = ["author":userID,
                     "body": review,
-                    "tagArray": tagArray, 
+                    "tagArray": tagArray,
                     "timestamp": timestamp] as [String : Any]
         let childUpdates = ["/posts/\(key)": post]
         ref.updateChildValues(childUpdates)
