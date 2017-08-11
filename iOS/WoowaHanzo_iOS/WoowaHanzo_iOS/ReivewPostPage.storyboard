@@ -88,7 +88,7 @@
                                 <constraints>
                                     <constraint firstItem="mEc-XB-17I" firstAttribute="top" secondItem="oZE-Yo-CnC" secondAttribute="bottom" constant="17" id="3Ut-BT-3L5"/>
                                     <constraint firstAttribute="trailing" secondItem="oZE-Yo-CnC" secondAttribute="trailing" constant="19" id="A19-ZM-Vif"/>
-                                    <constraint firstAttribute="bottom" secondItem="mEc-XB-17I" secondAttribute="bottom" constant="16" id="gbw-ZI-cjV"/>
+                                    <constraint firstAttribute="bottom" secondItem="mEc-XB-17I" secondAttribute="bottom" constant="16" id="XCo-Ce-pKR"/>
                                     <constraint firstItem="oZE-Yo-CnC" firstAttribute="top" secondItem="ezh-sH-mRQ" secondAttribute="top" constant="42" id="hHg-1Q-Lx3"/>
                                     <constraint firstItem="oZE-Yo-CnC" firstAttribute="leading" secondItem="ezh-sH-mRQ" secondAttribute="leading" constant="21" id="noO-hP-qD9"/>
                                     <constraint firstItem="oZE-Yo-CnC" firstAttribute="trailing" secondItem="mEc-XB-17I" secondAttribute="trailing" id="oc5-ak-4aH"/>
@@ -97,10 +97,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ezh-sH-mRQ" firstAttribute="bottom" secondItem="1di-eP-Pjn" secondAttribute="top" id="RZj-Se-jgt"/>
+                            <constraint firstItem="ezh-sH-mRQ" firstAttribute="bottom" secondItem="1di-eP-Pjn" secondAttribute="top" id="FeV-gu-JXt"/>
+                            <constraint firstItem="ezh-sH-mRQ" firstAttribute="top" secondItem="BQf-bt-2at" secondAttribute="bottom" id="ZyJ-g2-GEM"/>
                             <constraint firstAttribute="trailing" secondItem="ezh-sH-mRQ" secondAttribute="trailing" id="bfN-JD-A45"/>
                             <constraint firstItem="ezh-sH-mRQ" firstAttribute="leading" secondItem="iaS-MZ-tMP" secondAttribute="leading" id="jSu-Bs-0ss"/>
-                            <constraint firstItem="ezh-sH-mRQ" firstAttribute="top" secondItem="BQf-bt-2at" secondAttribute="bottom" id="ryU-1m-eFh"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="글쓰기" id="O9b-Is-O5c"/>
