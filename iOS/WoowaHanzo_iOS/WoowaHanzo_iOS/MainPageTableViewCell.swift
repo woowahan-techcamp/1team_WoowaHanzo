@@ -28,6 +28,7 @@ class MainPageTableViewCell: UITableViewCell,UITagsViewDelegate {
         
         self.tags.delegate = self
         profileImageView.layer.cornerRadius = 0.5 * profileImageView.bounds.size.width
+        profileImageView.clipsToBounds = true
         //print(tags.collectionView?.contentSize.height)
         reviewView.layer.borderWidth = 1.0
         reviewView.layer.borderColor = UIColor.gray.cgColor
