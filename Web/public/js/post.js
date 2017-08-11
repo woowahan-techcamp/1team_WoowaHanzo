@@ -57,7 +57,6 @@ function taggerKeyup(evt) {
   var buffer = $curElem.val().trim(" ");
   var actual = $curElem.last().val();
 
-  console.log(evt.target.text);
   if(evt.target.text != undefined) {
     if(evt.target.text.length == 0 && evt.keyCode == 8 && actual.length == 0 && $(".tagger_input").length > 1) {
       if($(evt.target.parentElement).prev()) {
@@ -76,7 +75,6 @@ function taggerKeyup(evt) {
     $curElem.last().val(buffer);
   }
 
-  console.log(buffer);
   if((buffer.length > 0 && (buffer.length < actual.length || keyCodes.indexOf(evt.keyCode) >= 0))) {
 
     buffer = buffer.split(" ").join("");
@@ -127,7 +125,12 @@ function refineText(text) {
   return ret;
 }
 
+var imageList = [];
+
 function imageHandle(evt) {
+
+  // resetting imageList
+  imageList = [];
 
   var templatetext = document.querySelector("#image_preview").innerHTML;
   var template = Handlebars.compile(templatetext);
@@ -158,7 +161,6 @@ function imageHandle(evt) {
 
     var filename = "";
     reader.onload = function(e) {
-      console.log("FILE ATTRIBUTE SAVED", this.id);
 
       var fileDisplayArea = document.getElementById(this.id.toString());
 
@@ -173,7 +175,7 @@ function imageHandle(evt) {
 
       $('#' + this.id).attr('src', img.src);
 
-      console.log("html here", $('#'+this.id).html());
+
       fixExifOrientation($(img));
       // Add the image to the page.
 
@@ -192,9 +194,17 @@ function imageHandle(evt) {
 
       img.filename = filename;
 
+      var newImage = {};
+      newImage.filename = newfilename;
+      newImage.image = files[this.id];
+
+      imageList.push(newImage);
+
+
       // what to do during image load
       img.addEventListener("load", function() {
         resizeThumbnails();
+        console.log(imageList);
       });
 
     }
@@ -221,6 +231,8 @@ function uploadPost() {
 }
 
 function writeNewPost(uid, username, body, tags) {
+  var promises = [];
+
   // A post entry.
   var postData = {
     author: username,
@@ -228,8 +240,19 @@ function writeNewPost(uid, username, body, tags) {
     body: body,
     tags: tags,
     time: -Date.now(),
+    images: [],
     starCount: 0
   };
+
+  var storageRef = firebase.storage().ref();
+
+  for(var i = 0; i < imageList.length; ++i) {
+    var image = imageList[i].image;
+    var filename = imageList[i].filename;
+    postData.images.push(filename);
+    var imageRef = storageRef.child('images/' + filename);
+    promises.push(imageRef.put(image));
+  }
 
   console.log(postData);
   // Get a key for a new Post.
@@ -240,5 +263,6 @@ function writeNewPost(uid, username, body, tags) {
   updates['/posts/' + newPostKey] = postData;
   //updates['/user-posts/' + uid + '/' + newPostKey] = postData;
 
-  return firebase.database().ref().update(updates);
+  promises.push(firebase.database().ref().update(updates));
+  return Promise.all(promises);
 }
