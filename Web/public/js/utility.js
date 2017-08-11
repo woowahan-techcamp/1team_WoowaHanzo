@@ -47,12 +47,12 @@ function getCurrentTime(time) {
 }
 
 function fixExifOrientation($img) {
-	console.log($img);
+
     $img[0].addEventListener("load", function() {
-				console.log('Checking for rotation');
+
 
         EXIF.getData($img[0], function() {
-            console.log('Exif=', EXIF.getTag(this, "Orientation"));
+  
             switch(parseInt(EXIF.getTag(this, "Orientation"))) {
                 case 2:
                     $img.addClass('flip');
