@@ -269,7 +269,7 @@ input:focus {
   margin-left: 20px;
   top: 1px;
   position: absolute;
-  line-height: 80px;
+  line-height: 100px;
 }
 
 .post .Category {
@@ -447,8 +447,8 @@ input:focus {
 }
 
 div.img-divgo{
-  height: 80px;
-  width: 80px;
+  height: 100px;
+  width: 100px;
   overflow: hidden;
   border-radius: 50%;
   -moz-border-radius: 50%;
@@ -464,6 +464,6 @@ div.img-divgo{
   -ms-transform: translate(-50%); /* IE 9 */
   transform: translate(-50%);
   margin-left: 50%;
-  max-height: 80px;
+  max-height: 100px;
   position: absolute;
 }
