@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   $("#email").on("keyup keydown blur update input", function() {
-    if(!isEmail($("#email").val())) {
+    if($("#email").val()!=="" && !isEmail($("#email").val())) {
       $("#email_error_msg").text("이메일 형식이 올바르지 않습니다.");
     }
     else {
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   $(".password").on("keyup keydown blur update input", function() {
     if(!$("#password").val()) {
-      $("#password_error_msg").text("필수 입력값입니다.");
+      $("#password_error_msg").text("");
     }
     else {
       if($("#password").val().length < 8) {
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 
     if(!$("#password2").val()) {
-      $("#password2_error_msg").text("필수 입력값입니다.");
+      $("#password2_error_msg").text("");
     }
     else {
       if($("#password").val() != $("#password2").val()) {
@@ -41,6 +41,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         $("#password2_error_msg").text("");
       }
     }
+  });
+
+  $("#sayhi").on("keyup keydown blur update input", function() {
+    $(this).val($(this).val().substr(0, $(this).attr('maxlength')));
+    $("#sayhi_length").text($("#sayhi").val().length + "/100");
   });
 
   $(".signup_btn").on("click", function() {
@@ -64,6 +69,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 function isEmail(email) {
   var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-  console.log(regex.test(email));
   return regex.test(email);
 }

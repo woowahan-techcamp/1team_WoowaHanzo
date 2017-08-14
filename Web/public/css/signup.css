@@ -9,9 +9,16 @@
   border: 1px solid #AAA;
 }
 
+.input_holder {
+  padding-top: 20px;
+}
+
 .error_msg {
-  margin-bottom: 20px;
+  height: 12px;
   color: red;
+  float: right;
+  font-size: 12px;
+  margin-bottom: 7px;
 }
 
 .signup_title {
@@ -29,4 +36,18 @@
   -webkit-box-shadow: none;
   background-color: transparent;
   margin-left: 8px;
+}
+
+.form_container {
+  clear: both;
+  margin: 0;
+}
+
+#sayhi {
+  width: 70%;
+}
+
+#sayhi_length {
+  float: right;
+  line-height: 2em;
 }
