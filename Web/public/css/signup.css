@@ -9,6 +9,11 @@
   border: 1px solid #AAA;
 }
 
+.error_msg {
+  margin-bottom: 20px;
+  color: red;
+}
+
 .signup_title {
   text-align: center;
   font-size: 2em;
