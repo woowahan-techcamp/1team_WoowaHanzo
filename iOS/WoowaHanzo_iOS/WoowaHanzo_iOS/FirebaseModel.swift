@@ -14,13 +14,13 @@ class FirebaseModel{
     
     var ref: DatabaseReference!
     
-    func postReview(review: String, userID: String, tagArray:[String], timestamp: Int){
+    func postReview(review: String, userID: String, tagArray:[String], timestamp: Int, images:[String]){
         ref = Database.database().reference()
         let key = ref.child("posts").childByAutoId().key
         let post = ["author":userID,
                     "body": review,
                     "tagArray": tagArray,
-                    "timestamp": timestamp] as [String : Any]
+                    "timestamp": timestamp,"images":images] as [String : Any]
         let childUpdates = ["/posts/\(key)": post]
         ref.updateChildValues(childUpdates)
     }

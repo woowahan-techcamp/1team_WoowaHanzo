@@ -7,10 +7,19 @@
 //
 
 import UIKit
+import ImageViewer
 
+extension UIImageView: DisplaceableView {}
+
+struct DataItem {
+    
+    let imageView: UIImageView
+    let galleryItem: GalleryItem
+}
 
 class MainPageTableViewCell: UITableViewCell {
     
+    var items: [DataItem] = []
     @IBOutlet weak var reviewView: UIView!
     @IBOutlet weak var likeButton: UIButton!
     //@IBOutlet weak var mainpageCollectionView: UICollectionView!
@@ -39,6 +48,7 @@ class MainPageTableViewCell: UITableViewCell {
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        
     }
     
     
@@ -56,5 +66,48 @@ extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDe
         cell.foodImageView.image = UIImage(named: "baemin.png")
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        
+    }
+}
+extension MainPageTableViewCell: GalleryDisplacedViewsDataSource {
+    
+    func provideDisplacementItem(atIndex index: Int) -> DisplaceableView? {
+        
+        return index < items.count ? items[index].imageView : nil
+    }
+}
+
+extension MainPageTableViewCell: GalleryItemsDataSource {
+    
+    func itemCount() -> Int {
+        
+        return items.count
+    }
+    
+    func provideGalleryItem(_ index: Int) -> GalleryItem {
+        
+        return items[index].galleryItem
+    }
+}
+
+extension MainPageTableViewCell: GalleryItemsDelegate {
+    
+    func removeGalleryItem(at index: Int) {
+        
+        print("remove item at \(index)")
+        
+        let imageView = items[index].imageView
+        imageView.removeFromSuperview()
+        items.remove(at: index)
+    }
+}
+
+// Some external custom UIImageView we want to show in the gallery
+class FLSomeAnimatedImage: UIImageView {
+}
+
+// Extend ImageBaseController so we get all the functionality for free
+class AnimatedViewController: ItemBaseController<FLSomeAnimatedImage> {
 }
 

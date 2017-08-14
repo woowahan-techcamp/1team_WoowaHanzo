@@ -69,6 +69,10 @@
                                                                                 <rect key="frame" x="0.0" y="0.0" width="98" height="121"/>
                                                                                 <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <color key="tintColor" red="0.098039215690000001" green="0.70980392160000005" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                <gestureRecognizers/>
+                                                                                <connections>
+                                                                                    <outletCollection property="gestureRecognizers" destination="D8t-Up-py9" appends="YES" id="fhS-Wf-bVr"/>
+                                                                                </connections>
                                                                             </imageView>
                                                                         </subviews>
                                                                     </view>
@@ -180,6 +184,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nMu-8B-LCH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="D8t-Up-py9">
+                    <connections>
+                        <action selector="showGalleryImageViewer:" destination="klR-Hm-AeJ" id="4d3-ia-OnV"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="335.19999999999999" y="274.81259370314842"/>
         </scene>

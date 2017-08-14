@@ -8,6 +8,7 @@
 
 import UIKit
 import NVActivityIndicatorView
+import ImageViewer
 
 
 class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
@@ -92,6 +93,9 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         print("tap from \(label.text!)")
     }
     
+    @IBAction func showGalleryImageViewer(_ sender: Any) {
+        
+    }
 }
 
 //MARK: TableView extension
