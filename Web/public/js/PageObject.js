@@ -7,8 +7,6 @@ class PageObject {
 
     this.init();
 
-    //custom event for constant jquery event update
-    var recurseUpdateEvent = jQuery.Event();
     this.timerUpdate();
 
   }
@@ -16,28 +14,20 @@ class PageObject {
   init() {
     $(window).scroll(function() {
     	var postIds = Object.keys(this.postTimes);
-      console.log(postIds);
       for(var i = 0; i < postIds.length; ++i) {
         var curId = postIds[i];
-        var postElem = document.querySelector("post_" + curId);
-        if(isScrolledIntoView(postElem) && postState[curId] != true) {
+        var postElem = document.querySelector("#post_" + curId);
+        if(isScrolledIntoView(postElem) && this.postState[curId] != true) {
           console.log("Scrolled into View!");
+          this.postState[curId] = true;
         } else if(!isScrolledIntoView(postElem)) {
-          postState[curId] = false;
+          this.postState[curId] = false;
         }
       }
     }.bind(this));
 
     $(document).on("recurseUpdateEvent", function(evt) {
-      var postIds = Object.keys(this.postTimes);
-
-      for(var i = 0; i < postIds.length; ++i) {
-        var curId = postIds[i];
-        var postElem = document.querySelector("#post_" + curId);
-        var footer = postElem.querySelector(".post_footer");
-        var time = footer.querySelector(".post_time");
-        time.innerHTML = getCurrentTime(this.postTimes[curId]);
-      }
+      this.updatePostTime.bind(this);
     }.bind(this));
 
   }
@@ -47,5 +37,19 @@ class PageObject {
     console.log("Event fired");
     setTimeout(this.timerUpdate.bind(this), 5000);
   }
+
+
+  updatePostTime() {
+  	var postIds = Object.keys(this.postTimes);
+
+  	for(var i = 0; i < postIds.length; ++i) {
+  		var curId = postIds[i];
+  		var postElem = document.querySelector("#post_" + curId);
+  		var footer = postElem.querySelector(".post_footer");
+  		var time = footer.querySelector(".post_time");
+  		time.innerHTML = getCurrentTime(this.postTimes[curId]);
+  	}
+  }
+
 
 }

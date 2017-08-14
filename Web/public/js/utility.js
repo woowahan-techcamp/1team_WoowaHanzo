@@ -116,7 +116,3 @@ function fixExifOrientation($img) {
     });
 
 }
-
-function updatePostTime() {
-
-}
