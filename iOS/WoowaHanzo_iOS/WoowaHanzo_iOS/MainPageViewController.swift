@@ -86,7 +86,11 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
             self.searchBar.becomeFirstResponder()
         })
     }
-    
+    func tap(_ sender:UIGestureRecognizer)
+    {
+        let label = (sender.view as! UILabel)
+        print("tap from \(label.text!)")
+    }
     
 }
 
@@ -104,16 +108,21 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource,UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as!MainPageTableViewCell
         cell.contentsTextView.text = User.users[indexPath.row].contents
         cell.nickNameButton.setTitle(User.users[indexPath.row].nickName, for: .normal)
-        //print(User.users[indexPath.row].tagsArray)
-        
-       // tableView.estimatedRowHeight = 336
-        //tableView.rowHeight = UITableViewAutomaticDimension
-        
+        cell.tagListView.reset()
+        if let tag = User.users[indexPath.row].tagsArray{
+            for index in tag{
+                cell.tagListView.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.blue)
+            }
+        }
 
+    
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat{
+        return UITableViewAutomaticDimension
+    }
 
    
 }
+
 
