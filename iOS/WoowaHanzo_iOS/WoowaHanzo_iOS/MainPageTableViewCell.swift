@@ -26,6 +26,8 @@ class MainPageTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         
+        FoodImageCollectionView.delegate = self
+        FoodImageCollectionView.dataSource = self
         profileImageView.layer.cornerRadius = 0.5 * profileImageView.bounds.size.width
         profileImageView.clipsToBounds = true
         reviewView.layer.borderWidth = 1.0
@@ -43,4 +45,16 @@ class MainPageTableViewCell: UITableViewCell {
     
 }
 
+extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return 4
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FoodImageCollectionViewCell
+        cell.foodImageView.image = UIImage(named: "baemin.png")
+        return cell
+    }
+}
 
