@@ -1,3 +1,7 @@
+.container_box {
+  width: 500px;
+}
+
 .login_holder {
   min-width: 320px;
   padding: 30px;
@@ -37,7 +41,7 @@
   font-size: 1.5em;
 }
 
-.email_container {
+.form_container {
   margin-bottom: 20px;
 }
 

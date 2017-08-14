@@ -8,22 +8,24 @@
     <script>
       // Initialize Firebase
       var config = {
-        apiKey: "AIzaSyAot_xscB-brcQ1A3V3g0Ka-DEhKr_HlP8",
-        authDomain: "woowaproject.firebaseapp.com",
-        databaseURL: "https://woowaproject.firebaseio.com",
-        projectId: "woowaproject",
-        storageBucket: "woowaproject.appspot.com",
-        messagingSenderId: "609034471288"
+        apiKey: "AIzaSyAW6ZSOQEXi9RKvPufHRlIlpaIuYw4PGNM",
+        authDomain: "fir-playground-51842.firebaseapp.com",
+        databaseURL: "https://fir-playground-51842.firebaseio.com",
+        projectId: "fir-playground-51842",
+        storageBucket: "fir-playground-51842.appspot.com",
+        messagingSenderId: "962296739976"
       };
       firebase.initializeApp(config);
     </script>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js" ></script>
+    <script src="js/signup.js" ></script>
 
     <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"  />
     <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/login.css" rel="stylesheet" type="text/css" />
     <link href="css/signup.css" rel="stylesheet" type="text/css">
   </head>
   <body>
@@ -81,37 +83,44 @@
         <div class="signup_title">
           회원가입
         </div>
-        <div class="input_holder">
-          <div class="form_container email_container">
-            <i class="fa fa-envelope-o" aria-hidden="true"></i>
-            <input type="text" name="email" id="email" placeholder="이메일" />
+
+        <form action="index.html" method="post">
+          <div class="input_holder">
+            <div class="form_container email_container">
+              <i class="fa fa-envelope-o" aria-hidden="true"></i>
+              <input type="text" name="email" id="email" class="signup_required" placeholder="이메일" />
+            </div>
+            <div class="error_msg" id="email_error_msg"></div>
+
+            <div class="form_container username_container">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <input type="text" name="username" id="username" class="signup_required" placeholder="유저네임" />
+            </div>
+            <div class="error_msg" id="username_error_msg"></div>
+
+            <div class="form_container">
+              <i class="fa fa-lock" aria-hidden="true"></i>
+              <input type="password" name="password" id="password" class="signup_required password" placeholder="비밀번호"/>
+            </div>
+            <div class="error_msg" id="password_error_msg"></div>
+
+            <div class="form_container">
+              <i class="fa fa-lock" aria-hidden="true"></i>
+              <input type="password" name="password" id="password2" class="signup_required password" placeholder="비밀번호확인" />
+            </div>
+            <div class="error_msg" id="password2_error_msg"></div>
+
+            <div class="form_container">
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+              <input type="text" name="sayhi" id="sayhi" placeholder="자신을 소개 해 보세요" maxlength="100" />
+              <div class="count_word" id="sayhi_length">0/100</div>
+            </div>
           </div>
 
-          <div class="form_container username_container">
-            <i class="fa fa-user" aria-hidden="true"></i>
-            <input type="text" name="username" id="username" placeholder="유저네임" />
+          <div class="buttons_holder">
+              <button type="submit" class="signup signup_btn custom_button">회원가입</button>
           </div>
-
-          <div class="form_container">
-            <i class="fa fa-lock" aria-hidden="true"></i>
-            <input type="password" name="password" id="password" placeholder="비밀번호"/>
-          </div>
-
-          <div class="form_container">
-            <i class="fa fa-lock" aria-hidden="true"></i>
-            <input type="text" name="sayhi" id="sayhi" placeholder="한 줄 소개"/>
-          </div>
-
-        </div>
-
-        <div class="tos_container">
-          이용약관 이용....
-        </div>
-
-        <div class="buttons_holder">
-          <button type="submit" class="signup custom_button">회원가입</button>
-        </div>
-
+        </form>
       </div>
     </div>
   </body>
