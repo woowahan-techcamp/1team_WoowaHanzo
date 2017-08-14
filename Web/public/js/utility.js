@@ -14,8 +14,8 @@ month[11] = "12월";
 
 function getDatelabel(timestamp) {
 	var d = new Date(timestamp);
-	
-	var datelabel = (month[d.getMonth()]) + ' ' + d.getDate() + ', ' + d.getFullYear();
+
+	var datelabel = (month[d.getMonth()]) + ' ' + d.getDate() + '일, ' + d.getFullYear() + "년";
 	return datelabel;
 }
 
@@ -35,6 +35,7 @@ function getCurrentTime(time) {
 		} else{
 			timeago = parseInt(($.now() - time) / 3600000).toString() + '시간';
 		}
+		timeago += " 전";
 
 	} else if (($.now() - time) > 60000) {
 		if(parseInt(($.now() - time) / 60000) > 1) {
@@ -42,11 +43,27 @@ function getCurrentTime(time) {
 		} else {
 			timeago = parseInt(($.now() - time) / 60000).toString() + '분';
 		}
+		timeago += " 전";
 	} else {
 		timeago = parseInt(($.now() - time) / 1000).toString() + '초';
+		timeago += " 전";
 	}
-	return timeago + " 전";
+	return timeago;
 }
+
+function isScrolledIntoView(elem) {
+    var $elem = $(elem);
+    var $window = $(window);
+
+    var docViewTop = $window.scrollTop();
+    var docViewBottom = docViewTop + $window.height();
+
+    var elemTop = $elem.offset().top;
+    var elemBottom = elemTop + $elem.height();
+
+    return ((( elemTop >= docViewTop) && (elemTop <= docViewBottom)) || ((elemBottom >= docViewTop) && (elemBottom <= docViewBottom)));
+}
+
 
 function fixExifOrientation($img) {
 
@@ -97,5 +114,9 @@ function fixExifOrientation($img) {
         });
 
     });
+
+}
+
+function updatePostTime() {
 
 }

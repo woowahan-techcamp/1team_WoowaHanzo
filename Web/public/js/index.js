@@ -15,23 +15,28 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var buffer = snapshot.val();
     buffer.id = snapshot.key;
 
+    pageObject.postTimes[buffer.id] = -buffer["time"];
+    pageObject.postState[buffer.id] = false;
+    console.log(pageObject.postTimes);
+
     // replacing new lines with line breaks
     buffer["body"] = buffer["body"].replace(/\n/g, "<br>");
     buffer["time"] = getCurrentTime(-buffer["time"]);
+
+
     console.log(buffer);
     $(".container_box").append(template(buffer));
 
     var $curPost = $("#post_" + buffer.id);
 
     if(buffer.images) {
-
+      // only three images are loaded at a time
       for(var i = 0; i < buffer.images.length && i < 3; ++i) {
 
         var filename = buffer.images[i];
 
         storageRef.child('images/' + filename).getDownloadURL().then(function(url) {
           var imageParent = $curPost.children("table").children("tbody").children("tr");
-          console.log(imageParent.html());
           imageParent = imageParent.children("td").get(this);
           imageParent = $(imageParent).children("div").children("img");
 

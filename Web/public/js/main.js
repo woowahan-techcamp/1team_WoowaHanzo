@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 });
 
+var pageObject = new PageObject();
+
 function resizeThumbnails() {
   $(".image_thumbnails td").each(function(index, elem) {
 
