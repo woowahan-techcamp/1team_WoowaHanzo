@@ -6,6 +6,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 });
 
+var pageObject = new PageObject();
+
+// listings of all custom events
+var recurseUpdateEvent = jQuery.Event();
+var postLoaded = jQuery.Event();
+
 function resizeThumbnails() {
   $(".image_thumbnails td").each(function(index, elem) {
 

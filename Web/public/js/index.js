@@ -15,36 +15,80 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var buffer = snapshot.val();
     buffer.id = snapshot.key;
 
+    pageObject.postTimes[buffer.id] = -buffer["time"];
+    pageObject.postState[buffer.id] = false;
+    pageObject.imageUrls[buffer.id] = [];
+
     // replacing new lines with line breaks
     buffer["body"] = buffer["body"].replace(/\n/g, "<br>");
     buffer["time"] = getCurrentTime(-buffer["time"]);
-    console.log(buffer);
+
     $(".container_box").append(template(buffer));
 
     var $curPost = $("#post_" + buffer.id);
 
     if(buffer.images) {
-
-      for(var i = 0; i < buffer.images.length && i < 3; ++i) {
+      // only three images are loaded at a time
+      for(var i = 0; i < buffer.images.length || i < 3; ++i) {
 
         var filename = buffer.images[i];
+        if(i < 3) {
+          if(!filename) continue;
+          storageRef.child('images/' + filename).getDownloadURL().then(function(url) {
+            pageObject.imageUrls[buffer.id].push(url);
 
-        storageRef.child('images/' + filename).getDownloadURL().then(function(url) {
+            var imageParent = $curPost.children("table").children("tbody").children("tr");
+
+            imageParent = imageParent.children("td").get(this);
+            imageParent = $(imageParent).children("div").children("img");
+
+            imageParent.attr("src", url);
+            imageParent.on("load", function(evt) {
+              var curImage = evt.target;
+              curImage.classList.add("loaded");
+              var imageParent = curImage.parentElement.parentElement.parentElement;
+              var allImages = imageParent.querySelectorAll("img");
+
+              var allLoaded = true;
+              for(var i = 0; i < allImages.length; ++i) {
+                if(!$(allImages[i]).hasClass("loaded")) {
+                  allLoaded = false;
+                }
+              }
+
+              if(allLoaded) {
+                console.log("Images all loaded");
+              }
+
+            });
+
+          }.bind(i)).catch(function(err) {
+            console.log(err);
+            console.log("File load unsuccessful");
+          });
+
+        } else if(i >= buffer.images.length) {
           var imageParent = $curPost.children("table").children("tbody").children("tr");
-          console.log(imageParent.html());
-          imageParent = imageParent.children("td").get(this);
+
+          imageParent = imageParent.children("td").get(i);
           imageParent = $(imageParent).children("div").children("img");
+          imageParent.classList.add("loaded");
 
-          imageParent.attr("src", url);
+        } else {
+          storageRef.child('images/' + filename).getDownloadURL().then(function(url) {
+            pageObject.imageUrls[buffer.id].push(url);
 
-          console.log(url);
-        }.bind(i)).catch(function(err) {
-          console.log(err);
-          console.log("File load unsuccessful");
-        });
+          }.bind(i)).catch(function(err) {
+            console.log(err);
+            console.log("File load unsuccessful");
+          });
+        }
+
       }
+      console.log(pageObject.imageUrls[buffer.id]);
 
     } else {
+      $curPost.trigger("postLoaded");
       $curPost.children("table").remove();
     }
     // keeping the post invisible while loading
