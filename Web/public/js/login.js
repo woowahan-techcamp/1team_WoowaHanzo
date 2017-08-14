@@ -1,6 +1,12 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   var signinBtn = $(".signin");
 
+  // firebase.auth().signOut().then(function() {
+  //   // Sign-out successful.
+  // }, function(error) {
+  //   // An error happened.
+  // });
+
   signinBtn.click(function() {
     console.log('clicked...');
     var email = $("#email").val();
@@ -10,14 +16,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
-      // ...
-      console.log(errorMessage);
+
+      validate(errorMessage);
+
 
     });
-
-    // console.log(firebase.auth().currentUser.email);
+    console.log(firebase.auth().currentUser.email);
 
   });
 
+
+  function validate(error) {
+    if(error) {
+      alert(error);
+      return false;
+    }
+    else {
+      alert(firebase.auth().currentUser.email);
+      return true;
+    }
+  }
 
 });
