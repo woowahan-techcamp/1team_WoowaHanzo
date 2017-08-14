@@ -34,6 +34,6 @@ class User {
         nickName = snapshotValue["author"] as! String
         contents = snapshotValue["body"] as! String
         tagsArray = snapshotValue["tagArray"] as? [String] ?? []
-        imageArray = snapshotValue["images"] as? [String] ?? []
+        imageArray = snapshotValue["imageArray"] as? [String] ?? []
     }
 }

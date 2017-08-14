@@ -8,6 +8,8 @@
 
 import UIKit
 import ImageViewer
+import Kingfisher
+import Firebase
 
 extension UIImageView: DisplaceableView {}
 
@@ -56,14 +58,18 @@ class MainPageTableViewCell: UITableViewCell {
 }
 
 extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return 4
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FoodImageCollectionViewCell
-        cell.foodImageView.image = UIImage(named: "baemin.png")
+        let ref = Storage.storage().reference(withPath: "/images/bossam001.jpg").downloadURL { (url, error) in
+            print(url)
+            //self.imageView.sd_setImage(with: url, completed: nil)
+            //self.cell.i.kf.setImage(with: url)
+            cell.foodImageView.kf.setImage(with: url)
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
