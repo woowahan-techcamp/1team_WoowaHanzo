@@ -12,7 +12,9 @@ month[9] = "10월";
 month[10] = "11월";
 month[11] = "12월";
 
-function getDatelabel(d) {
+function getDatelabel(timestamp) {
+	var d = new Date(timestamp);
+	
 	var datelabel = (month[d.getMonth()]) + ' ' + d.getDate() + ', ' + d.getFullYear();
 	return datelabel;
 }
@@ -52,7 +54,7 @@ function fixExifOrientation($img) {
 
 
         EXIF.getData($img[0], function() {
-  
+
             switch(parseInt(EXIF.getTag(this, "Orientation"))) {
                 case 2:
                     $img.addClass('flip');
