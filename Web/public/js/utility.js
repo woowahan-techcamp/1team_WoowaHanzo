@@ -45,3 +45,55 @@ function getCurrentTime(time) {
 	}
 	return timeago + " 전";
 }
+
+function fixExifOrientation($img) {
+
+    $img[0].addEventListener("load", function() {
+
+
+        EXIF.getData($img[0], function() {
+  
+            switch(parseInt(EXIF.getTag(this, "Orientation"))) {
+                case 2:
+                    $img.addClass('flip');
+										break;
+                case 3:
+                    $img.addClass('rotate-180');
+										break;
+                case 4:
+                    $img.addClass('flip-and-rotate-180');
+										break;
+                case 5:
+                    $img.addClass('flip-and-rotate-270');
+										$img.parent().css('height', $img.get(0).getBoundingClientRect().height);
+										console.log($img.get(0).getBoundingClientRect().height);
+										$img.css('margin-top', Math.abs($img.get(0).getBoundingClientRect().height - $img.height()) / 2);
+										$img.parent().css('display', 'block');
+										break;
+                case 6:
+                    $img.addClass('rotate-90');
+										$img.parent().css('height', $img.get(0).getBoundingClientRect().height);
+										console.log($img.get(0).getBoundingClientRect().height);
+										$img.css('margin-top', Math.abs($img.get(0).getBoundingClientRect().height - $img.height()) / 2);
+										$img.parent().css('display', 'block');
+										break;
+                case 7:
+                    $img.addClass('flip-and-rotate-90');
+										$img.parent().css('height', $img.get(0).getBoundingClientRect().height);
+										console.log($img.get(0).getBoundingClientRect().height);
+										$img.css('margin-top', Math.abs($img.get(0).getBoundingClientRect().height - $img.height()) / 2);
+										$img.parent().css('display', 'block');
+										break;
+                case 8:
+                    $img.addClass('rotate-270');
+										$img.parent().css('height', $img.get(0).getBoundingClientRect().height);
+										console.log($img.get(0).getBoundingClientRect().height);
+										$img.css('margin-top', Math.abs($img.get(0).getBoundingClientRect().height - $img.height()) / 2);
+										$img.parent().css('display', 'block');
+										break;
+            }
+        });
+
+    });
+
+}
