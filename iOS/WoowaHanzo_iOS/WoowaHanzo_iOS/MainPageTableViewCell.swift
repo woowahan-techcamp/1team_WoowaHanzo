@@ -7,26 +7,26 @@
 //
 
 import UIKit
-import UITags
 
 
-class MainPageTableViewCell: UITableViewCell,UITagsViewDelegate {
+class MainPageTableViewCell: UITableViewCell {
     
     @IBOutlet weak var reviewView: UIView!
     @IBOutlet weak var tagTextView: UITextView!
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var tagCollectionView: UICollectionView!
     //@IBOutlet weak var mainpageCollectionView: UICollectionView!
     @IBOutlet weak var contentsTextView: UITextView!
+    @IBOutlet weak var FoodImageCollectionView: UICollectionView!
     //@IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var nickNameButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var tags: UITags!
-
+    @IBOutlet weak var timeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.tags.delegate = self
+        
         profileImageView.layer.cornerRadius = 0.5 * profileImageView.bounds.size.width
         profileImageView.clipsToBounds = true
         //print(tags.collectionView?.contentSize.height)
@@ -44,13 +44,7 @@ class MainPageTableViewCell: UITableViewCell,UITagsViewDelegate {
 
         // Configure the view for the selected state
     }
-    func tagSelected(atIndex index:Int) -> Void {
-        print("Tag at index:\(index) selected")
-    }
     
-    func tagDeselected(atIndex index:Int) -> Void {
-        print("Tag at index:\(index) deselected")
-    }
     
     
 }
