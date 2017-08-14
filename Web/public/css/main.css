@@ -153,7 +153,6 @@ body {
   color: #777;
 }
 
-
 .menu_item {
   font-weight: normal;
   font-size: 1.4em;
@@ -168,9 +167,7 @@ body {
   border-bottom-right-radius: 0px;
   overflow: hidden;
   position: relative;
-
 }
-
 
 .menu_item:hover {
   background-color: #f8f8f8;
@@ -234,7 +231,6 @@ input:focus {
   border-radius: 6px;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
-
 }
 
 .custom_button:focus {
@@ -263,21 +259,43 @@ input:focus {
   position: relative;
 }
 
+div.img-divgo{
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+
+.img-divgo .profilePic {
+  -webkit-transform:translate(-50%);
+  -moz-tranform:translate(-50%);
+  -ms-transform: translate(-50%); /* IE 9 */
+  transform: translate(-50%);
+  margin-left: 50%;
+  max-height: 80px;
+  position: absolute;
+}
+
 .post .Name {
   font-size: 30px;
   font-weight: bold;
   margin-left: 20px;
-  top: 1px;
+  top: 8px;
   position: absolute;
-  line-height: 100px;
 }
 
-.post .Category {
+.post .Title {
   bottom: 1px;
-  margin-left: 15px;
+  margin-left: 20px;
   color: #1e83c3;
-  font-size: 16px;
-  display: none;
+  font-size: 19px;
+  top: 48px;
+  position: absolute;
 }
 
 .post .textbox {
@@ -296,7 +314,6 @@ input:focus {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   text-transform: lowercase;
-
 }
 
 .tags_holder {
@@ -310,7 +327,7 @@ input:focus {
   display: inline-block;
   background-color: transparent;
   color: #246a99;
-  font-size: 1.2em;
+  font-size: 20px;
   border-style: solid;
   border: none;
   box-shadow: none;
@@ -390,8 +407,8 @@ input:focus {
 }
 
 .post_footer {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 0;
+  padding-right: 10px;
 }
 
 .post hr {
@@ -410,7 +427,7 @@ input:focus {
 .post_time {
   font-size: 14px;
   float: right;
-  margin-top: 4px;
+  margin-top: 12px;
   font-weight: bold;
   color: #AAA;
 }
@@ -430,14 +447,13 @@ input:focus {
 
 .post div.post_body {
   border: none;
-  font-size: 1.6em;
+  font-size: 23px;
   padding: 0px 6px 0px 6px;
 }
 
 .starting_sharp {
   font-weight: bold;
 }
-
 
 .post .textbox:focus {
   border-color: #a0b7da;
@@ -446,24 +462,47 @@ input:focus {
   outline: -webkit-focus-ring-color none 5px;
 }
 
-div.img-divgo{
-  height: 100px;
-  width: 100px;
-  overflow: hidden;
-  border-radius: 50%;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  display: inline-block;
-  position: relative;
-  z-index: 1;
-}
+@media (max-width: 600px) {
+  div.img-divgo{
+    width: 60px;
+    height: 60px;
+  }
 
-.img-divgo .profilePic {
-  -webkit-transform:translate(-50%);
-  -moz-tranform:translate(-50%);
-  -ms-transform: translate(-50%); /* IE 9 */
-  transform: translate(-50%);
-  margin-left: 50%;
-  max-height: 100px;
-  position: absolute;
+  .img-divgo .profilePic {
+    max-height: 60px;
+  }
+
+  .post .Name {
+    font-size: 23px;
+    margin-left: 11px;
+    top: 7px;
+  }
+
+  .post .Title {
+    font-size: 15px;
+    margin-left: 11px;
+    top: 38px;
+  }
+
+  .post div.post_body {
+    font-size: 18px;
+  }
+
+  .tags_holder .tag_holder {
+    font-size: 16px;
+  }
+
+  .post {
+    margin: 0 20px 20px;
+  }
+
+  .tags_holder {
+    line-height: 40px;
+    margin-top: 7px;
+  }
+
+  .post .tagger {
+    margin-right: 4px;
+    margin-bottom: 5px;
+  }
 }

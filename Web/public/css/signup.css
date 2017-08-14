@@ -1,7 +1,7 @@
 .signup_holder {
-  width: 600px;
-  margin: 0 auto;
+  min-width: 320px;
   padding: 30px;
+  margin: 150px 20px 0 20px;
 
   border-radius: 10px;
   -moz-border-radius: 10px;
@@ -9,8 +9,46 @@
   border: 1px solid #AAA;
 }
 
+.input_holder {
+  padding-top: 20px;
+}
+
+.error_msg {
+  height: 12px;
+  color: red;
+  float: right;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
 .signup_title {
   text-align: center;
   font-size: 2em;
   font-weight: bold;
+}
+
+.signup_holder input {
+  font-size: 1.2em;
+  width: 85%;
+  border: none;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  background-color: transparent;
+  margin-left: 8px;
+}
+
+.form_container {
+  clear: both;
+  margin: 0;
+}
+
+#sayhi {
+  width: 70%;
+}
+
+#sayhi_length {
+  float: right;
+  line-height: 2em;
 }
