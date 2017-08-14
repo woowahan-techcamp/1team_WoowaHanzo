@@ -8,18 +8,19 @@
     <script>
       // Initialize Firebase
       var config = {
-        apiKey: "AIzaSyAot_xscB-brcQ1A3V3g0Ka-DEhKr_HlP8",
-        authDomain: "woowaproject.firebaseapp.com",
-        databaseURL: "https://woowaproject.firebaseio.com",
-        projectId: "woowaproject",
-        storageBucket: "woowaproject.appspot.com",
-        messagingSenderId: "609034471288"
+        apiKey: "AIzaSyAW6ZSOQEXi9RKvPufHRlIlpaIuYw4PGNM",
+        authDomain: "fir-playground-51842.firebaseapp.com",
+        databaseURL: "https://fir-playground-51842.firebaseio.com",
+        projectId: "fir-playground-51842",
+        storageBucket: "fir-playground-51842.appspot.com",
+        messagingSenderId: "962296739976"
       };
       firebase.initializeApp(config);
     </script>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js" ></script>
+    <script src="js/signup.js" ></script>
 
     <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"  />
@@ -99,7 +100,7 @@
 
           <div class="form_container">
             <i class="fa fa-lock" aria-hidden="true"></i>
-            <input type="password" name="password" id="password" placeholder="비밀번호확인"/>
+            <input type="password" name="password" id="password2" placeholder="비밀번호확인"/>
           </div>
 
           <div class="form_container">
@@ -114,7 +115,9 @@
         </div>
 
         <div class="buttons_holder">
-          <button type="submit" class="signup custom_button">회원가입</button>
+          <!-- <form action="index.html"> -->
+            <button type="submit" class="signup_btn">회원가입</button>
+          <!-- </form> -->
         </div>
 
       </div>
