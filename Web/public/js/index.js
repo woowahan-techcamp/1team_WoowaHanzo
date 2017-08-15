@@ -26,28 +26,33 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $(".container_box").append(template(buffer));
 
     var $curPost = $("#post_" + buffer.id);
+    prevLoaded($curPost);
 
     if(buffer.images) {
       // only three images are loaded at a time
       for(var i = 0; i < buffer.images.length || i < 3; ++i) {
 
+        var $curObject = {};
+        $curObject.$curPost = $curPost;
+        $curObject.i = i;
         var filename = buffer.images[i];
         if(i < 3) {
           if(!filename) continue;
           storageRef.child('images/' + filename).getDownloadURL().then(function(url) {
             pageObject.imageUrls[buffer.id].push(url);
 
-            var imageParent = $curPost.children("table").children("tbody").children("tr");
+            var imageParent = $curObject.$curPost.children("table").children("tbody").children("tr");
 
-            imageParent = imageParent.children("td").get(this);
+            imageParent = imageParent.children("td").get(this.i);
             imageParent = $(imageParent).children("div").children("img");
+            imageParent.addClass("loading");
 
             imageParent.attr("src", url);
             imageParent.on("load", function(evt) {
               var curImage = evt.target;
               curImage.classList.add("loaded");
               var imageParent = curImage.parentElement.parentElement.parentElement;
-              var allImages = imageParent.querySelectorAll("img");
+              var allImages = imageParent.querySelectorAll("loading");
 
               var allLoaded = true;
               for(var i = 0; i < allImages.length; ++i) {
@@ -62,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
             });
 
-          }.bind(i)).catch(function(err) {
+          }.bind($curObject)).catch(function(err) {
             console.log(err);
             console.log("File load unsuccessful");
           });
@@ -85,7 +90,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
 
       }
-      console.log(pageObject.imageUrls[buffer.id]);
 
     } else {
       $curPost.trigger("postLoaded");
@@ -99,8 +103,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
     $curPost.css("display", "block");
 
-    console.log("GO");
     resizeThumbnails();
   });
 
 });
+
+function prevLoaded($curPost) {
+  console.log($curPost.prev());
+}

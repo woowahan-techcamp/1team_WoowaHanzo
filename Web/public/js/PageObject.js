@@ -34,7 +34,7 @@ class PageObject {
 
   timerUpdate() {
     $(document).trigger('recurseUpdateEvent');
-    console.log("Event fired");
+    // console.log("Event fired");
     setTimeout(this.timerUpdate.bind(this), 5000);
   }
 
