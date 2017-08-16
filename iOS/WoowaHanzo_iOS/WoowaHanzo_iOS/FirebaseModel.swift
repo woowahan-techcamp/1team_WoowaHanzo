@@ -14,13 +14,13 @@ class FirebaseModel{
     
     var ref: DatabaseReference!
     
-    func postReview(review: String, userID: String, tagArray:[String], timestamp: Int){
+    func postReview(review: String, userID: String, tagArray:[String], timestamp: Int, images:[String]){
         ref = Database.database().reference()
         let key = ref.child("posts").childByAutoId().key
         let post = ["author":userID,
                     "body": review,
                     "tagArray": tagArray,
-                    "timestamp": timestamp] as [String : Any]
+                    "timestamp": timestamp,"imageArray":images] as [String : Any]
         let childUpdates = ["/posts/\(key)": post]
         ref.updateChildValues(childUpdates)
     }
@@ -37,12 +37,14 @@ class FirebaseModel{
                     print(child)
                     var userKey = child.key as! String
                     //print(child.childSnapshot(forPath: "author").value!)
-                    let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tagsArray: child.childSnapshot(forPath: "tagArray").value as? [String] ?? nil )
-                    User.users.append(user)
+                    let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tagsArray: child.childSnapshot(forPath: "tagArray").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "imageArray").value as? [String] ?? nil)
+                        User.users.append(user)
                     
                     
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
                 }
+                
+                
                 
             }
         })

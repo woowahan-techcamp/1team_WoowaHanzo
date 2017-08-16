@@ -8,6 +8,7 @@
 
 import UIKit
 import NVActivityIndicatorView
+import ImageViewer
 
 
 class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
@@ -29,7 +30,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         //firebase에서 loadFeed하는것에 옵저버를 걸어준다.
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: NSNotification.Name(rawValue: "reload"), object: nil)
         
-        
+
         mainpageTableView.delegate = self
         mainpageTableView.dataSource = self
 
@@ -40,9 +41,11 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
     func reloadTableData(){
         mainpageTableView.reloadData()
+        
 
     }
     override func viewWillAppear(_ animated: Bool) {
+        
         firebaseModel.loadFeed()
         searchIconButton.tintColor = UIColor.white
         let size = CGSize(width: 30, height: 30)
@@ -84,8 +87,15 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
             self.searchBar.becomeFirstResponder()
         })
     }
+    func tap(_ sender:UIGestureRecognizer)
+    {
+        let label = (sender.view as! UILabel)
+        print("tap from \(label.text!)")
+    }
     
-    
+    @IBAction func showGalleryImageViewer(_ sender: Any) {
+        
+    }
 }
 
 //MARK: TableView extension
@@ -102,21 +112,21 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource,UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as!MainPageTableViewCell
         cell.contentsTextView.text = User.users[indexPath.row].contents
         cell.nickNameButton.setTitle(User.users[indexPath.row].nickName, for: .normal)
-        //print(User.users[indexPath.row].tagsArray)
-        
-        if let tagArr = User.users[indexPath.row].tagsArray{
-            cell.tags.tags = tagArr
-
-        }else{
-            cell.tags.tags = nil
+        cell.tagListView.reset()
+        if let tag = User.users[indexPath.row].tagsArray{
+            for index in tag{
+                cell.tagListView.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.blue)
+            }
         }
-        //tableView.estimatedRowHeight = 336
-        //tableView.rowHeight = UITableViewAutomaticDimension
-
+        
+    
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat{
+        return UITableViewAutomaticDimension
+    }
 
    
 }
+
 
