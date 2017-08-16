@@ -90,18 +90,23 @@ function fadeInPost($curPost) {
 }
 
 function imagesAllLoaded(curImage) {
-	
-	curImage.classList.add("loaded");
-	var imageParent = curImage.parentElement.parentElement.parentElement;
-	var allImages = imageParent.querySelectorAll(".loading");
+	try {
+		curImage.classList.add("loaded");
+		var imageParent = curImage.parentElement.parentElement.parentElement;
+		var allImages = imageParent.querySelectorAll(".loading");
 
-	var allLoaded = true;
-	for(var i = 0; i < allImages.length; ++i) {
-		if(!$(allImages[i]).hasClass("loaded")) {
-			allLoaded = false;
+		var allLoaded = true;
+		for(var i = 0; i < allImages.length; ++i) {
+			if(!$(allImages[i]).hasClass("loaded")) {
+				allLoaded = false;
+			}
 		}
+		return allLoaded;
+
+	} catch(err) {
+		return false;
 	}
-	return allLoaded;
+
 }
 
 function handleThumbnailNumber($curPost, imagenumber) {
@@ -165,3 +170,32 @@ function fixExifOrientation($img) {
     });
 
 }
+
+
+function resizeThumbnails() {
+  $(".image_thumbnails td").each(function(index, elem) {
+
+    var bufferWidth = $(".image_thumbnails td")[0].offsetWidth;
+    elem.style.height = bufferWidth + "px";
+    if($(".thumbnail_cover").last().length > 0) {
+        $(".thumbnail_cover").last()[0].style.lineHeight = bufferWidth - 20 + "px";
+    }
+
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function(evt) {
+	var galleryoverlay = document.querySelector("#galleryoverlay");
+	var holder = document.querySelector(".holder");
+	var navleft = document.querySelector("#navleft");
+	if($(".holder").length) {
+		console.log($("#navleft").height());
+
+		$('.holder').css('margin-top', galleryoverlay.offsetHeight / 2 - navleft.offsetHeight / 2 + 'px');
+		$(window).resize(function() {
+			$('.holder').css('margin-top', galleryoverlay.offsetHeight / 2 - navleft.offsetHeight / 2 + 'px');
+		});
+
+	}
+
+});

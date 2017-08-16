@@ -111,7 +111,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       $curPost.addClass("ready");
     }
     // keeping the post invisible while loading
-    $curPost.css("display", "none");
     $curPost.children(".post_body").html(buffer["body"]);
     if(buffer["tags"] && buffer["tags"].length == 0) {
       $curPost.children(".tags_holder").css("display", "none");
