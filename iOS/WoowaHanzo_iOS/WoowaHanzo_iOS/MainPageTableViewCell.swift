@@ -59,7 +59,7 @@ class MainPageTableViewCell: UITableViewCell {
 
 extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return 4
+        return User.users[section].imageArray?.count ?? 1//이부분 모르겠음
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
