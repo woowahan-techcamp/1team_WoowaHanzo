@@ -121,6 +121,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="Kix-Qc-2KK" secondAttribute="trailing" constant="8" id="EoQ-pE-lta"/>
                                                         <constraint firstItem="qzv-1F-IMb" firstAttribute="trailing" secondItem="af8-gO-cAU" secondAttribute="trailingMargin" id="LNZ-dG-rEe"/>
                                                         <constraint firstItem="Kix-Qc-2KK" firstAttribute="top" secondItem="af8-gO-cAU" secondAttribute="top" constant="250" id="Lbh-bO-wrb"/>
+                                                        <constraint firstItem="Kix-Qc-2KK" firstAttribute="top" secondItem="qzv-1F-IMb" secondAttribute="bottom" constant="8" id="NRf-nm-sGo"/>
                                                         <constraint firstItem="qzv-1F-IMb" firstAttribute="top" secondItem="af8-gO-cAU" secondAttribute="top" constant="184" id="R9J-BR-Ufa"/>
                                                         <constraint firstItem="Cx9-sr-l7K" firstAttribute="centerY" secondItem="1uC-VA-8di" secondAttribute="centerY" id="REn-p6-6Hc"/>
                                                         <constraint firstItem="Cx9-sr-l7K" firstAttribute="leading" secondItem="af8-gO-cAU" secondAttribute="leading" constant="11" id="bKv-Fh-wWF"/>

@@ -38,7 +38,7 @@ class FirebaseModel{
                     //let name = "images/\(Date().timeIntervalSince1970)"
                     let ref = Storage.storage().reference(withPath: names[i]).putData(imageData)
                     ref.resume()
-                    print("success: \(i) ")
+                    //print("success: \(i) ")
                 }
                 else{
                     print(image.size)

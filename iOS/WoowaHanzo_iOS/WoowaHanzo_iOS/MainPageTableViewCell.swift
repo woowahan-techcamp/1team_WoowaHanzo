@@ -22,6 +22,7 @@ struct DataItem {
 class MainPageTableViewCell: UITableViewCell {
     
     var items: [DataItem] = []
+    var userid : Int = 0 
     @IBOutlet weak var reviewView: UIView!
     @IBOutlet weak var likeButton: UIButton!
     //@IBOutlet weak var mainpageCollectionView: UICollectionView!
@@ -46,7 +47,7 @@ class MainPageTableViewCell: UITableViewCell {
         reviewView.layer.cornerRadius = 30.0
         reviewView.clipsToBounds = true
         
- 
+        
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -59,17 +60,35 @@ class MainPageTableViewCell: UITableViewCell {
 
 extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return User.users[section].imageArray?.count ?? 1//이부분 모르겠음
+       // print(User.users[items].imageArray?.count)
+        return User.users[userid].imageArray?.count ?? 1//이부분 모르겠음
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FoodImageCollectionViewCell
-        let ref = Storage.storage().reference(withPath: "/images/bossam001.jpg").downloadURL { (url, error) in
-            print(url)
-            //self.imageView.sd_setImage(with: url, completed: nil)
-            //self.cell.i.kf.setImage(with: url)
-            cell.foodImageView.kf.setImage(with: url)
+        //        for index in User.users[indexPath.row].imageArray{
+        //            let ref = Storage.storage().reference(withPath: "/images/bossam001.jpg").downloadURL { (url, error) in
+        //                print(url)
+        //                //self.imageView.sd_setImage(with: url, completed: nil)
+        //                //self.cell.i.kf.setImage(with: url)
+        //                cell.foodImageView.kf.setImage(with: url)
+        //            }
+        //        }
+        if let imageArray = User.users[userid].imageArray{
+            print(User.users[userid])
+           
+                let ref = Storage.storage().reference(withPath: imageArray[indexPath.row]).downloadURL { (url, error) in
+                    //print(imageArray)
+                    DispatchQueue.main.async {
+                        cell.foodImageView.kf.setImage(with: url)
+                        //self.collectionView.reloadData()
+                    }
+                
+            
+            }
         }
+        
+        //print(User.users[indexPath.section].imageArray?.count)
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){

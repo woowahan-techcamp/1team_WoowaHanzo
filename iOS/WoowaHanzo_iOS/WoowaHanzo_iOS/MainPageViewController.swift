@@ -113,12 +113,15 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
         cell.contentsTextView.text = User.users[indexPath.row].contents
         cell.nickNameButton.setTitle(User.users[indexPath.row].nickName, for: .normal)
         cell.tagListView.reset()
+        cell.userid = indexPath.row
         if let tag = User.users[indexPath.row].tagsArray{
             for index in tag{
                 cell.tagListView.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.blue)
             }
         }
         cell.timeLabel.text = Date().postTimeDisplay(postDate: User.users[indexPath.row].postDate)
+        cell.FoodImageCollectionView.reloadData()
+        print(User.users[indexPath.row].imageArray)
     
         return cell
     }
