@@ -44,6 +44,10 @@
   margin: 0;
 }
 
+.signup {
+  background-color: #CCC;
+}
+
 #sayhi {
   width: 70%;
 }
