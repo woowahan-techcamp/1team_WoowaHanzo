@@ -19,8 +19,15 @@ class AuthModel{
             return false
         }
     }
-    static func login(){
-        
+    static func login(email:String,pw:String, completion: @escaping (Bool)->()){
+        Auth.auth().signIn(withEmail: email, password: pw) { (user, error) in
+            if user != nil{
+                completion(true)
+            }
+            else{
+                completion(false)
+            }
+        }
     }
     static func register(){
         //있는 닉네임인지 체크.

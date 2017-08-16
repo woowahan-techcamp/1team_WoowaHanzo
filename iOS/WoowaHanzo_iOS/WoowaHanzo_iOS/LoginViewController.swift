@@ -11,15 +11,26 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var emailValidationLabel: UILabel!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var pwTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        emailValidationLabel.isHidden = true
     }
 
     @IBAction func loginButtonTouched(_ sender: Any) {
-       
+        if let email = emailTextField.text,let pw  = pwTextField.text{
+          AuthModel.login(email: email, pw: pw, completion: { (success) in
+            if !success{
+                self.emailValidationLabel.isHidden = false
+            }
+            })
+        }
     }
+    
+    
     
 
     
