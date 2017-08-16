@@ -99,7 +99,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
 }
 
 //MARK: TableView extension
-extension MainPageViewController : UITableViewDelegate,UITableViewDataSource,UITextViewDelegate{
+extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
