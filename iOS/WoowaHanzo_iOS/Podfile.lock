@@ -3,7 +3,6 @@ PODS:
   - BSImagePicker (2.6.0):
     - BSGridCollectionViewLayout (~> 1.2.0)
     - UIImageViewModeScaleAspect (= 1.5)
-  - ElValidator (1.1.2)
   - Firebase/Auth (4.0.4):
     - Firebase/Core
     - FirebaseAuth (= 4.0.0)
@@ -56,11 +55,11 @@ PODS:
   - NVActivityIndicatorView (3.7.0):
     - NVActivityIndicatorView/Presenter (= 3.7.0)
   - NVActivityIndicatorView/Presenter (3.7.0)
+  - TransitionButton (0.2.0)
   - UIImageViewModeScaleAspect (1.5)
 
 DEPENDENCIES:
   - BSImagePicker (~> 2.4)
-  - ElValidator
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -68,11 +67,11 @@ DEPENDENCIES:
   - ImageViewer
   - Kingfisher (~> 3.0)
   - NVActivityIndicatorView
+  - TransitionButton
 
 SPEC CHECKSUMS:
   BSGridCollectionViewLayout: 8f12c8e1e08c47057f5a39a6828f4395f043d78f
   BSImagePicker: 7b740d0a9f23160bcdca01f179445583bd1c09b0
-  ElValidator: ee1cc9daba7bc816691d717e29bd528bc6eff967
   Firebase: 1492bf04e1b73a7353b4fb2cf5a20bac9692f341
   FirebaseAnalytics: ad41720e3e67fc63fbe3d2948d3e26932a8de311
   FirebaseAuth: ebb6abcbabae00fc47446d690c19ce68d8484fde
@@ -86,8 +85,9 @@ SPEC CHECKSUMS:
   Kingfisher: dc3a4983e86d2dfa89513664983a82340c11a289
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
+  TransitionButton: 82a065bd97f9434ecfa7bb3a15306aec1b5a5894
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
 
-PODFILE CHECKSUM: 6be28217a1c1683fd86d9525a2fdbdecdd47b77a
+PODFILE CHECKSUM: be5e8d8ffc6273d9ac7a102ecd05b78bd548ae8c
 
 COCOAPODS: 1.2.1
