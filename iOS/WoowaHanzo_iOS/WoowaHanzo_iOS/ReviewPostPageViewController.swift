@@ -20,6 +20,7 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myContentView: UIView!
     //@IBOutlet weak var myButton: UIButton!
     
+    @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var myButton: UIBarButtonItem!
     
     var myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
@@ -41,9 +42,8 @@ class ReviewPostPageViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        
-        
+        myCollectionView.dataSource = self
+        myCollectionView.delegate = self
         myTagView.removeFromSuperview()
         myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
         myTextView.delegate = self as! UITextViewDelegate
@@ -198,7 +198,10 @@ class ReviewPostPageViewController: UIViewController {
             print("Cancel")
         }, finish: { (assets: [PHAsset]) -> Void in
             FirebaseModel().postImages(assets: assets)
-            print("Done, expected num:\(assets.count)")
+            for asset in assets{
+                let image = FirebaseModel().getAssetThumbnail(asset: asset)
+                self.imageArray.append(image)
+            }
         }, completion: nil)
     }
     
@@ -257,5 +260,23 @@ extension ReviewPostPageViewController: UITextViewDelegate{
                 textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
             }
         }
+    }
+}
+
+
+extension ReviewPostPageViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.imageArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseidentifier", for: indexPath as IndexPath) as! myCollectionCell
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // handle tap events
+        print("You selected cell #\(indexPath.item)!")
     }
 }
