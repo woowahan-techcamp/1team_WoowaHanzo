@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import TransitionButton
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var loginButton: TransitionButton!
+    @IBOutlet weak var loginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
     }
