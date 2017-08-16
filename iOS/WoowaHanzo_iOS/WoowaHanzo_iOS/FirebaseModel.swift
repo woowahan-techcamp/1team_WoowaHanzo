@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import Photos
 
 class FirebaseModel{
     
@@ -25,6 +26,37 @@ class FirebaseModel{
         let childUpdates = ["/posts/\(key)": post]
         ref.updateChildValues(childUpdates)
     }
+    
+    func postImages(assets:[PHAsset]){
+        for i in 0..<assets.count{
+            let asset = assets[i]
+            let image = self.getAssetThumbnail(asset: asset)
+            DispatchQueue.global().async{
+                //if let imageData = UIImageJPEGRepresentation(image, 0.8){
+                if let imageData = UIImagePNGRepresentation(image){
+                    let ref = Storage.storage().reference(withPath: "images/\(Date().timeIntervalSince1970)").putData(imageData)
+                    ref.resume()
+                    print("success: \(i) ")
+                }
+                else{
+                    print(image.size)
+                }
+            }
+        }
+    }
+    func getAssetThumbnail(asset: PHAsset) -> UIImage {
+        let manager = PHImageManager.default()
+        let option = PHImageRequestOptions()
+        var thumbnail = UIImage()
+        option.isSynchronous = true
+        // for testing
+        manager.requestImage(for: asset, targetSize: CGSize(width: 100, height: 100), contentMode: .aspectFit, options: option, resultHandler: {(result, info)->Void in
+            //manager.requestImage(for: asset, targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight), contentMode: .aspectFit, options: option, resultHandler: {(result, info)->Void in
+            thumbnail = result!
+        })
+        return thumbnail
+    }
+
     
     
     func loadFeed(){

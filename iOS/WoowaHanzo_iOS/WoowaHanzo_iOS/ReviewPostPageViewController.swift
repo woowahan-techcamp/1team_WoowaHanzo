@@ -190,14 +190,15 @@ class ReviewPostPageViewController: UIViewController {
     
     @IBAction func addButtonTouched(_ sender: Any) {
         bs_presentImagePickerController(imagePickerController, animated: true,
-                                        select: { (asset: PHAsset) -> Void in
-                                            print("Selected: \(asset)")
+        select: { (asset: PHAsset) -> Void in
+            print("Selected")
         }, deselect: { (asset: PHAsset) -> Void in
-            print("Deselected: \(asset)")
+            print("Deselected")
         }, cancel: { (assets: [PHAsset]) -> Void in
-            print("Cancel: \(assets)")
+            print("Cancel")
         }, finish: { (assets: [PHAsset]) -> Void in
-            print("Finish: \(assets)")
+            FirebaseModel().postImages(assets: assets)
+            print("Done, expected num:\(assets.count)")
         }, completion: nil)
     }
     
