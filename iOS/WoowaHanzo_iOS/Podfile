@@ -11,6 +11,8 @@ pod ‘Firebase/Storage’
 pod 'ImageViewer'
  pod 'Kingfisher', '~> 3.0'
 pod 'NVActivityIndicatorView'
+pod 'ImagePicker'
+
   # Pods for WoowaHanzo_iOS
 
   target 'WoowaHanzo_iOSTests' do
