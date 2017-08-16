@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $(".container_box").append(template(buffer));
 
     var $curPost = $("#post_" + buffer.id);
-    prevLoaded($curPost);
+    //fadeInPost($curPost);
 
     if(buffer.images) {
       // only three images are loaded at a time
@@ -50,19 +50,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
             imageParent.attr("src", url);
             imageParent.on("load", function(evt) {
               var curImage = evt.target;
-              curImage.classList.add("loaded");
-              var imageParent = curImage.parentElement.parentElement.parentElement;
-              var allImages = imageParent.querySelectorAll("loading");
+              var allLoaded = imagesAllLoaded(curImage);
 
-              var allLoaded = true;
-              for(var i = 0; i < allImages.length; ++i) {
-                if(!$(allImages[i]).hasClass("loaded")) {
-                  allLoaded = false;
-                }
-              }
-
-              if(allLoaded) {
-                console.log("Images all loaded");
+              if(prevLoaded($curPost) && allLoaded) {
+                console.log("previous post is loaded!");
+                fadeInPost($curPost);
               }
 
             });
@@ -91,9 +83,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       }
 
+      $curPost.on("postLoaded", function(evt) {
+        var currentPost = evt.target;
+        var anyImage = currentPost.querySelector(".loading");
+
+        if(prevLoaded($curPost) && imagesAllLoaded(anyImage)) {
+          fadeInPost($(evt.target));
+          if($(currentPost).next().length != 0) {
+            $currentPost.next().trigger("postLoaded");
+          }
+        }
+
+      });
+
     } else {
+      $curPost.on("postLoaded", function(evt) {
+        fadeInPost($(evt.target));
+        if($curPost.next().length != 0) {
+          $curPost.next().trigger("postLoaded");
+        }
+      });
       $curPost.trigger("postLoaded");
       $curPost.children("table").remove();
+      $curPost.addClass("ready");
     }
     // keeping the post invisible while loading
     $curPost.css("display", "none");
@@ -107,7 +119,3 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 
 });
-
-function prevLoaded($curPost) {
-  console.log($curPost.prev());
-}

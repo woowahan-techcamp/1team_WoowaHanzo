@@ -64,6 +64,42 @@ function isScrolledIntoView(elem) {
     return ((( elemTop >= docViewTop) && (elemTop <= docViewBottom)) || ((elemBottom >= docViewTop) && (elemBottom <= docViewBottom)));
 }
 
+function prevLoaded($curPost) {
+  console.log($curPost.prev());
+  if($curPost.prev().length == 0) {
+    return true;
+  } else {
+    if($curPost.prev().css("display") != "none") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
+function fadeInPost($curPost) {
+	$curPost.css("display", "block");
+
+	$curPost.animate({
+		opacity: 1.0
+	}, 200);
+
+}
+
+function imagesAllLoaded(curImage) {
+
+	curImage.classList.add("loaded");
+	var imageParent = curImage.parentElement.parentElement.parentElement;
+	var allImages = imageParent.querySelectorAll(".loading");
+
+	var allLoaded = true;
+	for(var i = 0; i < allImages.length; ++i) {
+		if(!$(allImages[i]).hasClass("loaded")) {
+			allLoaded = false;
+		}
+	}
+	return allLoaded;
+}
 
 function fixExifOrientation($img) {
 
