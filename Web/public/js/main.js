@@ -20,13 +20,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
-      $(".nav_signin_btn").html("Sign out");
+      $(".nav_signin_btn").css("display", "none");
     } else {
       // No user is signed in.
+      $(".nav_signin_btn").css("display", "block");
       $(".nav_signin_btn").html("Sign in");
     }
   });
-
 
 });
 
