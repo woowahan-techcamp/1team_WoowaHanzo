@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   $("#username").on("keyup keydown blur update input", function() {
     if(!$("#username").val()) {
       $("#username_error_msg").text("필수 입력값입니다.");
-      emailFlag = false;
+      usernameFlag = false;
     }
     else {
       $("#username_error_msg").text("");
@@ -103,7 +103,7 @@ function isEmail(email) {
 function buttonEnable(ef, uf, pf, p2f) {
   if(ef && uf && pf && p2f) {
     $(".signup").css("background-color", "#70b6e5");
-    $(".signup").attr("disabled", "false");
+    $(".signup").removeAttr("disabled");
   }
   else {
     $(".signup").css("background-color", "#CCC");
