@@ -32,7 +32,6 @@ class ReviewPostPageViewController: UIViewController {
     var textFieldText = ""
     var keyboardmove = CGFloat(0)
     var savedkeyboardSize = CGRect()
-    let imagePickerController = BSImagePickerViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,13 +133,19 @@ class ReviewPostPageViewController: UIViewController {
         shadowView.frame = frame3
         //print(myTagView._scrollView.contentSize.height)
         
+        var frame4 = self.myCollectionView.frame
+        frame4.origin.y = shadowView.frame.origin.y + shadowView.frame.height + 5
+        myCollectionView.frame = frame4
+        
         //var frame4 = self.myView.frame
-        myView.frame.size.height = shadowView.frame.origin.y + shadowView.frame.height + 10
+        myView.frame.size.height = myCollectionView.frame.origin.y + myCollectionView.frame.height + 10
         //myButton.frame.origin.y = myView.frame.origin.y + myView.frame.height + 17
         
         var contentSize2 = myScrollView.contentSize
         contentSize2.height = myView.frame.size.height + 80
         self.myScrollView.contentSize = contentSize2
+        
+        
         
         
         //let contentSize2 = self.myView.sizeThatFits(self.myView.bounds.size)
@@ -178,6 +183,13 @@ class ReviewPostPageViewController: UIViewController {
             self.tabBarController?.selectedIndex = 0
             
             //등록 표시 나 화면 전환등의 효과 애니메이션 필요.
+            
+            //reload도 다시해야 한다.
+            //post한 경우외에는 리로드 안하도록.
+            //post: 등록되었습니다.
+            //다른 탭 누르면: 나가시겠습니까 알러트.
+            
+            
         }
         else{
             print("the post is empty")
@@ -186,6 +198,7 @@ class ReviewPostPageViewController: UIViewController {
     
     
     @IBAction func addButtonTouched(_ sender: Any) {
+        let imagePickerController = BSImagePickerViewController()
         bs_presentImagePickerController(imagePickerController, animated: true,
         select: { (asset: PHAsset) -> Void in
             print("Selected")
@@ -274,12 +287,12 @@ extension ReviewPostPageViewController: UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseidentifier", for: indexPath as IndexPath) as! MyCollectionCell
-        if indexPath.row == imageArray.count{
-            cell.imageView.image = UIImage(named:"baemin.png")
+        if indexPath.row == 0{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "buttoncell", for: indexPath as IndexPath)
             return cell
         }
-        cell.imageView.image = imageArray[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseidentifier", for: indexPath as IndexPath) as! MyCollectionCell
+        cell.imageView.image = imageArray[indexPath.row - 1]
         return cell
     }
     
