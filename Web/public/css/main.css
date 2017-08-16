@@ -490,7 +490,7 @@ div.img-divgo{
 }
 
 .nav_username {
-  outline: 1px solid white;
+  /*outline: 1px solid white;*/
   color: #fff;
   line-height: 50px;
   display: inline-block;
