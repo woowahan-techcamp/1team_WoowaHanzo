@@ -75,15 +75,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
     .then(function() {
-      // // firebase DB에 사용자의 한 마다(userSayhi)를 넣어줘야 함
-      // firebase.database().ref('users/').push({
-      //   username: userName,
-      //   email: userEmail,
-      //   sayhi: userSayhi
-      // });
-
-      console.log('user created.....');
-      window.location.href="index.html"
+      // firebase DB에 사용자의 한 마다(userSayhi)를 넣어줘야 함
+      firebase.database().ref('users/').push({
+        username: userName,
+        email: userEmail,
+        sayhi: userSayhi
+      })
+      .then(function() {
+        console.log('user created.....');
+        window.location.href="index.html"
+      })
+      .catch(function(error) {})
     })
     .catch(function(error) {
       // Handle Errors here.
