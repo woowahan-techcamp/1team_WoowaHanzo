@@ -9,7 +9,7 @@ pod ‘Firebase/Database’
 pod ‘Firebase/Auth’
 pod 'Firebase/Storage'
 pod 'ImageViewer'
- pod 'Kingfisher', '~> 3.0'
+pod 'Kingfisher', '~> 3.0'
 pod 'NVActivityIndicatorView'
 pod 'ImagePicker'
 

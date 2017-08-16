@@ -177,11 +177,17 @@ class ReviewPostPageViewController: UIViewController {
             print("the post is empty")
         }
     }
+    
+    
+    @IBAction func addButtonTouched(_ sender: Any) {
+        
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
 
     /*

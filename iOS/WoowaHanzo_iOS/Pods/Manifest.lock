@@ -41,6 +41,7 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.11)
+  - ImagePicker (2.1.1)
   - ImageViewer (4.1.0)
   - Kingfisher (3.10.4)
   - nanopb (0.3.8):
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - ImagePicker
   - ImageViewer
   - Kingfisher (~> 3.0)
   - NVActivityIndicatorView
@@ -71,11 +73,12 @@ SPEC CHECKSUMS:
   FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
+  ImagePicker: fe4c699abb56ff03994fa98d8b02e3883ee118be
   ImageViewer: 163e5832e0a09e31a3e3482cce6e5e9029356174
   Kingfisher: dc3a4983e86d2dfa89513664983a82340c11a289
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
 
-PODFILE CHECKSUM: ef4b4d90f32ce56db5ac3b2d2229cb22270a6163
+PODFILE CHECKSUM: 7512a75814185dcaf21067a8c6b04907839de94d
 
 COCOAPODS: 1.2.1
