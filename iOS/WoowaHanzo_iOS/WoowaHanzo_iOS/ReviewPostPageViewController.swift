@@ -169,9 +169,11 @@ class ReviewPostPageViewController: UIViewController {
         //if user insert same text as placeholder, it will not send post.
         //지금은 그냥 놔두지만 나중에 user가 placeholder와 똑같은 글을 쓸때도 send가되게 바꿔야 함.
         if myTextView.text != placeholder{
-            FirebaseModel().postReview(review: myTextView.text, userID: "kim", tagArray: myTagView.getTags(withPrefix: false), timestamp: Int(-1.0 * Date().timeIntervalSince1970),images:["baemin.png"], postDate: postDate)
-            FirebaseModel().postImages(assets: self.imageAssets)
+            //DispatchQueue.global().sync{
+            FirebaseModel().postReview(review: myTextView.text, userID: "kim", tagArray: myTagView.getTags(withPrefix: false), timestamp: Int(-1.0 * Date().timeIntervalSince1970),images:self.imageNameArray, postDate: postDate)
+            FirebaseModel().postImages(assets: self.imageAssets, names: self.imageNameArray)
             //print(myTagView.getTags(withPrefix: true))
+            print(self.imageNameArray)
             print("sent post")
             self.tabBarController?.selectedIndex = 0
             
@@ -197,9 +199,12 @@ class ReviewPostPageViewController: UIViewController {
             for asset in assets{
                 let image = FirebaseModel().getAssetThumbnail(asset: asset)
                 self.imageArray.append(image)
+                self.imageNameArray.append("images/\(Date().timeIntervalSince1970)")
             }
             print("done \(self.imageArray)")
-            self.myCollectionView.reloadData()
+            DispatchQueue.main.async{
+                self.myCollectionView.reloadData()
+            }
         }, completion: nil)
     }
     

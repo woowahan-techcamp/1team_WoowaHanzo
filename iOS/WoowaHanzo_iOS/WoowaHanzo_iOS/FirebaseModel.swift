@@ -21,20 +21,22 @@ class FirebaseModel{
         let post = ["author":userID,
                     "body": review,
                     "tagArray": tagArray,
-                    "timestamp": timestamp,"imageArray":images,
+                    "timestamp": timestamp,
+                    "imageArray":images,
                     "postDate":postDate] as [String : Any]
         let childUpdates = ["/posts/\(key)": post]
         ref.updateChildValues(childUpdates)
     }
     
-    func postImages(assets:[PHAsset]){
+    func postImages(assets:[PHAsset], names:[String]){
         for i in 0..<assets.count{
             let asset = assets[i]
             let image = self.getAssetThumbnail(asset: asset)
             DispatchQueue.global().async{
                 //if let imageData = UIImageJPEGRepresentation(image, 0.8){
                 if let imageData = UIImagePNGRepresentation(image){
-                    let ref = Storage.storage().reference(withPath: "images/\(Date().timeIntervalSince1970)").putData(imageData)
+                    //let name = "images/\(Date().timeIntervalSince1970)"
+                    let ref = Storage.storage().reference(withPath: names[i]).putData(imageData)
                     ref.resume()
                     print("success: \(i) ")
                 }
