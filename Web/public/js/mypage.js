@@ -9,6 +9,30 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if(!user) {
       window.location.href = 'login.html';
     }
+    else {
+      var user = firebase.auth().currentUser;
+
+      $("#user_email").html("유저네임: " + user.email);
+
+      var username = firebase.database().ref("users/" + user.uid + "/username");
+      username.on('value', function(snapshot) {
+        $("#user_username").html("유저네임: " + snapshot.val());
+      });
+
+      var sayhi = firebase.database().ref("users/" + user.uid + "/sayhi");
+      sayhi.on('value', function(snapshot) {
+        $("#user_sayhi").html("자기소개: " + snapshot.val());
+      });
+
+      $("#logout").on("click", function() {
+        firebase.auth().signOut().then(function() {
+          // Sign-out successful.
+          alert("로그아웃 하셨습니다.");
+        }, function(error) {
+          // An error happened.
+        });
+      });
+    }
   });
 
 });
