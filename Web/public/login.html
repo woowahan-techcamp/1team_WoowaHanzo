@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>먹소리 로그인</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
@@ -96,15 +97,11 @@
         </div>
 
         <div class="buttons_holder">
-          <form class="" action="index.html" method="post">
-            <button type="submit" class="signin custom_button">로그인</button>
-          </form>
+          <button type="submit" class="signin custom_button">로그인</button>
           <div class="splitter">
             - 혹은 -
           </div>
-          <form action="signup.html">
-            <button type="submit" class="signup custom_button">회원가입</button>
-          </form>
+          <button type="submit" class="signup custom_button" onclick="document.location.href = 'signup.html'">회원가입</button>
         </div>
       </div>
     </div>
