@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import BSImagePicker
+import Photos
+
 class ReviewPostPageViewController: UIViewController {
 
     @IBOutlet weak var myView: UIView!
@@ -22,10 +25,13 @@ class ReviewPostPageViewController: UIViewController {
     var myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
     var placeholder = "당신의 귀한 생각.."
     var tagArray = [String]()
+    var imageNameArray = [String]()
+    var imageArray = [UIImage]()
     var textFieldWidth = CGFloat(30)
     var textFieldText = ""
     var keyboardmove = CGFloat(0)
     var savedkeyboardSize = CGRect()
+    let imagePickerController = BSImagePickerViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +42,8 @@ class ReviewPostPageViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        //delegates
-        //self.view.frame.origin.x = 0
-        //self.view.frame.origin.y = 0
+        
+        
         myTagView.removeFromSuperview()
         myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
         myTextView.delegate = self as! UITextViewDelegate
@@ -181,11 +186,26 @@ class ReviewPostPageViewController: UIViewController {
             print("the post is empty")
         }
     }
+    
+    
+    @IBAction func addButtonTouched(_ sender: Any) {
+        bs_presentImagePickerController(imagePickerController, animated: true,
+                                        select: { (asset: PHAsset) -> Void in
+                                            print("Selected: \(asset)")
+        }, deselect: { (asset: PHAsset) -> Void in
+            print("Deselected: \(asset)")
+        }, cancel: { (assets: [PHAsset]) -> Void in
+            print("Cancel: \(assets)")
+        }, finish: { (assets: [PHAsset]) -> Void in
+            print("Finish: \(assets)")
+        }, completion: nil)
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
 
     /*
