@@ -15,8 +15,9 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myScrollView: UIScrollView!
     @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var myContentView: UIView!
-    @IBOutlet weak var myButton: UIButton!
+    //@IBOutlet weak var myButton: UIButton!
     
+    @IBOutlet weak var myButton: UIBarButtonItem!
     
     var myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
     var placeholder = "당신의 귀한 생각.."
@@ -136,7 +137,7 @@ class ReviewPostPageViewController: UIViewController {
         
         //var frame4 = self.myView.frame
         myView.frame.size.height = shadowView.frame.origin.y + shadowView.frame.height + 10
-        myButton.frame.origin.y = myView.frame.origin.y + myView.frame.height + 17
+        //myButton.frame.origin.y = myView.frame.origin.y + myView.frame.height + 17
         
         var contentSize2 = myScrollView.contentSize
         contentSize2.height = myView.frame.size.height + 80
@@ -160,6 +161,7 @@ class ReviewPostPageViewController: UIViewController {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
+    
     @IBAction func postButtonTouched(_ sender: Any) {
         //if user insert same text as placeholder, it will not send post.
         //지금은 그냥 놔두지만 나중에 user가 placeholder와 똑같은 글을 쓸때도 send가되게 바꿔야 함.

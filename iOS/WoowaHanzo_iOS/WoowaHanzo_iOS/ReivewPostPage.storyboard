@@ -84,7 +84,11 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <items>
                                             <navigationItem title="글쓰기" id="fmo-xp-Gtn">
-                                                <barButtonItem key="rightBarButtonItem" style="plain" systemItem="compose" id="9fm-Li-ZqK"/>
+                                                <barButtonItem key="rightBarButtonItem" style="plain" systemItem="compose" id="9fm-Li-ZqK">
+                                                    <connections>
+                                                        <action selector="postButtonTouched:" destination="YiP-LH-sjR" id="BUX-HK-aku"/>
+                                                    </connections>
+                                                </barButtonItem>
                                             </navigationItem>
                                         </items>
                                     </navigationBar>
@@ -110,6 +114,7 @@
                     <tabBarItem key="tabBarItem" title="글쓰기" id="O9b-Is-O5c"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="myButton" destination="9fm-Li-ZqK" id="McO-tT-kmk"/>
                         <outlet property="myContentView" destination="3vS-wK-4Ht" id="qT7-IO-M7E"/>
                         <outlet property="myImageView" destination="ffA-TX-D2K" id="Iwz-Vd-nls"/>
                         <outlet property="myScrollView" destination="ezh-sH-mRQ" id="kaS-j4-pOp"/>
