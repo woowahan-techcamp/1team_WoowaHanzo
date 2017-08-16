@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ImagePicker
 class ReviewPostPageViewController: UIViewController {
 
     @IBOutlet weak var myView: UIView!
@@ -26,9 +27,11 @@ class ReviewPostPageViewController: UIViewController {
     var textFieldText = ""
     var keyboardmove = CGFloat(0)
     var savedkeyboardSize = CGRect()
+    let imagePickerController = ImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imagePickerController.delegate = self
     }
     
     //게시를 누르지 않고 다른 탭을 누르는 경우 알림을 띄우도록
@@ -36,9 +39,8 @@ class ReviewPostPageViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        //delegates
-        //self.view.frame.origin.x = 0
-        //self.view.frame.origin.y = 0
+        
+        
         myTagView.removeFromSuperview()
         myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
         myTextView.delegate = self as! UITextViewDelegate
@@ -180,7 +182,7 @@ class ReviewPostPageViewController: UIViewController {
     
     
     @IBAction func addButtonTouched(_ sender: Any) {
-        
+        present(imagePickerController, animated: true, completion: nil)
     }
     
     
@@ -238,5 +240,18 @@ extension ReviewPostPageViewController: UITextViewDelegate{
                 textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
             }
         }
+    }
+}
+
+extension ReviewPostPageViewController: ImagePickerDelegate{
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]){
+        
+    }
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]){
+        dismiss(animated: true, completion: nil)
+
+    }
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController){
+        dismiss(animated: true, completion: nil)
     }
 }
