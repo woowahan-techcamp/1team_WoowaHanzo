@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
     .then(function() {
       // firebase DB에 사용자의 한 마다(userSayhi)를 넣어줘야 함
-      firebase.database().ref('users/').push({
+      firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
         username: userName,
         email: userEmail,
         sayhi: userSayhi

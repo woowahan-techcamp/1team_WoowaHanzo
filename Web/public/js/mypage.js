@@ -11,4 +11,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
   });
 
+  var user = firebase.auth().currentUser;
+
+  $("#user_email").html("이메일: " + user.email);
+
+  
+
+  $("#user_username").html("유저네임: ");
+  $("#user_sayhi").html("자기소개: ");
+
+
 });
