@@ -462,6 +462,10 @@ div.img-divgo{
   outline: -webkit-focus-ring-color none 5px;
 }
 
+.nav_signin_btn {
+  margin-top: 8px;
+}
+
 @media (max-width: 600px) {
   div.img-divgo{
     width: 60px;

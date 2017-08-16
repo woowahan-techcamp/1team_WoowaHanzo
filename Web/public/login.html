@@ -2,18 +2,19 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>먹소리 로그인</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
     <script>
       // Initialize Firebase
       var config = {
-        apiKey: "AIzaSyAW6ZSOQEXi9RKvPufHRlIlpaIuYw4PGNM",
-        authDomain: "fir-playground-51842.firebaseapp.com",
-        databaseURL: "https://fir-playground-51842.firebaseio.com",
-        projectId: "fir-playground-51842",
-        storageBucket: "fir-playground-51842.appspot.com",
-        messagingSenderId: "962296739976"
+        apiKey: "AIzaSyAot_xscB-brcQ1A3V3g0Ka-DEhKr_HlP8",
+        authDomain: "woowaproject.firebaseapp.com",
+        databaseURL: "https://woowaproject.firebaseio.com",
+        projectId: "woowaproject",
+        storageBucket: "woowaproject.appspot.com",
+        messagingSenderId: "609034471288"
       };
       firebase.initializeApp(config);
     </script>
@@ -59,17 +60,13 @@
               </form>
             </li>
             <li>
-              <form class="navbar-form" action="login.html">
-                <button type="submit" class="btn btn-success">Sign in</button>
-              </form>
+              <button type="submit" class="btn btn-success nav_signin_btn">Sign in</button>
             </li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right right_side_icon">
             <li>
-              <form class="navbar-form" action="login.html">
-                <button type="submit" class="btn btn-success">Sign in</button>
-              </form>
+              <button type="submit" class="btn btn-success nav_signin_btn">Sign in</button>
             </li>
           </li>
           </ul>
@@ -96,15 +93,11 @@
         </div>
 
         <div class="buttons_holder">
-          <form class="" action="index.html" method="post">
-            <button type="submit" class="signin custom_button">로그인</button>
-          </form>
+          <button type="submit" class="signin custom_button">로그인</button>
           <div class="splitter">
             - 혹은 -
           </div>
-          <form action="signup.html">
-            <button type="submit" class="signup custom_button">회원가입</button>
-          </form>
+          <button type="submit" class="signup custom_button" onclick="document.location.href = 'signup.html'">회원가입</button>
         </div>
       </div>
     </div>
