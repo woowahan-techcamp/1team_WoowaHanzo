@@ -7,17 +7,21 @@
 //
 
 import UIKit
+import TransitionButton
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var loginButton: TransitionButton!
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func loginButtonTouched(_ sender: Any) {
+        
     }
+
+    
+    
     @IBAction func loginCancelButtonTouched(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
