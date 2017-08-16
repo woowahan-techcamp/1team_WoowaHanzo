@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if (user) {
       // User is signed in.
       $(".nav_signin_btn").css("display", "none");
+      $(".nav_username").html(firebase.auth().currentUser.email);
     } else {
       // No user is signed in.
       $(".nav_signin_btn").css("display", "block");
