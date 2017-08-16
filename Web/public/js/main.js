@@ -13,20 +13,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
       });
     }
     else {
-      window.location.href="login.html";
+      window.location.href = "login.html";
     }
   });
 
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
-      $(".nav_signin_btn").html("Sign out");
+      $(".nav_signin_btn").css("display", "none");
+      $(".nav_user_info").css("display", "block");
+      // 여기에 사용자 사진불러오기 추가해야함
+      $(".nav_username").html(firebase.auth().currentUser.email);
     } else {
       // No user is signed in.
+      $(".nav_signin_btn").css("display", "block");
+      $(".nav_user_info").css("display", "none");
       $(".nav_signin_btn").html("Sign in");
     }
   });
-
 
 });
 
