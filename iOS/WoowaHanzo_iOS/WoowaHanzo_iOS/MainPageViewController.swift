@@ -118,7 +118,7 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource,UIT
                 cell.tagListView.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.blue)
             }
         }
-        
+        cell.timeLabel.text = Date().postTimeDisplay(postDate: User.users[indexPath.row].postDate)
     
         return cell
     }

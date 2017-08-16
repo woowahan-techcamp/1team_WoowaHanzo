@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double ElValidatorVersionNumber;
-FOUNDATION_EXPORT const unsigned char ElValidatorVersionString[];
+FOUNDATION_EXPORT double TransitionButtonVersionNumber;
+FOUNDATION_EXPORT const unsigned char TransitionButtonVersionString[];
 
