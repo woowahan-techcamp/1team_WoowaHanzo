@@ -11,8 +11,23 @@
     <link href="css/main.css" rel="stylesheet" type="text/css" />
     <link href="css/test-tag.css" rel="stylesheet" type="text/css" />
 
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAot_xscB-brcQ1A3V3g0Ka-DEhKr_HlP8",
+        authDomain: "woowaproject.firebaseapp.com",
+        databaseURL: "https://woowaproject.firebaseio.com",
+        projectId: "woowaproject",
+        storageBucket: "woowaproject.appspot.com",
+        messagingSenderId: "609034471288"
+      };
+      firebase.initializeApp(config);
+    </script>
+
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/autogrow.js"></script>
     <script src="js/autosize.js"></script>
     <script src="js/test-tag.js"></script>
