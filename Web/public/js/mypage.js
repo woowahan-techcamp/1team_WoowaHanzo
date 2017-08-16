@@ -23,6 +23,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
       sayhi.on('value', function(snapshot) {
         $("#user_sayhi").html("자기소개: " + snapshot.val());
       });
+
+      $("#logout").on("click", function() {
+        firebase.auth().signOut().then(function() {
+          // Sign-out successful.
+          alert("로그아웃 하셨습니다.");
+        }, function(error) {
+          // An error happened.
+        });
+      });
     }
   });
 
