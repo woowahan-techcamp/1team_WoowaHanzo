@@ -9,16 +9,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if(!user) {
       window.location.href = 'login.html';
     }
+    else {
+      var user = firebase.auth().currentUser;
+
+      $("#user_email").html("유저네임: " + user.email);
+
+      var username = firebase.database().ref("users/" + user.uid + "/username");
+      username.on('value', function(snapshot) {
+        $("#user_username").html("유저네임: " + snapshot.val());
+      });
+
+      var sayhi = firebase.database().ref("users/" + user.uid + "/sayhi");
+      sayhi.on('value', function(snapshot) {
+        $("#user_sayhi").html("자기소개: " + snapshot.val());
+      });
+    }
   });
-
-  var user = firebase.auth().currentUser;
-
-  $("#user_email").html("이메일: " + user.email);
-
-  
-
-  $("#user_username").html("유저네임: ");
-  $("#user_sayhi").html("자기소개: ");
-
 
 });

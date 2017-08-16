@@ -23,7 +23,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
       $(".nav_signin_btn").css("display", "none");
       $(".nav_user_info").css("display", "block");
       // 여기에 사용자 사진불러오기 추가해야함
-      $(".nav_username").html(firebase.auth().currentUser.email);
+      var uid = firebase.auth().currentUser.uid;
+      var currentUsername = firebase.database().ref("users/" + uid + "/username");
+      currentUsername.on('value', function(snapshot) {
+        $(".nav_username").html(snapshot.val());
+      });
+
     } else {
       // No user is signed in.
       $(".nav_signin_btn").css("display", "block");
