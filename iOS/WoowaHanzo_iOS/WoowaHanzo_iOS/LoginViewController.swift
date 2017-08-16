@@ -8,16 +8,33 @@
 
 import UIKit
 
+
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var emailValidationLabel: UILabel!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var pwTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailValidationLabel.isHidden = true
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func loginButtonTouched(_ sender: Any) {
+        if let email = emailTextField.text,let pw  = pwTextField.text{
+          AuthModel.login(email: email, pw: pw, completion: { (success) in
+            if !success{
+                self.emailValidationLabel.isHidden = false
+            }
+            })
+        }
     }
+    
+    
+    
+
+    
+    
     @IBAction func loginCancelButtonTouched(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

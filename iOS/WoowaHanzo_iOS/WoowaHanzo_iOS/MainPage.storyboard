@@ -13,7 +13,7 @@
         <!--Main Page View Controller-->
         <scene sceneID="tpi-Gj-xep">
             <objects>
-                <viewController storyboardIdentifier="mainPage" id="klR-Hm-AeJ" customClass="MainPageViewController" customModule="WoowaHanzo_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainPage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="klR-Hm-AeJ" customClass="MainPageViewController" customModule="WoowaHanzo_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QpY-tU-WY9"/>
                         <viewControllerLayoutGuide type="bottom" id="M1q-fT-exJ"/>
@@ -195,7 +195,7 @@
         <!--뉴스피드-->
         <scene sceneID="yy0-p6-76Q">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PW2-AP-TL9" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainPageNavigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PW2-AP-TL9" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="뉴스피드" id="fNJ-fU-46m"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gZp-ft-tvX">
