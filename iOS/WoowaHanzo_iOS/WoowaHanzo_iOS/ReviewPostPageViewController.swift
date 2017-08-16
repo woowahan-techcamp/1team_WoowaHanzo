@@ -20,13 +20,14 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myContentView: UIView!
     //@IBOutlet weak var myButton: UIButton!
     
+    @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var myButton: UIBarButtonItem!
     
     var myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
     var placeholder = "당신의 귀한 생각.."
-    var tagArray = [String]()
     var imageNameArray = [String]()
     var imageArray = [UIImage]()
+    var imageAssets = [PHAsset]()
     var textFieldWidth = CGFloat(30)
     var textFieldText = ""
     var keyboardmove = CGFloat(0)
@@ -35,19 +36,12 @@ class ReviewPostPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    //게시를 누르지 않고 다른 탭을 누르는 경우 알림을 띄우도록
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        
-        
+        myCollectionView.dataSource = self
+        myCollectionView.delegate = self
         myTagView.removeFromSuperview()
         myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
         myTextView.delegate = self as! UITextViewDelegate
-                //keyboard notification
+        //keyboard notification
         NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillShow), name: NSNotification.Name(rawValue: "keyboard"), object: nil)
@@ -71,8 +65,7 @@ class ReviewPostPageViewController: UIViewController {
         myTextView.textColor = UIColor.lightGray
         
         //determine whether it is editting tags or not
-        if tagArray.count == 0 {
-            myTextView.becomeFirstResponder() }
+        myTextView.becomeFirstResponder()
         myTextView.selectedTextRange = myTextView.textRange(from: myTextView.beginningOfDocument, to: myTextView.beginningOfDocument)
         fitView()
         //imageview border setting
@@ -89,8 +82,9 @@ class ReviewPostPageViewController: UIViewController {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         //myView.addGestureRecognizer(tap)
-        
     }
+    
+    //게시를 누르지 않고 다른 탭을 누르는 경우 알림을 띄우도록
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             savedkeyboardSize = keyboardSize
@@ -176,6 +170,7 @@ class ReviewPostPageViewController: UIViewController {
         //지금은 그냥 놔두지만 나중에 user가 placeholder와 똑같은 글을 쓸때도 send가되게 바꿔야 함.
         if myTextView.text != placeholder{
             FirebaseModel().postReview(review: myTextView.text, userID: "kim", tagArray: myTagView.getTags(withPrefix: false), timestamp: Int(-1.0 * Date().timeIntervalSince1970),images:["baemin.png"], postDate: postDate)
+            FirebaseModel().postImages(assets: self.imageAssets)
             //print(myTagView.getTags(withPrefix: true))
             print("sent post")
             self.tabBarController?.selectedIndex = 0
@@ -197,8 +192,14 @@ class ReviewPostPageViewController: UIViewController {
         }, cancel: { (assets: [PHAsset]) -> Void in
             print("Cancel")
         }, finish: { (assets: [PHAsset]) -> Void in
-            FirebaseModel().postImages(assets: assets)
-            print("Done, expected num:\(assets.count)")
+            self.imageAssets = assets
+            //FirebaseModel().postImages(assets: assets)
+            for asset in assets{
+                let image = FirebaseModel().getAssetThumbnail(asset: asset)
+                self.imageArray.append(image)
+            }
+            print("done \(self.imageArray)")
+            self.myCollectionView.reloadData()
         }, completion: nil)
     }
     
@@ -257,5 +258,28 @@ extension ReviewPostPageViewController: UITextViewDelegate{
                 textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
             }
         }
+    }
+}
+
+
+extension ReviewPostPageViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(self.imageArray.count + 1)
+        return self.imageArray.count + 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseidentifier", for: indexPath as IndexPath) as! MyCollectionCell
+        if indexPath.row == imageArray.count{
+            cell.imageView.image = UIImage(named:"baemin.png")
+            return cell
+        }
+        cell.imageView.image = imageArray[indexPath.row]
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // handle tap events
+        print("You selected cell #\(indexPath.item)!")
     }
 }

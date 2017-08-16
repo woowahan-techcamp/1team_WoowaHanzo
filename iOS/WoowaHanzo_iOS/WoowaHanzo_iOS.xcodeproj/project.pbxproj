@@ -34,6 +34,7 @@
 		9854BFAC1F340AFC008FA337 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BFAB1F340AFC008FA337 /* MyPage.storyboard */; };
 		9854BFAE1F340B4E008FA337 /* MainPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BFAD1F340B4E008FA337 /* MainPage.storyboard */; };
 		986C8B5F1F3AD59400FC42ED /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C8B5E1F3AD59400FC42ED /* TagListView.swift */; };
+		9894B7611F441F2E00DAB38E /* MyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894B7601F441F2E00DAB38E /* MyCollectionCell.swift */; };
 		98C5637B1F3955180017E68A /* MainPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C5637A1F3955180017E68A /* MainPageTableViewCell.swift */; };
 		98C563C21F39B69D0017E68A /* SearchPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98C563C11F39B69D0017E68A /* SearchPage.storyboard */; };
 		98C563C41F39B6AC0017E68A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C563C31F39B6AC0017E68A /* SearchViewController.swift */; };
@@ -101,6 +102,7 @@
 		9854BFAB1F340AFC008FA337 /* MyPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
 		9854BFAD1F340B4E008FA337 /* MainPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainPage.storyboard; sourceTree = "<group>"; };
 		986C8B5E1F3AD59400FC42ED /* TagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
+		9894B7601F441F2E00DAB38E /* MyCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionCell.swift; sourceTree = "<group>"; };
 		98C5637A1F3955180017E68A /* MainPageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageTableViewCell.swift; sourceTree = "<group>"; };
 		98C563C11F39B69D0017E68A /* SearchPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchPage.storyboard; sourceTree = "<group>"; };
 		98C563C31F39B6AC0017E68A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				9854BF971F3407CF008FA337 /* ReviewPostPageViewController.swift */,
 				984397631F3ACD3200743B63 /* TagFilter.swift */,
 				9843979F1F3C14A000743B63 /* TagView.swift */,
+				9894B7601F441F2E00DAB38E /* MyCollectionCell.swift */,
 			);
 			name = ReviewPostPage;
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 				984397A01F3C14A000743B63 /* TagView.swift in Sources */,
 				98C563C41F39B6AC0017E68A /* SearchViewController.swift in Sources */,
 				9854BF981F3407CF008FA337 /* ReviewPostPageViewController.swift in Sources */,
+				9894B7611F441F2E00DAB38E /* MyCollectionCell.swift in Sources */,
 				9854BF9D1F3407FC008FA337 /* RankPageViewController.swift in Sources */,
 				9854BF591F331203008FA337 /* AppDelegate.swift in Sources */,
 				98C563CB1F39BD930017E68A /* LoginViewController.swift in Sources */,
