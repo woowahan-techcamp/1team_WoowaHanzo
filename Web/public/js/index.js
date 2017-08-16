@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
               var allLoaded = imagesAllLoaded(curImage);
 
               if(prevLoaded($curPost) && allLoaded) {
-                console.log("previous post is loaded!");
                 fadeInPost($curPost);
               }
 
@@ -87,22 +86,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var currentPost = evt.target;
         var anyImage = currentPost.querySelector(".loading");
 
-        if(prevLoaded($curPost) && imagesAllLoaded(anyImage)) {
+        if(prevLoaded($(currentPost)) && imagesAllLoaded(anyImage)) {
           fadeInPost($(evt.target));
-          if($(currentPost).next().length != 0) {
-            $currentPost.next().trigger("postLoaded");
-          }
         }
 
       });
+
+      // handling the thumbnail cover along with the thumbnail number
+      handleThumbnailNumber($curPost, buffer.images.length);
 
     } else {
       $curPost.on("postLoaded", function(evt) {
-        fadeInPost($(evt.target));
-        if($curPost.next().length != 0) {
-          $curPost.next().trigger("postLoaded");
+        var currentPost = evt.target;
+        if(prevLoaded($(currentPost))) {
+          fadeInPost($(currentPost));
+        }
+        if($(currentPost).next().length != 0) {
+          $(currentPost).next().trigger("postLoaded");
         }
       });
+
       $curPost.trigger("postLoaded");
       $curPost.children("table").remove();
       $curPost.addClass("ready");

@@ -6,8 +6,9 @@ more lighter: #99cbed
 success_green: #5cb85c
 */
 
+
 body {
-  font-family: NotoSans !important;
+  font-family: NotoSans, Jua!important;
   /*font-size: 0px;*/
   margin-top: 70px;
   margin-bottom: 0px;
@@ -212,6 +213,7 @@ input:focus {
   -webkit-box-shadow: none;
   outline: -webkit-focus-ring-color none 5px;
 }
+
 .unselectable {
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
@@ -398,7 +400,8 @@ div.img-divgo{
   opacity: 0.6;
   z-index: 3;
   color: #FFF;
-  font-weight: bold;
+  font-family: 'Jua';
+
   text-align: center;
   line-height: 100%;
   font-size: 40px;

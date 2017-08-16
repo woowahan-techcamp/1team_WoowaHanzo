@@ -65,11 +65,10 @@ function isScrolledIntoView(elem) {
 }
 
 function prevLoaded($curPost) {
-  console.log($curPost.prev());
   if($curPost.prev().length == 0) {
     return true;
   } else {
-    if($curPost.prev().css("display") != "none") {
+    if($curPost.prev().css("opacity") == 1) {
       return true;
     } else {
       return false;
@@ -82,12 +81,16 @@ function fadeInPost($curPost) {
 
 	$curPost.animate({
 		opacity: 1.0
-	}, 200);
+	}, 200, function() {
+		if(this.next().length != 0) {
+			this.next().trigger("postLoaded");
+		}
+	}.bind($curPost));
 
 }
 
 function imagesAllLoaded(curImage) {
-
+	
 	curImage.classList.add("loaded");
 	var imageParent = curImage.parentElement.parentElement.parentElement;
 	var allImages = imageParent.querySelectorAll(".loading");
@@ -99,6 +102,16 @@ function imagesAllLoaded(curImage) {
 		}
 	}
 	return allLoaded;
+}
+
+function handleThumbnailNumber($curPost, imagenumber) {
+	var thumbnail_cover = $curPost[0].querySelector(".thumbnail_cover");
+	if(imagenumber < 4) {
+		thumbnail_cover.style.display = "none";
+	} else {
+		thumbnail_cover.innerHTML = "+" + (imagenumber - 3);
+	}
+
 }
 
 function fixExifOrientation($img) {
