@@ -7,7 +7,9 @@
 //
 
 import UIKit
-import ImagePicker
+import BSImagePicker
+import Photos
+
 class ReviewPostPageViewController: UIViewController {
 
     @IBOutlet weak var myView: UIView!
@@ -23,15 +25,16 @@ class ReviewPostPageViewController: UIViewController {
     var myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
     var placeholder = "당신의 귀한 생각.."
     var tagArray = [String]()
+    var imageNameArray = [String]()
+    var imageArray = [UIImage]()
     var textFieldWidth = CGFloat(30)
     var textFieldText = ""
     var keyboardmove = CGFloat(0)
     var savedkeyboardSize = CGRect()
-    let imagePickerController = ImagePickerController()
+    let imagePickerController = BSImagePickerViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imagePickerController.delegate = self
     }
     
     //게시를 누르지 않고 다른 탭을 누르는 경우 알림을 띄우도록
@@ -182,7 +185,16 @@ class ReviewPostPageViewController: UIViewController {
     
     
     @IBAction func addButtonTouched(_ sender: Any) {
-        present(imagePickerController, animated: true, completion: nil)
+        bs_presentImagePickerController(imagePickerController, animated: true,
+                                        select: { (asset: PHAsset) -> Void in
+                                            print("Selected: \(asset)")
+        }, deselect: { (asset: PHAsset) -> Void in
+            print("Deselected: \(asset)")
+        }, cancel: { (assets: [PHAsset]) -> Void in
+            print("Cancel: \(assets)")
+        }, finish: { (assets: [PHAsset]) -> Void in
+            print("Finish: \(assets)")
+        }, completion: nil)
     }
     
     
@@ -240,18 +252,5 @@ extension ReviewPostPageViewController: UITextViewDelegate{
                 textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
             }
         }
-    }
-}
-
-extension ReviewPostPageViewController: ImagePickerDelegate{
-    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]){
-        
-    }
-    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]){
-        dismiss(animated: true, completion: nil)
-
-    }
-    func cancelButtonDidPress(_ imagePicker: ImagePickerController){
-        dismiss(animated: true, completion: nil)
     }
 }
