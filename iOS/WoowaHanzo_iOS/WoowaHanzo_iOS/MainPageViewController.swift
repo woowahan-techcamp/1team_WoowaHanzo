@@ -73,11 +73,14 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         
         if navigationItem.titleView != nil{
             navigationItem.titleView = nil
-             searchIconButton.title = "검색"
+            searchIconButton.title = ""
+            searchIconButton.image = #imageLiteral(resourceName: "searchIcon")
+            
             
         }else{
+            searchIconButton.image = nil
             searchIconButton.title = "취소"
-        showSearchBar()
+            showSearchBar()
         }
     }
     
