@@ -32,6 +32,10 @@ function login() {
   }
 }
 
+function showLoginError(errorCode) {
+
+}
+
 function returnCustomLoginErrorMessage(errorCode) {
   if(errorCode == "auth/invalid-email") {
     return "이메일 형식이 맞지 않습니다."
