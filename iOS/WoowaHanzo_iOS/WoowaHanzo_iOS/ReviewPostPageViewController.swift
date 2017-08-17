@@ -167,9 +167,6 @@ class ReviewPostPageViewController: UIViewController {
         contentSize2.height = myView.frame.size.height + 80
         self.myScrollView.contentSize = contentSize2
         
-        
-        
-        
         //let contentSize2 = self.myView.sizeThatFits(self.myView.bounds.size)
         //var frame3 = self.myView.frame
         //frame3.size.height = contentSize2.height
@@ -178,10 +175,6 @@ class ReviewPostPageViewController: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "keyboard"), object: nil)
         
     }
-    
-    
-    
-    
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
@@ -204,7 +197,13 @@ class ReviewPostPageViewController: UIViewController {
             //print(myTagView.getTags(withPrefix: true))
             print(self.imageNameArray)
             print("sent post")
-            self.tabBarController?.selectedIndex = 0
+            
+            let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
+            self.present(controller, animated: false, completion: nil)
+            
+            
+            //self.tabBarController?.selectedIndex = 0
             
             //등록 표시 나 화면 전환등의 효과 애니메이션 필요.
             
@@ -271,7 +270,7 @@ extension ReviewPostPageViewController: UITextViewDelegate{
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         //글자수 제한.
         let newLength = textView.text.characters.count + text.characters.count - range.length
-        if newLength > 500{
+        if newLength > 500 {
             return false
         }
         
@@ -320,10 +319,12 @@ extension ReviewPostPageViewController: UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == 0{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "buttoncell", for: indexPath as IndexPath)
+            cell.layer.cornerRadius = 3.0
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseidentifier", for: indexPath as IndexPath) as! MyCollectionCell
         cell.imageView.image = imageArray[indexPath.row - 1]
+        cell.layer.cornerRadius = 3.0
         return cell
     }
     
