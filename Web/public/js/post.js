@@ -8,11 +8,14 @@ firebase.auth().onAuthStateChanged(user => {
 document.addEventListener("DOMContentLoaded", function(event) {
   console.log("DOM fully loaded and parsed");
 
-  var uid = firebase.auth().currentUser.uid;
-  var username = firebase.database().ref("users/" + uid + "/username");
-  username.on('value', function(snapshot) {
-    author = snapshot.val();
-    $(".Name").html(author);
+  firebase.auth().onAuthStateChanged(user => {
+    if(user) {
+      var username = firebase.database().ref("users/" + user.uid + "/username");
+      username.on('value', function(snapshot) {
+        author = snapshot.val();
+        $(".Name").html(author);
+      });
+    }
   });
 
   autosize($("textarea"));
