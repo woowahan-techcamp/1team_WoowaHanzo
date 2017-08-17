@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import ImageViewer
 import Kingfisher
 import Firebase
-import Viewer
 
 class MainPageTableViewCell: UITableViewCell {
     

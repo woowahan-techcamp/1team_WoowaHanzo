@@ -320,10 +320,12 @@ extension ReviewPostPageViewController: UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == 0{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "buttoncell", for: indexPath as IndexPath)
+            cell.layer.cornerRadius = 3.0
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseidentifier", for: indexPath as IndexPath) as! MyCollectionCell
         cell.imageView.image = imageArray[indexPath.row - 1]
+        cell.layer.cornerRadius = 3.0
         return cell
     }
     

@@ -44,7 +44,7 @@ class TagView: UIView, UITextFieldDelegate
     var _outerMergine				: CGFloat			  = 5.0
     var _innerMergine				: CGFloat			  = 7.0
     var _autoGlowHeight				: Bool				  = true
-    var _font						: UIFont!
+    var _font						: UIFont               = UIFont(name: "NotoSans", size: 16.0)!
     var _tagBackgroundColor			: UIColor			  = UIColor.white
     var _tagSelectedColor			: UIColor			  = UIColor.white
     var _tagTextColor				: UIColor			  = UIColor(red: CGFloat(52.0/255.0), green: CGFloat(152.0/255.0), blue: CGFloat(219.0/255.0), alpha: CGFloat(1.0))

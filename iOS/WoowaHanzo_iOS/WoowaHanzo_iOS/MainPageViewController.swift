@@ -8,7 +8,6 @@
 
 import UIKit
 import NVActivityIndicatorView
-import Viewer
 
 class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
