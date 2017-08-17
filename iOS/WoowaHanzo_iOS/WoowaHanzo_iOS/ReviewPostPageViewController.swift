@@ -167,9 +167,6 @@ class ReviewPostPageViewController: UIViewController {
         contentSize2.height = myView.frame.size.height + 80
         self.myScrollView.contentSize = contentSize2
         
-        
-        
-        
         //let contentSize2 = self.myView.sizeThatFits(self.myView.bounds.size)
         //var frame3 = self.myView.frame
         //frame3.size.height = contentSize2.height
@@ -178,10 +175,6 @@ class ReviewPostPageViewController: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "keyboard"), object: nil)
         
     }
-    
-    
-    
-    
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
@@ -277,7 +270,7 @@ extension ReviewPostPageViewController: UITextViewDelegate{
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         //글자수 제한.
         let newLength = textView.text.characters.count + text.characters.count - range.length
-        if newLength > 500{
+        if newLength > 500 {
             return false
         }
         
