@@ -2,18 +2,19 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>먹소리 회원가입</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
     <script>
       // Initialize Firebase
       var config = {
-        apiKey: "AIzaSyAW6ZSOQEXi9RKvPufHRlIlpaIuYw4PGNM",
-        authDomain: "fir-playground-51842.firebaseapp.com",
-        databaseURL: "https://fir-playground-51842.firebaseio.com",
-        projectId: "fir-playground-51842",
-        storageBucket: "fir-playground-51842.appspot.com",
-        messagingSenderId: "962296739976"
+        apiKey: "AIzaSyAot_xscB-brcQ1A3V3g0Ka-DEhKr_HlP8",
+        authDomain: "woowaproject.firebaseapp.com",
+        databaseURL: "https://woowaproject.firebaseio.com",
+        projectId: "woowaproject",
+        storageBucket: "woowaproject.appspot.com",
+        messagingSenderId: "609034471288"
       };
       firebase.initializeApp(config);
     </script>
@@ -60,17 +61,13 @@
               </form>
             </li>
             <li>
-              <form class="navbar-form" action="login.html">
-                <button type="submit" class="btn btn-success">Sign in</button>
-              </form>
+              <button type="submit" class="btn btn-success nav_signin_btn">Sign in</button>
             </li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right right_side_icon">
             <li>
-              <form class="navbar-form" action="login.html">
-                <button type="submit" class="btn btn-success">Sign in</button>
-              </form>
+              <button type="submit" class="btn btn-success nav_signin_btn">Sign in</button>
             </li>
           </li>
           </ul>
@@ -84,43 +81,41 @@
           회원가입
         </div>
 
-        <form action="index.html" method="post">
-          <div class="input_holder">
-            <div class="form_container email_container">
-              <i class="fa fa-envelope-o" aria-hidden="true"></i>
-              <input type="text" name="email" id="email" class="signup_required" placeholder="이메일" />
-            </div>
-            <div class="error_msg" id="email_error_msg"></div>
-
-            <div class="form_container username_container">
-              <i class="fa fa-user" aria-hidden="true"></i>
-              <input type="text" name="username" id="username" class="signup_required" placeholder="유저네임" />
-            </div>
-            <div class="error_msg" id="username_error_msg"></div>
-
-            <div class="form_container">
-              <i class="fa fa-lock" aria-hidden="true"></i>
-              <input type="password" name="password" id="password" class="signup_required password" placeholder="비밀번호"/>
-            </div>
-            <div class="error_msg" id="password_error_msg"></div>
-
-            <div class="form_container">
-              <i class="fa fa-lock" aria-hidden="true"></i>
-              <input type="password" name="password" id="password2" class="signup_required password" placeholder="비밀번호확인" />
-            </div>
-            <div class="error_msg" id="password2_error_msg"></div>
-
-            <div class="form_container">
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-              <input type="text" name="sayhi" id="sayhi" placeholder="자신을 소개 해 보세요" maxlength="100" />
-              <div class="count_word" id="sayhi_length">0/100</div>
-            </div>
+        <div class="input_holder">
+          <div class="form_container email_container">
+            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            <input type="text" name="email" id="email" class="signup_required" placeholder="이메일" />
           </div>
+          <div class="error_msg" id="email_error_msg"></div>
 
-          <div class="buttons_holder">
-              <button type="submit" class="signup signup_btn custom_button">회원가입</button>
+          <div class="form_container username_container">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" name="username" id="username" class="signup_required" placeholder="유저네임" />
           </div>
-        </form>
+          <div class="error_msg" id="username_error_msg"></div>
+
+          <div class="form_container">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <input type="password" name="password" id="password" class="signup_required password" placeholder="비밀번호"/>
+          </div>
+          <div class="error_msg" id="password_error_msg"></div>
+
+          <div class="form_container">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+            <input type="password" name="password" id="password2" class="signup_required password" placeholder="비밀번호확인" />
+          </div>
+          <div class="error_msg" id="password2_error_msg"></div>
+
+          <div class="form_container">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <input type="text" name="sayhi" id="sayhi" placeholder="자신을 소개 해 보세요" maxlength="100" />
+            <div class="count_word" id="sayhi_length">0/100</div>
+          </div>
+        </div>
+
+        <div class="buttons_holder">
+            <button type="submit" class="signup signup_btn custom_button" disabled>회원가입</button>
+        </div>
       </div>
     </div>
   </body>

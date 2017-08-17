@@ -553,6 +553,41 @@ div.img-divgo{
   height: 100px;
 }
 
+//////////
+.nav_signin_btn {
+  margin-top: 8px;
+}
+
+.nav_user_info {
+  display: inline-block;
+}
+
+.nav_user_info {
+
+}
+
+.nav_user_img {
+  width: 37px;
+  height: 37px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.nav_user_img img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+
+.nav_username {
+  /*outline: 1px solid white;*/
+  color: #fff;
+  line-height: 50px;
+  display: inline-block;
+}
+///////////
 
 @media (max-width: 600px) {
   div.img-divgo{

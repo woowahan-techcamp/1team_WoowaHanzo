@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>먹소리</title>
+    <title>먹소리 마이페이지</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css"  />
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/mypage.css">
 
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
     <script>
@@ -26,7 +27,8 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <!-- <script src="js/main.js"></script> -->
+    <script src="js/main.js"></script>
+    <script src="js/mypage.js"></script>
   </head>
 
   <body>
@@ -61,17 +63,13 @@
               </form>
             </li>
             <li>
-              <form class="navbar-form" action="login.html">
-                <button type="submit" class="btn btn-success">Sign in</button>
-              </form>
+              <button type="submit" class="btn btn-success nav_signin_btn">Sign in</button>
             </li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right right_side_icon">
             <li>
-              <form class="navbar-form" action="login.html">
-                <button type="submit" class="btn btn-success">Sign in</button>
-              </form>
+              <button type="submit" class="btn btn-success nav_signin_btn">Sign in</button>
             </li>
           </li>
           </ul>
@@ -80,7 +78,11 @@
     </nav>
 
     <div class="container_box">
-      마이페이지. 로그인 되어있지 않으면 로그인으로 보내야함....
+      <div id="user_email"></div>
+      <div id="user_username"></div>
+      <div id="user_sayhi"></div>
+
+      <button id="logout">로그아웃</button>
     </div>
 
   </body>

@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>먹소리 태그 테스트</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>태그 테스트</title>
+
     <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"  />
     <link href="css/post.css" rel="stylesheet" type="text/css" />
     <link href="css/main.css" rel="stylesheet" type="text/css" />
     <link href="css/test-tag.css" rel="stylesheet" type="text/css" />
 
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAot_xscB-brcQ1A3V3g0Ka-DEhKr_HlP8",
+        authDomain: "woowaproject.firebaseapp.com",
+        databaseURL: "https://woowaproject.firebaseio.com",
+        projectId: "woowaproject",
+        storageBucket: "woowaproject.appspot.com",
+        messagingSenderId: "609034471288"
+      };
+      firebase.initializeApp(config);
+    </script>
+
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/autogrow.js"></script>
     <script src="js/autosize.js"></script>
     <script src="js/test-tag.js"></script>
@@ -48,17 +64,13 @@
               </form>
             </li>
             <li>
-              <form class="navbar-form" action="login.html">
-                <button type="submit" class="btn btn-success">Sign in</button>
-              </form>
+              <button type="submit" class="btn btn-success nav_signin_btn">Sign in</button>
             </li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right right_side_icon">
             <li>
-              <form class="navbar-form" action="login.html">
-                <button type="submit" class="btn btn-success">Sign in</button>
-              </form>
+              <button type="submit" class="btn btn-success nav_signin_btn">Sign in</button>
             </li>
           </li>
           </ul>
