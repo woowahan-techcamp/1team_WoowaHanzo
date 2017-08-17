@@ -197,6 +197,9 @@
                                 <state key="normal" title="가입!">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="registerButtonTouched:" destination="csN-yD-Upv" eventType="touchUpInside" id="6ag-SS-06q"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="한마디" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="p4f-0M-c14">
                                 <rect key="frame" x="26" y="361" width="254" height="44"/>
