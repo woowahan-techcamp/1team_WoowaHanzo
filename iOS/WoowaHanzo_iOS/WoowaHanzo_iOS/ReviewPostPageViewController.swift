@@ -37,9 +37,10 @@ class ReviewPostPageViewController: UIViewController {
         super.viewDidLoad()
         myCollectionView.dataSource = self
         myCollectionView.delegate = self
+        myCollectionView.allowsSelection = true
         myTagView.removeFromSuperview()
         myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
-        myTextView.delegate = self as! UITextViewDelegate
+        myTextView.delegate = self as UITextViewDelegate
         //keyboard notification
         NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -79,8 +80,17 @@ class ReviewPostPageViewController: UIViewController {
         
         //keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
+        //tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
         //myView.addGestureRecognizer(tap)
+        let tap2: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
+        tap2.cancelsTouchesInView = false
+        myCollectionView.addGestureRecognizer(tap2)
+        
+        let tap3: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
+        tap3.cancelsTouchesInView = false
+        myTagView.addGestureRecognizer(tap3)
+        
     }
     
     //게시를 누르지 않고 다른 탭을 누르는 경우 알림을 띄우도록
@@ -105,7 +115,7 @@ class ReviewPostPageViewController: UIViewController {
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             //if self.view.frame.origin.y != 0{
             self.view.frame.origin.y -= keyboardmove
             //self.myView.frame.origin.y -= keyboardmove
@@ -173,6 +183,8 @@ class ReviewPostPageViewController: UIViewController {
         let postDate = formatter.string(from: Date())
         //if user insert same text as placeholder, it will not send post.
         //지금은 그냥 놔두지만 나중에 user가 placeholder와 똑같은 글을 쓸때도 send가되게 바꿔야 함.
+        
+        //글자가 회색이면 안보내게 하자.
         if myTextView.text != placeholder{
             //DispatchQueue.global().sync{
             FirebaseModel().postReview(review: myTextView.text, userID: "kim", tagArray: myTagView.getTags(withPrefix: false), timestamp: Int(-1.0 * Date().timeIntervalSince1970),images:self.imageNameArray, postDate: postDate)
@@ -297,7 +309,12 @@ extension ReviewPostPageViewController: UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // handle tap events
-        print("You selected cell #\(indexPath.item)!")
+        print("ah - oh")
+        if indexPath.row > 0 {
+            imageArray.remove(at: indexPath.row - 1)
+            imageNameArray.remove(at: indexPath.row - 1)
+            myCollectionView.deleteItems(at: [indexPath])
+            print("delete")
+        }
     }
 }
