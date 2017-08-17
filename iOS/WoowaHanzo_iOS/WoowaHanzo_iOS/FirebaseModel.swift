@@ -29,6 +29,7 @@ class FirebaseModel{
     }
     
     func postImages(assets:[PHAsset], names:[String]){
+        print("posting: \(assets.count) \(names.count)")
         for i in 0..<assets.count{
             let asset = assets[i]
             let image = self.getAssetThumbnail(asset: asset)

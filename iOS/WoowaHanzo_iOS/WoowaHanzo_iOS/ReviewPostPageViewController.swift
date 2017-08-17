@@ -219,9 +219,10 @@ class ReviewPostPageViewController: UIViewController {
         }, cancel: { (assets: [PHAsset]) -> Void in
             print("Cancel")
         }, finish: { (assets: [PHAsset]) -> Void in
-            self.imageAssets = assets
+            //self.imageAssets = assets
             //FirebaseModel().postImages(assets: assets)
             for asset in assets{
+                self.imageAssets.append(asset)
                 let image = FirebaseModel().getAssetThumbnail(asset: asset)
                 self.imageArray.append(image)
                 self.imageNameArray.append("images/\(Date().timeIntervalSince1970)")
@@ -313,6 +314,7 @@ extension ReviewPostPageViewController: UICollectionViewDelegate, UICollectionVi
         if indexPath.row > 0 {
             imageArray.remove(at: indexPath.row - 1)
             imageNameArray.remove(at: indexPath.row - 1)
+            imageAssets.remove(at: indexPath.row - 1)
             myCollectionView.deleteItems(at: [indexPath])
             print("delete")
         }
