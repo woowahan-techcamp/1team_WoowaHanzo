@@ -211,6 +211,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="nickName" destination="yb9-hj-g43" id="upH-rM-a8y"/>
+                        <outlet property="registerEmailTextField" destination="VrF-Gw-5EA" id="CNq-oa-zZI"/>
+                        <outlet property="registerPwTextField" destination="R3T-oo-oQn" id="hLO-C4-hCi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="73D-DW-4v5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
