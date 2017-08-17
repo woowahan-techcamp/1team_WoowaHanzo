@@ -130,7 +130,7 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
         }
         cell.timeLabel.text = Date().postTimeDisplay(postDate: User.users[indexPath.section].postDate)
         cell.FoodImageCollectionView.reloadData()
-        print(User.users[indexPath.section].imageArray)
+        //print(User.users[indexPath.section].imageArray)
         
         return cell
     }
