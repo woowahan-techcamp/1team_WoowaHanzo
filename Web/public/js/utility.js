@@ -116,7 +116,13 @@ function handleThumbnailNumber($curPost, imagenumber) {
 		thumbnail_cover.style.display = "none";
 	} else {
 		thumbnail_cover.innerHTML = "+" + (imagenumber - 3);
+		thumbnail_cover.addEventListener("click", function(evt) {
+			var thumbnail = evt.target.parentElement;
+			var image = thumbnail.querySelector("img");
+			image.click();
+		})
 	}
+
 
 }
 
@@ -174,12 +180,14 @@ function fixExifOrientation($img) {
 
 
 function resizeThumbnails() {
-  $(".image_thumbnails td").each(function(index, elem) {
-
-    var bufferWidth = $(".image_thumbnails td")[0].offsetWidth;
+  $(".image_thumbnails td").each(function(index, elem) {"click touchstart"
+		var thumbnailHolder = elem.parentElement;
+		var td = thumbnailHolder.querySelector("td");
+    var bufferWidth = td.offsetWidth;
     elem.style.height = bufferWidth + "px";
-    if($(".thumbnail_cover").last().length > 0) {
-        $(".thumbnail_cover").last()[0].style.lineHeight = bufferWidth - 20 + "px";
+		var thumbnail_cover = elem.querySelector(".thumbnail_cover");
+    if(thumbnail_cover) {
+        thumbnail_cover.style.lineHeight = bufferWidth - 20 + "px";
     }
 
   });
@@ -196,6 +204,7 @@ function showGallery(urls, i) {
 }
 
 function galleryLeft() {
+	$(window).resize();
 	var curIndex = pageObject.galleryIndex;
 	var galleryLength = pageObject.galleryURLs.length;
 	if(curIndex == 0) {
@@ -243,7 +252,6 @@ function loadPosts(snapshot) {
   $(".container_box").append(pageObject.postTemplate(buffer));
 
   var $curPost = $("#post_" + buffer.id);
-  //fadeInPost($curPost);
 
   if(buffer.images) {
     // only three images are loaded at a time
@@ -254,7 +262,7 @@ function loadPosts(snapshot) {
 			$curObject.id = buffer.id;
       $curObject.i = i;
       var filename = buffer.images[i];
-      if(i < 3) {
+      if(i < buffer.images.length) {
         if(!filename) continue;
         var downloadUrl = storageRef.child('images/' + filename).getDownloadURL();
 				downloadUrl.then(function(url) {
@@ -278,7 +286,7 @@ function loadPosts(snapshot) {
 
           }.bind(this));
 
-					imageParent.on("click", function(evt) {
+					imageParent.on("click touchstart", function(evt) {
 						var curImage = evt.target;
 
 						showGallery(pageObject.imageUrls[this.id], this.i);
@@ -293,8 +301,11 @@ function loadPosts(snapshot) {
         var imageParent = $curPost.children("table").children("tbody").children("tr");
 
         imageParent = imageParent.children("td").get(i);
-        imageParent = $(imageParent).children("div").children("img");
-        imageParent.classList.add("loaded");
+				imageParent.style.display = "none";
+				//console.log(imageParent.outerHTML);
+
+        //imageParent = $(imageParent).children("div").children("img");
+        //imageParent.classList.add("loaded");
 
       } else {
         storageRef.child('images/' + filename).getDownloadURL().then(function(url) {
@@ -360,10 +371,63 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 
 	}
 
-	$("#galleryoverlay").on("click", function(evt) {
+	$(window).resize(function() {
+		resizeThumbnails();
+	});
+
+	$("#galleryoverlay").on("click touchstart", function(evt) {
 		$('#galleryoverlay').css('display', 'none');
 		$('#justblackbackground').css('display', 'none');
 		$('#actualimage').css('display', 'none');
+		$("#navleft").css("opacity", 0.0);
+		$("#navright").css("opacity", 0.0);
+	});
+
+	$("#actualimage").on("mousemove", function(evt) {
+		var mouseX = evt.clientX;
+		var actualimage = document.querySelector("#actualimage");
+		mouseX -= actualimage.getBoundingClientRect().left;
+		var width = actualimage.offsetWidth;
+		if(mouseX < width / 2) {
+			$("#navright").css("opacity", 0.0);
+			$("#navleft").css("opacity", 1.0);
+		} else {
+			$("#navleft").css("opacity", 0.0);
+			$("#navright").css("opacity", 1.0);
+		}
+	});
+
+	$("#actualimage").on("mouseout", function(evt) {
+		$("#navright").css("opacity", 0.0);
+		$("#navleft").css("opacity", 0.0);
+	});
+
+	$("#navleft, #navright").on("mouseover", function(evt) {
+		evt.target.style.opacity = 1.0;
+	});
+
+	$("#navleft, #navright").on("mouseout", function(evt) {
+		evt.target.style.opacity = 0.0;
+	});
+
+
+	$("#actualimage").on("click touchstart", function(evt) {
+		evt.stopPropagation();
+		var mouseX = evt.clientX;
+		var actualimage = document.querySelector("#actualimage");
+		mouseX -= actualimage.getBoundingClientRect().left;
+		var width = actualimage.offsetWidth;
+		if(mouseX < width / 2) {
+			console.log("Left");
+			$("#navleft").click();
+		} else {
+			console.log("Right");
+			$("#navright").click();
+		}
+	});
+
+	$("#actualimage").on("load", function(evt) {
+		$(window).resize();
 	});
 
 	$(window).resize(function() {
@@ -381,12 +445,12 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 	});
 
 
-	$("#navleft").on("click", function(evt) {
+	$("#navleft").on("click touchstart", function(evt) {
 		evt.stopPropagation();
 		galleryLeft();
 	});
 
-	$("#navright").on("click", function(evt) {
+	$("#navright").on("click touchstart", function(evt) {
 		evt.stopPropagation();
 		galleryRight();
 	});

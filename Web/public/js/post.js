@@ -141,14 +141,12 @@ function refineText(text) {
 }
 
 var imageList = [];
+var imgList = [];
 
 function imageHandle(evt) {
 
   // resetting imageList
-  imageList = [];
-
-  var templatetext = document.querySelector("#image_preview").innerHTML;
-  var template = Handlebars.compile(templatetext);
+  // imageList = [];
 
   var fileInput = document.getElementById('image_input');
 
@@ -165,21 +163,8 @@ function imageHandle(evt) {
     var reader = new FileReader();
     reader.id = i;
 
-    $(".container_box").append(template(reader));
-
-    if($(".image_thumbnails tr").last().children("td").length < 3) {
-      $(".image_thumbnails tr").last().append(template(reader));
-    } else {
-      $(".image_thumbnails").append("<tr></tr>");
-      $(".image_thumbnails tr").last().append(template(reader));
-    }
-
     var filename = "";
     reader.onload = function(e) {
-
-      var fileDisplayArea = document.getElementById(this.id.toString());
-
-      fileDisplayArea.innerHTML = "";
       // Create a new image.
       var img = new Image();
       // Set the img src property using the data URL.
@@ -203,8 +188,6 @@ function imageHandle(evt) {
         }
       }
 
-      fileDisplayArea.appendChild(img);
-
       var newfilename = (new Date().getTime()).toString() + '.' + filename.split('.')[1];
 
       img.filename = filename;
@@ -214,7 +197,7 @@ function imageHandle(evt) {
       newImage.image = files[this.id];
 
       imageList.push(newImage);
-
+      imgList.push(img);
 
       // what to do during image load
       img.addEventListener("load", function() {
@@ -222,11 +205,39 @@ function imageHandle(evt) {
         console.log(imageList);
       });
 
+      renderPreviewThumbnails();
+
     }
+
     reader.readAsDataURL(f);
 
   }
 
+}
+
+function renderPreviewThumbnails() {
+  var templatetext = document.querySelector("#image_preview").innerHTML;
+  var template = Handlebars.compile(templatetext);
+  $(".image_thumbnails").children("tbody").html("<tr></tr>");
+  for(var i = 0 ; i < imageList.length; ++i) {
+
+    var reader = {};
+    reader.id = i;
+
+    $(".container_box").append(template(reader));
+
+    if($(".image_thumbnails tr").last().children("td").length < 3) {
+      $(".image_thumbnails tr").last().append(template(reader));
+    } else {
+      $(".image_thumbnails").append("<tr></tr>");
+      $(".image_thumbnails tr").last().append(template(reader));
+    }
+
+    var fileDisplayArea = document.getElementById(i);
+    fileDisplayArea.appendChild(imgList[i]);
+    resizeThumbnails();
+
+  }
 }
 
 function uploadPost() {
@@ -275,6 +286,12 @@ function writeNewPost(uid, username, body, tags) {
     promises.push(imageRef.put(image));
   }
 
+  // uploading tags
+  for(var i = 0; i < tags.length; ++i) {
+    var tagUpdates = {};
+    tagUpdates['/tags/' + tags[i]] = "";
+    promises.push(firebase.database().ref().update(tagUpdates));
+  }
   console.log(postData);
   // Get a key for a new Post.
   var newPostKey = firebase.database().ref().child('posts').push().key;
