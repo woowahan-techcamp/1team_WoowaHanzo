@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var user = firebase.auth().currentUser;
       var username = "";
 
-      $(".user_email").html("유저네임: " + user.email);
+      // $(".user_email").html("유저네임: " + user.email);
 
       var username = firebase.database().ref("users/" + user.uid + "/username");
       username.on('value', function(snapshot) {
