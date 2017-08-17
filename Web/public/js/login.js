@@ -35,7 +35,15 @@ function login() {
     });
   }
   else {
-    showLoginErrorModal("이메일과 비밀번호를 입력해주십시오.");
+    if(!email && password) {
+      showLoginErrorModal("이메일을 입력해주십시오.");
+    }
+    else if(email && !password) {
+      showLoginErrorModal("비밀번호를 입력해주십시오.");
+    }
+    else {
+      showLoginErrorModal("이메일과 비밀번호를 입력해주십시오.");
+    }
   }
 }
 
