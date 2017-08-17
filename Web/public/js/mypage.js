@@ -13,12 +13,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var username = firebase.database().ref("users/" + user.uid + "/username");
       username.on('value', function(snapshot) {
         username = snapshot.val();
-        $("#user_username").html("유저네임: " + username);
+        $("#mypage_username").html(username);
       });
 
       var sayhi = firebase.database().ref("users/" + user.uid + "/sayhi");
       sayhi.on('value', function(snapshot) {
-        $("#user_sayhi").html("자기소개: " + snapshot.val());
+        $("#mypage_user_sayhi").html(snapshot.val());
       });
 
 
