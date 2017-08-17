@@ -238,7 +238,16 @@ function uploadPost() {
     }
   });
 
-  var promise = writeNewPost("아무거나", "jhyang12345", postText, postTags);
+  var uid = firebase.auth().currentUser.uid;
+  var username = firebase.database().ref("users/" + user.uid + "/username");
+  username.on('value', function(snapshot) {
+    author = snapshot.val();
+    
+    $(".mypage_username").html(username);
+  });
+
+
+  var promise = writeNewPost(uid, author, postText, postTags);
   promise.then(function() {
      window.location="./index.html";
   });
