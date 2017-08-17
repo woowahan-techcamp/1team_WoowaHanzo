@@ -15,6 +15,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
     var firebaseModel = FirebaseModel()
     var searchBar = UISearchBar()
+    let cellSpacingHeight: CGFloat = 15
 
 
     @IBOutlet weak var mainpageTableView: UITableView!
@@ -36,12 +37,12 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
 
         searchBar.alpha = 0
         searchBar.searchBarStyle = UISearchBarStyle.minimal
-       
+        mainpageTableView.reloadData()
     }
     
     func reloadTableData(){
         mainpageTableView.reloadData()
-        
+    
 
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +60,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
             self.stopAnimating()
         }
+        
 
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -100,33 +102,38 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
 
 //MARK: TableView extension
 extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
-    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return User.users.count
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return User.users.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as!MainPageTableViewCell
-        cell.contentsTextView.text = User.users[indexPath.row].contents
-        cell.nickNameButton.setTitle(User.users[indexPath.row].nickName, for: .normal)
+        cell.contentsTextView.text = User.users[indexPath.section].contents
+        cell.nickNameButton.setTitle(User.users[indexPath.section].nickName, for: .normal)
         cell.tagListView.reset()
-        cell.userid = indexPath.row
-        if let tag = User.users[indexPath.row].tagsArray{
+        cell.userid = indexPath.section
+        if let tag = User.users[indexPath.section].tagsArray{
             for index in tag{
-                cell.tagListView.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.blue)
+                cell.tagListView.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.gray)
             }
         }
-        cell.timeLabel.text = Date().postTimeDisplay(postDate: User.users[indexPath.row].postDate)
+        cell.timeLabel.text = Date().postTimeDisplay(postDate: User.users[indexPath.section].postDate)
         cell.FoodImageCollectionView.reloadData()
-        print(User.users[indexPath.row].imageArray)
+        print(User.users[indexPath.section].imageArray)
     
         return cell
     }
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat{
         return UITableViewAutomaticDimension
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return cellSpacingHeight
     }
 
    

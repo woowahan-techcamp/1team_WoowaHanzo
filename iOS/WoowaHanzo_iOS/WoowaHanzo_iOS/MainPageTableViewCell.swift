@@ -23,7 +23,7 @@ class MainPageTableViewCell: UITableViewCell {
     
     var items: [DataItem] = []
     var userid : Int = 0 
-    @IBOutlet weak var reviewView: UIView!
+    //@IBOutlet weak var reviewView: UIView!
     @IBOutlet weak var likeButton: UIButton!
     //@IBOutlet weak var mainpageCollectionView: UICollectionView!
     @IBOutlet weak var contentsTextView: UITextView!
@@ -42,10 +42,6 @@ class MainPageTableViewCell: UITableViewCell {
         FoodImageCollectionView.dataSource = self
         profileImageView.layer.cornerRadius = 0.5 * profileImageView.bounds.size.width
         profileImageView.clipsToBounds = true
-        reviewView.layer.borderWidth = 1.0
-        reviewView.layer.borderColor = UIColor.gray.cgColor
-        reviewView.layer.cornerRadius = 30.0
-        reviewView.clipsToBounds = true
         
         
     }
@@ -76,15 +72,12 @@ extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDe
         //        }
         if let imageArray = User.users[userid].imageArray{
             print(User.users[userid])
-           
+                print("A")
                 let ref = Storage.storage().reference(withPath: imageArray[indexPath.row]).downloadURL { (url, error) in
                     //print(imageArray)
-                    DispatchQueue.main.async {
-                        cell.foodImageView.kf.setImage(with: url)
-                        //self.collectionView.reloadData()
-                    }
-                
-            
+                    cell.foodImageView.kf.setImage(with: url)
+                    print(url)
+                    
             }
         }
         
