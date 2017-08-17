@@ -52,7 +52,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Nuh-d4-o4m">
-                                                        <rect key="frame" x="8" y="321" width="357" height="100"/>
+                                                        <rect key="frame" x="0.0" y="321" width="373" height="100"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="c4A-2u-5VF">
@@ -70,7 +70,7 @@
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vic-FS-pyA">
-                                                                            <rect key="frame" x="13" y="5" width="73" height="89"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             <state key="normal" backgroundImage="add-square_318-121632.jpg"/>
                                                                             <connections>
@@ -144,6 +144,7 @@
                                 <items>
                                     <navigationItem title="글쓰기" id="fmo-xp-Gtn">
                                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="compose" id="9fm-Li-ZqK">
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="postButtonTouched:" destination="YiP-LH-sjR" id="BUX-HK-aku"/>
                                             </connections>

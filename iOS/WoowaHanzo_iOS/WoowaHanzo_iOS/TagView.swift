@@ -52,7 +52,7 @@ class TagView: UIView, UITextFieldDelegate
     var _tagMaxCharactors			: Int				  = 100
     var _tagCharCountLabel			: UILabel!
     var _addButtonBackgroundColor	: UIColor			  = UIColor.white
-    var _addButtonTextColor			: UIColor			  = UIColor(red: CGFloat(112.0/255.0), green: CGFloat(182.0/255.0), blue: CGFloat(229.0/255.0), alpha: CGFloat(1.0))
+    var _addButtonTextColor			: UIColor			  = UIColor(red: CGFloat(52.0/255.0), green: CGFloat(152.0/255.0), blue: CGFloat(219.0/255.0), alpha: CGFloat(1.0))
     var _enableEdit					: Bool				  = true
     var _maxTagCount				: Int				  = 1000
     var _tagCount					: Int				  = 0
