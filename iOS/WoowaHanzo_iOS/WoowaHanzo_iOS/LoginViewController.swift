@@ -36,6 +36,11 @@ class LoginViewController: UIViewController,NVActivityIndicatorViewable {
                         self.dismiss(animated: true, completion: nil)
                         
                     }
+                    else{
+                        self.stopAnimating()
+                        self.emailValidationLabel.isHidden = false
+
+                    }
                 })
                 
             }
