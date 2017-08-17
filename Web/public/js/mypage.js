@@ -8,17 +8,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var user = firebase.auth().currentUser;
       var username = "";
 
-      $("#user_email").html("유저네임: " + user.email);
+      $(".user_email").html("유저네임: " + user.email);
 
       var username = firebase.database().ref("users/" + user.uid + "/username");
       username.on('value', function(snapshot) {
         username = snapshot.val();
-        $("#mypage_username").html(username);
+        $(".mypage_username").html(username);
       });
 
       var sayhi = firebase.database().ref("users/" + user.uid + "/sayhi");
       sayhi.on('value', function(snapshot) {
-        $("#mypage_user_sayhi").html(snapshot.val());
+        $(".mypage_user_sayhi").html(snapshot.val());
       });
 
 
