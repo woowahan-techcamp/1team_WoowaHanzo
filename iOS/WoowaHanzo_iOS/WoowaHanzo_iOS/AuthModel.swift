@@ -19,6 +19,7 @@ class AuthModel{
             return false
         }
     }
+    
     static func login(email:String,pw:String, completion: @escaping (Bool)->()){
         Auth.auth().signIn(withEmail: email, password: pw) { (user, error) in
             if user != nil{
@@ -29,13 +30,19 @@ class AuthModel{
             }
         }
     }
-    static func register(){
-        //있는 닉네임인지 체크.
+    static func register(email:String,pw:String,completion : @escaping (Bool)->()){
+        Auth.auth().createUser(withEmail: email, password: pw) { (user, error) in
+            if user != nil{
+                completion(true)
+            }
+            else{
+                completion(false)
+            }
+       }
         
+    
     }
-//    func validPassword(pwText: String)->Bool{
-//       
-//    }
+
     func logout(){
         let firebaseAuth = Auth.auth()
         do {
