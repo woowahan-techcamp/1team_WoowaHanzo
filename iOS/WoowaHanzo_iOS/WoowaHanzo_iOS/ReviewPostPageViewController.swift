@@ -204,7 +204,13 @@ class ReviewPostPageViewController: UIViewController {
             //print(myTagView.getTags(withPrefix: true))
             print(self.imageNameArray)
             print("sent post")
-            self.tabBarController?.selectedIndex = 0
+            
+            let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
+            self.present(controller, animated: false, completion: nil)
+            
+            
+            //self.tabBarController?.selectedIndex = 0
             
             //등록 표시 나 화면 전환등의 효과 애니메이션 필요.
             

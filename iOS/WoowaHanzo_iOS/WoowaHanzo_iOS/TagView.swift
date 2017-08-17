@@ -31,6 +31,7 @@ public enum TagViewOptions
 // ------------------------------------------------------------------------------------------------
 class TagView: UIView, UITextFieldDelegate
 {
+    var dummy = UITextField(frame: CGRect( x: -300, y: -300, width: 10, height: 20 ))
     var _scrollView					: UIScrollView!
     var _tagIndex					: Int				  = 0
     var _touchTagIndex				: Int				  = -1
@@ -351,6 +352,10 @@ class TagView: UIView, UITextFieldDelegate
         let newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
         if TagFilter().isValid4(newString){
             Timer.scheduledTimer( timeInterval: 0.05, target: self, selector: #selector( onTimerTextField ), userInfo: _tagFields[ textField.tag ]!, repeats: false )
+            //print(newString)
+            //dummy.text = newString
+            //dummy.sizeToFit()
+            //textField.frame.size.width = dummy.frame.size.width
             return true
         }
         return false
@@ -374,6 +379,20 @@ class TagView: UIView, UITextFieldDelegate
             removeTag( tagField: _tagFields[ textField.tag ]! )
             _tagCount -= 1
             _addButton.isHidden = ( _maxTagCount - _tagCount ) == 0
+        }
+        else
+        {
+            fitTag( tagField: _tagFields[ textField.tag ]! )
+        }
+        updateLayout()
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.text == "" || textField.text == _tagPrefix
+        {
+            //removeTag( tagField: _tagFields[ textField.tag ]! )
+            //_tagCount -= 1
+            //_addButton.isHidden = ( _maxTagCount - _tagCount ) == 0
         }
         else
         {
