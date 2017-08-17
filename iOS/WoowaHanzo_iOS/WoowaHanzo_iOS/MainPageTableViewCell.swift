@@ -7,10 +7,9 @@
 //
 
 import UIKit
-import ImageViewer
 import Kingfisher
 import Firebase
-import Viewer
+import FTImageViewer
 
 class MainPageTableViewCell: UITableViewCell {
     
@@ -75,10 +74,11 @@ extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDe
 
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-        guard let collectionView = self.FoodImageCollectionView else { return }
         
     }
+    
 }
 
 
