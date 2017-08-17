@@ -77,6 +77,7 @@ class ReviewPostPageViewController: UIViewController {
         myContentView.addSubview(myView)
         myScrollView.addSubview(myContentView)
         myScrollView.contentSize.height = 1500
+        myContentView.frame.size.height = 3000
         
         fitView()
         //keyboard
@@ -101,16 +102,22 @@ class ReviewPostPageViewController: UIViewController {
             if self.view.frame.origin.y == 0{
                 //keyboardSize.height
                 keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView._scrollView.contentSize.height - 65 - keyboardSize.height), (CGFloat)(0))
-                self.view.frame.origin.y += keyboardmove
-                //self.myView.frame.origin.y += keyboardmove
+                //self.view.frame.origin.y += keyboardmove
+                self.myView.frame.origin.y += keyboardmove
+                //self.myContentView.frame.origin.y += keyboardmove
+
             }
         }
         else{
-            print("called")
-            self.view.frame.origin.y -= keyboardmove
+            //self.view.frame.origin.y -= keyboardmove
+            //self.myContentView.frame.origin.y -= keyboardmove
+            self.myView.frame.origin.y -= keyboardmove
+
             keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView._scrollView.contentSize.height - 65 - savedkeyboardSize.height), (CGFloat)(0))
-            self.view.frame.origin.y += keyboardmove
-            //self.myView.frame.origin.y += keyboardmove
+            //self.view.frame.origin.y += keyboardmove
+            self.myView.frame.origin.y += keyboardmove
+            //self.myContentView.frame.origin.y += keyboardmove
+
             print(savedkeyboardSize.height)
         }
     }
@@ -118,8 +125,11 @@ class ReviewPostPageViewController: UIViewController {
     func keyboardWillHide(notification: NSNotification) {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             //if self.view.frame.origin.y != 0{
-            self.view.frame.origin.y -= keyboardmove
-            //self.myView.frame.origin.y -= keyboardmove
+            //self.view.frame.origin.y -= keyboardmove
+            self.myView.frame.origin.y -= keyboardmove
+            self.myView.frame.origin.y = 23
+            //self.myContentView.frame.origin.y -= keyboardmove
+
             //}
         }
     }
@@ -142,6 +152,7 @@ class ReviewPostPageViewController: UIViewController {
         frame3.origin.y = self.myTextView.frame.origin.y + myTextView.frame.height + 10
         frame3.size.height = self.myTagView._scrollView.frame.height
         shadowView.frame = frame3
+        
         print("height:\(myTagView._scrollView.contentSize.height)")
         
         var frame4 = self.myCollectionView.frame
@@ -186,7 +197,7 @@ class ReviewPostPageViewController: UIViewController {
         //지금은 그냥 놔두지만 나중에 user가 placeholder와 똑같은 글을 쓸때도 send가되게 바꿔야 함.
         
         //글자가 회색이면 안보내게 하자.
-        if myTextView.text != placeholder{
+        if myTextView.textColor != UIColor.lightGray{
             //DispatchQueue.global().sync{
             FirebaseModel().postReview(review: myTextView.text, userID: "kim", tagArray: myTagView.getTags(withPrefix: false), timestamp: Int(-1.0 * Date().timeIntervalSince1970),images:self.imageNameArray, postDate: postDate)
             FirebaseModel().postImages(assets: self.imageAssets, names: self.imageNameArray)
