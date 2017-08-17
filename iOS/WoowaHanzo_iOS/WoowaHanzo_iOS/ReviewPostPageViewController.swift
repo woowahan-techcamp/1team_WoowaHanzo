@@ -269,6 +269,12 @@ extension ReviewPostPageViewController: UITextViewDelegate{
     
         //setting placeholder to appear only when textview is empty
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        //글자수 제한.
+        let newLength = textView.text.characters.count + text.characters.count - range.length
+        if newLength > 500{
+            return false
+        }
+        
         let currentText = textView.text as NSString?
         let updatedText = currentText?.replacingCharacters(in: range, with: text)
         
