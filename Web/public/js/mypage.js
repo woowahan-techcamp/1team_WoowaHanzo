@@ -43,7 +43,27 @@ document.addEventListener("DOMContentLoaded", function(event) {
           // An error happened.
         });
       });
+
+      $(".mypage_user_image_box img").on("click", function() {
+          $("#profile_image_input").trigger("click");
+      });
+
+      $("#profile_image_input").on("change", function() {
+        readURL(this);
+      });
+
     }
   });
-
 });
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $(".mypage_user_image_box img").attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
