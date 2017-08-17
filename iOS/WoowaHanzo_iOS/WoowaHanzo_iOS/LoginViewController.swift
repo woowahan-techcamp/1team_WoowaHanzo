@@ -21,12 +21,12 @@ class LoginViewController: UIViewController,NVActivityIndicatorViewable {
         emailValidationLabel.isHidden = true
     }
 
+    
     @IBAction func loginButtonTouched(_ sender: Any) {
         self.view.endEditing(true)
         let size = CGSize(width: 30, height: 30)
         
         self.startAnimating(size, message: "Authenticating...", type: .ballTrianglePath)
-        
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
             NVActivityIndicatorPresenter.sharedInstance.setMessage("Authenticating...")
             if let email = self.emailTextField.text,let pw  = self.pwTextField.text{
