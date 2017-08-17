@@ -19,6 +19,15 @@ class MyPageViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
+    @IBAction func logout(_ sender: Any) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         if !AuthModel.isLoginStatus(){
             
