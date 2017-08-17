@@ -7,10 +7,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
       window.location.href = 'login.html';
     }
     else {
-      var username = firebase.database().ref("users/" + user.uid + "/username");
+      var uid = firebase.auth().currentUser.uid;
+      var username = firebase.database().ref("users/" + uid + "/username");
       username.on('value', function(snapshot) {
-        username = snapshot.val();
-        $(".Name").html(username);
+        author = snapshot.val();
+        $(".Name").html(author);
       });
     }
   });
@@ -239,13 +240,10 @@ function uploadPost() {
   });
 
   var uid = firebase.auth().currentUser.uid;
-  var username = firebase.database().ref("users/" + user.uid + "/username");
+  var username = firebase.database().ref("users/" + uid + "/username");
   username.on('value', function(snapshot) {
     author = snapshot.val();
-    
-    $(".mypage_username").html(username);
   });
-
 
   var promise = writeNewPost(uid, author, postText, postTags);
   promise.then(function() {
