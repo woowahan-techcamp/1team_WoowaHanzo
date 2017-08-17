@@ -45,6 +45,17 @@ class MainPageTableViewCell: UITableViewCell {
         
     }
     
+    @IBAction func likeButtonTouched(_ sender: Any) {
+        
+        if let image = likeButton.currentImage, image == #imageLiteral(resourceName: "emptyHeard") {
+            likeButton.setImage(#imageLiteral(resourceName: "emptyheart"), for: .normal)
+        } else {
+            likeButton.setImage(#imageLiteral(resourceName: "emptyHeard"), for: .normal)
+            
+        }
+    }
+    
+    
     
     
 }
