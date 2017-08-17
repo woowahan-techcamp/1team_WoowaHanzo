@@ -31,7 +31,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="488"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="zoP-3i-oeZ" id="r1N-Ib-I4E">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="488"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="487.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" image="baemin.png" translatesAutoresizingMaskIntoConstraints="NO" id="Cx9-sr-l7K">
@@ -47,8 +47,8 @@
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                 </button>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HCI-CU-uVs">
-                                                    <rect key="frame" x="16" y="112" width="343" height="106"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceHorizontal="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HCI-CU-uVs">
+                                                    <rect key="frame" x="16" y="112" width="343" height="105.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="106" id="PlJ-bb-0af"/>
