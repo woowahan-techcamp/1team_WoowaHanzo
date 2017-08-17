@@ -6,6 +6,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if(!user) {
       window.location.href = 'login.html';
     }
+    else {
+      var username = firebase.database().ref("users/" + user.uid + "/username");
+      username.on('value', function(snapshot) {
+        username = snapshot.val();
+        $(".Name").html(username);
+      });
+    }
   });
 
   autosize($("textarea"));
