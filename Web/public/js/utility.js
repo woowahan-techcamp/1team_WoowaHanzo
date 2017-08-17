@@ -372,6 +372,15 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 		$('#actualimage').css('max-height', $(window).height() - 50);
 	});
 
+	$(window).keydown(function(e) {
+		if(e.keyCode == 37) {
+			$('#navleft').click();
+		} else if (e.keyCode == 39) {
+			$('#navright').click();
+		}
+	});
+
+
 	$("#navleft").on("click", function(evt) {
 		evt.stopPropagation();
 		galleryLeft();
