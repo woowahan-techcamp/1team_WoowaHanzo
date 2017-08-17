@@ -33,7 +33,7 @@
         <scene sceneID="1Sy-18-WRZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qGC-fM-8ex" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="마이페이지" id="fwj-VK-IXq"/>
+                    <tabBarItem key="tabBarItem" title="마이페이지" image="Combined Shape" id="fwj-VK-IXq"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4f4-qT-Qb9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -49,4 +49,7 @@
             <point key="canvasLocation" x="-1600.8" y="972.86356821589209"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Combined Shape" width="20" height="19"/>
+    </resources>
 </document>

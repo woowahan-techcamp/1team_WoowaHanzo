@@ -25,7 +25,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="488" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="laF-bT-XL8">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="sectionIndexBackgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="488" id="zoP-3i-oeZ" customClass="MainPageTableViewCell" customModule="WoowaHanzo_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="488"/>
@@ -180,7 +180,7 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="M1q-fT-exJ" firstAttribute="top" secondItem="laF-bT-XL8" secondAttribute="bottom" constant="-49" id="VXy-Iw-F0R"/>
                             <constraint firstItem="laF-bT-XL8" firstAttribute="leading" secondItem="ba0-Gh-gdv" secondAttribute="leadingMargin" constant="-16" id="bHR-rM-xta"/>
@@ -211,11 +211,11 @@
             </objects>
             <point key="canvasLocation" x="335.19999999999999" y="274.81259370314842"/>
         </scene>
-        <!--뉴스피드-->
+        <!--홈-->
         <scene sceneID="yy0-p6-76Q">
             <objects>
                 <navigationController storyboardIdentifier="MainPageNavigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PW2-AP-TL9" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="뉴스피드" id="fNJ-fU-46m"/>
+                    <tabBarItem key="tabBarItem" title="홈" image="Group 3" id="fNJ-fU-46m"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gZp-ft-tvX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -232,6 +232,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Group 3" width="22" height="22"/>
         <image name="baemin.png" width="300" height="300"/>
         <image name="emptyHeard" width="24" height="20"/>
         <image name="searchIcon" width="20" height="20"/>

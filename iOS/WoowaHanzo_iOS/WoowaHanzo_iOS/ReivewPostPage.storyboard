@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YiP-LH-sjR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YiP-LH-sjR">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -159,7 +159,7 @@
                             <constraint firstItem="ezh-sH-mRQ" firstAttribute="leading" secondItem="iaS-MZ-tMP" secondAttribute="leading" id="qBy-5k-QvO"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="글쓰기" id="O9b-Is-O5c"/>
+                    <tabBarItem key="tabBarItem" title="글쓰기" image="Group 2" id="O9b-Is-O5c"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="myButton" destination="9fm-Li-ZqK" id="McO-tT-kmk"/>
@@ -178,6 +178,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Group 2" width="19" height="19"/>
         <image name="add-square_318-121632.jpg" width="338" height="338"/>
         <image name="profile.png" width="264" height="264"/>
     </resources>
