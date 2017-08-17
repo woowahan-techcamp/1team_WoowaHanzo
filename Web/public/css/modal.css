@@ -1,5 +1,5 @@
 .error_modal {
-  /*display: none;*/
+  display: none;
   position: fixed;
   left: calc((100% - 400px) / 2);
   top: calc((100% - 100px) / 2);

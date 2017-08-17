@@ -11,6 +11,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
       login();
     }
   });
+
+  $(".modal_close").on("click", function() {
+    $(".error_modal").css("display", "none");
+  });
 });
 
 function login() {
@@ -27,13 +31,17 @@ function login() {
       var errorCode = error.code;
       var errorMessage = error.message;
 
-      showLoginError(errorCode);
+      showLoginErrorModal(errorCode);
     });
+  }
+  else {
+    showLoginErrorModal("이메일과 비밀번호를 입력해주십시오.");
   }
 }
 
-function showLoginError(errorCode) {
-
+function showLoginErrorModal(errorCode) {
+  $(".error_modal").css("display", "block");
+  $(".modal_content").html(returnCustomLoginErrorMessage(errorCode));
 }
 
 function returnCustomLoginErrorMessage(errorCode) {
