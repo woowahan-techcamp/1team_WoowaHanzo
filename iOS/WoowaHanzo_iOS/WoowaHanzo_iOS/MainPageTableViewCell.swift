@@ -63,7 +63,7 @@ extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDe
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FoodImageCollectionViewCell
   
         if let imageArray = User.users[userid].imageArray{
-            print(User.users[userid])
+            //print(User.users[userid])
                 print("A")
                 let ref = Storage.storage().reference(withPath: imageArray[indexPath.row]).downloadURL { (url, error) in
                     //print(imageArray)

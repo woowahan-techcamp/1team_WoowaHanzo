@@ -70,7 +70,7 @@ class FirebaseModel{
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
                 User.users = [User]()
                 for child in result {
-                    print(child)
+                    //print(child)
                     var userKey = child.key as! String
                     //print(child.childSnapshot(forPath: "author").value!)
                     let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tagsArray: child.childSnapshot(forPath: "tagArray").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "imageArray").value as? [String] ?? nil,postDate : child.childSnapshot(forPath: "postDate").value as! String)
