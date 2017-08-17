@@ -23,7 +23,7 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var myButton: UIBarButtonItem!
     
-    var myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
+    var myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 45 ) )
     var placeholder = "당신의 귀한 생각.."
     var imageNameArray = [String]()
     var imageArray = [UIImage]()
@@ -39,7 +39,7 @@ class ReviewPostPageViewController: UIViewController {
         myCollectionView.delegate = self
         myCollectionView.allowsSelection = true
         myTagView.removeFromSuperview()
-        myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 128 ) )
+        myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 45 ) )
         myTextView.delegate = self as UITextViewDelegate
         //keyboard notification
         NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -67,7 +67,7 @@ class ReviewPostPageViewController: UIViewController {
         //determine whether it is editting tags or not
         myTextView.becomeFirstResponder()
         myTextView.selectedTextRange = myTextView.textRange(from: myTextView.beginningOfDocument, to: myTextView.beginningOfDocument)
-        fitView()
+        
         //imageview border setting
         myImageView.layer.cornerRadius = myImageView.frame.width / 2
         myImageView.layer.masksToBounds = true
@@ -77,7 +77,7 @@ class ReviewPostPageViewController: UIViewController {
         myScrollView.addSubview(myContentView)
         myScrollView.contentSize.height = 1500
         
-        
+        fitView()
         //keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
         //tap.cancelsTouchesInView = false
@@ -141,7 +141,7 @@ class ReviewPostPageViewController: UIViewController {
         frame3.origin.y = self.myTextView.frame.origin.y + myTextView.frame.height + 10
         frame3.size.height = self.myTagView._scrollView.frame.height
         shadowView.frame = frame3
-        //print(myTagView._scrollView.contentSize.height)
+        print("height:\(myTagView._scrollView.contentSize.height)")
         
         var frame4 = self.myCollectionView.frame
         frame4.origin.y = shadowView.frame.origin.y + shadowView.frame.height + 5

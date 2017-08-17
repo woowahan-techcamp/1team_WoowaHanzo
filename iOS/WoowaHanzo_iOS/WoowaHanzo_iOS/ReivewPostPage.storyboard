@@ -59,7 +59,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="enl-Fv-cH1">
-                                                        <rect key="frame" x="47" y="185" width="354" height="128"/>
+                                                        <rect key="frame" x="47" y="185" width="354" height="67"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </view>
@@ -140,6 +140,7 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lzR-Gp-SCh">
                                 <rect key="frame" x="0.0" y="23" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="글쓰기" id="fmo-xp-Gtn">
                                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="compose" id="9fm-Li-ZqK">
