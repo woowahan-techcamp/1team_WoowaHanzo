@@ -23,7 +23,7 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var myButton: UIBarButtonItem!
     
-    var myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 45 ) )
+    var myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 50 ) )
     var placeholder = "당신의 귀한 생각.."
     var imageNameArray = [String]()
     var imageArray = [UIImage]()
@@ -39,7 +39,7 @@ class ReviewPostPageViewController: UIViewController {
         myCollectionView.delegate = self
         myCollectionView.allowsSelection = true
         myTagView.removeFromSuperview()
-        myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 45 ) )
+        myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 50 ) )
         myTextView.delegate = self as UITextViewDelegate
         //keyboard notification
         NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)

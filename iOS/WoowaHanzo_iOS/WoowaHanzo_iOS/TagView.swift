@@ -257,8 +257,9 @@ class TagView: UIView, UITextFieldDelegate
     }
     // --------------------------------------------------------------------------------------------
     func updateLayout()
-    {
+    {   DispatchQueue.main.async{
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "fitview"), object: nil)
+        }
         //print(self.frame.origin.y)
         //print(positiony)
         //let editdist = CGFloat(positiony) - self.frame.origin.y
