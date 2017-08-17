@@ -23,9 +23,13 @@ class MyPageViewController: UIViewController {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
+            let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
+            self.present(controller, animated: false, completion: nil)
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

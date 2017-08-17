@@ -8,6 +8,7 @@
 
 import UIKit
 import NVActivityIndicatorView
+import FTImageViewer
 
 class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
@@ -23,9 +24,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     override func viewDidLoad() {
         
         super.viewDidLoad()
-       
         mainpageTableView.keyboardDismissMode = .onDrag
-       
         //firebase에서 loadFeed하는것에 옵저버를 걸어준다.
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: NSNotification.Name(rawValue: "reload"), object: nil)
         
@@ -74,11 +73,14 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         
         if navigationItem.titleView != nil{
             navigationItem.titleView = nil
-             searchIconButton.title = "검색"
+            searchIconButton.title = ""
+            searchIconButton.image = #imageLiteral(resourceName: "searchIcon")
+            
             
         }else{
+            searchIconButton.image = nil
             searchIconButton.title = "취소"
-        showSearchBar()
+            showSearchBar()
         }
     }
     
