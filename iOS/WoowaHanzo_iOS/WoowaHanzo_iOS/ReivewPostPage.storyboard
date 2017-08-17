@@ -72,7 +72,11 @@
                                                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vic-FS-pyA">
                                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                            <state key="normal" backgroundImage="add-square_318-121632.jpg"/>
+                                                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <fontDescription key="fontDescription" name="HelveticaNeue-LightItalic" family="Helvetica Neue" pointSize="43"/>
+                                                                            <state key="normal" title="+">
+                                                                                <color key="titleColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            </state>
                                                                             <connections>
                                                                                 <action selector="addButtonTouched:" destination="YiP-LH-sjR" eventType="touchUpInside" id="qfz-xj-rm4"/>
                                                                             </connections>
@@ -181,7 +185,6 @@
     </scenes>
     <resources>
         <image name="Group 2" width="19" height="19"/>
-        <image name="add-square_318-121632.jpg" width="338" height="338"/>
         <image name="profile.png" width="264" height="264"/>
     </resources>
 </document>
