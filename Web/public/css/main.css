@@ -477,7 +477,7 @@ div.img-divgo{
   position: fixed;
   background-color: black;
   opacity: 0.9;
-  display: block;
+  display: none;
 }
 
 
@@ -486,7 +486,7 @@ div.img-divgo{
   width: 100%;
   position: fixed;
   z-index: 3003;
-  display: block;
+  display: none;
   text-align: center;
   top: 50px;
 }
