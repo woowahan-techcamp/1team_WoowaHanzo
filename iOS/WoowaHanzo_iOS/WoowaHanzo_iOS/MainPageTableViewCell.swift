@@ -12,9 +12,6 @@ import Kingfisher
 import Firebase
 import Viewer
 
-
-
-
 class MainPageTableViewCell: UITableViewCell {
     
     var userid : Int = 0
@@ -55,9 +52,6 @@ class MainPageTableViewCell: UITableViewCell {
         }
     }
     
-    
-    
-    
 }
 
 extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
@@ -68,14 +62,7 @@ extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FoodImageCollectionViewCell
-        //        for index in User.users[indexPath.row].imageArray{
-        //            let ref = Storage.storage().reference(withPath: "/images/bossam001.jpg").downloadURL { (url, error) in
-        //                print(url)
-        //                //self.imageView.sd_setImage(with: url, completed: nil)
-        //                //self.cell.i.kf.setImage(with: url)
-        //                cell.foodImageView.kf.setImage(with: url)
-        //            }
-        //        }
+  
         if let imageArray = User.users[userid].imageArray{
             print(User.users[userid])
                 print("A")
@@ -83,11 +70,9 @@ extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDe
                     //print(imageArray)
                     cell.foodImageView.kf.setImage(with: url)
                     print(url)
-                    
             }
         }
-        
-        //print(User.users[indexPath.section].imageArray?.count)
+
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
