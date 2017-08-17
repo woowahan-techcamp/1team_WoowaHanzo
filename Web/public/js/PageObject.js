@@ -4,6 +4,7 @@ class PageObject {
     this.postTimes = {};
     this.postInView = {};
     this.postState = {};
+    this.postTemplate;
 
     this.init();
 

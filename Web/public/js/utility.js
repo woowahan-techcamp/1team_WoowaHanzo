@@ -64,6 +64,61 @@ function isScrolledIntoView(elem) {
     return ((( elemTop >= docViewTop) && (elemTop <= docViewBottom)) || ((elemBottom >= docViewTop) && (elemBottom <= docViewBottom)));
 }
 
+function prevLoaded($curPost) {
+  if($curPost.prev().length == 0) {
+    return true;
+  } else {
+    if($curPost.prev().css("opacity") == 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
+function fadeInPost($curPost) {
+	$curPost.css("display", "block");
+
+	$curPost.animate({
+		opacity: 1.0
+	}, 200, function() {
+		if(this.next().length != 0) {
+			this.next().trigger("postLoaded");
+		}
+		resizeThumbnails();
+	}.bind($curPost));
+
+}
+
+function imagesAllLoaded(curImage) {
+	try {
+		curImage.classList.add("loaded");
+		var imageParent = curImage.parentElement.parentElement.parentElement;
+		var allImages = imageParent.querySelectorAll(".loading");
+
+		var allLoaded = true;
+		for(var i = 0; i < allImages.length; ++i) {
+			if(!$(allImages[i]).hasClass("loaded")) {
+				allLoaded = false;
+			}
+		}
+		return allLoaded;
+
+	} catch(err) {
+		return false;
+	}
+
+}
+
+function handleThumbnailNumber($curPost, imagenumber) {
+	var thumbnail_cover = $curPost[0].querySelector(".thumbnail_cover");
+	if(imagenumber < 4) {
+		thumbnail_cover.style.display = "none";
+	} else {
+		thumbnail_cover.innerHTML = "+" + (imagenumber - 3);
+	}
+
+}
 
 function fixExifOrientation($img) {
 
@@ -116,3 +171,143 @@ function fixExifOrientation($img) {
     });
 
 }
+
+
+function resizeThumbnails() {
+  $(".image_thumbnails td").each(function(index, elem) {
+
+    var bufferWidth = $(".image_thumbnails td")[0].offsetWidth;
+    elem.style.height = bufferWidth + "px";
+    if($(".thumbnail_cover").last().length > 0) {
+        $(".thumbnail_cover").last()[0].style.lineHeight = bufferWidth - 20 + "px";
+    }
+
+  });
+}
+
+function loadPosts(snapshot) {
+  var storageRef = firebase.storage().ref();
+
+  var buffer = snapshot.val();
+  buffer.id = snapshot.key;
+
+  pageObject.postTimes[buffer.id] = -buffer["time"];
+  pageObject.postState[buffer.id] = false;
+  pageObject.imageUrls[buffer.id] = [];
+
+  // replacing new lines with line breaks
+  buffer["body"] = buffer["body"].replace(/\n/g, "<br>");
+  buffer["time"] = getCurrentTime(-buffer["time"]);
+
+  $(".container_box").append(pageObject.postTemplate(buffer));
+
+  var $curPost = $("#post_" + buffer.id);
+  //fadeInPost($curPost);
+
+  if(buffer.images) {
+    // only three images are loaded at a time
+    for(var i = 0; i < buffer.images.length || i < 3; ++i) {
+
+      var $curObject = {};
+      $curObject.$curPost = $curPost;
+      $curObject.i = i;
+      var filename = buffer.images[i];
+      if(i < 3) {
+        if(!filename) continue;
+        storageRef.child('images/' + filename).getDownloadURL().then(function(url) {
+          pageObject.imageUrls[buffer.id].push(url);
+
+          var imageParent = $curObject.$curPost.children("table").children("tbody").children("tr");
+
+          imageParent = imageParent.children("td").get(this.i);
+          imageParent = $(imageParent).children("div").children("img");
+          imageParent.addClass("loading");
+
+          imageParent.attr("src", url);
+          imageParent.on("load", function(evt) {
+            var curImage = evt.target;
+            var allLoaded = imagesAllLoaded(curImage);
+
+            if(prevLoaded($curPost) && allLoaded) {
+              fadeInPost($curPost);
+            }
+
+          });
+
+        }.bind($curObject)).catch(function(err) {
+          console.log(err);
+          console.log("File load unsuccessful");
+        });
+
+      } else if(i >= buffer.images.length) {
+        var imageParent = $curPost.children("table").children("tbody").children("tr");
+
+        imageParent = imageParent.children("td").get(i);
+        imageParent = $(imageParent).children("div").children("img");
+        imageParent.classList.add("loaded");
+
+      } else {
+        storageRef.child('images/' + filename).getDownloadURL().then(function(url) {
+          pageObject.imageUrls[buffer.id].push(url);
+
+        }.bind(i)).catch(function(err) {
+          console.log(err);
+          console.log("File load unsuccessful");
+        });
+      }
+
+    }
+
+    $curPost.on("postLoaded", function(evt) {
+      var currentPost = evt.target;
+      var anyImage = currentPost.querySelector(".loading");
+
+      if(prevLoaded($(currentPost)) && imagesAllLoaded(anyImage)) {
+        fadeInPost($(evt.target));
+      }
+
+    });
+
+    // handling the thumbnail cover along with the thumbnail number
+    handleThumbnailNumber($curPost, buffer.images.length);
+
+  } else {
+    $curPost.on("postLoaded", function(evt) {
+      var currentPost = evt.target;
+      if(prevLoaded($(currentPost))) {
+        fadeInPost($(currentPost));
+      }
+      if($(currentPost).next().length != 0) {
+        $(currentPost).next().trigger("postLoaded");
+      }
+    });
+
+    $curPost.trigger("postLoaded");
+    $curPost.children("table").remove();
+    $curPost.addClass("ready");
+  }
+  // keeping the post invisible while loading
+  $curPost.children(".post_body").html(buffer["body"]);
+  if(buffer["tags"] && buffer["tags"].length == 0) {
+    $curPost.children(".tags_holder").css("display", "none");
+  }
+  //$curPost.css("display", "block");
+
+  resizeThumbnails();
+}
+
+document.addEventListener("DOMContentLoaded", function(evt) {
+	var galleryoverlay = document.querySelector("#galleryoverlay");
+	var holder = document.querySelector(".holder");
+	var navleft = document.querySelector("#navleft");
+	if($(".holder").length) {
+		console.log($("#navleft").height());
+
+		$('.holder').css('margin-top', galleryoverlay.offsetHeight / 2 - navleft.offsetHeight / 2 + 'px');
+		$(window).resize(function() {
+			$('.holder').css('margin-top', galleryoverlay.offsetHeight / 2 - navleft.offsetHeight / 2 + 'px');
+		});
+
+	}
+
+});
