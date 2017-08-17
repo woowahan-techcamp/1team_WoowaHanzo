@@ -34,6 +34,8 @@ PODS:
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - GTMSessionFetcher/Core (~> 1.1)
+  - FTImageViewer (2.0.1):
+    - Kingfisher
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
@@ -45,7 +47,6 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.11)
-  - ImageViewer (4.1.0)
   - Kingfisher (3.10.4)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -56,7 +57,6 @@ PODS:
     - NVActivityIndicatorView/Presenter (= 3.7.0)
   - NVActivityIndicatorView/Presenter (3.7.0)
   - UIImageViewModeScaleAspect (1.5)
-  - Viewer (2.4.0)
 
 DEPENDENCIES:
   - BSImagePicker (~> 2.4)
@@ -64,10 +64,9 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
-  - ImageViewer
+  - FTImageViewer
   - Kingfisher (~> 3.0)
   - NVActivityIndicatorView
-  - Viewer
 
 SPEC CHECKSUMS:
   BSGridCollectionViewLayout: 8f12c8e1e08c47057f5a39a6828f4395f043d78f
@@ -79,15 +78,14 @@ SPEC CHECKSUMS:
   FirebaseDatabase: d829b3a8c3e2ac7a16773c5df226966b0805dfc2
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
   FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
+  FTImageViewer: bb32a6efb11348b78ac832f0132a00f91e5b7b45
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
-  ImageViewer: 163e5832e0a09e31a3e3482cce6e5e9029356174
   Kingfisher: dc3a4983e86d2dfa89513664983a82340c11a289
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
-  Viewer: a4ecccc47fa2868602294c41b8586f3d3df0691a
 
-PODFILE CHECKSUM: 3a9b29bc968157c975bd7b17467849190b282b6e
+PODFILE CHECKSUM: 82aa7428eaea249f2a3f87a785a0a49aea015f15
 
 COCOAPODS: 1.2.1

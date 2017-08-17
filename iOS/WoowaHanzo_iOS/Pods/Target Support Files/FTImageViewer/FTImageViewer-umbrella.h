@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double ViewerVersionNumber;
-FOUNDATION_EXPORT const unsigned char ViewerVersionString[];
+FOUNDATION_EXPORT double FTImageViewerVersionNumber;
+FOUNDATION_EXPORT const unsigned char FTImageViewerVersionString[];
 
