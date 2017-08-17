@@ -10,19 +10,11 @@ import UIKit
 import ImageViewer
 import Kingfisher
 import Firebase
-
-extension UIImageView: DisplaceableView {}
-
-struct DataItem {
-    
-    let imageView: UIImageView
-    let galleryItem: GalleryItem
-}
+import Viewer
 
 class MainPageTableViewCell: UITableViewCell {
     
-    var items: [DataItem] = []
-    var userid : Int = 0 
+    var userid : Int = 0
     //@IBOutlet weak var reviewView: UIView!
     @IBOutlet weak var likeButton: UIButton!
     //@IBOutlet weak var mainpageCollectionView: UICollectionView!
@@ -37,7 +29,7 @@ class MainPageTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
+        contentsTextView.layoutIfNeeded()
         FoodImageCollectionView.delegate = self
         FoodImageCollectionView.dataSource = self
         profileImageView.layer.cornerRadius = 0.5 * profileImageView.bounds.size.width
@@ -50,7 +42,15 @@ class MainPageTableViewCell: UITableViewCell {
         
     }
     
-    
+    @IBAction func likeButtonTouched(_ sender: Any) {
+        
+        if let image = likeButton.currentImage, image == #imageLiteral(resourceName: "emptyHeard") {
+            likeButton.setImage(#imageLiteral(resourceName: "emptyheart"), for: .normal)
+        } else {
+            likeButton.setImage(#imageLiteral(resourceName: "emptyHeard"), for: .normal)
+            
+        }
+    }
     
 }
 
@@ -62,14 +62,7 @@ extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FoodImageCollectionViewCell
-        //        for index in User.users[indexPath.row].imageArray{
-        //            let ref = Storage.storage().reference(withPath: "/images/bossam001.jpg").downloadURL { (url, error) in
-        //                print(url)
-        //                //self.imageView.sd_setImage(with: url, completed: nil)
-        //                //self.cell.i.kf.setImage(with: url)
-        //                cell.foodImageView.kf.setImage(with: url)
-        //            }
-        //        }
+  
         if let imageArray = User.users[userid].imageArray{
             print(User.users[userid])
                 print("A")
@@ -77,55 +70,16 @@ extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDe
                     //print(imageArray)
                     cell.foodImageView.kf.setImage(with: url)
                     print(url)
-                    
             }
         }
-        
-        //print(User.users[indexPath.section].imageArray?.count)
+
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        guard let collectionView = self.FoodImageCollectionView else { return }
         
-    }
-}
-extension MainPageTableViewCell: GalleryDisplacedViewsDataSource {
-    
-    func provideDisplacementItem(atIndex index: Int) -> DisplaceableView? {
-        
-        return index < items.count ? items[index].imageView : nil
     }
 }
 
-extension MainPageTableViewCell: GalleryItemsDataSource {
-    
-    func itemCount() -> Int {
-        
-        return items.count
-    }
-    
-    func provideGalleryItem(_ index: Int) -> GalleryItem {
-        
-        return items[index].galleryItem
-    }
-}
 
-extension MainPageTableViewCell: GalleryItemsDelegate {
-    
-    func removeGalleryItem(at index: Int) {
-        
-        print("remove item at \(index)")
-        
-        let imageView = items[index].imageView
-        imageView.removeFromSuperview()
-        items.remove(at: index)
-    }
-}
-
-// Some external custom UIImageView we want to show in the gallery
-class FLSomeAnimatedImage: UIImageView {
-}
-
-// Extend ImageBaseController so we get all the functionality for free
-class AnimatedViewController: ItemBaseController<FLSomeAnimatedImage> {
-}
 

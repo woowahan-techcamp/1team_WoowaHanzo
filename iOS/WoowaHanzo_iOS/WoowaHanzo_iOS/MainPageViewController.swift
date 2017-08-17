@@ -25,7 +25,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+       
         mainpageTableView.keyboardDismissMode = .onDrag
        
         //firebase에서 loadFeed하는것에 옵저버를 걸어준다.
@@ -38,8 +38,13 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         searchBar.alpha = 0
         searchBar.searchBarStyle = UISearchBarStyle.minimal
         mainpageTableView.reloadData()
+       
+//        mainpageTableView.estimatedRowHeight = UITableViewAutomaticDimension
+//        mainpageTableView.rowHeight = UITableViewAutomaticDimension
     }
     
+  
+   
     func reloadTableData(){
         mainpageTableView.reloadData()
     
@@ -48,7 +53,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     override func viewWillAppear(_ animated: Bool) {
         
         firebaseModel.loadFeed()
-        searchIconButton.tintColor = UIColor.white
+        searchIconButton.tintColor = UIColor.black
         let size = CGSize(width: 30, height: 30)
         
         startAnimating(size, message: "Loading...", type: .ballTrianglePath)
@@ -111,7 +116,7 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        
+       
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as!MainPageTableViewCell
         cell.contentsTextView.text = User.users[indexPath.section].contents
@@ -126,14 +131,25 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
         cell.timeLabel.text = Date().postTimeDisplay(postDate: User.users[indexPath.section].postDate)
         cell.FoodImageCollectionView.reloadData()
         print(User.users[indexPath.section].imageArray)
-    
+        
         return cell
     }
+    
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat{
         return UITableViewAutomaticDimension
     }
+    
+   
+    //padding between cell
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return cellSpacingHeight
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+        let myCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainPageTableViewCell
+        let heightForCell = myCell.bounds.size.height;
+        
+        return heightForCell;
     }
 
    

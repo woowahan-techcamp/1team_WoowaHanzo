@@ -56,6 +56,7 @@ PODS:
     - NVActivityIndicatorView/Presenter (= 3.7.0)
   - NVActivityIndicatorView/Presenter (3.7.0)
   - UIImageViewModeScaleAspect (1.5)
+  - Viewer (2.4.0)
 
 DEPENDENCIES:
   - BSImagePicker (~> 2.4)
@@ -66,6 +67,7 @@ DEPENDENCIES:
   - ImageViewer
   - Kingfisher (~> 3.0)
   - NVActivityIndicatorView
+  - Viewer
 
 SPEC CHECKSUMS:
   BSGridCollectionViewLayout: 8f12c8e1e08c47057f5a39a6828f4395f043d78f
@@ -84,7 +86,8 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
+  Viewer: a4ecccc47fa2868602294c41b8586f3d3df0691a
 
-PODFILE CHECKSUM: f4e7b8cbbb27479c524c509b79e6efcd93ff01d7
+PODFILE CHECKSUM: 3a9b29bc968157c975bd7b17467849190b282b6e
 
 COCOAPODS: 1.2.1

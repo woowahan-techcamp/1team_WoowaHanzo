@@ -1,0 +1,6 @@
+framework module Viewer {
+  umbrella header "Viewer-umbrella.h"
+
+  export *
+  module * { export * }
+}
