@@ -27,6 +27,8 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/PageObject.js"></script>
+    <script src="js/utility.js"></script>
     <script src="js/main.js"></script>
     <script src="js/mypage.js"></script>
   </head>
@@ -96,12 +98,59 @@
       </div>
 
       <div class="mypage_user_post_box">
+        <script id="post_template" type="template">
+          <div class="post" id="post_{{id}}">
+            <div class="post-header">
+              <div class="img-divgo">
+                <img class="profilePic" src="pictures/profile.png" style="vertical-align:bottom;"/>
+              </div>
+              <span class="Name">{{author}}</span>
+              <span class="Title">오늘의 신</span>
+            </div>
+            <div class="textbox post_body">
+              {{body}}
+            </div>
+            <div class="tags_holder">
+              {{#each tags}}
+                <span class="tagger tag_holder unselectable">
+                  #{{this}}
+                </span>
+              {{/each}}
+            </div>
+            <table class="image_thumbnails">
+              <tr>
+                <td>
+                  <div class="single_thumbnail">
+                    <img src="" />
+                  </div>
+                </td>
+                <td>
+                  <div class="single_thumbnail">
+                    <img src="" />
+                  </div>
+                </td>
+                <td>
+                  <div class="single_thumbnail">
+                    <img src="" />
+                    <div class="thumbnail_cover">
+                      +3
+                    </div>
+                  </div>
 
+                </td>
+              </tr>
+            </table>
+            <hr />
+            <div class="post_footer">
+              <i class="fa fa-thumbs-o-up like_btn" aria-hidden="true"></i>
+              <div class="post_time">{{time}}</div>
+            </div>
+          </div>
+        </script>
       </div>
 
-
-      <button id="logout">로그아웃</button>
     </div>
+    <!-- <button id="logout">로그아웃</button> -->
 
   </body>
 </html>

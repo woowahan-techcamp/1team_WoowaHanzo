@@ -1,5 +1,5 @@
 .container_box {
-  outline: 1px dotted pink;
+  /*outline: 1px dotted pink;*/
 }
 
 .mypage_user_box {
@@ -49,6 +49,5 @@
 }
 
 .mypage_user_post_box {
-  height: 500px;
-  outline: 1px dotted yellow;
+  /*outline: 1px dotted yellow;*/
 }

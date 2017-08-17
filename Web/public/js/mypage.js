@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(event) {
+  var templatetext = document.querySelector("#post_template").innerHTML;
+  var template = Handlebars.compile(templatetext);
+  pageObject.postTemplate = template;
+
   // 로그인 되어있지 않으면 로그인 화면으로 보냄
   firebase.auth().onAuthStateChanged(user => {
     if(!user) {
@@ -28,20 +32,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
         snapshot.forEach(function(child) {
           // child.val() 전체 포스트 가져옴
           if(child.val().author === username) {
-            console.log(child.val());
+            loadPosts(child);
           }
-
         });
       });
-
-
-
-
-
-
-
-
-
 
       $("#logout").on("click", function() {
         firebase.auth().signOut().then(function() {
