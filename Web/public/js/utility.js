@@ -185,6 +185,43 @@ function resizeThumbnails() {
   });
 }
 
+function showGallery(urls, i) {
+	$("#justblackbackground").css("display", "block");
+	$("#galleryoverlay").css("display", "block");
+	$("#actualimage").css("display", "block");
+	$("#actualimage").attr("src", urls[i]);
+	pageObject.galleryURLs = urls;
+	pageObject.galleryIndex = i;
+	$(window).resize();
+}
+
+function galleryLeft() {
+	var curIndex = pageObject.galleryIndex;
+	var galleryLength = pageObject.galleryURLs.length;
+	if(curIndex == 0) {
+		curIndex = galleryLength - 1;
+	} else {
+		curIndex -= 1;
+	}
+	pageObject.galleryIndex = curIndex;
+	$("#actualimage").attr("src", pageObject.galleryURLs[curIndex]);
+	$(window).resize();
+
+}
+
+function galleryRight() {
+	var curIndex = pageObject.galleryIndex;
+	var galleryLength = pageObject.galleryURLs.length;
+	if(curIndex == galleryLength - 1) {
+		curIndex = 0;
+	} else {
+		curIndex += 1;
+	}
+	pageObject.galleryIndex = curIndex;
+	$("#actualimage").attr("src", pageObject.galleryURLs[curIndex]);
+	$(window).resize();
+}
+
 function loadPosts(snapshot) {
   var storageRef = firebase.storage().ref();
 
@@ -193,7 +230,11 @@ function loadPosts(snapshot) {
 
   pageObject.postTimes[buffer.id] = -buffer["time"];
   pageObject.postState[buffer.id] = false;
-  pageObject.imageUrls[buffer.id] = [];
+	if(buffer.images) {
+		pageObject.imageUrls[buffer.id] = new Array(buffer.images.length);
+	} else {
+		pageObject.imageUrls[buffer.id] = [];
+	}
 
   // replacing new lines with line breaks
   buffer["body"] = buffer["body"].replace(/\n/g, "<br>");
@@ -210,29 +251,38 @@ function loadPosts(snapshot) {
 
       var $curObject = {};
       $curObject.$curPost = $curPost;
+			$curObject.id = buffer.id;
       $curObject.i = i;
       var filename = buffer.images[i];
       if(i < 3) {
         if(!filename) continue;
-        storageRef.child('images/' + filename).getDownloadURL().then(function(url) {
-          pageObject.imageUrls[buffer.id].push(url);
+        var downloadUrl = storageRef.child('images/' + filename).getDownloadURL();
+				downloadUrl.then(function(url) {
+          pageObject.imageUrls[this.id][this.i] = url;
 
-          var imageParent = $curObject.$curPost.children("table").children("tbody").children("tr");
+          var imageParent = this.$curPost.children("table").children("tbody").children("tr");
 
           imageParent = imageParent.children("td").get(this.i);
           imageParent = $(imageParent).children("div").children("img");
           imageParent.addClass("loading");
 
           imageParent.attr("src", url);
+
           imageParent.on("load", function(evt) {
             var curImage = evt.target;
             var allLoaded = imagesAllLoaded(curImage);
 
-            if(prevLoaded($curPost) && allLoaded) {
-              fadeInPost($curPost);
+            if(prevLoaded(this.$curPost) && allLoaded) {
+              fadeInPost(this.$curPost);
             }
 
-          });
+          }.bind(this));
+
+					imageParent.on("click", function(evt) {
+						var curImage = evt.target;
+
+						showGallery(pageObject.imageUrls[this.id], this.i);
+					}.bind(this));
 
         }.bind($curObject)).catch(function(err) {
           console.log(err);
@@ -248,9 +298,9 @@ function loadPosts(snapshot) {
 
       } else {
         storageRef.child('images/' + filename).getDownloadURL().then(function(url) {
-          pageObject.imageUrls[buffer.id].push(url);
+          pageObject.imageUrls[this.id][this.i] = url;
 
-        }.bind(i)).catch(function(err) {
+        }.bind($curObject)).catch(function(err) {
           console.log(err);
           console.log("File load unsuccessful");
         });
@@ -309,5 +359,36 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 		});
 
 	}
+
+	$("#galleryoverlay").on("click", function(evt) {
+		$('#galleryoverlay').css('display', 'none');
+		$('#justblackbackground').css('display', 'none');
+		$('#actualimage').css('display', 'none');
+	});
+
+	$(window).resize(function() {
+		$('#actualimage').css('top', $(window).height() / 2 - $('#actualimage').height() / 2  + 25 + 'px');
+		$('#actualimage').css('left', $(window).width() / 2 - $('#actualimage').width() / 2  + 'px');
+		$('#actualimage').css('max-height', $(window).height() - 50);
+	});
+
+	$(window).keydown(function(e) {
+		if(e.keyCode == 37) {
+			$('#navleft').click();
+		} else if (e.keyCode == 39) {
+			$('#navright').click();
+		}
+	});
+
+
+	$("#navleft").on("click", function(evt) {
+		evt.stopPropagation();
+		galleryLeft();
+	});
+
+	$("#navright").on("click", function(evt) {
+		evt.stopPropagation();
+		galleryRight();
+	});
 
 });

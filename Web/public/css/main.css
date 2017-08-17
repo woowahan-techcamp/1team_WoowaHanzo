@@ -8,7 +8,7 @@ success_green: #5cb85c
 
 
 body {
-  font-family: NotoSans, Jua!important;
+  font-family: Jua, NotoSans!important;
   /*font-size: 0px;*/
   margin-top: 70px;
   margin-bottom: 0px;
@@ -432,6 +432,7 @@ div.img-divgo{
 }
 
 .post_time {
+  font-family: Jua;
   font-size: 14px;
   float: right;
   margin-top: 12px;

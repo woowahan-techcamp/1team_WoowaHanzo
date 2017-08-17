@@ -5,6 +5,8 @@ class PageObject {
     this.postInView = {};
     this.postState = {};
     this.postTemplate;
+    this.galleryURLs = [];
+    this.galleryIndex = 0;
 
     this.init();
 
