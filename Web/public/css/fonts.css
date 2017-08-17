@@ -1,7 +1,6 @@
 @font-face {
   font-family: 'NotoSans';
-  src: url("fonts/NotoSansKR_Regular.woff") format('woff');
-
+  src: url("./fonts/NotoSansKR_Regular.woff") format('woff');
 }
 
 @font-face {
@@ -14,4 +13,11 @@
   font-family: 'NotoSansUI-Regular';
   src: url("fonts/NotoSansUI-Regular.ttf") format('ttf');
 
+}
+
+@font-face {
+  font-family: 'Jua';
+  src: url("fonts/BM-JUA.woff") format("woff"),
+    url("fonts/BMJUA_ttf.ttf") format("truetype"),
+    url("fonts/BMJUA_otf.otf") format("otf");
 }

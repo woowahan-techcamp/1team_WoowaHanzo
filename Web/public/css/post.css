@@ -29,6 +29,8 @@
 
 div.post {
   padding-bottom: 10px;
+  opacity: 1.0;
+  display: block;
 }
 
 .post .tagger {
