@@ -57,16 +57,21 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
             NVActivityIndicatorPresenter.sharedInstance.setMessage("Authenticating...")
+            self.mainpageTableView.reloadData()
         }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
             self.stopAnimating()
+            
         }
         
 
     }
+    
+    //스크롤하면 키보드가 사라진다.
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+        
     }
    
     @IBAction func searchIconTouched(_ sender: Any) {
@@ -100,9 +105,12 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         print("tap from \(label.text!)")
     }
     
+    
+    
     @IBAction func showGalleryImageViewer(_ sender: Any) {
         
     }
+    
 }
 
 //MARK: TableView extension
@@ -148,7 +156,6 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         let myCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainPageTableViewCell
         let heightForCell = myCell.bounds.size.height;
-        
         return heightForCell;
     }
 

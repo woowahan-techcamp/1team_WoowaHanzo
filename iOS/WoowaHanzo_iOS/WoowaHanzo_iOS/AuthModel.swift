@@ -30,9 +30,17 @@ class AuthModel{
             }
         }
     }
-    static func register(){
+    static func register(email:String,pw:String,completion : @escaping (Bool)->()){
+        Auth.auth().createUser(withEmail: email, password: pw) { (user, error) in
+            if user != nil{
+                completion(true)
+            }
+            else{
+                completion(false)
+            }
+       }
         
-        
+    
     }
 
     func logout(){
