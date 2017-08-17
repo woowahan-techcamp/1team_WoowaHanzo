@@ -39,7 +39,7 @@ class ReviewPostPageViewController: UIViewController {
         myCollectionView.delegate = self
         myCollectionView.allowsSelection = true
         myTagView.removeFromSuperview()
-        myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 50 ) )
+        myTagView = TagView( position: CGPoint( x: 0, y: 380 ), size: CGSize( width: 320, height: 50 ) )
         myTextView.delegate = self as UITextViewDelegate
         //keyboard notification
         NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -48,11 +48,12 @@ class ReviewPostPageViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.fitView), name: NSNotification.Name(rawValue: "fitview"), object: nil)
         
         //view border setting
-        myView.layer.borderColor = UIColor.gray.cgColor
-        myView.layer.borderWidth = 0.5
-        myView.layer.cornerRadius = 10.0
+        //myView.layer.borderColor = UIColor.gray.cgColor
+        //myView.layer.borderWidth = 0.5
+        //myView.layer.cornerRadius = 10.0
         //textview border setting
-        myTextView.layer.borderColor = UIColor(red: CGFloat(112.0/255.0), green: CGFloat(182.0/255.0), blue: CGFloat(229.0/255.0), alpha: CGFloat(1.0)).cgColor
+        //myTextView.layer.borderColor = UIColor(red: CGFloat(112.0/255.0), green: CGFloat(182.0/255.0), blue: CGFloat(229.0/255.0), alpha: CGFloat(1.0)).cgColor
+        myTextView.layer.borderColor = UIColor.lightGray.cgColor
         myTextView.layer.borderWidth = 0.5
         myTextView.layer.cornerRadius = 3.0
         //textview line spacing
