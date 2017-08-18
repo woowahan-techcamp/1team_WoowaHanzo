@@ -53,6 +53,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       });
 
+      var user_box = document.querySelector(".mypage_user_box");
+      user_box.uid = user.uid;
+      user_box.queryClass = "mypage_user_profilePic";
+      loadUserProfile.bind(user_box, user_box.uid)();
+
+
     }
   });
 });
