@@ -31,6 +31,7 @@ public enum TagViewOptions
 // ------------------------------------------------------------------------------------------------
 class TagView: UIView, UITextFieldDelegate
 {
+    var dummy = UITextField(frame: CGRect( x: -300, y: -300, width: 10, height: 20 ))
     var _scrollView					: UIScrollView!
     var _tagIndex					: Int				  = 0
     var _touchTagIndex				: Int				  = -1
@@ -44,7 +45,7 @@ class TagView: UIView, UITextFieldDelegate
     var _outerMergine				: CGFloat			  = 5.0
     var _innerMergine				: CGFloat			  = 7.0
     var _autoGlowHeight				: Bool				  = true
-    var _font						: UIFont!
+    var _font						: UIFont               = UIFont(name: "NotoSans", size: 16.0)!
     var _tagBackgroundColor			: UIColor			  = UIColor.white
     var _tagSelectedColor			: UIColor			  = UIColor.white
     var _tagTextColor				: UIColor			  = UIColor(red: CGFloat(52.0/255.0), green: CGFloat(152.0/255.0), blue: CGFloat(219.0/255.0), alpha: CGFloat(1.0))
@@ -52,7 +53,7 @@ class TagView: UIView, UITextFieldDelegate
     var _tagMaxCharactors			: Int				  = 100
     var _tagCharCountLabel			: UILabel!
     var _addButtonBackgroundColor	: UIColor			  = UIColor.white
-    var _addButtonTextColor			: UIColor			  = UIColor(red: CGFloat(112.0/255.0), green: CGFloat(182.0/255.0), blue: CGFloat(229.0/255.0), alpha: CGFloat(1.0))
+    var _addButtonTextColor			: UIColor			  = UIColor(red: CGFloat(52.0/255.0), green: CGFloat(152.0/255.0), blue: CGFloat(219.0/255.0), alpha: CGFloat(1.0))
     var _enableEdit					: Bool				  = true
     var _maxTagCount				: Int				  = 1000
     var _tagCount					: Int				  = 0
@@ -257,8 +258,9 @@ class TagView: UIView, UITextFieldDelegate
     }
     // --------------------------------------------------------------------------------------------
     func updateLayout()
-    {
+    {   DispatchQueue.main.async{
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "fitview"), object: nil)
+        }
         //print(self.frame.origin.y)
         //print(positiony)
         //let editdist = CGFloat(positiony) - self.frame.origin.y
@@ -350,6 +352,10 @@ class TagView: UIView, UITextFieldDelegate
         let newString = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
         if TagFilter().isValid4(newString){
             Timer.scheduledTimer( timeInterval: 0.05, target: self, selector: #selector( onTimerTextField ), userInfo: _tagFields[ textField.tag ]!, repeats: false )
+            //print(newString)
+            //dummy.text = newString
+            //dummy.sizeToFit()
+            //textField.frame.size.width = dummy.frame.size.width
             return true
         }
         return false
@@ -373,6 +379,20 @@ class TagView: UIView, UITextFieldDelegate
             removeTag( tagField: _tagFields[ textField.tag ]! )
             _tagCount -= 1
             _addButton.isHidden = ( _maxTagCount - _tagCount ) == 0
+        }
+        else
+        {
+            fitTag( tagField: _tagFields[ textField.tag ]! )
+        }
+        updateLayout()
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.text == "" || textField.text == _tagPrefix
+        {
+            //removeTag( tagField: _tagFields[ textField.tag ]! )
+            //_tagCount -= 1
+            //_addButton.isHidden = ( _maxTagCount - _tagCount ) == 0
         }
         else
         {
