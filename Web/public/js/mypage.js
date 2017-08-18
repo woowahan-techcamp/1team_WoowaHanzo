@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         var rootRef = firebase.database().ref();
         var postRef = rootRef.child("/posts");
-        postRef.once("value", function(snapshot) {
+        postRef.orderByChild("time").on("child_added", function(snapshot) {
           snapshot.forEach(function(child) {
             console.log("Loading posts");
             // child.val() 전체 포스트 가져옴
@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var sayhi = firebase.database().ref("users/" + user.uid + "/sayhi");
       sayhi.on('value', function(snapshot) {
         $(".mypage_user_sayhi").html(snapshot.val());
+        $(".container_box").css("opacity", 1);
       });
 
 
