@@ -32,18 +32,19 @@ class FirebaseModel{
         print("posting: \(assets.count) \(names.count)")
         for i in 0..<assets.count{
             let asset = assets[i]
-            let image = self.getAssetThumbnail(asset: asset)
+            let manager = PHImageManager.default()
+            let requestOptions = PHImageRequestOptions()
+            requestOptions.resizeMode = .exact
+            requestOptions.deliveryMode = .highQualityFormat;
+            
+            // Request Image
             DispatchQueue.global().async{
-                //if let imageData = UIImageJPEGRepresentation(image, 0.8){
-                if let imageData = UIImagePNGRepresentation(image){
-                    //let name = "images/\(Date().timeIntervalSince1970)"
-                    let ref = Storage.storage().reference(withPath: names[i]).putData(imageData)
+            manager.requestImageData(for: asset, options: requestOptions, resultHandler: { (data, str, orientation, info) -> Void in
+                if let imagedata = data{
+                    let ref = Storage.storage().reference(withPath: names[i]).putData(imagedata)
                     ref.resume()
-                    //print("success: \(i) ")
                 }
-                else{
-                    print(image.size)
-                }
+            })
             }
         }
     }
@@ -52,9 +53,7 @@ class FirebaseModel{
         let option = PHImageRequestOptions()
         var thumbnail = UIImage()
         option.isSynchronous = true
-        // for testing
         manager.requestImage(for: asset, targetSize: CGSize(width: 100, height: 100), contentMode: .aspectFit, options: option, resultHandler: {(result, info)->Void in
-            //manager.requestImage(for: asset, targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight), contentMode: .aspectFit, options: option, resultHandler: {(result, info)->Void in
             thumbnail = result!
         })
         return thumbnail

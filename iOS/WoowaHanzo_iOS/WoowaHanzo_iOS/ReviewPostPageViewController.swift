@@ -23,6 +23,7 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var myButton: UIBarButtonItem!
     
+    
     var myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 50 ) )
     var placeholder = "당신의 귀한 생각.."
     var imageNameArray = [String]()
@@ -307,6 +308,7 @@ extension ReviewPostPageViewController: UITextViewDelegate{
             textView.text = placeholder
             textView.textColor = UIColor.lightGray
             textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+            myButton.isEnabled = false
             
             return false
         }
@@ -317,6 +319,7 @@ extension ReviewPostPageViewController: UITextViewDelegate{
         else if textView.textColor == UIColor.lightGray && !text.isEmpty {
             textView.text = nil
             textView.textColor = UIColor.black
+            myButton.isEnabled = true
         }
         
         return true
