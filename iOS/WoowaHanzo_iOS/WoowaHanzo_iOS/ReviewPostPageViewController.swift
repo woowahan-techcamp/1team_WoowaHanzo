@@ -48,9 +48,9 @@ class ReviewPostPageViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.fitView), name: NSNotification.Name(rawValue: "fitview"), object: nil)
         
         //view border setting
-        myView.layer.borderColor = UIColor.gray.cgColor
-        myView.layer.borderWidth = 0.5
-        myView.layer.cornerRadius = 10.0
+        //myView.layer.borderColor = UIColor.gray.cgColor
+        //myView.layer.borderWidth = 0.5
+        //myView.layer.cornerRadius = 10.0
         //textview border setting
         //myTextView.layer.borderColor = UIColor(red: CGFloat(112.0/255.0), green: CGFloat(182.0/255.0), blue: CGFloat(229.0/255.0), alpha: CGFloat(1.0)).cgColor
         myTextView.layer.borderColor = UIColor.lightGray.cgColor
@@ -97,40 +97,42 @@ class ReviewPostPageViewController: UIViewController {
     
     //게시를 누르지 않고 다른 탭을 누르는 경우 알림을 띄우도록
     func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            savedkeyboardSize = keyboardSize
-            if self.view.frame.origin.y == 0{
-                //keyboardSize.height
-                keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView._scrollView.contentSize.height - 65 - keyboardSize.height), (CGFloat)(0))
-                //self.view.frame.origin.y += keyboardmove
-                self.myView.frame.origin.y += keyboardmove
-                //self.myContentView.frame.origin.y += keyboardmove
-
-            }
-        }
-        else{
-            //self.view.frame.origin.y -= keyboardmove
-            //self.myContentView.frame.origin.y -= keyboardmove
-            self.myView.frame.origin.y -= keyboardmove
-
-            keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView._scrollView.contentSize.height - 65 - savedkeyboardSize.height), (CGFloat)(0))
-            //self.view.frame.origin.y += keyboardmove
-            self.myView.frame.origin.y += keyboardmove
-            //self.myContentView.frame.origin.y += keyboardmove
-
-            print(savedkeyboardSize.height)
-        }
+        print("keyboardshow!")
+//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//            savedkeyboardSize = keyboardSize
+//            if self.view.frame.origin.y == 0{
+//                //keyboardSize.height
+//                keyboardmove = min((self.view.frame.height-self.myCollectionView.frame.origin.y-150-self.myTagView._scrollView.contentSize.height - 65 - keyboardSize.height), (CGFloat)(0))
+//                //self.view.frame.origin.y += keyboardmove
+//                self.myView.frame.origin.y += keyboardmove
+//                //self.myContentView.frame.origin.y += keyboardmove
+//
+//            }
+//        }
+//        else{
+//            //self.view.frame.origin.y -= keyboardmove
+//            //self.myContentView.frame.origin.y -= keyboardmove
+//            let temp = keyboardmove
+//
+//            keyboardmove = min((self.view.frame.height-self.myCollectionView.frame.origin.y-150-self.myTagView._scrollView.contentSize.height - 65 - savedkeyboardSize.height), (CGFloat)(0))
+//            //self.view.frame.origin.y += keyboardmove
+//            self.myView.frame.origin.y += keyboardmove - temp
+//            //self.myContentView.frame.origin.y += keyboardmove
+//
+//            print(savedkeyboardSize.height)
+//        }
     }
     
     func keyboardWillHide(notification: NSNotification) {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
-            //if self.view.frame.origin.y != 0{
-            //self.view.frame.origin.y -= keyboardmove
-            self.myView.frame.origin.y -= keyboardmove
-            self.myView.frame.origin.y = 23
-            //self.myContentView.frame.origin.y -= keyboardmove
-
-            //}
+            print("keyboardhide!")
+//            //if self.view.frame.origin.y != 0{
+//            //self.view.frame.origin.y -= keyboardmove
+//            //self.myView.frame.origin.y -= keyboardmove
+//            self.myView.frame.origin.y = 23
+//            //self.myContentView.frame.origin.y -= keyboardmove
+//
+//            //}
         }
     }
     func fitView(){
