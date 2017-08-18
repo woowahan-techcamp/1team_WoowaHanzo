@@ -51,3 +51,7 @@
 .mypage_user_post_box {
   /*outline: 1px dotted yellow;*/
 }
+
+#profile_image_input {
+  display: none;
+}
