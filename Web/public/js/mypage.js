@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             loadPosts(child);
           }
         });
+        $(".container_box").css("opacity", 1);
       });
 
       $("#logout").on("click", function() {

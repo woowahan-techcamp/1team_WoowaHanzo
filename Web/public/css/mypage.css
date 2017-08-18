@@ -1,5 +1,9 @@
 .container_box {
   /*outline: 1px dotted pink;*/
+  -webkit-transition: .5s ;
+  -o-transition: .5s;
+  transition: .5s;
+  opacity: 0;
 }
 
 .mypage_user_box {

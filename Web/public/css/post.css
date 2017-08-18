@@ -4,6 +4,8 @@
 
 .container_box {
   opacity: 0;
+  -webkit-transition: .5s ;
+  -o-transition: .5s;
   transition: .5s;
 }
 
