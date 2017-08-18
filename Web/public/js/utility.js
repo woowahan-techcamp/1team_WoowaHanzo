@@ -236,7 +236,7 @@ function galleryRight() {
 	$(window).resize();
 }
 
-function loadUserData(uid) {
+function loadUserProfile(uid) {
 	var storageRef = firebase.storage().ref();
 	var ref = firebase.database().ref("/users/" + uid);
 
@@ -245,9 +245,9 @@ function loadUserData(uid) {
 			pageObject.userProfileImage[this.uid] = snapshot.val().profileImg;
 			var downloadUrl = storageRef.child("profileImages/" + pageObject.userProfileImage[this.uid]).getDownloadURL();
 			downloadUrl.then(function(url) {
-				var curPost = document.querySelector("#post_" + this.id);
-				var profilePic = curPost.querySelector(".profilePic");
-		//		profilePic.classList.add("loading");
+				var curPost = this;
+				var profilePic = curPost.querySelector("." + this.queryClass);
+				profilePic.classList.add("loading");
 				profilePic.src = url;
 				profilePic.onload = function(evt) {
 
@@ -259,9 +259,9 @@ function loadUserData(uid) {
 			}.bind(this));
 		} else {
 			pageObject.userProfileImage[this.uid] = "pictures/profile.png";
-			var curPost = document.querySelector("#post_" + this.id);
-			var profilePic = curPost.querySelector(".profilePic");
-		//	profilePic.classList.add("loading");
+			var curPost = this;
+			var profilePic = curPost.querySelector("." + this.queryClass);
+			profilePic.classList.add("loading");
 			profilePic.src = pageObject.userProfileImage[this.uid];
 			profilePic.onload = function(evt) {
 
@@ -295,9 +295,11 @@ function loadPosts(snapshot) {
 
   $(".container_box").append(pageObject.postTemplate(buffer));
 
-	loadUserData.bind(buffer, buffer.uid)();
-
   var $curPost = $("#post_" + buffer.id);
+	var curPost = document.querySelector("#post_" + buffer.id);
+	curPost.uid = buffer.uid;
+	curPost.queryClass = "profilePic";
+	loadUserProfile.bind(curPost, buffer.uid)();
 
   if(buffer.images) {
     // only three images are loaded at a time
