@@ -77,9 +77,8 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vic-FS-pyA">
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vic-FS-pyA">
                                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <fontDescription key="fontDescription" name="HelveticaNeue-LightItalic" family="Helvetica Neue" pointSize="43"/>
                                                                             <state key="normal" title="+">
@@ -91,6 +90,12 @@
                                                                         </button>
                                                                     </subviews>
                                                                 </view>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="Vic-FS-pyA" secondAttribute="trailing" id="TmS-aN-bl1"/>
+                                                                    <constraint firstItem="Vic-FS-pyA" firstAttribute="leading" secondItem="AGb-qz-KbA" secondAttribute="leading" id="Trf-Jh-U6P"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="Vic-FS-pyA" secondAttribute="bottom" id="cZ2-DK-gWK"/>
+                                                                    <constraint firstItem="Vic-FS-pyA" firstAttribute="top" secondItem="AGb-qz-KbA" secondAttribute="top" id="lay-s0-zBp"/>
+                                                                </constraints>
                                                             </collectionViewCell>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="reuseidentifier" id="59R-Ur-fAh" customClass="MyCollectionCell" customModule="WoowaHanzo_iOS" customModuleProvider="target">
                                                                 <rect key="frame" x="110" y="0.0" width="100" height="100"/>
@@ -99,12 +104,17 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dek-hI-8Fb">
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dek-hI-8Fb">
                                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         </imageView>
                                                                     </subviews>
                                                                 </view>
+                                                                <constraints>
+                                                                    <constraint firstItem="Dek-hI-8Fb" firstAttribute="leading" secondItem="59R-Ur-fAh" secondAttribute="leading" id="2x8-3m-BS1"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="Dek-hI-8Fb" secondAttribute="bottom" id="HjF-rI-HSG"/>
+                                                                    <constraint firstItem="Dek-hI-8Fb" firstAttribute="top" secondItem="59R-Ur-fAh" secondAttribute="top" id="PyM-zY-plw"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="Dek-hI-8Fb" secondAttribute="trailing" id="brg-9b-7vp"/>
+                                                                </constraints>
                                                                 <connections>
                                                                     <outlet property="imageView" destination="Dek-hI-8Fb" id="3cR-QL-2cV"/>
                                                                 </connections>
@@ -126,6 +136,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="width" constant="373" id="77I-zk-gSF"/>
                                                     <constraint firstItem="ffA-TX-D2K" firstAttribute="leading" secondItem="oZE-Yo-CnC" secondAttribute="leading" id="Fvj-KK-Uey"/>
                                                     <constraint firstItem="ffA-TX-D2K" firstAttribute="top" secondItem="oZE-Yo-CnC" secondAttribute="top" id="gvj-SV-PRB"/>
                                                 </constraints>
@@ -133,7 +144,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="oZE-Yo-CnC" secondAttribute="bottom" constant="189" id="145-kc-vrm"/>
+                                            <constraint firstAttribute="bottom" secondItem="oZE-Yo-CnC" secondAttribute="bottom" constant="189" id="3EP-om-zJB"/>
                                             <constraint firstItem="oZE-Yo-CnC" firstAttribute="centerX" secondItem="3vS-wK-4Ht" secondAttribute="centerX" id="GMb-3L-zuJ"/>
                                             <constraint firstItem="oZE-Yo-CnC" firstAttribute="leading" secondItem="3vS-wK-4Ht" secondAttribute="leading" constant="21" id="c04-4Q-vA0"/>
                                             <constraint firstItem="oZE-Yo-CnC" firstAttribute="top" secondItem="3vS-wK-4Ht" secondAttribute="top" constant="23" id="lUR-mA-mUV"/>

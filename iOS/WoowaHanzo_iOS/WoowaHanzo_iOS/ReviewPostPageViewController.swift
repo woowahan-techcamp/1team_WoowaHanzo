@@ -48,9 +48,9 @@ class ReviewPostPageViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.fitView), name: NSNotification.Name(rawValue: "fitview"), object: nil)
         
         //view border setting
-        //myView.layer.borderColor = UIColor.gray.cgColor
-        //myView.layer.borderWidth = 0.5
-        //myView.layer.cornerRadius = 10.0
+        myView.layer.borderColor = UIColor.gray.cgColor
+        myView.layer.borderWidth = 0.5
+        myView.layer.cornerRadius = 10.0
         //textview border setting
         //myTextView.layer.borderColor = UIColor(red: CGFloat(112.0/255.0), green: CGFloat(182.0/255.0), blue: CGFloat(229.0/255.0), alpha: CGFloat(1.0)).cgColor
         myTextView.layer.borderColor = UIColor.lightGray.cgColor
@@ -153,19 +153,18 @@ class ReviewPostPageViewController: UIViewController {
         frame3.size.height = self.myTagView._scrollView.frame.height
         shadowView.frame = frame3
         
-        print("height:\(myTagView._scrollView.contentSize.height)")
-        
         var frame4 = self.myCollectionView.frame
         frame4.origin.y = shadowView.frame.origin.y + shadowView.frame.height + 5
         myCollectionView.frame = frame4
         
         //var frame4 = self.myView.frame
-        myView.frame.size.height = myCollectionView.frame.origin.y + myCollectionView.frame.height + 10
+        myView.frame.size.height = myCollectionView.frame.origin.y + myCollectionView.frame.height + 200 //considering imageview height
         //myButton.frame.origin.y = myView.frame.origin.y + myView.frame.height + 17
         
         var contentSize2 = myScrollView.contentSize
         contentSize2.height = myView.frame.size.height + 80
         self.myScrollView.contentSize = contentSize2
+        self.myContentView.frame.size.height = myView.frame.size.height + 80
         
         //let contentSize2 = self.myView.sizeThatFits(self.myView.bounds.size)
         //var frame3 = self.myView.frame
