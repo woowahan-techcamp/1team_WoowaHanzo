@@ -36,7 +36,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1828"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZE-Yo-CnC">
-                                                <rect key="frame" x="21" y="23" width="373" height="1565"/>
+                                                <rect key="frame" x="21" y="23" width="373" height="1666"/>
                                                 <subviews>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jD-BC-1iR">
                                                         <rect key="frame" x="0.0" y="81" width="373" height="120"/>
@@ -144,9 +144,9 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="oZE-Yo-CnC" secondAttribute="bottom" constant="240" id="3EP-om-zJB"/>
                                             <constraint firstItem="oZE-Yo-CnC" firstAttribute="centerX" secondItem="3vS-wK-4Ht" secondAttribute="centerX" id="GMb-3L-zuJ"/>
                                             <constraint firstItem="oZE-Yo-CnC" firstAttribute="leading" secondItem="3vS-wK-4Ht" secondAttribute="leading" constant="21" id="c04-4Q-vA0"/>
+                                            <constraint firstAttribute="bottom" secondItem="oZE-Yo-CnC" secondAttribute="bottom" constant="139" id="ehE-29-XD7"/>
                                             <constraint firstItem="oZE-Yo-CnC" firstAttribute="top" secondItem="3vS-wK-4Ht" secondAttribute="top" constant="23" id="lUR-mA-mUV"/>
                                         </constraints>
                                     </view>

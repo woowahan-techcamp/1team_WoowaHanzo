@@ -48,9 +48,9 @@ class ReviewPostPageViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.fitView), name: NSNotification.Name(rawValue: "fitview"), object: nil)
         
         //view border setting
-        //myView.layer.borderColor = UIColor.gray.cgColor
-        //myView.layer.borderWidth = 0.5
-        //myView.layer.cornerRadius = 10.0
+        myView.layer.borderColor = UIColor.gray.cgColor
+        myView.layer.borderWidth = 0.5
+        myView.layer.cornerRadius = 10.0
         //textview border setting
         //myTextView.layer.borderColor = UIColor(red: CGFloat(112.0/255.0), green: CGFloat(182.0/255.0), blue: CGFloat(229.0/255.0), alpha: CGFloat(1.0)).cgColor
         myTextView.layer.borderColor = UIColor.lightGray.cgColor
@@ -158,8 +158,15 @@ class ReviewPostPageViewController: UIViewController {
         myCollectionView.frame = frame4
         
         //var frame4 = self.myView.frame
-        myView.frame.size.height = myCollectionView.frame.origin.y + myCollectionView.frame.height + 200 //considering imageview height
+        
+        var frame5 = self.myView.frame
+        frame5.size.height = myCollectionView.frame.origin.y + myCollectionView.frame.height + 200
+        myView.frame = frame5
+        
+        //considering imageview height
         //myButton.frame.origin.y = myView.frame.origin.y + myView.frame.height + 17
+        print("myViewincreased: \(myView.frame.size.height)")
+        //왜 바뀐대로 적용안되는지 모르겠다.
         
         var contentSize2 = myScrollView.contentSize
         contentSize2.height = myView.frame.size.height + 80
