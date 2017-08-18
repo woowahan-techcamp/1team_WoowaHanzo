@@ -48,9 +48,9 @@ class ReviewPostPageViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.fitView), name: NSNotification.Name(rawValue: "fitview"), object: nil)
         
         //view border setting
-        myView.layer.borderColor = UIColor.gray.cgColor
-        myView.layer.borderWidth = 0.5
-        myView.layer.cornerRadius = 10.0
+        //myView.layer.borderColor = UIColor.gray.cgColor
+        //myView.layer.borderWidth = 0.5
+        //myView.layer.cornerRadius = 10.0
         //textview border setting
         //myTextView.layer.borderColor = UIColor(red: CGFloat(112.0/255.0), green: CGFloat(182.0/255.0), blue: CGFloat(229.0/255.0), alpha: CGFloat(1.0)).cgColor
         myTextView.layer.borderColor = UIColor.lightGray.cgColor
@@ -103,7 +103,7 @@ class ReviewPostPageViewController: UIViewController {
                 //keyboardSize.height
                 keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView._scrollView.contentSize.height - 200 - keyboardSize.height), (CGFloat)(0))
                 //self.view.frame.origin.y += keyboardmove
-                self.myView.frame.origin.y += keyboardmove
+                self.myContentView.frame.origin.y += keyboardmove
                 //self.myContentView.frame.origin.y += keyboardmove
                 
             }
@@ -111,11 +111,11 @@ class ReviewPostPageViewController: UIViewController {
         else{
             //self.view.frame.origin.y -= keyboardmove
             //self.myContentView.frame.origin.y -= keyboardmove
-            self.myView.frame.origin.y -= keyboardmove
+            self.myContentView.frame.origin.y -= keyboardmove
             
             keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView._scrollView.contentSize.height - 200 - savedkeyboardSize.height), (CGFloat)(0))
             //self.view.frame.origin.y += keyboardmove
-            self.myView.frame.origin.y += keyboardmove
+            self.myContentView.frame.origin.y += keyboardmove
             //self.myContentView.frame.origin.y += keyboardmove
             
             print(savedkeyboardSize.height)
@@ -126,8 +126,8 @@ class ReviewPostPageViewController: UIViewController {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
             //if self.view.frame.origin.y != 0{
             //self.view.frame.origin.y -= keyboardmove
-            self.myView.frame.origin.y -= keyboardmove
-            self.myView.frame.origin.y = 23
+            self.myContentView.frame.origin.y -= keyboardmove
+            self.myContentView.frame.origin.y = 23
             //self.myContentView.frame.origin.y -= keyboardmove
             
             //}
