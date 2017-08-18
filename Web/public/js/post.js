@@ -1,14 +1,16 @@
+// 로그인 되어있지 않으면 로그인 화면으로 보냄
+firebase.auth().onAuthStateChanged(user => {
+  if(!user) {
+    window.location.href = 'login.html';
+  }
+});
+
 document.addEventListener("DOMContentLoaded", function(event) {
   console.log("DOM fully loaded and parsed");
 
-  // 로그인 되어있지 않으면 로그인 화면으로 보냄
   firebase.auth().onAuthStateChanged(user => {
-    if(!user) {
-      window.location.href = 'login.html';
-    }
-    else {
-      var uid = firebase.auth().currentUser.uid;
-      var username = firebase.database().ref("users/" + uid + "/username");
+    if(user) {
+      var username = firebase.database().ref("users/" + user.uid + "/username");
       username.on('value', function(snapshot) {
         author = snapshot.val();
         $(".Name").html(author);
