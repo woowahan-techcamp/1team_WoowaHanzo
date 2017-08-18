@@ -1,4 +1,4 @@
-//
+
 //  MainPageViewController.swift
 //  WoowaHanzo_iOS
 //
@@ -15,9 +15,9 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     var firebaseModel = FirebaseModel()
     var searchBar = UISearchBar()
     let cellSpacingHeight: CGFloat = 15
-    var dummyUserTextView : UITextView?
-    var dummyUserTagView: TagListView?
-    var dummyUserCollectionView : UICollectionView?
+    
+    @IBOutlet weak var dummyTextView: UITextView!
+    @IBOutlet weak var dummyTagView: TagListView!
     
     
 
@@ -29,8 +29,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        dummyUserTextView?.translatesAutoresizingMaskIntoConstraints = true
-        dummyUserTextView?.isScrollEnabled = false
+       
         mainpageTableView.keyboardDismissMode = .onDrag
         //firebase에서 loadFeed하는것에 옵저버를 걸어준다.
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: NSNotification.Name(rawValue: "reload"), object: nil)
@@ -57,6 +56,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     override func viewWillAppear(_ animated: Bool) {
         
         firebaseModel.loadFeed()
+        dummyTextView.isScrollEnabled = false
         searchIconButton.tintColor = UIColor.black
         let size = CGSize(width: 30, height: 30)
         
@@ -135,7 +135,9 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as!MainPageTableViewCell
         cell.contentsTextView.text = User.users[indexPath.section].contents
+        cell.contentsTextView.sizeToFit()
         cell.nickNameButton.setTitle(User.users[indexPath.section].nickName, for: .normal)
+        
         cell.tagListView.reset()
         cell.userid = indexPath.section
         if let tag = User.users[indexPath.section].tagsArray{
@@ -143,6 +145,7 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
                 cell.tagListView.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.gray)
             }
         }
+        cell.tagListView.sizeToFit()
         cell.timeLabel.text = Date().postTimeDisplay(postDate: User.users[indexPath.section].postDate)
         cell.FoodImageCollectionView.reloadData()
         //print(User.users[indexPath.section].imageArray)
@@ -171,25 +174,24 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
 //
 //        return height
         var height: CGFloat = 0.0
-        self.dummyUserTextView?.text = User.users[indexPath.section].contents
+        self.dummyTextView.text = User.users[indexPath.section].contents
        
-        let fixedWidth = self.dummyUserTextView?.frame.size.width
+       // let fixedWidth = self.dummyUserTextView?.frame.size.width
 
-        self.dummyUserTextView?.sizeThatFits(CGSize(width: fixedWidth!, height: CGFloat.greatestFiniteMagnitude))
-        
-        print(dummyUserTextView?.frame.size.height)
+        self.dummyTextView.sizeToFit()
+        //print(dummyTextView?.frame.size.height)
         if let tag = User.users[indexPath.section].tagsArray{
             for index in tag{
-                self.dummyUserTagView?.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.gray)
+                self.dummyTagView?.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.gray)
             }
         }
-        self.dummyUserTagView?.sizeToFit()
-        if let imageArray = User.users[indexPath.row].imageArray{
-            height += 120
-        }
         
-        
-
+        self.dummyTagView?.sizeToFit()
+        print("dd\(dummyTagView.frame.size.height)")
+//        if let imageArray = User.users[indexPath.row].imageArray{
+//            height += 120
+//        }
+        height += dummyTextView.frame.size.height + dummyTagView.frame.size.height + 200
         return height
     }
    

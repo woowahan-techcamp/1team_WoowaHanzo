@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPp-vP-1UD">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPp-vP-1UD" customClass="TagListView" customModule="WoowaHanzo_iOS" customModuleProvider="target">
                                 <rect key="frame" x="67" y="269" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -60,12 +60,9 @@
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                 </button>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceHorizontal="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HCI-CU-uVs">
-                                                    <rect key="frame" x="16" y="112" width="343" height="105.5"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" alwaysBounceHorizontal="YES" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HCI-CU-uVs">
+                                                    <rect key="frame" x="16" y="112" width="343" height="142"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="106" id="PlJ-bb-0af"/>
-                                                    </constraints>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -138,8 +135,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qzv-1F-IMb" customClass="TagListView" customModule="WoowaHanzo_iOS" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="235" width="343" height="57"/>
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qzv-1F-IMb" customClass="TagListView" customModule="WoowaHanzo_iOS" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="255" width="343" height="37"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37g-Sg-JPF">
@@ -175,7 +172,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="Kix-Qc-2KK" secondAttribute="bottom" constant="61.5" id="oCG-WM-VMo"/>
                                                 <constraint firstItem="R6J-Xc-Ted" firstAttribute="leading" secondItem="37g-Sg-JPF" secondAttribute="leading" constant="-2" id="pIn-6Z-bK0"/>
                                                 <constraint firstItem="PeS-hR-UPO" firstAttribute="leading" secondItem="1uC-VA-8di" secondAttribute="trailing" constant="8" id="r21-HE-XEN"/>
-                                                <constraint firstItem="qzv-1F-IMb" firstAttribute="top" secondItem="HCI-CU-uVs" secondAttribute="bottom" constant="17" id="r2e-Lg-Z0Z"/>
+                                                <constraint firstItem="qzv-1F-IMb" firstAttribute="top" secondItem="HCI-CU-uVs" secondAttribute="bottom" constant="-6" id="r2e-Lg-Z0Z"/>
                                                 <constraint firstItem="1uC-VA-8di" firstAttribute="top" secondItem="r1N-Ib-I4E" secondAttribute="topMargin" constant="31" id="thj-0X-Jlj"/>
                                                 <constraint firstItem="Cx9-sr-l7K" firstAttribute="bottom" secondItem="1Lt-1N-7aU" secondAttribute="bottom" id="zuy-XF-ar5"/>
                                             </constraints>
@@ -183,7 +180,6 @@
                                         <connections>
                                             <outlet property="FoodImageCollectionView" destination="Kix-Qc-2KK" id="P9S-Na-fCw"/>
                                             <outlet property="contentsTextView" destination="HCI-CU-uVs" id="li5-xg-o97"/>
-                                            <outlet property="contentsTextViewConstraint" destination="PlJ-bb-0af" id="mOA-dE-RtX"/>
                                             <outlet property="likeButton" destination="37g-Sg-JPF" id="xxD-XD-5vR"/>
                                             <outlet property="nickNameButton" destination="1uC-VA-8di" id="hcg-aH-wQy"/>
                                             <outlet property="profileImageView" destination="Cx9-sr-l7K" id="qNt-Ud-iaa"/>
@@ -212,6 +208,8 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="dummyTagView" destination="fPp-vP-1UD" id="BB8-lL-CMv"/>
+                        <outlet property="dummyTextView" destination="eqZ-pc-JmA" id="tZi-ns-5NB"/>
                         <outlet property="mainpageTableView" destination="laF-bT-XL8" id="gig-sT-s9O"/>
                         <outlet property="searchIconButton" destination="o0t-RJ-QLX" id="1SZ-a2-sUb"/>
                     </connections>
@@ -231,7 +229,7 @@
                 <navigationController storyboardIdentifier="MainPageNavigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PW2-AP-TL9" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="홈" image="Group 3" id="fNJ-fU-46m"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gZp-ft-tvX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gZp-ft-tvX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
