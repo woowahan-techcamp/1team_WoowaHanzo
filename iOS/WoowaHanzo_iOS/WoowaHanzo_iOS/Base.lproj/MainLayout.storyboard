@@ -34,7 +34,7 @@
         <scene sceneID="0Vg-j8-eCJ">
             <objects>
                 <viewControllerPlaceholder storyboardName="ReivewPostPage" id="40A-hr-U8H" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="글쓰기" id="JOG-Uv-fx0"/>
+                    <tabBarItem key="tabBarItem" title="글쓰기" image="Group 2" id="JOG-Uv-fx0"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3KU-Nl-OdD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -44,7 +44,7 @@
         <scene sceneID="yaR-Pi-a3B">
             <objects>
                 <viewControllerPlaceholder storyboardName="RankPage" id="9iG-kf-BTo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="KWk-uO-vTE"/>
+                    <tabBarItem key="tabBarItem" title="랭킹" image="Icon" id="KWk-uO-vTE"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEI-qg-GAm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -54,7 +54,7 @@
         <scene sceneID="qeK-Om-p9U">
             <objects>
                 <viewControllerPlaceholder storyboardName="MyPage" id="cYe-xj-Dwd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="P3l-uF-Bcc"/>
+                    <tabBarItem key="tabBarItem" title="마이페이지" image="Combined Shape" id="P3l-uF-Bcc"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fy1-wD-vEY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -64,7 +64,7 @@
         <scene sceneID="ent-w8-0sa">
             <objects>
                 <viewControllerPlaceholder storyboardName="MainPage" id="edI-hD-Y9O" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ZTn-GG-Wlw"/>
+                    <tabBarItem key="tabBarItem" title="홈" image="Group 3" id="ZTn-GG-Wlw"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kmB-B8-Uyo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -74,11 +74,17 @@
         <scene sceneID="h5h-3V-Ndq">
             <objects>
                 <viewControllerPlaceholder storyboardName="TagPage" id="7Eo-3d-vio" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="3Ik-kK-dkZ"/>
+                    <tabBarItem key="tabBarItem" title="태그" id="3Ik-kK-dkZ"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="azA-PS-p63" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-898" y="531"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Combined Shape" width="20" height="19"/>
+        <image name="Group 2" width="19" height="19"/>
+        <image name="Group 3" width="22" height="22"/>
+        <image name="Icon" width="23" height="21"/>
+    </resources>
 </document>

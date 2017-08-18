@@ -7,9 +7,12 @@ target 'WoowaHanzo_iOS' do
 pod ‘Firebase/Core’
 pod ‘Firebase/Database’
 pod ‘Firebase/Auth’
-pod ‘Firebase/Storage’
-pod "UITags"
+pod 'Firebase/Storage'
+pod 'FTImageViewer'
+pod 'Kingfisher', '~> 3.0'
 pod 'NVActivityIndicatorView'
+pod "BSImagePicker", "~> 2.4"
+
   # Pods for WoowaHanzo_iOS
 
   target 'WoowaHanzo_iOSTests' do

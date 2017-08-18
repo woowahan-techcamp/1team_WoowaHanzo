@@ -2,6 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>NotoSans-Bold.ttf</string>
+		<string>NotoSans-Regular.ttf</string>
+		<string>NotoSansKR_Regular.woff</string>
+		<string>NotoSansUI-Regular.ttf</string>
+	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>for imagepicker</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>for imagepicker</string>
+	<key>NSCameraUsageDescription</key>
+	<string>for imagepicker</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

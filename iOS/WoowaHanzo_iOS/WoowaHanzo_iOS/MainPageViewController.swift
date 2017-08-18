@@ -1,4 +1,4 @@
-//
+
 //  MainPageViewController.swift
 //  WoowaHanzo_iOS
 //
@@ -8,12 +8,20 @@
 
 import UIKit
 import NVActivityIndicatorView
-
+import FTImageViewer
+import Firebase
 
 class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
     var firebaseModel = FirebaseModel()
     var searchBar = UISearchBar()
+    let cellSpacingHeight: CGFloat = 15
+    
+    @IBOutlet weak var dummyTextView: UITextView!
+    @IBOutlet weak var dummyTagView: TagListView!
+    var foodArray = [UIImage]()
+    
+    
 
 
     @IBOutlet weak var mainpageTableView: UITableView!
@@ -22,55 +30,79 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
     override func viewDidLoad() {
         
-        super.viewDidLoad()
         
-        mainpageTableView.keyboardDismissMode = .onDrag
+    
+        super.viewDidLoad()
        
+        mainpageTableView.keyboardDismissMode = .onDrag
         //firebase에서 loadFeed하는것에 옵저버를 걸어준다.
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: NSNotification.Name(rawValue: "reload"), object: nil)
         
-        
+
         mainpageTableView.delegate = self
         mainpageTableView.dataSource = self
 
         searchBar.alpha = 0
         searchBar.searchBarStyle = UISearchBarStyle.minimal
+        mainpageTableView.reloadData()
        
+        mainpageTableView.estimatedRowHeight = UITableViewAutomaticDimension
+        //mainpageTableView.rowHeight = 488
     }
     
+  
+   
     func reloadTableData(){
         mainpageTableView.reloadData()
+    
 
     }
     override func viewWillAppear(_ animated: Bool) {
-        firebaseModel.loadFeed()
-        searchIconButton.tintColor = UIColor.white
-        let size = CGSize(width: 30, height: 30)
         
-        startAnimating(size, message: "Loading...", type: .ballTrianglePath)
+        let size = CGSize(width: 30, height: 30)
+
+        DispatchQueue.main.async {
+            self.startAnimating(size, message: "Loading...", type: .ballTrianglePath)
+            self.firebaseModel.loadFeed()
+        }
+
+        
+        dummyTextView.isScrollEnabled = false
+        searchIconButton.tintColor = UIColor.black
+        
+        
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
             NVActivityIndicatorPresenter.sharedInstance.setMessage("Authenticating...")
+            self.mainpageTableView.reloadData()
         }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
             self.stopAnimating()
+            
         }
+        
 
     }
+    
+    //스크롤하면 키보드가 사라진다.
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+        
     }
    
     @IBAction func searchIconTouched(_ sender: Any) {
         
         if navigationItem.titleView != nil{
             navigationItem.titleView = nil
-             searchIconButton.title = "검색"
+            searchIconButton.title = ""
+            searchIconButton.image = #imageLiteral(resourceName: "searchIcon")
+            
             
         }else{
+            searchIconButton.image = nil
             searchIconButton.title = "취소"
-        showSearchBar()
+            showSearchBar()
         }
     }
     
@@ -84,39 +116,119 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
             self.searchBar.becomeFirstResponder()
         })
     }
+    func tap(_ sender:UIGestureRecognizer)
+    {
+        let label = (sender.view as! UILabel)
+        print("tap from \(label.text!)")
+    }
     
+    
+    
+    @IBAction func showGalleryImageViewer(_ sender: Any) {
+        
+    }
     
 }
 
 //MARK: TableView extension
-extension MainPageViewController : UITableViewDelegate,UITableViewDataSource,UITextViewDelegate{
-    
+extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return User.users.count
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return User.users.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        
+       
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as!MainPageTableViewCell
-        cell.contentsTextView.text = User.users[indexPath.row].contents
-        cell.nickNameButton.setTitle(User.users[indexPath.row].nickName, for: .normal)
-        //print(User.users[indexPath.row].tagsArray)
+        cell.contentsTextView.text = User.users[indexPath.section].contents
+        cell.contentsTextView.sizeToFit()
+        cell.nickNameButton.setTitle(User.users[indexPath.section].nickName, for: .normal)
         
-        if let tagArr = User.users[indexPath.row].tagsArray{
-            cell.tags.tags = tagArr
-
-        }else{
-            cell.tags.tags = nil
+        cell.tagListView.reset()
+        cell.userid = indexPath.section
+        if let tag = User.users[indexPath.section].tagsArray{
+            for index in tag{
+                cell.tagListView.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.gray)
+            }
         }
-        //tableView.estimatedRowHeight = 336
-        //tableView.rowHeight = UITableViewAutomaticDimension
+        cell.tagListView.sizeToFit()
+        cell.timeLabel.text = Date().postTimeDisplay(postDate: User.users[indexPath.section].postDate)
+        DispatchQueue.main.async {
+            cell.FoodImageCollectionView.reloadData()
 
+        }
+        cell.userid = indexPath.section
+        //print(User.users[indexPath.section].imageArray)
+//                   if let imageArray = User.users[indexPath.section].imageArray{
+//                for index in imageArray{
+//                    let ref = Storage.storage().reference(withPath: imageArray[indexPath.row]).downloadURL { (url, error) in
+//                        //print(imageArray)
+//                        if url != nil{
+//                            let data = try? Data(contentsOf: url!)
+//                            self.foodArray.append(UIImage(data: data!)!)
+//                        }
+//                        
+//                        
+//                    }
+//                }
+//                    DispatchQueue.global().async {
+//                        cell.imageArr = self.foodArray
+//
+//                    }
+//            }
+        
+        
+        
         return cell
     }
     
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat{
+//        
+//        return UITableViewAutomaticDimension
+//    }
+    
+   
+    //padding between cell
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return cellSpacingHeight
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+        
+//        let myCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainPageTableViewCell
+//        let heightForCell = myCell.contentsTextView.frame.height + myCell.tagListView.frame.height +  myCell.FoodImageCollectionView.frame.height
+//        //let h = myCell.contentsTextView.contentSize.height + myCell.tagListView.contentSize.height + myCell.FoodImageCollectionView.contentSize.height
+//        //print()
+//        let height = myCell.contentsTextViewConstraint.constant + myCell.tagListView.bounds.height + myCell.FoodImageCollectionView.bounds.height
+//
+//        return height
+        var height: CGFloat = 0.0
+        self.dummyTextView.text = User.users[indexPath.section].contents
+       
+       // let fixedWidth = self.dummyUserTextView?.frame.size.width
 
+        self.dummyTextView.sizeToFit()
+        //print(dummyTextView?.frame.size.height)
+        if let tag = User.users[indexPath.section].tagsArray{
+            for index in tag{
+                self.dummyTagView?.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.gray)
+            }
+        }
+        
+        self.dummyTagView?.sizeToFit()
+        print("dd\(dummyTagView.frame.size.height)")
+//        if let imageArray = User.users[indexPath.row].imageArray{
+//            height += 120
+//        }
+        height += dummyTextView.frame.size.height + dummyTagView.frame.size.height + 200
+        return height
+    }
+   
    
 }
+
 

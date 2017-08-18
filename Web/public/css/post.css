@@ -2,6 +2,13 @@
 
 }
 
+.container_box {
+  opacity: 0;
+  -webkit-transition: .5s ;
+  -o-transition: .5s;
+  transition: .5s;
+}
+
 .post_input {
   margin-top: 100px;
 }
