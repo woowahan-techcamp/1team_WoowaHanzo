@@ -78,7 +78,7 @@ function prevLoaded($curPost) {
 
 function fadeInPost($curPost) {
 	$curPost.css("display", "block");
-
+	resizeThumbnails();
 	$curPost.animate({
 		opacity: 1.0
 	}, 200, function() {
@@ -90,10 +90,15 @@ function fadeInPost($curPost) {
 
 }
 
+function findParent (elem, cls) {
+    while ((elem = elem.parentElement) && !elem.classList.contains(cls));
+    return elem;
+}
+
 function imagesAllLoaded(curImage) {
 	try {
 		curImage.classList.add("loaded");
-		var imageParent = curImage.parentElement.parentElement.parentElement;
+		var imageParent = findParent(curImage, "post");//curImage.parentElement.parentElement.parentElement;
 		var allImages = imageParent.querySelectorAll(".loading");
 
 		var allLoaded = true;
@@ -231,6 +236,45 @@ function galleryRight() {
 	$(window).resize();
 }
 
+function loadUserData(uid) {
+	var storageRef = firebase.storage().ref();
+	var ref = firebase.database().ref("/users/" + uid);
+
+	ref.once('value').then(function(snapshot) {
+		if(snapshot.val().profileImg) {
+			pageObject.userProfileImage[this.uid] = snapshot.val().profileImg;
+			var downloadUrl = storageRef.child("profileImages/" + pageObject.userProfileImage[this.uid]).getDownloadURL();
+			downloadUrl.then(function(url) {
+				var curPost = document.querySelector("#post_" + this.id);
+				var profilePic = curPost.querySelector(".profilePic");
+		//		profilePic.classList.add("loading");
+				profilePic.src = url;
+				profilePic.onload = function(evt) {
+
+					if(prevLoaded(this) && imagesAllLoaded(evt.target)) {
+
+					 	fadeInPost(this);
+					}
+				}.bind($(curPost));
+			}.bind(this));
+		} else {
+			pageObject.userProfileImage[this.uid] = "pictures/profile.png";
+			var curPost = document.querySelector("#post_" + this.id);
+			var profilePic = curPost.querySelector(".profilePic");
+		//	profilePic.classList.add("loading");
+			profilePic.src = pageObject.userProfileImage[this.uid];
+			profilePic.onload = function(evt) {
+
+				if(prevLoaded(this) && imagesAllLoaded(evt.target)) {
+				 	console.log("fadeIn through profile");
+				 	fadeInPost(this);
+				}
+			}.bind($(curPost));
+		}
+
+	}.bind(this));
+}
+
 function loadPosts(snapshot) {
   var storageRef = firebase.storage().ref();
 
@@ -250,6 +294,8 @@ function loadPosts(snapshot) {
   buffer["time"] = getCurrentTime(-buffer["time"]);
 
   $(".container_box").append(pageObject.postTemplate(buffer));
+
+	loadUserData.bind(buffer, buffer.uid)();
 
   var $curPost = $("#post_" + buffer.id);
 
@@ -302,10 +348,6 @@ function loadPosts(snapshot) {
 
         imageParent = imageParent.children("td").get(i);
 				imageParent.style.display = "none";
-				//console.log(imageParent.outerHTML);
-
-        //imageParent = $(imageParent).children("div").children("img");
-        //imageParent.classList.add("loaded");
 
       } else {
         storageRef.child('images/' + filename).getDownloadURL().then(function(url) {
@@ -352,7 +394,6 @@ function loadPosts(snapshot) {
   if(buffer["tags"] && buffer["tags"].length == 0) {
     $curPost.children(".tags_holder").css("display", "none");
   }
-  //$curPost.css("display", "block");
 
   resizeThumbnails();
 }
