@@ -51,10 +51,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       $("#profile_image_input").on("change", function(evt) {
         profileImageHandle(this);
 
-        // database/users/profileImage에 해당 이미지를 update()한다
-        // stoarage/images에 해당 이미지를 넣는다
-        // stoarage/images에 이전의 프로필 사진은 지운다
-
       });
 
     }
@@ -67,7 +63,7 @@ var file = "";
 function profileImageHandle(evt) {
   var fileInput = document.getElementById('profile_image_input');
   console.log('evt ', evt.files[0]);
-  var file = evt.files[0];
+  file = evt.files[0];
 
   if (evt.files && evt.files[0]) {
     var reader = new FileReader();
@@ -90,8 +86,7 @@ function profileImageHandle(evt) {
 
       var newfilename = (new Date().getTime()).toString() + '.' + filename.split('.')[1];
       console.log('newfilename: ', newfilename);
-      //newfilename 에 대해서 고민 해봐야할듯
-      //프로필 사진이니까... 그냥 유저네임으로 할까..
+      //newfilename 프로필 사진이니까... 그냥 유저네임으로 할까..
 
       var storageRef = firebase.storage().ref();
       var profileRef = storageRef.child(filename);
@@ -100,6 +95,15 @@ function profileImageHandle(evt) {
       profileImageRef.put(file).then(function(snapshot) {
         console.log('파일업로드함');
       });
+
+      // database/users에 넣음
+      firebase.database().ref('users/' + firebase.auth().currentUser.uid).update({
+        profileImg: newfilename
+      })
+      .then(function() {
+        console.log('users/profileImg에 사진이름 넣음');
+      })
+      .catch(function(error) {})
 
     }
     reader.readAsDataURL(evt.files[0]);
