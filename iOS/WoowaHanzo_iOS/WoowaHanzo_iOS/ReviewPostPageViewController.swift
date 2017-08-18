@@ -97,9 +97,14 @@ class ReviewPostPageViewController: UIViewController {
     
     //게시를 누르지 않고 다른 탭을 누르는 경우 알림을 띄우도록
     func keyboardWillShow(notification: NSNotification) {
-        print("keyboardshow!")
-//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-//            savedkeyboardSize = keyboardSize
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            let totalheight = self.myTextView.frame.height + 100 + myCollectionView.frame.height + 100 + keyboardSize.height
+            print(totalheight)
+            if totalheight > 620 {
+                print("over")
+                self.view.frame.origin.y -= totalheight - 620
+            }
+        }   //            savedkeyboardSize = keyboardSize
 //            if self.view.frame.origin.y == 0{
 //                //keyboardSize.height
 //                keyboardmove = min((self.view.frame.height-self.myCollectionView.frame.origin.y-150-self.myTagView._scrollView.contentSize.height - 65 - keyboardSize.height), (CGFloat)(0))
@@ -120,12 +125,16 @@ class ReviewPostPageViewController: UIViewController {
 //            //self.myContentView.frame.origin.y += keyboardmove
 //
 //            print(savedkeyboardSize.height)
-//        }
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
-            print("keyboardhide!")
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                print("over2")
+                //self.myView.frame.origin.y += keyboardSize.height
+                self.view.frame.origin.y = 0
+            }
+        }
 //            //if self.view.frame.origin.y != 0{
 //            //self.view.frame.origin.y -= keyboardmove
 //            //self.myView.frame.origin.y -= keyboardmove
@@ -133,7 +142,6 @@ class ReviewPostPageViewController: UIViewController {
 //            //self.myContentView.frame.origin.y -= keyboardmove
 //
 //            //}
-        }
     }
     func fitView(){
         let contentSize = self.myTextView.sizeThatFits(self.myTextView.bounds.size)
