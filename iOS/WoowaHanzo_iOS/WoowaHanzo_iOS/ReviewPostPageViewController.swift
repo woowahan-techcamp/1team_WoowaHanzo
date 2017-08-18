@@ -37,7 +37,6 @@ class ReviewPostPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,9 +111,13 @@ class ReviewPostPageViewController: UIViewController {
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
             self.shouldloadview = true
         })
-        alert.addAction(cancel)
-        alert.addAction(ok)
-        present(alert, animated: true, completion: nil)
+        if myTextView.textColor != UIColor.lightGray {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+        }
+        }
 
     }
     
