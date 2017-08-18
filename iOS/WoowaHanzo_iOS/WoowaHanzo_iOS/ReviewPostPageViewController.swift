@@ -23,6 +23,7 @@ class ReviewPostPageViewController: UIViewController {
     @IBOutlet weak var myCollectionView: UICollectionView!
     @IBOutlet weak var myButton: UIBarButtonItem!
     
+    
     var myTagView = TagView( position: CGPoint( x: 20, y: 380 ), size: CGSize( width: 320, height: 50 ) )
     var placeholder = "당신의 귀한 생각.."
     var imageNameArray = [String]()
@@ -32,9 +33,16 @@ class ReviewPostPageViewController: UIViewController {
     var textFieldText = ""
     var keyboardmove = CGFloat(0)
     var savedkeyboardSize = CGRect()
+    var shouldloadview = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if shouldloadview{
+            shouldloadview = true
         myCollectionView.dataSource = self
         myCollectionView.delegate = self
         myCollectionView.allowsSelection = true
@@ -92,7 +100,22 @@ class ReviewPostPageViewController: UIViewController {
         let tap3: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
         tap3.cancelsTouchesInView = false
         myTagView.addGestureRecognizer(tap3)
-        
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        let alert = UIAlertController(title: "글 작성이 완료되지 않았습니다.", message: "글 작성을 취소하시겠습니까?", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
+            self.shouldloadview = false
+            self.tabBarController?.selectedIndex = 2
+        })
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
+            self.shouldloadview = true
+        })
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
+
     }
     
     //게시를 누르지 않고 다른 탭을 누르는 경우 알림을 띄우도록
@@ -127,7 +150,7 @@ class ReviewPostPageViewController: UIViewController {
             //if self.view.frame.origin.y != 0{
             //self.view.frame.origin.y -= keyboardmove
             self.myContentView.frame.origin.y -= keyboardmove
-            self.myContentView.frame.origin.y = 23
+            self.myContentView.frame.origin.y = 0
             //self.myContentView.frame.origin.y -= keyboardmove
             
             //}
@@ -211,11 +234,6 @@ class ReviewPostPageViewController: UIViewController {
             
             //self.tabBarController?.selectedIndex = 0
             
-            //등록 표시 나 화면 전환등의 효과 애니메이션 필요.
-            
-            //reload도 다시해야 한다.
-            //post한 경우외에는 리로드 안하도록.
-            //post: 등록되었습니다.
             //다른 탭 누르면: 나가시겠습니까 알러트.
             
             
@@ -290,6 +308,7 @@ extension ReviewPostPageViewController: UITextViewDelegate{
             textView.text = placeholder
             textView.textColor = UIColor.lightGray
             textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+            myButton.isEnabled = false
             
             return false
         }
@@ -300,6 +319,7 @@ extension ReviewPostPageViewController: UITextViewDelegate{
         else if textView.textColor == UIColor.lightGray && !text.isEmpty {
             textView.text = nil
             textView.textColor = UIColor.black
+            myButton.isEnabled = true
         }
         
         return true
@@ -335,7 +355,6 @@ extension ReviewPostPageViewController: UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("ah - oh")
         if indexPath.row > 0 {
             imageArray.remove(at: indexPath.row - 1)
             imageNameArray.remove(at: indexPath.row - 1)
