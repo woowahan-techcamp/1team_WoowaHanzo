@@ -105,6 +105,10 @@ function profileImageHandle(evt) {
       })
       .catch(function(error) {})
 
+      // TODO
+      // 이전 프로필 사진을 지워야 됨
+
+
     }
     reader.readAsDataURL(evt.files[0]);
   }
