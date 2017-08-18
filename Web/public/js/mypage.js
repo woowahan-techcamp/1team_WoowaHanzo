@@ -20,17 +20,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
         var rootRef = firebase.database().ref();
-        var postRef = rootRef.child("/posts");
+        var postRef = firebase.database().ref("/posts");
         postRef.orderByChild("time").on("child_added", function(snapshot) {
-          snapshot.forEach(function(child) {
-            console.log("Loading posts");
-            // child.val() 전체 포스트 가져옴
-            console.log(child.val().author);
-            console.log(currentUserName);
-            if(child.val().author === currentUserName) {
-              loadPosts(child);
-            }
-          });
+          if(snapshot.val().author === currentUserName) {
+            loadPosts(snapshot);
+          }
+
         });
 
       });
