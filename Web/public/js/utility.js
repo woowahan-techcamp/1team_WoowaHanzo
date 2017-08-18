@@ -405,8 +405,6 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 	var holder = document.querySelector(".holder");
 	var navleft = document.querySelector("#navleft");
 	if($(".holder").length) {
-		console.log($("#navleft").height());
-
 		$('.holder').css('margin-top', galleryoverlay.offsetHeight / 2 - navleft.offsetHeight / 2 + 'px');
 		$(window).resize(function() {
 			$('.holder').css('margin-top', galleryoverlay.offsetHeight / 2 - navleft.offsetHeight / 2 + 'px');
@@ -461,10 +459,8 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 		mouseX -= actualimage.getBoundingClientRect().left;
 		var width = actualimage.offsetWidth;
 		if(mouseX < width / 2) {
-			console.log("Left");
 			$("#navleft").click();
 		} else {
-			console.log("Right");
 			$("#navright").click();
 		}
 	});
