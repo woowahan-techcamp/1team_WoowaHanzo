@@ -15,6 +15,11 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     var firebaseModel = FirebaseModel()
     var searchBar = UISearchBar()
     let cellSpacingHeight: CGFloat = 15
+    var dummyUserTextView : UITextView?
+    var dummyUserTagView: TagListView?
+    var dummyUserCollectionView : UICollectionView?
+    
+    
 
 
     @IBOutlet weak var mainpageTableView: UITableView!
@@ -24,6 +29,8 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        dummyUserTextView?.translatesAutoresizingMaskIntoConstraints = true
+        dummyUserTextView?.isScrollEnabled = false
         mainpageTableView.keyboardDismissMode = .onDrag
         //firebase에서 loadFeed하는것에 옵저버를 걸어준다.
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: NSNotification.Name(rawValue: "reload"), object: nil)
@@ -36,8 +43,8 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         searchBar.searchBarStyle = UISearchBarStyle.minimal
         mainpageTableView.reloadData()
        
-//        mainpageTableView.estimatedRowHeight = UITableViewAutomaticDimension
-//        mainpageTableView.rowHeight = UITableViewAutomaticDimension
+        mainpageTableView.estimatedRowHeight = UITableViewAutomaticDimension
+        //mainpageTableView.rowHeight = 488
     }
     
   
@@ -143,9 +150,10 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
         return cell
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat{
-        return UITableViewAutomaticDimension
-    }
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat{
+//        
+//        return UITableViewAutomaticDimension
+//    }
     
    
     //padding between cell
@@ -154,11 +162,37 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        let myCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainPageTableViewCell
-        let heightForCell = myCell.bounds.size.height;
-        return heightForCell;
-    }
+        
+//        let myCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainPageTableViewCell
+//        let heightForCell = myCell.contentsTextView.frame.height + myCell.tagListView.frame.height +  myCell.FoodImageCollectionView.frame.height
+//        //let h = myCell.contentsTextView.contentSize.height + myCell.tagListView.contentSize.height + myCell.FoodImageCollectionView.contentSize.height
+//        //print()
+//        let height = myCell.contentsTextViewConstraint.constant + myCell.tagListView.bounds.height + myCell.FoodImageCollectionView.bounds.height
+//
+//        return height
+        var height: CGFloat = 0.0
+        self.dummyUserTextView?.text = User.users[indexPath.section].contents
+       
+        let fixedWidth = self.dummyUserTextView?.frame.size.width
 
+        self.dummyUserTextView?.sizeThatFits(CGSize(width: fixedWidth!, height: CGFloat.greatestFiniteMagnitude))
+        
+        print(dummyUserTextView?.frame.size.height)
+        if let tag = User.users[indexPath.section].tagsArray{
+            for index in tag{
+                self.dummyUserTagView?.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.gray)
+            }
+        }
+        self.dummyUserTagView?.sizeToFit()
+        if let imageArray = User.users[indexPath.row].imageArray{
+            height += 120
+        }
+        
+        
+
+        return height
+    }
+   
    
 }
 

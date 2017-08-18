@@ -13,6 +13,7 @@ import FTImageViewer
 
 class MainPageTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var contentsTextViewConstraint: NSLayoutConstraint!
     var userid : Int = 0
     //@IBOutlet weak var reviewView: UIView!
     @IBOutlet weak var likeButton: UIButton!

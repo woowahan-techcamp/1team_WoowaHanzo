@@ -22,6 +22,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPp-vP-1UD">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eqZ-pc-JmA">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="488" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="laF-bT-XL8">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -138,6 +151,7 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Kix-Qc-2KK" firstAttribute="top" secondItem="qzv-1F-IMb" secondAttribute="bottom" constant="8" id="16x-zO-Z1J"/>
                                                 <constraint firstItem="HCI-CU-uVs" firstAttribute="top" secondItem="PeS-hR-UPO" secondAttribute="bottom" constant="41" id="1Gh-nu-T7A"/>
                                                 <constraint firstItem="HCI-CU-uVs" firstAttribute="leading" secondItem="r1N-Ib-I4E" secondAttribute="leadingMargin" constant="8" id="1sx-yV-w7r"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Kix-Qc-2KK" secondAttribute="trailing" constant="8" id="26B-S1-oWQ"/>
@@ -154,7 +168,6 @@
                                                 <constraint firstItem="Cx9-sr-l7K" firstAttribute="leading" secondItem="r1N-Ib-I4E" secondAttribute="leadingMargin" constant="10" id="beh-cV-PE0"/>
                                                 <constraint firstItem="HCI-CU-uVs" firstAttribute="top" secondItem="1Lt-1N-7aU" secondAttribute="bottom" constant="15" id="bgp-iu-pQd"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="PeS-hR-UPO" secondAttribute="trailing" constant="190.5" id="dRq-h7-IYc"/>
-                                                <constraint firstItem="Kix-Qc-2KK" firstAttribute="top" secondItem="qzv-1F-IMb" secondAttribute="bottom" constant="8" id="dts-iN-1kU"/>
                                                 <constraint firstItem="R6J-Xc-Ted" firstAttribute="leading" secondItem="r1N-Ib-I4E" secondAttribute="leadingMargin" constant="6" id="gBp-Wj-21G"/>
                                                 <constraint firstItem="qzv-1F-IMb" firstAttribute="leading" secondItem="r1N-Ib-I4E" secondAttribute="leadingMargin" constant="8" id="jaZ-wp-C9k"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="qzv-1F-IMb" secondAttribute="trailing" constant="8" id="lcM-Zc-R4M"/>
@@ -170,6 +183,7 @@
                                         <connections>
                                             <outlet property="FoodImageCollectionView" destination="Kix-Qc-2KK" id="P9S-Na-fCw"/>
                                             <outlet property="contentsTextView" destination="HCI-CU-uVs" id="li5-xg-o97"/>
+                                            <outlet property="contentsTextViewConstraint" destination="PlJ-bb-0af" id="mOA-dE-RtX"/>
                                             <outlet property="likeButton" destination="37g-Sg-JPF" id="xxD-XD-5vR"/>
                                             <outlet property="nickNameButton" destination="1uC-VA-8di" id="hcg-aH-wQy"/>
                                             <outlet property="profileImageView" destination="Cx9-sr-l7K" id="qNt-Ud-iaa"/>
