@@ -17,6 +17,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
       username.on('value', function(snapshot) {
         currentUserName = snapshot.val();
         $(".mypage_username").html(currentUserName);
+
+
+        var rootRef = firebase.database().ref();
+        var postRef = rootRef.child("/posts");
+        postRef.once("value", function(snapshot) {
+          snapshot.forEach(function(child) {
+            console.log("Loading posts");
+            // child.val() 전체 포스트 가져옴
+            console.log(child.val().author);
+            console.log(currentUserName);
+            if(child.val().author === currentUserName) {
+              loadPosts(child);
+            }
+          });
+        });
+
       });
 
       var sayhi = firebase.database().ref("users/" + user.uid + "/sayhi");
@@ -24,16 +40,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         $(".mypage_user_sayhi").html(snapshot.val());
       });
 
-      var rootRef = firebase.database().ref();
-      var postRef = rootRef.child("posts");
-      postRef.once("value", function(snapshot) {
-        snapshot.forEach(function(child) {
-          // child.val() 전체 포스트 가져옴
-          if(child.val().author === currentUserName) {
-            loadPosts(child);
-          }
-        });
-      });
 
       $("#logout").on("click", function() {
         firebase.auth().signOut().then(function() {
