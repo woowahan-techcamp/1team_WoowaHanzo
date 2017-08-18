@@ -111,13 +111,14 @@ class ReviewPostPageViewController: UIViewController {
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
             self.shouldloadview = true
         })
-        if myTextView.textColor != UIColor.lightGray {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
-            alert.addAction(cancel)
-            alert.addAction(ok)
-            self.present(alert, animated: true, completion: nil)
-        }
-        }
+//        if myTextView.textColor != UIColor.lightGray {
+//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+//            alert.addAction(cancel)
+//            alert.addAction(ok)
+//            //self.present(alert, animated: true, completion: nil)
+//        }
+  //      }
+
 
     }
     
@@ -259,6 +260,7 @@ class ReviewPostPageViewController: UIViewController {
         }, finish: { (assets: [PHAsset]) -> Void in
             //self.imageAssets = assets
             //FirebaseModel().postImages(assets: assets)
+            self.shouldloadview = false
             for asset in assets{
                 self.imageAssets.append(asset)
                 let image = FirebaseModel().getAssetThumbnail(asset: asset)
