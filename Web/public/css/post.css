@@ -2,6 +2,11 @@
 
 }
 
+.container_box {
+  opacity: 0;
+  transition: .5s;
+}
+
 .post_input {
   margin-top: 100px;
 }

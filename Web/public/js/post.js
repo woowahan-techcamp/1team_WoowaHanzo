@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       username.on('value', function(snapshot) {
         author = snapshot.val();
         $(".Name").html(author);
+        $(".container_box").css("opacity", 1);
       });
     }
   });
