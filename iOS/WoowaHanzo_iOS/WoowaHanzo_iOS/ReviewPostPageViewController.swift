@@ -32,6 +32,7 @@ class ReviewPostPageViewController: UIViewController {
     var textFieldText = ""
     var keyboardmove = CGFloat(0)
     var savedkeyboardSize = CGRect()
+    var shouldloadview = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,8 @@ class ReviewPostPageViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if shouldloadview{
+            shouldloadview = true
         myCollectionView.dataSource = self
         myCollectionView.delegate = self
         myCollectionView.allowsSelection = true
@@ -96,15 +99,17 @@ class ReviewPostPageViewController: UIViewController {
         let tap3: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
         tap3.cancelsTouchesInView = false
         myTagView.addGestureRecognizer(tap3)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         let alert = UIAlertController(title: "글 작성이 완료되지 않았습니다.", message: "글 작성을 취소하시겠습니까?", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
+            self.shouldloadview = false
             self.tabBarController?.selectedIndex = 2
         })
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
-            
+            self.shouldloadview = true
         })
         alert.addAction(cancel)
         alert.addAction(ok)
