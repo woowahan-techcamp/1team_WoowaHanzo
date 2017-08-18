@@ -17,9 +17,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       username.on('value', function(snapshot) {
         currentUserName = snapshot.val();
         $(".mypage_username").html(currentUserName);
-
-
-        var rootRef = firebase.database().ref();
+        
         var postRef = firebase.database().ref("/posts");
         postRef.orderByChild("time").on("child_added", function(snapshot) {
           if(snapshot.val().author === currentUserName) {
