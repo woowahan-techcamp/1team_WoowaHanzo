@@ -84,7 +84,7 @@ function profileImageHandle(evt) {
         }
       }
 
-      var newfilename = (new Date().getTime()).toString() + '.' + filename.split('.')[1];
+      var newfilename = firebase.auth().currentUser.uid + '.' + filename.split('.')[1];
       console.log('newfilename: ', newfilename);
       //newfilename 프로필 사진이니까... 그냥 유저네임으로 할까..
 

@@ -231,6 +231,15 @@ function galleryRight() {
 	$(window).resize();
 }
 
+function loadUserData(uid) {
+	var storageRef = firebase.storage().ref();
+	var ref = firebase.database().ref("/users/" + uid);
+
+	return ref.once('value').then(function(snapshot) {
+		console.log(snapshot.val().username);
+	}.bind(this));
+}
+
 function loadPosts(snapshot) {
   var storageRef = firebase.storage().ref();
 
@@ -302,10 +311,6 @@ function loadPosts(snapshot) {
 
         imageParent = imageParent.children("td").get(i);
 				imageParent.style.display = "none";
-				//console.log(imageParent.outerHTML);
-
-        //imageParent = $(imageParent).children("div").children("img");
-        //imageParent.classList.add("loaded");
 
       } else {
         storageRef.child('images/' + filename).getDownloadURL().then(function(url) {
@@ -352,7 +357,6 @@ function loadPosts(snapshot) {
   if(buffer["tags"] && buffer["tags"].length == 0) {
     $curPost.children(".tags_holder").css("display", "none");
   }
-  //$curPost.css("display", "block");
 
   resizeThumbnails();
 }

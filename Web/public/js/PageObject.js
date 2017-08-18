@@ -4,6 +4,7 @@ class PageObject {
     this.postTimes = {};
     this.postInView = {};
     this.postState = {};
+    this.userProfileImage = {};
     this.postTemplate;
     this.galleryURLs = [];
     this.galleryIndex = 0;
