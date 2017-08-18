@@ -25,7 +25,7 @@ class MainPageTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var tagListView: TagListView!
-    
+    var imageArr = [UIImage]()
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -57,7 +57,10 @@ class MainPageTableViewCell: UITableViewCell {
 extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
        // print(User.users[items].imageArray?.count)
-        return User.users[userid].imageArray?.count ?? 1//이부분 모르겠음
+        if let count = User.users[userid].imageArray?.count{
+            return count
+        }
+        return 0
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
@@ -67,12 +70,13 @@ extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDe
             //print(User.users[userid])
                 print("A")
                 let ref = Storage.storage().reference(withPath: imageArray[indexPath.row]).downloadURL { (url, error) in
-                    //print(imageArray)
                     cell.foodImageView.kf.setImage(with: url)
-                    print(url)
+                    //print(url)
             }
         }
-
+        print(imageArr)
+//        cell.foodImageView.image = imageArr[indexPath.item]
+//
         return cell
     }
     

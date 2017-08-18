@@ -9,6 +9,7 @@
 import UIKit
 import NVActivityIndicatorView
 import FTImageViewer
+import Firebase
 
 class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
@@ -18,6 +19,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
     @IBOutlet weak var dummyTextView: UITextView!
     @IBOutlet weak var dummyTagView: TagListView!
+    var foodArray = [UIImage]()
     
     
 
@@ -28,6 +30,8 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
     override func viewDidLoad() {
         
+        
+    
         super.viewDidLoad()
        
         mainpageTableView.keyboardDismissMode = .onDrag
@@ -55,12 +59,18 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     }
     override func viewWillAppear(_ animated: Bool) {
         
-        firebaseModel.loadFeed()
+        let size = CGSize(width: 30, height: 30)
+
+        DispatchQueue.main.async {
+            self.startAnimating(size, message: "Loading...", type: .ballTrianglePath)
+            self.firebaseModel.loadFeed()
+        }
+
+        
         dummyTextView.isScrollEnabled = false
         searchIconButton.tintColor = UIColor.black
-        let size = CGSize(width: 30, height: 30)
         
-        startAnimating(size, message: "Loading...", type: .ballTrianglePath)
+        
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
             NVActivityIndicatorPresenter.sharedInstance.setMessage("Authenticating...")
@@ -147,8 +157,31 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
         }
         cell.tagListView.sizeToFit()
         cell.timeLabel.text = Date().postTimeDisplay(postDate: User.users[indexPath.section].postDate)
-        cell.FoodImageCollectionView.reloadData()
+        DispatchQueue.main.async {
+            cell.FoodImageCollectionView.reloadData()
+
+        }
+        cell.userid = indexPath.section
         //print(User.users[indexPath.section].imageArray)
+//                   if let imageArray = User.users[indexPath.section].imageArray{
+//                for index in imageArray{
+//                    let ref = Storage.storage().reference(withPath: imageArray[indexPath.row]).downloadURL { (url, error) in
+//                        //print(imageArray)
+//                        if url != nil{
+//                            let data = try? Data(contentsOf: url!)
+//                            self.foodArray.append(UIImage(data: data!)!)
+//                        }
+//                        
+//                        
+//                    }
+//                }
+//                    DispatchQueue.global().async {
+//                        cell.imageArr = self.foodArray
+//
+//                    }
+//            }
+        
+        
         
         return cell
     }
