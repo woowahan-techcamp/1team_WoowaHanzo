@@ -15,15 +15,26 @@
 
 .mypage_user_image_box {
   /*outline: 1px solid blue;*/
-  margin-bottom: 20px;
-}
-
-.mypage_user_image_box img {
   width: 150px;
   height: 150px;
+  overflow: hidden;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
   border-radius: 50%;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
+}
+
+.mypage_user_image_box img {
+  -webkit-transform:translate(-50%);
+  -moz-tranform:translate(-50%);
+  -ms-transform: translate(-50%); /* IE 9 */
+  transform: translate(-50%);
+  margin-left: 50%;
+  max-height: 150px;
+
 }
 
 .mypage_user_info_box {

@@ -54,6 +54,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       });
 
+      var user_box = document.querySelector(".mypage_user_box");
+      user_box.uid = user.uid;
+      user_box.queryClass = "mypage_user_profilePic";
+      loadUserProfile.bind(user_box, user_box.uid)();
+
+
     }
   });
 });
@@ -85,7 +91,7 @@ function profileImageHandle(evt) {
         }
       }
 
-      var newfilename = (new Date().getTime()).toString() + '.' + filename.split('.')[1];
+      var newfilename = firebase.auth().currentUser.uid + '.' + filename.split('.')[1];
       console.log('newfilename: ', newfilename);
       //newfilename 프로필 사진이니까... 그냥 유저네임으로 할까..
 
