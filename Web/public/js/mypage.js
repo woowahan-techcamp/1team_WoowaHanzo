@@ -43,7 +43,73 @@ document.addEventListener("DOMContentLoaded", function(event) {
           // An error happened.
         });
       });
+
+      $(".mypage_user_image_box img").on("click", function() {
+          $("#profile_image_input").trigger("click");
+      });
+
+      $("#profile_image_input").on("change", function(evt) {
+        profileImageHandle(this);
+
+      });
+
     }
   });
-
 });
+
+
+var file = "";
+
+function profileImageHandle(evt) {
+  var fileInput = document.getElementById('profile_image_input');
+  console.log('evt ', evt.files[0]);
+  file = evt.files[0];
+
+  if (evt.files && evt.files[0]) {
+    var reader = new FileReader();
+
+    var filename = "";
+    reader.onload = function (evt) {
+      // 사진 프리뷰
+      $(".mypage_user_image_box img").attr('src', evt.target.result);
+
+      var fullPath = fileInput.value;
+      console.log('fullPath: ', fullPath);
+      if (fullPath) {
+        var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+        filename = fullPath.substring(startIndex);
+        if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+          filename = filename.substring(1);
+          console.log('filename: ', filename);
+        }
+      }
+
+      var newfilename = (new Date().getTime()).toString() + '.' + filename.split('.')[1];
+      console.log('newfilename: ', newfilename);
+      //newfilename 프로필 사진이니까... 그냥 유저네임으로 할까..
+
+      var storageRef = firebase.storage().ref();
+      var profileRef = storageRef.child(filename);
+      var profileImageRef = storageRef.child('profileImages/' + newfilename);
+
+      profileImageRef.put(file).then(function(snapshot) {
+        console.log('파일업로드함');
+      });
+
+      // database/users에 넣음
+      firebase.database().ref('users/' + firebase.auth().currentUser.uid).update({
+        profileImg: newfilename
+      })
+      .then(function() {
+        console.log('users/profileImg에 사진이름 넣음');
+      })
+      .catch(function(error) {})
+
+      // TODO
+      // 이전 프로필 사진을 지워야 됨
+
+
+    }
+    reader.readAsDataURL(evt.files[0]);
+  }
+}
