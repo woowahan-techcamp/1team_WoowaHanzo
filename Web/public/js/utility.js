@@ -131,6 +131,16 @@ function handleThumbnailNumber($curPost, imagenumber) {
 
 }
 
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 function fixExifOrientation($img) {
 
     $img[0].addEventListener("load", function() {
@@ -236,6 +246,25 @@ function galleryRight() {
 	$(window).resize();
 }
 
+function addTagListeners(curPost) {
+	var tags = curPost.querySelectorAll(".tagger");
+	for(var i = 0; i < tags.length; ++i) {
+		tags[i].addEventListener("click", function(evt) {
+			console.log(evt.target.innerHTML.trim());
+			var tagValue = evt.target.innerHTML.trim();
+			var queryKey = firebase.database().ref().child("tagQuery").push().key;
+
+			var update = {};
+			update["/tagQuery/" + queryKey + '/tag'] = tagValue;
+			update["/tagQuery/" + queryKey + '/queryResult'] = [1];
+			firebase.database().ref().update(update).then(evt => {
+				console.log("Query made!");
+				window.location.href = "./index.html?tagQuery=" + queryKey;
+			});
+		});
+	}
+}
+
 function loadUserProfile(uid) {
 	var storageRef = firebase.storage().ref();
 	var ref = firebase.database().ref("/users/" + uid);
@@ -293,7 +322,9 @@ function loadPosts(snapshot) {
   buffer["body"] = buffer["body"].replace(/\n/g, "<br>");
   buffer["time"] = getCurrentTime(-buffer["time"]);
 
-  $(".container_box").append(pageObject.postTemplate(buffer));
+	if(!$("#post_" + buffer.id).length) {
+		$(".container_box").append(pageObject.postTemplate(buffer));
+	}
 
   var $curPost = $("#post_" + buffer.id);
 	var curPost = document.querySelector("#post_" + buffer.id);
@@ -396,6 +427,8 @@ function loadPosts(snapshot) {
   if(buffer["tags"] && buffer["tags"].length == 0) {
     $curPost.children(".tags_holder").css("display", "none");
   }
+
+	addTagListeners(curPost);
 
   resizeThumbnails();
 }
