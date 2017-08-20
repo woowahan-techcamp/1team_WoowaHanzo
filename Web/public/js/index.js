@@ -8,9 +8,38 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var storageRef = storage.ref();
   var database = firebase.database();
 
+  var url = window.location.href;
+
   var ref = database.ref("/posts");
-  ref.orderByChild("time").on("child_added", function(snapshot) {
-    loadPosts(snapshot);
-  });
+
+  var tagQuery = getParameterByName("tagQuery", url)
+
+  if(tagQuery) {
+    console.log();
+    database.ref("/tagQuery/" + tagQuery + "/queryResult").on("value", function(snapshot) {
+      console.log(snapshot.val());
+      var postIdList = snapshot.val().slice(1,snapshot.val().length);
+      console.log(postIdList);
+      var promises = postIdList.map(function(key) {
+        console.log(key);
+        return firebase.database().ref("/posts/").child(key).once("value");
+      });
+
+      Promise.all(promises).then(function(snapshots) {
+        console.log(snapshots);
+        snapshots.forEach(function(snapshot) {
+          console.log(snapshot.key+": "+snapshot.val());
+          loadPosts(snapshot);
+        });
+      });
+
+    });
+
+  } else {
+    ref.orderByChild("time").on("child_added", function(snapshot) {
+      loadPosts(snapshot);
+    });
+  }
+
 
 });

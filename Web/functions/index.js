@@ -30,3 +30,64 @@ exports.makeUppercase = functions.database.ref('/messages/{pushId}/original')
       // Setting an "uppercase" sibling in the Realtime Database returns a Promise.
       return event.data.ref.parent.child('uppercase').set(uppercase);
     });
+
+
+exports.getTagQuery = functions.database.ref("/tagQuery/{queryId}/tag")
+  .onWrite(event => {
+    var original = event.data.val();
+    original = original.substring(1, original.length);
+    var uppercase = original.toUpperCase();
+
+    var key = event.data.ref.parent.key;
+    return admin.database().ref("/tagQuery/" + key).once("value").then(snapshot => {
+      var ret = [1];
+      var updates = {};
+      updates["/tagQuery/" + key + "/queryResult"] = ret;
+      console.log(snapshot.key);
+      //return admin.database().ref().update(updates);
+      return admin.database().ref("/posts").orderByChild("time").once("value").then(snapshot => {
+        var childList = [];
+        snapshot.forEach(function(item) {
+          childList.push(item);
+        });
+
+        childList.forEach(child => {
+          console.log(child.val().tags);
+          console.log(original);
+          if(child.val().tags.indexOf(original) >= 0) {
+            ret.push(child.key);
+          }
+        });
+        return event.data.ref.parent.child("queryResult").set(ret);
+      });
+      console.log(ret);
+
+    });
+
+    event.tag = original;
+
+
+  });
+
+
+/*
+var original = event.data.val();
+var uppercase = original.toUpperCase();
+
+var rootRef = firebase.database().ref();
+var postRef = rootRef.child("posts");
+var ret = [];
+event.tag = original;
+return postRef.once("value").then(function(snapshot) {
+  snapshot.forEach(function(child) {
+    return this.data.ref.parent.child("queryResult").set(uppercase);
+    // child.val() 전체 포스트 가져옴
+    if(child.val().tags.indexOf(this.tag) >= 0) {
+      ret.push(child.key);
+    }
+
+  }.bind(this));
+}.bind(event)).then(function(snapshot) {
+  return this.data.ref.parent.child("queryResult").set(ret);
+}.bind(event));
+*/

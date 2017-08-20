@@ -18,19 +18,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
         currentUserName = snapshot.val();
         $(".mypage_username").html(currentUserName);
 
-
-        var rootRef = firebase.database().ref();
-        var postRef = rootRef.child("/posts");
+        var postRef = firebase.database().ref("/posts");
         postRef.orderByChild("time").on("child_added", function(snapshot) {
-          snapshot.forEach(function(child) {
-            console.log("Loading posts");
-            // child.val() 전체 포스트 가져옴
-            console.log(child.val().author);
-            console.log(currentUserName);
-            if(child.val().author === currentUserName) {
-              loadPosts(child);
-            }
-          });
+          if(snapshot.val().author === currentUserName) {
+            loadPosts(snapshot);
+          }
+
         });
 
       });
@@ -75,7 +68,6 @@ var file = "";
 
 function profileImageHandle(evt) {
   var fileInput = document.getElementById('profile_image_input');
-  console.log('evt ', evt.files[0]);
   file = evt.files[0];
 
   if (evt.files && evt.files[0]) {
@@ -87,18 +79,15 @@ function profileImageHandle(evt) {
       $(".mypage_user_image_box img").attr('src', evt.target.result);
 
       var fullPath = fileInput.value;
-      console.log('fullPath: ', fullPath);
       if (fullPath) {
         var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
         filename = fullPath.substring(startIndex);
         if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
           filename = filename.substring(1);
-          console.log('filename: ', filename);
         }
       }
 
       var newfilename = firebase.auth().currentUser.uid + '.' + filename.split('.')[1];
-      console.log('newfilename: ', newfilename);
       //newfilename 프로필 사진이니까... 그냥 유저네임으로 할까..
 
       var storageRef = firebase.storage().ref();
@@ -106,7 +95,6 @@ function profileImageHandle(evt) {
       var profileImageRef = storageRef.child('profileImages/' + newfilename);
 
       profileImageRef.put(file).then(function(snapshot) {
-        console.log('파일업로드함');
       });
 
       // database/users에 넣음
@@ -114,7 +102,6 @@ function profileImageHandle(evt) {
         profileImg: newfilename
       })
       .then(function() {
-        console.log('users/profileImg에 사진이름 넣음');
       })
       .catch(function(error) {})
 
