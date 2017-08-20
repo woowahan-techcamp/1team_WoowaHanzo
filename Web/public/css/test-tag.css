@@ -3,38 +3,30 @@
   vertical-align: baseline;
 }
 
-.tag_holder_tmp {
+/*이렇게 하면 안되지만...*/
+.container_box {
+  opacity: 1;
+}
+
+.tag_holder {
   padding: 7px 15px 7px 15px !important;
   border-radius: 12px !important;
   margin-bottom: 10px;
 }
 
-.starting_sharp_tmp, .tag_name_tmp {
+.starting_sharp, .tag_name {
   font-size: 30px;
 }
 
-.tag_count_tmp {
+.tag_count {
   font-size: 18px;
   color: #dfdfdf;
 }
 
-@media (max-width: 600px) {
-  .tag_holder_tmp {
-    padding: 4px 10px 4px 10px !important;
-    border-radius: 8px !important;
-    margin-bottom: 7px;
+/* width가 720미만 */
+@media (max-width: 720px) {
+  .container_box {
+    /*width: 100%;*/
   }
-
-  .starting_sharp_tmp, .tag_name_tmp {
-    font-size: 20px;
-  }
-
-  .tag_count_tmp {
-    font-size: 13px;
-    color: #dfdfdf;
-  }
-
-  .tag_tmp {
-    padding: 7px 12px;
-  }
+  
 }
