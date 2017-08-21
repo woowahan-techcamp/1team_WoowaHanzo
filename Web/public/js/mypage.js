@@ -53,11 +53,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       });
 
-      var user_box = document.querySelector(".mypage_user_box");
-      user_box.uid = user.uid;
-      user_box.queryClass = "mypage_user_profilePic";
-      loadUserProfile.bind(user_box, user_box.uid)();
+      var curObject= {};
+      var curPost = document.querySelector(".mypage_user_box");
+      curObject.curPost = curPost;
 
+      curObject.uid = user.uid;
+      curObject.queryClass = "mypage_user_profilePic";
+      loadUserProfile.bind(curObject, user.uid)();
 
     }
   });
