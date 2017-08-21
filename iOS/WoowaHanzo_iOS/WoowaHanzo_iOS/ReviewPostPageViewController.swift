@@ -13,6 +13,7 @@ import Firebase
 
 class ReviewPostPageViewController: UIViewController {
     
+    @IBOutlet weak var userNickNameLabel: UILabel!
     @IBOutlet weak var myView: UIView!
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var myImageView: UIImageView!
@@ -39,6 +40,7 @@ class ReviewPostPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        userNickNameLabel.text = UserDefaults.standard.string(forKey: "userNickName")
         
     }
     

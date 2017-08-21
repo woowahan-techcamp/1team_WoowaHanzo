@@ -14,6 +14,8 @@ class TagResultTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(tagName)
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 42/255, green: 193/255, blue: 188/255, alpha: 1)
+        self.navigationController?.navigationBar.topItem?.title = "태그"
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
