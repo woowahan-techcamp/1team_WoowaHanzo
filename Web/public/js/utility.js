@@ -281,7 +281,7 @@ function loadUserProfile(uid) {
 				profilePic.onload = function(evt) {
 
 					if(prevLoaded(this) && imagesAllLoaded(evt.target)) {
-
+						$(".buttons_holder").css("display", "block");
 					 	fadeInPost(this);
 					}
 				}.bind($(curPost));
@@ -296,6 +296,7 @@ function loadUserProfile(uid) {
 
 				if(prevLoaded(this) && imagesAllLoaded(evt.target)) {
 				 	console.log("fadeIn through profile");
+					$(".buttons_holder").css("display", "block");
 				 	fadeInPost(this);
 				}
 			}.bind($(curPost));
@@ -325,16 +326,7 @@ function loadPosts(snapshot) {
   buffer["time"] = getCurrentTime(-buffer["time"]);
 
 	if(!$("#post_" + buffer.id).length) {
-		if(true) {
-			$(".container_box").append(pageObject.postTemplate(buffer));
-			count++;
-			$(".loading-indicator-box").css("display", "block");
-		}
-		else {
-			count = 0;
-			$(".loading-indicator-box").css("display", "none");
-		}
-		console.log('count: ', count);
+		$(".container_box").append(pageObject.postTemplate(buffer));
 	}
 	else {
 		$(".loading-indicator-box").css("display", "none");
