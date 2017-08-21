@@ -269,7 +269,7 @@ class ReviewPostPageViewController: UIViewController {
                 self.imageAssets.append(asset)
                 let image = FirebaseModel().getAssetThumbnail(asset: asset)
                 self.imageArray.append(image)
-                self.imageNameArray.append("images/\(Date().timeIntervalSince1970)")
+                self.imageNameArray.append("\(Date().timeIntervalSince1970)")
             }
             print("done \(self.imageArray)")
             DispatchQueue.main.async{
