@@ -27,6 +27,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
   });
 
+  $(".buttons_holder").on("postLoaded", function() {
+    $(".loading-indicator-box").css("display", "none");
+  });
+
   autosize($("textarea"));
 
   $(".textbox").focus();
