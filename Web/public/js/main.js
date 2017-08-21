@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       $(".nav_signin_btn").html("Sign in");
       $(".nav_signin_btn").on("click", function() {
         window.location.href = "./login.html";
-      })
+      });
     }
   });
 

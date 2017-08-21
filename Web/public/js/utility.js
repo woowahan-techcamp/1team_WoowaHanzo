@@ -304,11 +304,13 @@ function loadUserProfile(uid) {
 	}.bind(this));
 }
 
+var count = 0;
+
 function loadPosts(snapshot) {
   var storageRef = firebase.storage().ref();
 
   var buffer = snapshot.val();
-  buffer.id = snapshot.key;
+  buffer.id = snapshot.key;	//post의 id
 
   pageObject.postTimes[buffer.id] = -buffer["time"];
   pageObject.postState[buffer.id] = false;
@@ -323,7 +325,19 @@ function loadPosts(snapshot) {
   buffer["time"] = getCurrentTime(-buffer["time"]);
 
 	if(!$("#post_" + buffer.id).length) {
-		$(".container_box").append(pageObject.postTemplate(buffer));
+		if(count < 10) {
+			$(".container_box").append(pageObject.postTemplate(buffer));
+			count++;
+			$(".loading-indicator-box").css("display", "block");
+		}
+		else {
+			count = 0;
+			$(".loading-indicator-box").css("display", "none");
+		}
+		console.log('count: ', count);
+	}
+	else {
+		$(".loading-indicator-box").css("display", "none");
 	}
 
   var $curPost = $("#post_" + buffer.id);
