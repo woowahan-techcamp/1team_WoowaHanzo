@@ -43,7 +43,7 @@ class AuthModel{
     
     }
 
-    func logout(){
+    static func logout(){
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
@@ -51,8 +51,25 @@ class AuthModel{
             print ("Error signing out: %@", signOutError)
         }
     }
-    
-    
+    static func isValidpassword(pw:String)-> Bool{
+        if pw.characters.count >= 6{
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    static func saveUser(email:String,profileImg:String?,UserSayText: String,nickName:String){
+        if let user = Auth.auth().currentUser{
+            var ref: DatabaseReference!
+            ref = Database.database().reference()
+            let key = ref.child("users").child(user.uid).key
+            let post = ["email":email,"profileImg":profileImg,"sayhi":UserSayText,] as [String : Any]
+            let childUpdates = ["/posts/\(key)": post]
+            ref.updateChildValues(childUpdates)
+
+        }
+    }
     
     
 }

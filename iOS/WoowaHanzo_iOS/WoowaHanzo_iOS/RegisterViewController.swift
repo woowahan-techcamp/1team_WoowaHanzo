@@ -11,13 +11,14 @@ import NVActivityIndicatorView
 
 class RegisterViewController: UIViewController,NVActivityIndicatorViewable {
     
+    @IBOutlet weak var userSayTextView: UITextView!
+    @IBOutlet weak var nickNameTextField: UITextField!
     @IBOutlet weak var nickNameCheckLabel: UILabel!
     @IBOutlet weak var pwCheckLabel: UILabel!
     @IBOutlet weak var emailCheckLabel: UILabel!
     @IBOutlet weak var registerEmailTextField: UITextField!
     @IBOutlet weak var registerPwTextField: UITextField!
     
-    @IBOutlet weak var nickName: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +32,25 @@ class RegisterViewController: UIViewController,NVActivityIndicatorViewable {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func emailCheckAction(_ sender: Any) {
+        if let email = registerEmailTextField.text{
+            if email.isValidEmail(){
+                emailCheckLabel.isHidden = true
+            }
+            else{
+                emailCheckLabel.isHidden = false
+            }
+            
+        }
+        
+    }
+    @IBAction func pwCheckAction(_ sender: Any) {
+        if !AuthModel.isValidpassword(pw: registerPwTextField.text!){
+            pwCheckLabel.isHidden = false
+        }
+        else{pwCheckLabel.isHidden = true}
+        
+    }
     
     @IBAction func registerButtonTouched(_ sender: Any) {
         
