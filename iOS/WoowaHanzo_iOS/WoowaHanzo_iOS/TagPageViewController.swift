@@ -79,25 +79,29 @@ class TagPageViewController: UIViewController {
         }
         
     }
-            func handleTap(sender: UITapGestureRecognizer) {
-            if let a = (sender.view as? UILabel)?.text {
-    
-                tagName = a
-                ////여기서 검색기능수행하면 됨!
+    func handleTap(sender: UITapGestureRecognizer) {
+        if let a = (sender.view as? UILabel)?.text {
+            tagName = a
+            ref = Database.database().reference()
+            let key = ref.child("tagQuery").childByAutoId().key
+            let post = ["queryResult":1,"tag":tagName] as [String : Any]
+            let childUpdates = ["/tagQuery/\(key)": post]
+            ref.updateChildValues(childUpdates)
             performSegue(withIdentifier: "ShowTagResult", sender: self)
-            }
-            else { return }
-    
         }
+        else { return }
+        
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "ShowTagResult" {
             if let viewController = segue.destination as? TagResultTableViewController {
-                    viewController.tagName = tagName
+                viewController.tagName = tagName
             }
         }
     }
-        //    func tap(sender:UIGestureRecognizer)
+    //    func tap(sender:UIGestureRecognizer)
     //    {
     //        let label = (sender.view as! UILabel)
     //        print("tap from \(label.text!)")

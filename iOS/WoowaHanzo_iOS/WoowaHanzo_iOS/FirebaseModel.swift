@@ -22,7 +22,7 @@ class FirebaseModel{
                     "body": review,
                     "tags": tagArray,
                     "time": timestamp,
-                    "images":images,
+                    "images": images,
                     "uid": uid] as [String : Any]
         let childUpdates = ["/posts/\(key)": post]
         ref.updateChildValues(childUpdates)
