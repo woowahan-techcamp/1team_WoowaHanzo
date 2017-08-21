@@ -296,7 +296,12 @@ function loadUserProfile(uid) {
 
 				if(prevLoaded(this) && imagesAllLoaded(evt.target)) {
 				 	console.log("fadeIn through profile");
-					$(".buttons_holder").css("display", "block");
+					// if($(".buttons_holder")) {
+					// 	$(".buttons_holder").css("display", "block");
+					// }
+					// if($(".nav_user_info")) {
+					// 	$(".nav_user_info").css("display", "block");
+					// }
 				 	fadeInPost(this);
 				}
 			}.bind($(curPost));
