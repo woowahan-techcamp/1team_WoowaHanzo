@@ -54,6 +54,8 @@
 		98ECA4381F4557990069DA87 /* icon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98ECA4371F4557990069DA87 /* icon.xcassets */; };
 		98ECA43A1F4A95A90069DA87 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98ECA4391F4A95A90069DA87 /* GoogleService-Info.plist */; };
 		98ECA43E1F4AC42C0069DA87 /* TagResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98ECA43D1F4AC42C0069DA87 /* TagResultTableViewController.swift */; };
+		98ECA4401F4ACDA80069DA87 /* TagResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98ECA43F1F4ACDA80069DA87 /* TagResultTableViewCell.swift */; };
+		98ECA4421F4ACDB60069DA87 /* TagResultFoodImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98ECA4411F4ACDB60069DA87 /* TagResultFoodImageCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +131,8 @@
 		98ECA4371F4557990069DA87 /* icon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = icon.xcassets; sourceTree = "<group>"; };
 		98ECA4391F4A95A90069DA87 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		98ECA43D1F4AC42C0069DA87 /* TagResultTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagResultTableViewController.swift; sourceTree = "<group>"; };
+		98ECA43F1F4ACDA80069DA87 /* TagResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagResultTableViewCell.swift; sourceTree = "<group>"; };
+		98ECA4411F4ACDB60069DA87 /* TagResultFoodImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagResultFoodImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		B1F64866749E63894066246D /* Pods_WoowaHanzo_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WoowaHanzo_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9025DB6C60E4ACC8554AB0B /* Pods-WoowaHanzo_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoowaHanzo_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-WoowaHanzo_iOS/Pods-WoowaHanzo_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		E39D9BBE4AAB04D908A0206E /* Pods-WoowaHanzo_iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoowaHanzo_iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WoowaHanzo_iOSTests/Pods-WoowaHanzo_iOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -183,6 +187,8 @@
 				9843974F1F3835E800743B63 /* TagPageViewController.swift */,
 				98895BE81F4AA098000D1E15 /* TagPageView.swift */,
 				98ECA43D1F4AC42C0069DA87 /* TagResultTableViewController.swift */,
+				98ECA43F1F4ACDA80069DA87 /* TagResultTableViewCell.swift */,
+				98ECA4411F4ACDB60069DA87 /* TagResultFoodImageCollectionViewCell.swift */,
 			);
 			name = TagPage;
 			sourceTree = "<group>";
@@ -655,10 +661,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				98895BE91F4AA098000D1E15 /* TagPageView.swift in Sources */,
+				98ECA4401F4ACDA80069DA87 /* TagResultTableViewCell.swift in Sources */,
 				98ECA3B11F4180A00069DA87 /* CounterViewer.swift in Sources */,
 				98ECA42D1F440E570069DA87 /* DateExtension.swift in Sources */,
 				9854BF9B1F3407F1008FA337 /* MainPageViewController.swift in Sources */,
 				98C563CD1F39BE310017E68A /* AuthModel.swift in Sources */,
+				98ECA4421F4ACDB60069DA87 /* TagResultFoodImageCollectionViewCell.swift in Sources */,
 				984397641F3ACD3200743B63 /* TagFilter.swift in Sources */,
 				98ECA3AD1F4160AC0069DA87 /* TagCollectionViewCell.swift in Sources */,
 				9854BF9F1F340806008FA337 /* MyPageViewController.swift in Sources */,
