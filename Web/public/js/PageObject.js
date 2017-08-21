@@ -22,7 +22,6 @@ class PageObject {
         var curId = postIds[i];
         var postElem = document.querySelector("#post_" + curId);
         if(isScrolledIntoView(postElem) && this.postState[curId] != true) {
-          console.log("Scrolled into View!");
           this.postState[curId] = true;
         } else if(!isScrolledIntoView(postElem)) {
           this.postState[curId] = false;
@@ -31,21 +30,18 @@ class PageObject {
     }.bind(this));
 
     $(document).on("recurseUpdateEvent", function(evt) {
-      this.updatePostTime.bind(this);
+      this.updatePostTime.bind(this)();
     }.bind(this));
 
   }
 
   timerUpdate() {
     $(document).trigger('recurseUpdateEvent');
-    // console.log("Event fired");
     setTimeout(this.timerUpdate.bind(this), 5000);
   }
 
-
   updatePostTime() {
   	var postIds = Object.keys(this.postTimes);
-
   	for(var i = 0; i < postIds.length; ++i) {
   		var curId = postIds[i];
   		var postElem = document.querySelector("#post_" + curId);
@@ -54,6 +50,5 @@ class PageObject {
   		time.innerHTML = getCurrentTime(this.postTimes[curId]);
   	}
   }
-
 
 }

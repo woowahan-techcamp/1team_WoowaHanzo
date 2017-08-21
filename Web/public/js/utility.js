@@ -346,6 +346,13 @@ function loadPosts(snapshot) {
 	curPost.queryClass = "profilePic";
 	loadUserProfile.bind(curPost, buffer.uid)();
 
+	// add functionality to like button
+	var like_button = curPost.querySelector(".like_btn");
+	like_button.addEventListener("click", function(evt) {
+		var id = evt.target.parentElement.parentElement.id;
+		console.log(evt.target.parentElement.parentElement.id);
+	});
+
   if(buffer.images) {
     // only three images are loaded at a time
     for(var i = 0; i < buffer.images.length || i < 3; ++i) {
@@ -424,12 +431,10 @@ function loadPosts(snapshot) {
   } else {
     $curPost.on("postLoaded", function(evt) {
       var currentPost = evt.target;
-      if(prevLoaded($(currentPost))) {
-        fadeInPost($(currentPost));
-      }
-      if($(currentPost).next().length != 0) {
-        $(currentPost).next().trigger("postLoaded");
-      }
+			var anyImage = currentPost.querySelector(".loading");
+			if(prevLoaded($(currentPost)) && imagesAllLoaded(anyImage)) {
+				fadeInPost($(evt.target));
+			}
     });
 
     $curPost.trigger("postLoaded");

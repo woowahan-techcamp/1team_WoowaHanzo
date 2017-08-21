@@ -66,28 +66,4 @@ exports.getTagQuery = functions.database.ref("/tagQuery/{queryId}/tag")
 
     event.tag = original;
 
-
   });
-
-
-/*
-var original = event.data.val();
-var uppercase = original.toUpperCase();
-
-var rootRef = firebase.database().ref();
-var postRef = rootRef.child("posts");
-var ret = [];
-event.tag = original;
-return postRef.once("value").then(function(snapshot) {
-  snapshot.forEach(function(child) {
-    return this.data.ref.parent.child("queryResult").set(uppercase);
-    // child.val() 전체 포스트 가져옴
-    if(child.val().tags.indexOf(this.tag) >= 0) {
-      ret.push(child.key);
-    }
-
-  }.bind(this));
-}.bind(event)).then(function(snapshot) {
-  return this.data.ref.parent.child("queryResult").set(ret);
-}.bind(event));
-*/
