@@ -211,7 +211,7 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
         }
         
         self.dummyTagView?.sizeToFit()
-        print("dd\(dummyTagView.frame.size.height)")
+        //print("dd\(dummyTagView.frame.size.height)")
 //        if let imageArray = User.users[indexPath.row].imageArray{
 //            height += 120
 //        }

@@ -229,7 +229,7 @@ class ReviewPostPageViewController: UIViewController {
         if myTextView.textColor != UIColor.lightGray{
             //DispatchQueue.global().sync{
             if let user = Auth.auth().currentUser{
-            FirebaseModel().postReview(review: myTextView.text, userID: "kim", tagArray: myTagView.getTags(withPrefix: false), timestamp: Int(-1.0 * Date().timeIntervalSince1970),images:self.imageNameArray, postDate: postDate, uid: user.uid)
+                    FirebaseModel().postReview(review: myTextView.text, userID: user.email!, tagArray: myTagView.getTags(withPrefix: false), timestamp: Int(-1000 * Date().timeIntervalSince1970),images:self.imageNameArray, uid: user.uid)
             FirebaseModel().postImages(assets: self.imageAssets, names: self.imageNameArray)
             //print(myTagView.getTags(withPrefix: true))
             print(self.imageNameArray)
