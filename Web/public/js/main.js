@@ -4,6 +4,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Create a storage reference from our storage service
   var storageRef = storage.ref();
 
+  $(".nav_signin_btn").on("click", function() {
+    if(firebase.auth().currentUser !== null) {
+      firebase.auth().signOut().then(function() {
+        $(".nav_signin_btn").html("Sign in");
+      }, function(error) {});
+    }
+    else {
+      window.location.href = "login.html";
+    }
+  });
+
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
@@ -24,6 +35,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
       $(".nav_signin_btn").css("display", "block");
       $(".nav_user_info").css("display", "none");
       $(".nav_signin_btn").html("Sign in");
+      $(".nav_signin_btn").on("click", function() {
+        window.location.href = "./login.html";
+      })
     }
   });
 
