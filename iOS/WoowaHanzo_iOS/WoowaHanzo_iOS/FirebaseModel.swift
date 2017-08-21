@@ -61,7 +61,17 @@ class FirebaseModel{
         return thumbnail
     }
 
-    
+    func tagQuery(tagName:String){
+        
+        ref = Database.database().reference()
+        let key = ref.child("tagQuery").childByAutoId().key
+        print(key)
+        let post = ["queryResult":1,"tag":tagName] as [String : Any]
+        let childUpdates = ["/tagQuery/\(key)": post]
+        ref.updateChildValues(childUpdates)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResult"), object: self, userInfo: ["key":key])
+
+    }
     
     func loadFeed(){
         

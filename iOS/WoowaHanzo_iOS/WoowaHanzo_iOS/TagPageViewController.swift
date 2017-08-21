@@ -13,11 +13,15 @@ class TagPageViewController: UIViewController {
     
     var tagListView:TagPageView!
     var ref: DatabaseReference!
+    var key : String = ""
     var shouldalert = false
     var tagName:String = ""
+    var tagResultArray = [Any]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+         NotificationCenter.default.addObserver(self, selector: #selector(getTagResult(_ :)), name: NSNotification.Name(rawValue: "tagResult"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(escapealert), name: NSNotification.Name(rawValue: "escape"), object: nil)
         
         let color = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0)
@@ -82,11 +86,8 @@ class TagPageViewController: UIViewController {
     func handleTap(sender: UITapGestureRecognizer) {
         if let a = (sender.view as? UILabel)?.text {
             tagName = a
-            ref = Database.database().reference()
-            let key = ref.child("tagQuery").childByAutoId().key
-            let post = ["queryResult":1,"tag":tagName] as [String : Any]
-            let childUpdates = ["/tagQuery/\(key)": post]
-            ref.updateChildValues(childUpdates)
+            print("A")
+            FirebaseModel().tagQuery(tagName: tagName)
             performSegue(withIdentifier: "ShowTagResult", sender: self)
         }
         else { return }
@@ -98,8 +99,27 @@ class TagPageViewController: UIViewController {
         if segue.identifier == "ShowTagResult" {
             if let viewController = segue.destination as? TagResultTableViewController {
                 viewController.tagName = tagName
+                
             }
         }
+    }
+    func getTagResult(_ notification: Notification){
+        
+        tagResultArray = []
+        self.ref = Database.database().reference().child("tagQuery")
+        let refHandle = ref.observe(DataEventType.value, with: { (snapshot) in
+            let postDict = snapshot.value as! [String : AnyObject]
+            if let result = snapshot.childSnapshot(forPath: notification.userInfo?["key"] as! String).childSnapshot(forPath: "queryResult").value {
+                if let tagResult = result as? [Any]
+                {
+                    for index in tagResult{
+                        self.tagResultArray.append(index)
+                    }
+                }
+                print(self.tagResultArray)
+                
+            }
+        })
     }
     //    func tap(sender:UIGestureRecognizer)
     //    {
@@ -111,6 +131,7 @@ class TagPageViewController: UIViewController {
     //        let label = (sender.view as! UILabel)
     //        print("long press from \(label.text!)")
     //    }
+        
     @IBAction func tagButtonTouched(_ sender: Any) {
         let storyboard = UIStoryboard(name: "SearchPage", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "searchView")

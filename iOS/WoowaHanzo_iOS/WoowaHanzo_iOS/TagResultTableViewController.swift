@@ -11,6 +11,8 @@ import UIKit
 class TagResultTableViewController: UITableViewController {
 
     var tagName:String = ""
+    var tagFeedArray = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(tagName)
