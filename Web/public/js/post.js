@@ -13,6 +13,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var username = firebase.database().ref("users/" + user.uid + "/username");
       username.on('value', function(snapshot) {
         author = snapshot.val();
+
+        var curPost = document.querySelector(".post");
+        curPost.uid = user.uid;
+      	curPost.queryClass = "profilePic";
+      	loadUserProfile.bind(curPost, user.uid)();
+
+        $(".profilePic").attr("src", loadUserProfile(firebase.auth().currentUser.uid));
         $(".Name").html(author);
         $(".container_box").css("opacity", 1);
       });
