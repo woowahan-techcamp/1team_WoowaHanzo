@@ -52,6 +52,8 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         mainpageTableView.estimatedRowHeight = UITableViewAutomaticDimension
         //mainpageTableView.rowHeight = 488
         
+        alert()
+        
 
     }
     
@@ -91,6 +93,10 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
             
         }
         
+        alert()
+
+    }
+    func alert(){
         if shouldalert{
             let alert = UIAlertController(title: "글 작성이 완료되지 않았습니다.", message: "글 작성을 취소하시겠습니까?", preferredStyle: .alert)
             let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
@@ -107,9 +113,8 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
                 alert.addAction(ok)
                 self.present(alert, animated: true, completion: nil)
             }
-
+            
         }
-        
 
     }
     
@@ -184,7 +189,7 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
             }
         }
         cell.tagListView.sizeToFit()
-        cell.timeLabel.text = String(describing: Date().postTimeDisplay(postDate: User.users[indexPath.section].postDate))
+        cell.timeLabel.text = String(describing: Date().postTimeDisplay(timestamp: User.users[indexPath.section].postDate))
         DispatchQueue.main.async {
             cell.FoodImageCollectionView.reloadData()
 

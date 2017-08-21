@@ -15,7 +15,7 @@ class RankPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(escapealert), name: NSNotification.Name(rawValue: "escape"), object: nil)
-
+        alert()
         // Do any additional setup after loading the view.
     }
 
@@ -28,6 +28,10 @@ class RankPageViewController: UIViewController {
         
     }
     override func viewWillAppear(_ animated: Bool) {
+        alert()
+
+    }
+    func alert(){
         if shouldalert{
             let alert = UIAlertController(title: "글 작성이 완료되지 않았습니다.", message: "글 작성을 취소하시겠습니까?", preferredStyle: .alert)
             let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
@@ -46,7 +50,7 @@ class RankPageViewController: UIViewController {
             }
             
         }
-
+        
     }
 
     /*
