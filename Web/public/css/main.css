@@ -553,8 +553,11 @@ div.img-divgo{
 }
 
 .nav_signin_btn {
-  margin-top: 8px;
   display: none;
+}
+
+.nav_signin_area {
+  margin: 0 -15px 0 -15px;
 }
 
 .nav_user_info {
@@ -655,6 +658,17 @@ div.img-divgo{
 
   .post hr {
     margin-top: 6px;
+  }
+}
+
+/*width가 768 미만이 되면..(햄버거 생길때)*/
+@media (max-width: 768px) {
+  .right_side li:nth-child(1) {
+    display: none;
+  }
+
+  .right_side li:nth-child(3) {
+    margin-left: 15px;
   }
 }
 
