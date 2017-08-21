@@ -409,6 +409,8 @@ div.img-divgo{
 .post_footer {
   padding-left: 0;
   padding-right: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .post hr {
@@ -427,8 +429,7 @@ div.img-divgo{
 .post_time {
   font-family: Jua;
   font-size: 0.9em;
-  float: right;
-  margin-top: 13px;
+  margin-left: auto;
   font-weight: bold;
   color: #AAA;
 }
