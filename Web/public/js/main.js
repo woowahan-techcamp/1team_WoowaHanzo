@@ -25,17 +25,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var currentUsername = firebase.database().ref("users/" + uid + "/username");
       currentUsername.on('value', function(snapshot) {
         $(".nav_username").html(snapshot.val());
-        console.log(snapshot.val());
+        $(".nav_user_info").on("click", function() {
+          window.location.href = 'mypage.html';
+        });
       });
-
-    } else {
+    }
+    else {
       // No user is signed in.
       $(".nav_signin_btn").css("display", "block");
       $(".nav_user_info").css("display", "none");
       $(".nav_signin_btn").html("Sign in");
       $(".nav_signin_btn").on("click", function() {
         window.location.href = "./login.html";
-      })
+      });
     }
   });
 
