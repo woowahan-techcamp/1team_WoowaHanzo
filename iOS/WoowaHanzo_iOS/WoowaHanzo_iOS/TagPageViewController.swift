@@ -110,16 +110,21 @@ class TagPageViewController: UIViewController {
         let refHandle = ref.observe(DataEventType.value, with: { (snapshot) in
             let postDict = snapshot.value as! [String : AnyObject]
             if let result = snapshot.childSnapshot(forPath: notification.userInfo?["key"] as! String).childSnapshot(forPath: "queryResult").value {
+                self.tagResultArray = []
                 if let tagResult = result as? [Any]
                 {
                     for index in tagResult{
                         self.tagResultArray.append(index)
                     }
                 }
-                print(self.tagResultArray)
+                //print(self.tagResultArray)
                 
             }
+            if self.tagResultArray.count > 1{
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sendResultViewController"), object: self, userInfo: ["tagResultArray": self.tagResultArray] )
+            }
         })
+        
     }
     //    func tap(sender:UIGestureRecognizer)
     //    {

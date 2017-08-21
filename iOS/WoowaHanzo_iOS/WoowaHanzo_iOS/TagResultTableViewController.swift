@@ -11,10 +11,11 @@ import UIKit
 class TagResultTableViewController: UITableViewController {
 
     var tagName:String = ""
-    var tagFeedArray = [String]()
+    var tagFeedArray = [Any]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(getTagFeed(_ :)), name: NSNotification.Name(rawValue: "sendResultViewController"), object: nil)
         print(tagName)
         self.navigationController?.navigationBar.tintColor = UIColor(red: 42/255, green: 193/255, blue: 188/255, alpha: 1)
         self.navigationController?.navigationBar.topItem?.title = "태그"
@@ -40,6 +41,10 @@ class TagResultTableViewController: UITableViewController {
         return 0
     }
 
+    func getTagFeed(_ notification: Notification){
+        tagFeedArray = notification.userInfo?["tagResultArray"] as! [Any]
+        print(tagFeedArray)
+    }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
