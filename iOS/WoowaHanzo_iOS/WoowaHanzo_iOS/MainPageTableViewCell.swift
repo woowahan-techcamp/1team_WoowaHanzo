@@ -71,12 +71,12 @@ extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDe
         if let imageArray = User.users[userid].imageArray{
             //print(User.users[userid])
                 //print("A")
-                let ref = Storage.storage().reference(withPath: imageArray[indexPath.row]).downloadURL { (url, error) in
+                let ref = Storage.storage().reference(withPath: "images/" + imageArray[indexPath.row]).downloadURL { (url, error) in
                     cell.foodImageView.kf.setImage(with: url)
-                    //print(url)
+                    print(url)
             }
         }
-        print(imageArr)
+       // print(imageArr)
 //        cell.foodImageView.image = imageArr[indexPath.item]
 //
         return cell
