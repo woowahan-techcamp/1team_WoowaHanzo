@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -51,7 +52,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="494"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VFy-GH-NZ0" id="i2c-U4-YfG">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="493.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="494"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zmq-Ua-VKM">
@@ -72,9 +73,8 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bll-Vq-NMs">
+                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bll-Vq-NMs">
                                             <rect key="frame" x="17" y="84" width="340" height="346"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="B61-FO-PmY">
                                                     <rect key="frame" x="0.0" y="0.0" width="340" height="128"/>
@@ -130,6 +130,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="bll-Vq-NMs" firstAttribute="leading" secondItem="i2c-U4-YfG" secondAttribute="leadingMargin" constant="9" id="NKt-dP-Cry"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -149,7 +152,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="q05-Yh-OsF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="태그" id="Fgl-fc-Jyd" userLabel="Item"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Ewo-Ub-HSh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ewo-Ub-HSh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
