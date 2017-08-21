@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Firebase
 
 class TagResultTableViewController: UITableViewController {
+    
+    var ref: DatabaseReference!
 
     var tagName:String = ""
     var tagFeedArray = [Any]()
@@ -21,20 +24,17 @@ class TagResultTableViewController: UITableViewController {
         self.navigationController?.navigationBar.topItem?.title = "태그"
        //self.title = tagName
         self.navigationItem.title = tagName
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        
+        
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 0
+//    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -44,16 +44,26 @@ class TagResultTableViewController: UITableViewController {
     func getTagFeed(_ notification: Notification){
         tagFeedArray = notification.userInfo?["tagResultArray"] as! [Any]
         print(tagFeedArray)
+        self.ref = Database.database().reference().child("posts")
+        for index in 1..<tagFeedArray.count{
+            
+            let refHandle = ref.observe(DataEventType.value, with: { (snapshot) in
+                if let result = snapshot.childSnapshot(forPath: self.tagFeedArray[index] as! String).value {
+                    print(result)
+                }
+                
+                    
+            })
+
+        }
     }
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TagResultTableViewCell
+        cell.tagResultNickNameLabel.text = "dd"
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

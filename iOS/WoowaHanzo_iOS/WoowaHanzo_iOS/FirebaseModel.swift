@@ -98,4 +98,29 @@ class FirebaseModel{
         
             
     }
+    func loadFeedTag(){
+        
+        self.ref = Database.database().reference().child("posts")
+        
+        self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let result = snapshot.children.allObjects as? [DataSnapshot]{
+                User.users = [User]()
+                for child in result {
+                    //print(child)
+                    var userKey = child.key as! String
+                    //print(child.childSnapshot(forPath: "author").value!)
+                    let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil, postDate : child.childSnapshot(forPath: "time").value as! Int)
+                    User.users.append(user)
+                    
+                    
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
+                }
+                
+                
+                
+            }
+        })
+        
+
+    }
 }
