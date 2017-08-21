@@ -255,14 +255,12 @@ class ReviewPostPageViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         if myTextView.textColor != UIColor.lightGray {
-            DispatchQueue.main.async{
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "escape"), object: nil)
-            }
+            //print("noticalled")
         }
         else{
-            DispatchQueue.main.async{
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "escapefalse"), object: nil)
-            }
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "escapefalse"), object: nil)
+            //print("noticalled")
         }
 
     }

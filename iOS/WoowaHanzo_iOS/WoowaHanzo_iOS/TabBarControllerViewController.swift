@@ -22,10 +22,14 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func escapealert(){
+        //should not dispatchqueue here.
+        //dispatchqueue makes it called later
         self.shouldalert = true
+        //print("espcapetrue")
     }
     func escapefalse(){
         self.shouldalert = false
+        //print("escapefalse")
     }
     
     func alert(slower: Bool){
@@ -69,8 +73,9 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let selected = item.title!
         if selected == "홈" || selected == "마이페이지" {
             DispatchQueue.main.async{
-                self.alert(slower: true)
+            self.alert(slower: true)
             }
+            
         }
         else if selected == "태그" || selected == "랭킹"{
             DispatchQueue.main.async{
