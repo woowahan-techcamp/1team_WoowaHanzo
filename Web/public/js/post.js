@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         curObject.uid = user.uid;
       	curObject.queryClass = "profilePic";
       	loadUserProfile.bind(curObject, user.uid)();
+
       });
     }
   });
