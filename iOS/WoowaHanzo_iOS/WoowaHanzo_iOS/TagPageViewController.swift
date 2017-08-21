@@ -13,7 +13,7 @@ class TagPageViewController: UIViewController {
     
     var tagListView:TagPageView!
     var ref: DatabaseReference!
-    
+    var tagName:String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         let color = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0)
@@ -49,17 +49,20 @@ class TagPageViewController: UIViewController {
         func handleTap(sender: UITapGestureRecognizer) {
             if let a = (sender.view as? UILabel)?.text {
     
+                tagName = a
                 ////여기서 검색기능수행하면 됨!
             performSegue(withIdentifier: "ShowTagResult", sender: self)
+            
     
             }
             else { return }
     
         }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowTagResult" {
             if let viewController = segue.destination as? TagResultTableViewController {
-                    viewController.tagName = "검색 결과"
+                    viewController.tagName = tagName
             }
         }
     }
