@@ -14,12 +14,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
       username.on('value', function(snapshot) {
         author = snapshot.val();
 
+        var curObject= {};
         var curPost = document.querySelector(".post");
-        curPost.uid = user.uid;
-      	curPost.queryClass = "profilePic";
-      	loadUserProfile.bind(curPost, user.uid)();
+        curObject.curPost = curPost;
 
-        $(".profilePic").attr("src", loadUserProfile(firebase.auth().currentUser.uid));
+        curObject.uid = user.uid;
+      	curObject.queryClass = "profilePic";
+      	loadUserProfile.bind(curObject, user.uid)();
+
         $(".Name").html(author);
         $(".container_box").css("opacity", 1);
       });
