@@ -155,15 +155,11 @@ var imgList = [];
 
 function imageHandle(evt) {
 
-  // resetting imageList
-  // imageList = [];
-
   var fileInput = document.getElementById('image_input');
 
   var files = evt.target.files;
   var i = 0;
   var f;
-  console.log("FILEINPUT: "+fileInput.files.length);
   for(i = 0, f; f = files[i]; i++) {
 
     if (!f.type.match('image.*')) {
@@ -212,7 +208,6 @@ function imageHandle(evt) {
       // what to do during image load
       img.addEventListener("load", function() {
         resizeThumbnails();
-        console.log(imageList);
       });
 
       renderPreviewThumbnails();
@@ -242,6 +237,18 @@ function renderPreviewThumbnails() {
       $(".image_thumbnails").append("<tr></tr>");
       $(".image_thumbnails tr").last().append(template(reader));
     }
+
+    var previewThumbnail = document.getElementById(i);
+    previewThumbnail.addEventListener("click", function(evt) {
+      evt.stopPropagation();
+      if(evt.target.nodeName == "IMG") {
+        evt.target.parentElement.click();
+        return;
+      }
+      imageList.splice(parseInt(evt.target.id), 1);
+      imgList.splice(parseInt(evt.target.id), 1);
+      renderPreviewThumbnails();
+    });
 
     var fileDisplayArea = document.getElementById(i);
     fileDisplayArea.appendChild(imgList[i]);
@@ -302,7 +309,6 @@ function writeNewPost(uid, username, body, tags) {
     tagUpdates['/tags/' + tags[i]] = "";
     promises.push(firebase.database().ref().update(tagUpdates));
   }
-  console.log(postData);
   // Get a key for a new Post.
   var newPostKey = firebase.database().ref().child('posts').push().key;
 
