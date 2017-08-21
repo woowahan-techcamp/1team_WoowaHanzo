@@ -34,6 +34,7 @@
 		986C8B5F1F3AD59400FC42ED /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986C8B5E1F3AD59400FC42ED /* TagListView.swift */; };
 		98895BE91F4AA098000D1E15 /* TagPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98895BE81F4AA098000D1E15 /* TagPageView.swift */; };
 		98895BEB1F4AEDDD000D1E15 /* TabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98895BEA1F4AEDDD000D1E15 /* TabBarControllerViewController.swift */; };
+		988C70F41F4AD56E0044FEE0 /* TagResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C70F31F4AD56E0044FEE0 /* TagResultTableViewCell.swift */; };
 		9894B7611F441F2E00DAB38E /* MyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894B7601F441F2E00DAB38E /* MyCollectionCell.swift */; };
 		9894B7631F4438FE00DAB38E /* add-square_318-121632.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9894B7621F4438FE00DAB38E /* add-square_318-121632.jpg */; };
 		9894B76A1F457BAA00DAB38E /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9894B7661F457BAA00DAB38E /* NotoSans-Bold.ttf */; };
@@ -55,6 +56,7 @@
 		98ECA4381F4557990069DA87 /* icon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98ECA4371F4557990069DA87 /* icon.xcassets */; };
 		98ECA43A1F4A95A90069DA87 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98ECA4391F4A95A90069DA87 /* GoogleService-Info.plist */; };
 		98ECA43E1F4AC42C0069DA87 /* TagResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98ECA43D1F4AC42C0069DA87 /* TagResultTableViewController.swift */; };
+		98ECA4421F4ACDB60069DA87 /* TagResultFoodImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98ECA4411F4ACDB60069DA87 /* TagResultFoodImageCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,7 @@
 		986C8B5E1F3AD59400FC42ED /* TagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
 		98895BE81F4AA098000D1E15 /* TagPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagPageView.swift; sourceTree = "<group>"; };
 		98895BEA1F4AEDDD000D1E15 /* TabBarControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarControllerViewController.swift; sourceTree = "<group>"; };
+		988C70F31F4AD56E0044FEE0 /* TagResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagResultTableViewCell.swift; sourceTree = "<group>"; };
 		9894B7601F441F2E00DAB38E /* MyCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionCell.swift; sourceTree = "<group>"; };
 		9894B7621F4438FE00DAB38E /* add-square_318-121632.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "add-square_318-121632.jpg"; sourceTree = "<group>"; };
 		9894B7661F457BAA00DAB38E /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -131,6 +134,7 @@
 		98ECA4371F4557990069DA87 /* icon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = icon.xcassets; sourceTree = "<group>"; };
 		98ECA4391F4A95A90069DA87 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		98ECA43D1F4AC42C0069DA87 /* TagResultTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagResultTableViewController.swift; sourceTree = "<group>"; };
+		98ECA4411F4ACDB60069DA87 /* TagResultFoodImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagResultFoodImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		B1F64866749E63894066246D /* Pods_WoowaHanzo_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WoowaHanzo_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9025DB6C60E4ACC8554AB0B /* Pods-WoowaHanzo_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoowaHanzo_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-WoowaHanzo_iOS/Pods-WoowaHanzo_iOS.release.xcconfig"; sourceTree = "<group>"; };
 		E39D9BBE4AAB04D908A0206E /* Pods-WoowaHanzo_iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoowaHanzo_iOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WoowaHanzo_iOSTests/Pods-WoowaHanzo_iOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -185,6 +189,8 @@
 				9843974F1F3835E800743B63 /* TagPageViewController.swift */,
 				98895BE81F4AA098000D1E15 /* TagPageView.swift */,
 				98ECA43D1F4AC42C0069DA87 /* TagResultTableViewController.swift */,
+				988C70F31F4AD56E0044FEE0 /* TagResultTableViewCell.swift */,
+				98ECA4411F4ACDB60069DA87 /* TagResultFoodImageCollectionViewCell.swift */,
 			);
 			name = TagPage;
 			sourceTree = "<group>";
@@ -662,9 +668,11 @@
 				98ECA42D1F440E570069DA87 /* DateExtension.swift in Sources */,
 				9854BF9B1F3407F1008FA337 /* MainPageViewController.swift in Sources */,
 				98C563CD1F39BE310017E68A /* AuthModel.swift in Sources */,
+				98ECA4421F4ACDB60069DA87 /* TagResultFoodImageCollectionViewCell.swift in Sources */,
 				984397641F3ACD3200743B63 /* TagFilter.swift in Sources */,
 				98ECA3AD1F4160AC0069DA87 /* TagCollectionViewCell.swift in Sources */,
 				9854BF9F1F340806008FA337 /* MyPageViewController.swift in Sources */,
+				988C70F41F4AD56E0044FEE0 /* TagResultTableViewCell.swift in Sources */,
 				984397501F3835E800743B63 /* TagPageViewController.swift in Sources */,
 				98C5637B1F3955180017E68A /* MainPageTableViewCell.swift in Sources */,
 				98C563CF1F39C3840017E68A /* RegisterViewController.swift in Sources */,
