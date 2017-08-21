@@ -325,7 +325,7 @@ function loadPosts(snapshot) {
   buffer["time"] = getCurrentTime(-buffer["time"]);
 
 	if(!$("#post_" + buffer.id).length) {
-		if(count < 10) {
+		if(true) {
 			$(".container_box").append(pageObject.postTemplate(buffer));
 			count++;
 			$(".loading-indicator-box").css("display", "block");
