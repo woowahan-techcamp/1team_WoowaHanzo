@@ -10,8 +10,14 @@ import UIKit
 
 class TagResultTableViewCell: UITableViewCell {
 
+    
+    @IBOutlet weak var tagResultTimeLabel: UILabel!
     @IBOutlet weak var tagResultNickNameLabel: UILabel!
+    @IBOutlet weak var tagResultLikeButton: UIButton!
+    @IBOutlet weak var tagResultFoodCollectionView: UICollectionView!
+    @IBOutlet weak var tagResultTagView: UIView!
     @IBOutlet weak var tagResultImageView: UIImageView!
+    @IBOutlet weak var tagResultTextView: UITextView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
