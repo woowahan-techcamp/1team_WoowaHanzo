@@ -188,39 +188,40 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
         return cellSpacingHeight
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        
-        let myCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainPageTableViewCell
-//        let heightForCell = myCell.contentsTextView.frame.height + myCell.tagListView.frame.height +  myCell.FoodImageCollectionView.frame.height
-//        //let h = myCell.contentsTextView.contentSize.height + myCell.tagListView.contentSize.height + myCell.FoodImageCollectionView.contentSize.height
-//        //print()
-//        let height = myCell.contentsTextViewConstraint.constant + myCell.tagListView.bounds.height + myCell.FoodImageCollectionView.bounds.height
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
+//        
+//        let myCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainPageTableViewCell
+////        let heightForCell = myCell.contentsTextView.frame.height + myCell.tagListView.frame.height +  myCell.FoodImageCollectionView.frame.height
+////        //let h = myCell.contentsTextView.contentSize.height + myCell.tagListView.contentSize.height + myCell.FoodImageCollectionView.contentSize.height
+////        //print()
+////        let height = myCell.contentsTextViewConstraint.constant + myCell.tagListView.bounds.height + myCell.FoodImageCollectionView.bounds.height
+////
+////        return height
+//        var height: CGFloat = 0.0
+//        self.dummyTextView.text = User.users[indexPath.section].contents
+//       
+//       // let fixedWidth = self.dummyUserTextView?.frame.size.width
 //
-//        return height
-        var height: CGFloat = 0.0
-        self.dummyTextView.text = User.users[indexPath.section].contents
-       
-       // let fixedWidth = self.dummyUserTextView?.frame.size.width
-
-        self.dummyTextView.sizeToFit()
-        //print(dummyTextView?.frame.size.height)
-        if let tag = User.users[indexPath.section].tags{
-            for index in tag{
-                self.dummyTagView?.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.gray)
-            }
-        }
-        
-        self.dummyTagView?.sizeToFit()
-        print("dd\(dummyTagView.frame.size.height)")
-//        if let imageArray = User.users[indexPath.row].imageArray{
-//            height += 120
+//        self.dummyTextView.sizeToFit()
+//        //print(dummyTextView?.frame.size.height)
+//        if let tag = User.users[indexPath.section].tags{
+//            for index in tag{
+//                self.dummyTagView?.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.gray)
+//            }
 //        }
-      
-        height += dummyTextView.frame.size.height + dummyTagView.frame.size.height + 200
-        return height
-    }
-   
-    
-}
+//        
+//        self.dummyTagView?.sizeToFit()
+//        //print("dd\(dummyTagView.frame.size.height)")
+////        if let imageArray = User.users[indexPath.row].imageArray{
+////            height += 120
+////        }
+//      
+//        height += dummyTextView.frame.size.height + dummyTagView.frame.size.height + 200
+//        return height
+//    }
+//   
+//    
+//}
 
+}
 

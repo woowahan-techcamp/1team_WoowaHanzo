@@ -15,7 +15,7 @@ class FirebaseModel{
     
     var ref: DatabaseReference!
     
-    func postReview(review: String, userID: String, tagArray:[String], timestamp: Int, images:[String],postDate:String,uid: String){
+    func postReview(review: String, userID: String, tagArray:[String], timestamp: Int, images:[String],uid: String){
         ref = Database.database().reference()
         let key = ref.child("posts").childByAutoId().key
         let post = ["author": userID,
@@ -23,7 +23,6 @@ class FirebaseModel{
                     "tags": tagArray,
                     "time": timestamp,
                     "images":images,
-                    "time": postDate,
                     "uid": uid] as [String : Any]
         let childUpdates = ["/posts/\(key)": post]
         ref.updateChildValues(childUpdates)
@@ -75,7 +74,7 @@ class FirebaseModel{
                     //print(child)
                     var userKey = child.key as! String
                     //print(child.childSnapshot(forPath: "author").value!)
-                    let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil,postDate : child.childSnapshot(forPath: "time").value as! Int)
+                    let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil, postDate : child.childSnapshot(forPath: "time").value as! Int)
                         User.users.append(user)
                     
                     
