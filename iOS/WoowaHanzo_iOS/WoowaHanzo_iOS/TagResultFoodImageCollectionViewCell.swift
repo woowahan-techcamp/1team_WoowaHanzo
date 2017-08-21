@@ -9,5 +9,6 @@
 import UIKit
 
 class TagResultCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var TagResultFoodImage: UIImageView!
     
 }

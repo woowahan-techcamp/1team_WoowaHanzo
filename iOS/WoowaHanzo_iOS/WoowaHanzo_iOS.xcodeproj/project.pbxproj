@@ -187,8 +187,8 @@
 				9843974F1F3835E800743B63 /* TagPageViewController.swift */,
 				98895BE81F4AA098000D1E15 /* TagPageView.swift */,
 				98ECA43D1F4AC42C0069DA87 /* TagResultTableViewController.swift */,
-				98ECA4411F4ACDB60069DA87 /* TagResultFoodImageCollectionViewCell.swift */,
 				988C70F31F4AD56E0044FEE0 /* TagResultTableViewCell.swift */,
+				98ECA4411F4ACDB60069DA87 /* TagResultFoodImageCollectionViewCell.swift */,
 			);
 			name = TagPage;
 			sourceTree = "<group>";

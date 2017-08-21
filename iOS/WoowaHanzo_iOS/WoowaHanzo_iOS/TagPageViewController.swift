@@ -74,17 +74,12 @@ class TagPageViewController: UIViewController {
         self.shouldalert = true
         
     }
-    
-    
-    
-        func handleTap(sender: UITapGestureRecognizer) {
+            func handleTap(sender: UITapGestureRecognizer) {
             if let a = (sender.view as? UILabel)?.text {
     
                 tagName = a
                 ////여기서 검색기능수행하면 됨!
             performSegue(withIdentifier: "ShowTagResult", sender: self)
-            
-    
             }
             else { return }
     
@@ -97,9 +92,7 @@ class TagPageViewController: UIViewController {
             }
         }
     }
-        
-    
-    //    func tap(sender:UIGestureRecognizer)
+        //    func tap(sender:UIGestureRecognizer)
     //    {
     //        let label = (sender.view as! UILabel)
     //        print("tap from \(label.text!)")
@@ -109,19 +102,11 @@ class TagPageViewController: UIViewController {
     //        let label = (sender.view as! UILabel)
     //        print("long press from \(label.text!)")
     //    }
-
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     @IBAction func tagButtonTouched(_ sender: Any) {
         let storyboard = UIStoryboard(name: "SearchPage", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "searchView")
         self.show(controller, sender: self)
     }
-    
-    
     /*
      // MARK: - Navigation
      

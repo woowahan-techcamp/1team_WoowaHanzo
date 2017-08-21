@@ -130,6 +130,9 @@
                                                                     </imageView>
                                                                 </subviews>
                                                             </view>
+                                                            <connections>
+                                                                <outlet property="TagResultFoodImage" destination="BdA-CK-0Cn" id="8Fi-IW-Nnn"/>
+                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
