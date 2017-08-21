@@ -189,7 +189,7 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
             }
         }
         cell.tagListView.sizeToFit()
-        cell.timeLabel.text = String(describing: Date().postTimeDisplay(postDate: User.users[indexPath.section].postDate))
+        cell.timeLabel.text = String(describing: Date().postTimeDisplay(timestamp: User.users[indexPath.section].postDate))
         DispatchQueue.main.async {
             cell.FoodImageCollectionView.reloadData()
 
