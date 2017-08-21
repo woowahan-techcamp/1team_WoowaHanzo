@@ -13,34 +13,17 @@ class TagPageViewController: UIViewController {
     var tagListView:TagListView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        let color = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0)
         
-        tagListView = TagListView(frame: CGRect(x: 0, y: self.view.frame.height - 200, width: self.view.frame.width, height: 200))
+        tagListView = TagListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         self.view.addSubview(tagListView)
-        tagListView.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1.0)
-        tagListView.layer.borderColor = UIColor.black.cgColor
-        tagListView.layer.borderWidth = 0.2
+        tagListView.backgroundColor = UIColor.white
+        tagListView.layer.borderColor = UIColor.white.cgColor
+        tagListView.layer.borderWidth = 1.5
         
         let demoTags = ["friends","fashion","smile","like4like","instamood","family","nofilter","amazing","style","follow4follow","tbt","tflers","beach","followforfollow","lol","yolo","hair","iphoneonly","cool","girls","webstgram","funny","iphonesia","tweegram","my","instacool","igdaily","makeup","instagramhub","awesome","bored","instafollow","nice","eyes","look","throwback","look","home","instacollage"]
-        for (index,i) in demoTags.enumerated()
-        {
-            let color:UIColor!
-            if index%4 == 1
-            {
-                color = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
-            }
-            else if index%4 == 2
-            {
-                color = UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1)
-            }
-            else if index%4 == 3
-            {
-                color = UIColor(red: 39/255, green: 174/255, blue: 96/255, alpha: 1)
-            }
-            else
-            {
-                color = UIColor(red: 243/255, green: 156/255, blue: 18/255, alpha: 1)
-            }
-            tagListView.addTag(i, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: color,textColor: UIColor.white)
+        for i in demoTags {
+            tagListView.addTag("#"+i, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: color)
         }
     }
     

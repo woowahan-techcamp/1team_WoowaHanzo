@@ -60,7 +60,6 @@ class TagPageView:UIScrollView
         //instantiate label
         //you can customize your label here! but make sure everything fit. Default row height is 30.
         let label = UILabel()
-        label.layer.cornerRadius = 5
         label.clipsToBounds = true
         label.textColor = UIColor.white
         label.backgroundColor = backgroundColor
@@ -68,6 +67,9 @@ class TagPageView:UIScrollView
         label.textColor = textColor
         label.sizeToFit()
         label.textAlignment = NSTextAlignment.center
+        label.layer.cornerRadius = 10
+        label.layer.borderColor = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0).cgColor
+        label.layer.borderWidth = 1.5
         self.tags.append(label)
         
         //process actions
