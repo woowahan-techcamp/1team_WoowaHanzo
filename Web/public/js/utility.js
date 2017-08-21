@@ -246,6 +246,10 @@ function galleryRight() {
 	$(window).resize();
 }
 
+function getIdFromPostId(id) {
+	return id.substring(5, id.length);
+}
+
 function addTagListeners(curPost) {
 	var tags = curPost.querySelectorAll(".tagger");
 	for(var i = 0; i < tags.length; ++i) {
@@ -334,7 +338,6 @@ function loadPosts(snapshot) {
 			count = 0;
 			$(".loading-indicator-box").css("display", "none");
 		}
-		console.log('count: ', count);
 	}
 	else {
 		$(".loading-indicator-box").css("display", "none");
@@ -353,8 +356,17 @@ function loadPosts(snapshot) {
 	var like_button = curPost.querySelector(".like_btn");
 	like_button.addEventListener("click", function(evt) {
 		var id = evt.target.parentElement.parentElement.id;
-		console.log(evt.target.parentElement.parentElement.id);
+		console.log(getIdFromPostId(evt.target.parentElement.parentElement.id));
+		var requestKey = firebase.database().ref().child("likeRequest").push().key;
+		var update = {};
+		update["/likeRequest/" + requestKey + "/postId"] = getIdFromPostId(id);
+		update["/likeRequest/" + requestKey + "/uid"] = firebase.auth().currentUser.uid;
+		update["/likeRequest/" + requestKey + "/result/count"] = 0;
+		update["/likeRequest/" + requestKey + "/result/state"] = "default";
+		firebase.database().ref().update(update).then(evt => {
+			console.log("request made!");
 
+		});
 	});
 
   if(buffer.images) {
