@@ -14,13 +14,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var currentUsername = firebase.database().ref("users/" + uid + "/username");
       currentUsername.on('value', function(snapshot) {
         $(".nav_username").html(snapshot.val());
-        $(".like_btn").on("click", function(evt) {
-          var icon = evt.target;
-          icon.style.color = icon.style.color == "rgb(42, 193, 188)" ? "#000" : "rgb(42, 193, 188)";
+        $(".nav_user_info").on("click", function() {
+          window.location.href = 'mypage.html';
         });
       });
-
-    } else {
+    }
+    else {
       // No user is signed in.
       $(".nav_signin_btn").css("display", "block");
       $(".nav_user_info").css("display", "none");
