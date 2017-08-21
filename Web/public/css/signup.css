@@ -56,3 +56,58 @@
   float: right;
   line-height: 2em;
 }
+
+
+/*width가 500(container_box의 최대 크기) 미만이 되면..*/
+@media (max-width: 500px) {
+  .signup_holder {
+    padding: 25px;
+  }
+
+  .signup_title {
+    font-size: 1.6em;
+  }
+
+  .input_holder {
+    padding-top: 17px;
+  }
+
+  .buttons_holder {
+    margin-top: 20px;
+  }
+
+  .error_msg {
+    height: 10px;
+    color: red;
+    font-size: 0.65em;
+    margin-top: 2px;
+    margin-bottom: 6px;
+  }
+}
+
+/*width가 500(container_box의 최대 크기) 미만이 되면..*/
+@media (max-width: 360px) {
+  .signup_holder {
+    padding: 20px;
+  }
+
+  .signup_title {
+    font-size: 1.4em;
+  }
+
+  .input_holder {
+    padding-top: 15px;
+  }
+
+  .buttons_holder {
+    margin-top: 18px;
+  }
+
+  .error_msg {
+    height: 11px;
+    color: red;
+    font-size: 0.65em;
+    margin-top: 2px;
+    margin-bottom: 6px;
+  }
+}

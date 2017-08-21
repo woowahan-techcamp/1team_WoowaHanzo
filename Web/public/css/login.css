@@ -3,7 +3,7 @@
 }
 
 .login_holder {
-  min-width: 320px;
+  /*min-width: 320px;*/
   padding: 30px;
   margin: 150px 20px 0 20px;
 
@@ -90,10 +90,81 @@
   background-color: #246a99;
 }
 
-@media (max-width: 600px) {
+/*width가 768 미만이 되면..*/
+@media (max-width: 768px) {
+
+}
+
+/*width가 500(container_box의 최대 크기) 미만이 되면..*/
+@media (max-width: 500px) {
+  .container_box {
+    width: 90%;
+  }
+
   .login_holder {
-    padding: 25px 20px 20px 20px;
+    padding: 20px 15px 15px 15px;
     margin-top: 100px;
   }
 
+  .login_title {
+    font-size: 1.7em;
+  }
+
+  .input_holder {
+    padding-top: 15px;
+  }
+
+  .form_container {
+    padding: 7px 10px;
+    font-size: 0.85em;
+    margin-bottom: 17px;
+  }
+
+  .buttons_holder {
+    margin-top: 20px;
+  }
+
+  .buttons_holder button {
+    font-size: 0.85em;
+  }
+
+  .splitter {
+    font-size: 0.85em;
+    margin: 6px 0;
+  }
+}
+
+/*width가 360 미만이 되면..*/
+@media (max-width: 360px) {
+  .container_box {
+    min-width: 290px;
+    width: 100%;
+  }
+
+  .login_title {
+    font-size: 1.4em;
+  }
+
+  .input_holder {
+    padding-top: 13px;
+  }
+
+  .form_container {
+    padding: 7px 10px;
+    font-size: 0.75em;
+    margin-bottom: 13px;
+  }
+
+  .buttons_holder {
+    margin-top: 7px;
+  }
+
+  .buttons_holder button {
+    font-size: 0.75em;
+  }
+
+  .splitter {
+    font-size: 0.75em;
+    margin: 4px 0;
+  }
 }

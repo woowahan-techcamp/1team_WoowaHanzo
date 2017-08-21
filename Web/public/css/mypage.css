@@ -1,5 +1,4 @@
 .container_box {
-  /*outline: 1px dotted pink;*/
   -webkit-transition: .5s ;
   -o-transition: .5s;
   transition: .5s;
@@ -14,7 +13,6 @@
 }
 
 .mypage_user_image_box {
-  /*outline: 1px solid blue;*/
   width: 150px;
   height: 150px;
   overflow: hidden;
@@ -34,12 +32,10 @@
   transform: translate(-50%);
   margin-left: 50%;
   max-height: 150px;
-
 }
 
 .mypage_user_info_box {
   margin-bottom: 20px;
-  /*outline: 1px solid green;*/
 }
 
 .mypage_username {
@@ -63,10 +59,69 @@
   font-weight: 200;
 }
 
-.mypage_user_post_box {
-  /*outline: 1px dotted yellow;*/
-}
-
 #profile_image_input {
   display: none;
+}
+
+/*width가 720 미만이 되면..*/
+@media (max-width: 720px) {
+  .mypage_user_image_box {
+    width: 130px;
+    height: 130px;
+  }
+
+  .mypage_user_image_box img {
+    max-height: 130px;
+  }
+
+  .mypage_user_info_box {
+    margin-bottom: 15px;
+  }
+
+  .mypage_username {
+    font-size: 28px;
+    line-height: 32px;
+    font-weight: 200;
+  }
+
+  .mypage_user_sayhi {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .mypage_user_post_count {
+    font-size: 15px;
+  }
+}
+
+/*width가 360 미만이 되면..*/
+@media (max-width: 360px) {
+  .mypage_user_image_box {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 7px;
+  }
+
+  .mypage_user_image_box img {
+    max-height: 100px;
+  }
+
+  .mypage_user_info_box {
+    margin-bottom: 15px;
+  }
+
+  .mypage_username {
+    font-size: 23px;
+    line-height: 28px;
+    font-weight: 200;
+  }
+
+  .mypage_user_sayhi {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .mypage_user_post_count {
+    font-size: 14px;
+  }
 }

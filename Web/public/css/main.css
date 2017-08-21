@@ -6,7 +6,6 @@ more lighter: #99cbed
 success_green: #5cb85c
 */
 
-
 body {
   font-family: NotoSans, Jua!important;
   /*font-size: 0px;*/
@@ -16,21 +15,11 @@ body {
 }
 
 .right_side {
-  display: none;
-}
-
-.right_side_icon {
   display: block;
 }
 
-@media (min-width: 768px) {
-  .right_side {
-    display: block;
-  }
-
-  .right_side_icon {
-    display: none;
-  }
+.right_side_icon {
+  display: none;
 }
 
 .fa-search {
@@ -57,7 +46,6 @@ body {
 .container_box {
   width: inherit;
   max-width: 720px;
-  min-width: 360px;
 
   margin-left: auto;
   margin-right: auto;
@@ -325,7 +313,7 @@ div.img-divgo{
 .tags_holder {
   line-height: 50px;
   vertical-align: baseline;
-  margin-top: 10px;
+  margin: 10px 0 0 6px;
 }
 
 .post .tagger {
@@ -374,7 +362,6 @@ div.img-divgo{
 
 .image_thumbnails td {
   padding: 10px;
-
 }
 
 .image_thumbnails .single_thumbnail {
@@ -429,7 +416,7 @@ div.img-divgo{
 }
 
 .like_btn {
-  font-size: 25px;
+  font-size: 1.8em;
   padding: 10px 15px;
 }
 
@@ -439,9 +426,9 @@ div.img-divgo{
 
 .post_time {
   font-family: Jua;
-  font-size: 14px;
+  font-size: 0.9em;
   float: right;
-  margin-top: 12px;
+  margin-top: 13px;
   font-weight: bold;
   color: #AAA;
 }
@@ -461,8 +448,8 @@ div.img-divgo{
 
 .post div.post_body {
   border: none;
-  font-size: 23px;
-  padding: 0px 6px 0px 6px;
+  font-size: 1.5em;
+  padding: 0px 6px;
 }
 
 .starting_sharp {
@@ -572,10 +559,6 @@ div.img-divgo{
   display: inline-block;
 }
 
-.nav_user_info {
-
-}
-
 .nav_user_img {
   width: 37px;
   height: 37px;
@@ -598,7 +581,17 @@ div.img-divgo{
   display: inline-block;
 }
 
-@media (max-width: 600px) {
+/*width가 780(720+30+30) 미만이 되면..*/
+@media (max-width: 780px) {
+  .container_box {
+    width: 100%;
+  }
+
+  .post {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
   div.img-divgo{
     width: 60px;
     height: 60px;
@@ -609,36 +602,145 @@ div.img-divgo{
   }
 
   .post .Name {
-    font-size: 23px;
-    margin-left: 11px;
-    top: 7px;
+    font-size: 1.4em;
+    margin-left: 15px;
+    top: 3px;
   }
 
   .post .Title {
-    font-size: 15px;
-    margin-left: 11px;
-    top: 38px;
+    bottom: 1px;
+    margin-left: 15px;
+    font-size: 1em;
+    top: 34px;
   }
 
   .post div.post_body {
-    font-size: 18px;
-  }
-
-  .tags_holder .tag_holder {
-    font-size: 16px;
-  }
-
-  .post {
-    margin: 0 20px 20px;
+    font-size: 1.2em;
+    margin-top: 10px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
   }
 
   .tags_holder {
     line-height: 40px;
-    margin-top: 7px;
+    vertical-align: baseline;
+  }
+
+  .post {
+    border-radius: 14px ;
+    -moz-border-radius: 14px;
+    -webkit-border-radius: 14px;
+    padding: 18px 18px 0 18px;
   }
 
   .post .tagger {
-    margin-right: 4px;
-    margin-bottom: 5px;
+    font-size: 1em;
+    outline: -webkit-focus-ring-color none 5px;
+    padding: 4px 7px;
+
+    border-radius: 40px;
+    -moz-border-radius: 40px;
+    -webkit-border-radius: 40px;
+
+    margin-right: 6px;
+  }
+
+  .image_thumbnails td {
+    padding: 7px;
+  }
+
+  .post hr {
+    margin-top: 6px;
+  }
+}
+
+/*width가 360 미만이 되면..*/
+@media (max-width: 360px) {
+  .container_box {
+    width: 100%;
+    man-width: 280px;
+  }
+
+  .post {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+
+  div.img-divgo{
+    width: 50px;
+    height: 50px;
+  }
+
+  .img-divgo .profilePic {
+    max-height: 50px;
+  }
+
+  .post .Name {
+    font-size: 1.1em;
+    margin-left: 10px;
+    top: 2px;
+  }
+
+  .post .Title {
+    bottom: 1px;
+    margin-left: 10px;
+    font-size: 0.8em;
+    top: 26px;
+  }
+
+  .post div.post_body {
+    font-size: 1em;
+    margin-top: 7px;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+  }
+
+  .tags_holder {
+    line-height: 30px;
+    vertical-align: baseline;
+    margin-top: 7px;
+    margin-bottom: 3px;
+  }
+
+  .post {
+    border-radius: 12px ;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    padding: 15px 15px 0 15px;
+  }
+
+  .post .tagger {
+    font-size: 0.85em;
+    outline: -webkit-focus-ring-color none 5px;
+    padding: 2px 5px;
+
+    border-radius: 30px;
+    -moz-border-radius: 30px;
+    -webkit-border-radius: 30px;
+
+    margin-right: 3px;
+  }
+
+  .image_thumbnails td {
+    padding: 6px;
+  }
+
+  .post {
+    min-width: 260px;
+  }
+
+  .post hr {
+    margin-top: 4px;
+  }
+
+  .like_btn {
+    font-size: 1.3em;
+    padding: 10px 12px;
+  }
+
+  .post_time {
+    font-size: 0.7em;
   }
 }

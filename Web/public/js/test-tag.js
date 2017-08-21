@@ -5,10 +5,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
   console.log(namesobj);
 
   for(var i = 0; i < Object.keys(namesobj).length; i++) {
-    $(".tags_holder").append('<span class="tagger tag_holder_tmp">' +
-                  '<span class="starting_sharp_tmp">#</span>' +
-                  '<span class="tag_name_tmp">' + Object.keys(namesobj)[i] + ' ' + '</span>' +
-                  '<span class="tag_count_tmp">' + Object.values(namesobj)[i] + '</span>' +
+    $(".tags_holder").append('<span class="tagger tag_holder">' +
+                  '<span class="starting_sharp">#</span>' +
+                  '<span class="tag_name">' + Object.keys(namesobj)[i] + ' ' + '</span>' +
+                  '<span class="tag_count">' + Object.values(namesobj)[i] + '</span>' +
                 '</span>');
   }
 
