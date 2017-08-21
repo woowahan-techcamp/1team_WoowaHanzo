@@ -73,18 +73,18 @@ class TagPageView:UIScrollView
         self.tags.append(label)
         
         //process actions
-        if tapAction != nil
-        {
-            let tap = UITapGestureRecognizer(target: target, action: tapAction)
-            label.isUserInteractionEnabled = true
-            label.addGestureRecognizer(tap)
-        }
-        
-        if longPressAction != nil
-        {
-            let longPress = UILongPressGestureRecognizer(target: target, action: longPressAction)
-            label.addGestureRecognizer(longPress)
-        }
+//        if tapAction != nil
+//        {
+//            let tap = UITapGestureRecognizer(target: target, action: tapAction)
+//            label.isUserInteractionEnabled = true
+//            label.addGestureRecognizer(tap)
+//        }
+//        
+//        if longPressAction != nil
+//        {
+//            let longPress = UILongPressGestureRecognizer(target: target, action: longPressAction)
+//            label.addGestureRecognizer(longPress)
+//        }
         
         //calculate frame
         label.frame = CGRect(x: label.frame.origin.x, y: label.frame.origin.y , width: label.frame.width + tagCombinedMargin, height: rowHeight - tagVerticalPadding)

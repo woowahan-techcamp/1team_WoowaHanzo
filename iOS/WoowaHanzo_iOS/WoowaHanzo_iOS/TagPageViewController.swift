@@ -27,23 +27,7 @@ class TagPageViewController: UIViewController {
         }
     }
     
-    @IBAction func deleteMultipleTags(sender: AnyObject) {
-        tagListView.removeMultipleTagsWithIndices([0,3,6,1,2,3,4,5,6,7,9,10,11])
-    }
     
-    @IBAction func deleteFirstTag(sender: AnyObject) {
-        tagListView.removeTagWithIndex(0)
-    }
-    
-    @IBOutlet weak var textField: UITextField!
-    @IBAction func addTag(sender: AnyObject) {
-        if textField.text != nil
-        {
-            tagListView.addTag(textField.text!, target: self, tapAction: nil, longPressAction: nil, backgroundColor: UIColor.black, textColor: UIColor.white)
-        }
-        self.textField.resignFirstResponder()
-        
-    }
     func tap(sender:UIGestureRecognizer)
     {
         let label = (sender.view as! UILabel)

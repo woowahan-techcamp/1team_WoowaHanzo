@@ -42,7 +42,9 @@ class FirebaseModel{
             DispatchQueue.global().async{
             manager.requestImageData(for: asset, options: requestOptions, resultHandler: { (data, str, orientation, info) -> Void in
                 if let imagedata = data{
-                    let ref = Storage.storage().reference(withPath: names[i]).putData(imagedata)
+                    let metadata = StorageMetadata()
+                    metadata.contentType = "image/jpeg"
+                    let ref = Storage.storage().reference(withPath: "images/" + names[i]).putData(imagedata, metadata:metadata)
                     ref.resume()
                 }
             })
