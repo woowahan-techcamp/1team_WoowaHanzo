@@ -23,11 +23,11 @@ class TagPageView:UIScrollView
     var tags = [UILabel]()
     var containerView:UIView!
     
-    var hashtagsOffset:UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 0)
-    var rowHeight:CGFloat = 30 //height of rows
+    var hashtagsOffset:UIEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 0, right: 0)
+    var rowHeight:CGFloat = 40 //height of rows
     var tagHorizontalPadding:CGFloat = 5.0 // padding between tags horizontally
-    var tagVerticalPadding:CGFloat = 5.0 // padding between tags vertically
-    var tagCombinedMargin:CGFloat = 6.0 // margin of left and right combined, text in tags are by default centered.
+    var tagVerticalPadding:CGFloat = 10.0 // padding between tags vertically
+    var tagCombinedMargin:CGFloat = 15.0 // margin of left and right combined, text in tags are by default centered.
     override init(frame:CGRect)
     {
         super.init(frame: frame)
@@ -55,13 +55,12 @@ class TagPageView:UIScrollView
         super.init(coder: aDecoder)
     }
     
-    func addTag(text:String, target:AnyObject, tapAction:Selector?, longPressAction:Selector? ,backgroundColor:UIColor,textColor:UIColor)
+    func addTag(text:String, target:AnyObject, backgroundColor:UIColor,textColor:UIColor)
     {
         //instantiate label
         //you can customize your label here! but make sure everything fit. Default row height is 30.
         let label = UILabel()
         label.clipsToBounds = true
-        label.textColor = UIColor.white
         label.backgroundColor = backgroundColor
         label.text = text
         label.textColor = textColor
@@ -70,21 +69,10 @@ class TagPageView:UIScrollView
         label.layer.cornerRadius = 10
         label.layer.borderColor = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0).cgColor
         label.layer.borderWidth = 1.5
+        let tapGesture = UITapGestureRecognizer(target: target, action: #selector(TagPageViewController.handleTap))
+        label.addGestureRecognizer(tapGesture)
+        label.isUserInteractionEnabled = true
         self.tags.append(label)
-        
-        //process actions
-//        if tapAction != nil
-//        {
-//            let tap = UITapGestureRecognizer(target: target, action: tapAction)
-//            label.isUserInteractionEnabled = true
-//            label.addGestureRecognizer(tap)
-//        }
-//        
-//        if longPressAction != nil
-//        {
-//            let longPress = UILongPressGestureRecognizer(target: target, action: longPressAction)
-//            label.addGestureRecognizer(longPress)
-//        }
         
         //calculate frame
         label.frame = CGRect(x: label.frame.origin.x, y: label.frame.origin.y , width: label.frame.width + tagCombinedMargin, height: rowHeight - tagVerticalPadding)
