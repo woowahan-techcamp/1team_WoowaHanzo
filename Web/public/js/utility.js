@@ -274,7 +274,7 @@ function loadUserProfile(uid) {
 			pageObject.userProfileImage[this.uid] = snapshot.val().profileImg;
 			var downloadUrl = storageRef.child("profileImages/" + pageObject.userProfileImage[this.uid]).getDownloadURL();
 			downloadUrl.then(function(url) {
-				var curPost = this;
+				var curPost = this.curPost;
 				var profilePic = curPost.querySelector("." + this.queryClass);
 				profilePic.classList.add("loading");
 				profilePic.src = url;
@@ -288,7 +288,7 @@ function loadUserProfile(uid) {
 			}.bind(this));
 		} else {
 			pageObject.userProfileImage[this.uid] = "pictures/profile.png";
-			var curPost = this;
+			var curPost = this.curPost;
 			var profilePic = curPost.querySelector("." + this.queryClass);
 			profilePic.classList.add("loading");
 			profilePic.src = pageObject.userProfileImage[this.uid];
@@ -341,16 +341,20 @@ function loadPosts(snapshot) {
 	}
 
   var $curPost = $("#post_" + buffer.id);
+
 	var curPost = document.querySelector("#post_" + buffer.id);
-	curPost.uid = buffer.uid;
-	curPost.queryClass = "profilePic";
-	loadUserProfile.bind(curPost, buffer.uid)();
+	var curObject = {};
+	curObject.curPost = curPost;
+	curObject.uid = buffer.uid;
+	curObject.queryClass = "profilePic";
+	loadUserProfile.bind(curObject, buffer.uid)();
 
 	// add functionality to like button
 	var like_button = curPost.querySelector(".like_btn");
 	like_button.addEventListener("click", function(evt) {
 		var id = evt.target.parentElement.parentElement.id;
 		console.log(evt.target.parentElement.parentElement.id);
+
 	});
 
   if(buffer.images) {
