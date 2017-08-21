@@ -45,9 +45,20 @@ class TagPageViewController: UIViewController {
                 self.tagListView.addTag(text:"태그를 추가해주세요.", target: self, backgroundColor: UIColor.white, textColor: color)
             }
         })
+        alert()
         
     }
     override func viewWillAppear(_ animated: Bool){
+        alert()
+    }
+    
+    
+    func escapealert(){
+        self.shouldalert = true
+        
+    }
+    
+    func alert(){
         if shouldalert{
             let alert = UIAlertController(title: "글 작성이 완료되지 않았습니다.", message: "글 작성을 취소하시겠습니까?", preferredStyle: .alert)
             let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
@@ -66,14 +77,9 @@ class TagPageViewController: UIViewController {
             }
             
         }
-
-    }
-    
-    
-    func escapealert(){
-        self.shouldalert = true
         
     }
+
     
     
     

@@ -13,6 +13,10 @@ import Firebase
 
 class ReviewPostPageViewController: UIViewController {
     
+    
+    
+    @IBOutlet weak var userProfileImage: UIImageView!
+    @IBOutlet weak var userTearLabel: UILabel!
     @IBOutlet weak var userNickNameLabel: UILabel!
     @IBOutlet weak var myView: UIView!
     @IBOutlet weak var myTextView: UITextView!
@@ -70,6 +74,9 @@ class ReviewPostPageViewController: UIViewController {
             myCollectionView.dataSource = self
             myCollectionView.delegate = self
             myCollectionView.allowsSelection = true
+            
+            userProfileImage.image = UIImage(named: "profile.png")
+            userTearLabel.text = "치킨왕자"
             userNickNameLabel.text = UserDefaults.standard.string(forKey: "userNickName")
             myTagView.removeFromSuperview()
             myTagView = TagView( position: CGPoint( x: 0, y: 380 ), size: CGSize( width: 320, height: 50 ) )
@@ -163,6 +170,11 @@ class ReviewPostPageViewController: UIViewController {
             myCollectionView.dataSource = self
             myCollectionView.delegate = self
             myCollectionView.allowsSelection = true
+            
+            userProfileImage.image = UIImage(named: "profile.png")
+            userTearLabel.text = "치킨왕자"
+            userNickNameLabel.text = UserDefaults.standard.string(forKey: "userNickName")
+            
             myTagView.removeFromSuperview()
             myTagView = TagView( position: CGPoint( x: 0, y: 380 ), size: CGSize( width: 320, height: 50 ) )
             myTextView.delegate = self as UITextViewDelegate
