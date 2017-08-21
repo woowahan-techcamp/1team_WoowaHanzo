@@ -1,8 +1,4 @@
 .container_box {
-  opacity: 0;
-  -webkit-transition: .5s ;
-  -o-transition: .5s;
-  transition: .5s;
 }
 
 .post .textbox {
@@ -44,7 +40,7 @@
 
 div.post {
   padding-bottom: 10px;
-  opacity: 1.0;
+  opacity: 0;
   display: block;
 }
 
@@ -62,6 +58,10 @@ div.post {
 
 .buttons_holder {
   margin: 0 20px;
+  display: none;
+  -webkit-transition: .5s ;
+  -o-transition: .5s;
+  transition: .5s;
 }
 
 .add_photos {

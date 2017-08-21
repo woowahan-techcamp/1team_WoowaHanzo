@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var username = firebase.database().ref("users/" + user.uid + "/username");
       username.on('value', function(snapshot) {
         author = snapshot.val();
+        $(".Name").html(author);
 
         var curObject= {};
         var curPost = document.querySelector(".post");
@@ -21,9 +22,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         curObject.uid = user.uid;
       	curObject.queryClass = "profilePic";
       	loadUserProfile.bind(curObject, user.uid)();
-
-        $(".Name").html(author);
-        $(".container_box").css("opacity", 1);
       });
     }
   });
