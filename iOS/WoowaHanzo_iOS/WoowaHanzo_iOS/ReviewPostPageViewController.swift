@@ -75,6 +75,10 @@ class ReviewPostPageViewController: UIViewController {
             myCollectionView.delegate = self
             myCollectionView.allowsSelection = true
             
+            imageNameArray = [String]()
+            imageArray = [UIImage]()
+            imageAssets = [PHAsset]()
+            
             userProfileImage.image = UIImage(named: "profile.png")
             userTearLabel.text = "치킨왕자"
             userNickNameLabel.text = UserDefaults.standard.string(forKey: "userNickName")
@@ -116,6 +120,11 @@ class ReviewPostPageViewController: UIViewController {
             myImageView.layer.cornerRadius = myImageView.frame.width / 2
             myImageView.layer.masksToBounds = true
             
+            myCollectionView.removeFromSuperview()
+            myView.addSubview(myCollectionView)
+            DispatchQueue.main.async{
+            self.myCollectionView.reloadData()
+            }
             self.myView.addSubview( myTagView )
             myContentView.addSubview(myView)
             myScrollView.addSubview(myContentView)
@@ -171,6 +180,11 @@ class ReviewPostPageViewController: UIViewController {
             myCollectionView.delegate = self
             myCollectionView.allowsSelection = true
             
+            imageNameArray = [String]()
+            imageArray = [UIImage]()
+            imageAssets = [PHAsset]()
+            
+            
             userProfileImage.image = UIImage(named: "profile.png")
             userTearLabel.text = "치킨왕자"
             userNickNameLabel.text = UserDefaults.standard.string(forKey: "userNickName")
@@ -210,6 +224,11 @@ class ReviewPostPageViewController: UIViewController {
             myImageView.layer.cornerRadius = myImageView.frame.width / 2
             myImageView.layer.masksToBounds = true
             
+            myCollectionView.removeFromSuperview()
+            myView.addSubview(myCollectionView)
+            DispatchQueue.main.async{
+                self.myCollectionView.reloadData()
+            }
             self.myView.addSubview( myTagView )
             myContentView.addSubview(myView)
             myScrollView.addSubview(myContentView)
@@ -236,7 +255,14 @@ class ReviewPostPageViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         if myTextView.textColor != UIColor.lightGray {
+            DispatchQueue.main.async{
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "escape"), object: nil)
+            }
+        }
+        else{
+            DispatchQueue.main.async{
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "escapefalse"), object: nil)
+            }
         }
 
     }

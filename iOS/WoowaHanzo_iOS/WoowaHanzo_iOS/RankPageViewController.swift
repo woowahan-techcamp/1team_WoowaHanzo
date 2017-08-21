@@ -9,48 +9,16 @@
 import UIKit
 
 class RankPageViewController: UIViewController {
-    
-    var shouldalert = false
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(escapealert), name: NSNotification.Name(rawValue: "escape"), object: nil)
-        alert()
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    func escapealert(){
-        self.shouldalert = true
-        
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        alert()
-
-    }
-    func alert(){
-        if shouldalert{
-            let alert = UIAlertController(title: "글 작성이 완료되지 않았습니다.", message: "글 작성을 취소하시겠습니까?", preferredStyle: .alert)
-            let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "escapecancel"), object: nil)
-                //self.shouldloadview = false
-                self.tabBarController?.selectedIndex = 2
-            })
-            let ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "escapeOK"), object: nil)
-                //self.shouldloadview = true
-            })
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()) {
-                alert.addAction(cancel)
-                alert.addAction(ok)
-                self.present(alert, animated: true, completion: nil)
-            }
-            
-        }
-        
     }
 
     /*

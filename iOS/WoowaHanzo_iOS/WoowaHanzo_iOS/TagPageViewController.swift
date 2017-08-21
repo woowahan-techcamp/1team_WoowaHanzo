@@ -13,13 +13,9 @@ class TagPageViewController: UIViewController {
     
     var tagListView:TagPageView!
     var ref: DatabaseReference!
-    var shouldalert = false
     var tagName:String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(escapealert), name: NSNotification.Name(rawValue: "escape"), object: nil)
-        
         let color = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0)
         
         tagListView = TagPageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -45,43 +41,11 @@ class TagPageViewController: UIViewController {
                 self.tagListView.addTag(text:"태그를 추가해주세요.", target: self, backgroundColor: UIColor.white, textColor: color)
             }
         })
-        alert()
-        
-    }
-    override func viewWillAppear(_ animated: Bool){
-        alert()
-    }
-    
-    
-    func escapealert(){
-        self.shouldalert = true
-        
-    }
-    
-    func alert(){
-        if shouldalert{
-            let alert = UIAlertController(title: "글 작성이 완료되지 않았습니다.", message: "글 작성을 취소하시겠습니까?", preferredStyle: .alert)
-            let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "escapecancel"), object: nil)
-                //self.shouldloadview = false
-                self.tabBarController?.selectedIndex = 2
-            })
-            let ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "escapeOK"), object: nil)
-                //self.shouldloadview = true
-            })
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()) {
-                alert.addAction(cancel)
-                alert.addAction(ok)
-                self.present(alert, animated: true, completion: nil)
-            }
-            
-        }
-        
-    }
 
+        
+    }
     
-    
+
     
         func handleTap(sender: UITapGestureRecognizer) {
             if let a = (sender.view as? UILabel)?.text {

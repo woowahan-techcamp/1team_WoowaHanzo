@@ -8,33 +8,81 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+class TabBarController: UITabBarController, UITabBarControllerDelegate {
+    
+    var shouldalert = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(escapealert), name: NSNotification.Name(rawValue: "escape"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(escapefalse), name: NSNotification.Name(rawValue: "escapefalse"), object: nil)
 
         // Do any additional setup after loading the view.
     }
+    
+    func escapealert(){
+        self.shouldalert = true
+    }
+    func escapefalse(){
+        self.shouldalert = false
+    }
+    
+    func alert(slower: Bool){
+        var time = DispatchTime.now()
+        if slower {
+            time = DispatchTime.now() + 1.5
+        }
+        if shouldalert{
+            let alert = UIAlertController(title: "글 작성이 완료되지 않았습니다.", message: "글 작성을 취소하시겠습니까?", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
+                DispatchQueue.main.async{
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "escapecancel"), object: nil)
+                //self.shouldloadview = false
+                self.selectedIndex = 2
+                }
+            })
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
+                DispatchQueue.main.async{
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "escapeOK"), object: nil)
+                //self.shouldloadview = true
+                }
+            })
+            DispatchQueue.main.asyncAfter(deadline: time) {
+                alert.addAction(cancel)
+                alert.addAction(ok)
+                self.present(alert, animated: true, completion: nil)
+            }
+            
+        }
+        
+    }
+
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
-        if (viewController is MainPageViewController) {
-            let alertController = UIAlertController(title: "Logout", message: "Are you sure you want to log out?", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Logout", style: .default) { (action) in
-                tabBarController.selectedIndex = 0 //CHANGE ME
+
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        let selected = item.title!
+        if selected == "홈" || selected == "마이페이지" {
+            DispatchQueue.main.async{
+                self.alert(slower: true)
             }
-            alertController.addAction(okAction)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in }
-            alertController.addAction(cancelAction)
-            tabBarController.present(alertController, animated: true)
-            return false
         }
-        return true
+        else if selected == "태그" || selected == "랭킹"{
+            DispatchQueue.main.async{
+                self.alert(slower: false)
+            }
+        }
+
     }
 
+    
+    
+    
     /*
     // MARK: - Navigation
 
