@@ -9,6 +9,7 @@
 import UIKit
 import BSImagePicker
 import Photos
+import Firebase
 
 class ReviewPostPageViewController: UIViewController {
 
@@ -35,8 +36,10 @@ class ReviewPostPageViewController: UIViewController {
     var savedkeyboardSize = CGRect()
     var shouldloadview = true
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -225,7 +228,8 @@ class ReviewPostPageViewController: UIViewController {
         //글자가 회색이면 안보내게 하자.
         if myTextView.textColor != UIColor.lightGray{
             //DispatchQueue.global().sync{
-            FirebaseModel().postReview(review: myTextView.text, userID: "kim", tagArray: myTagView.getTags(withPrefix: false), timestamp: Int(-1.0 * Date().timeIntervalSince1970),images:self.imageNameArray, postDate: postDate)
+            if let user = Auth.auth().currentUser{
+            FirebaseModel().postReview(review: myTextView.text, userID: "kim", tagArray: myTagView.getTags(withPrefix: false), timestamp: Int(-1.0 * Date().timeIntervalSince1970),images:self.imageNameArray, postDate: postDate, uid: user.uid)
             FirebaseModel().postImages(assets: self.imageAssets, names: self.imageNameArray)
             //print(myTagView.getTags(withPrefix: true))
             print(self.imageNameArray)
@@ -235,7 +239,7 @@ class ReviewPostPageViewController: UIViewController {
             let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
             self.present(controller, animated: false, completion: nil)
             
-            
+            }
             //self.tabBarController?.selectedIndex = 0
             
             //다른 탭 누르면: 나가시겠습니까 알러트.

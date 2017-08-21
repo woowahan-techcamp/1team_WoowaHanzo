@@ -13,6 +13,8 @@ import FTImageViewer
 
 class MainPageTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var textViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var tagArrayHeight: NSLayoutConstraint!
     @IBOutlet weak var contentsTextViewConstraint: NSLayoutConstraint!
     var userid : Int = 0
     //@IBOutlet weak var reviewView: UIView!
@@ -83,7 +85,6 @@ extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         
     }
-    
 }
 
 

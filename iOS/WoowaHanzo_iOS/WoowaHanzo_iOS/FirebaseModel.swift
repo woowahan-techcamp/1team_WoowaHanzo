@@ -15,15 +15,16 @@ class FirebaseModel{
     
     var ref: DatabaseReference!
     
-    func postReview(review: String, userID: String, tagArray:[String], timestamp: Int, images:[String],postDate:String){
+    func postReview(review: String, userID: String, tagArray:[String], timestamp: Int, images:[String],postDate:String,uid: String){
         ref = Database.database().reference()
         let key = ref.child("posts").childByAutoId().key
-        let post = ["author":userID,
+        let post = ["author": userID,
                     "body": review,
-                    "tagArray": tagArray,
-                    "timestamp": timestamp,
-                    "imageArray":images,
-                    "postDate":postDate] as [String : Any]
+                    "tags": tagArray,
+                    "time": timestamp,
+                    "images":images,
+                    "time": postDate,
+                    "uid": uid] as [String : Any]
         let childUpdates = ["/posts/\(key)": post]
         ref.updateChildValues(childUpdates)
     }
@@ -65,14 +66,14 @@ class FirebaseModel{
         
         self.ref = Database.database().reference().child("posts")
         
-        self.ref.queryOrdered(byChild: "timestamp").observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
                 User.users = [User]()
                 for child in result {
                     //print(child)
                     var userKey = child.key as! String
                     //print(child.childSnapshot(forPath: "author").value!)
-                    let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tagsArray: child.childSnapshot(forPath: "tagArray").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "imageArray").value as? [String] ?? nil,postDate : child.childSnapshot(forPath: "postDate").value as! String)
+                    let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil,postDate : child.childSnapshot(forPath: "time").value as! Int)
                         User.users.append(user)
                     
                     

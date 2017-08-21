@@ -17,6 +17,8 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     var searchBar = UISearchBar()
     let cellSpacingHeight: CGFloat = 15
     
+   
+  
     @IBOutlet weak var dummyTextView: UITextView!
     @IBOutlet weak var dummyTagView: TagListView!
     var foodArray = [UIImage]()
@@ -150,39 +152,28 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
         
         cell.tagListView.reset()
         cell.userid = indexPath.section
-        if let tag = User.users[indexPath.section].tagsArray{
+        if let tag = User.users[indexPath.section].tags{
             for index in tag{
                 cell.tagListView.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.gray)
             }
         }
         cell.tagListView.sizeToFit()
-        cell.timeLabel.text = Date().postTimeDisplay(postDate: User.users[indexPath.section].postDate)
+        cell.timeLabel.text = String(describing: Date().postTimeDisplay(postDate: User.users[indexPath.section].postDate))
         DispatchQueue.main.async {
             cell.FoodImageCollectionView.reloadData()
 
         }
         cell.userid = indexPath.section
-        //print(User.users[indexPath.section].imageArray)
-//                   if let imageArray = User.users[indexPath.section].imageArray{
-//                for index in imageArray{
-//                    let ref = Storage.storage().reference(withPath: imageArray[indexPath.row]).downloadURL { (url, error) in
-//                        //print(imageArray)
-//                        if url != nil{
-//                            let data = try? Data(contentsOf: url!)
-//                            self.foodArray.append(UIImage(data: data!)!)
-//                        }
-//                        
-//                        
-//                    }
-//                }
-//                    DispatchQueue.global().async {
-//                        cell.imageArr = self.foodArray
-//
-//                    }
-//            }
         
+        var frame = cell.tagListView.frame
+        frame.origin.y = cell.contentsTextView.frame.origin.y + cell.contentsTextView.frame.height + 10
+        cell.tagListView.frame = frame
         
-        
+        var frame2 = cell.FoodImageCollectionView.frame
+        frame2.origin.y = cell.tagListView.frame.origin.y +  cell.tagListView.frame.height + 10
+        cell.FoodImageCollectionView.frame = frame2
+//        cell.tagArrayHeight.constant = self.dummyTagView.frame.size.height
+//        cell.textViewHeight.constant = self.dummyTextView.frame.size.height
         return cell
     }
     
@@ -199,7 +190,7 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         
-//        let myCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainPageTableViewCell
+        let myCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainPageTableViewCell
 //        let heightForCell = myCell.contentsTextView.frame.height + myCell.tagListView.frame.height +  myCell.FoodImageCollectionView.frame.height
 //        //let h = myCell.contentsTextView.contentSize.height + myCell.tagListView.contentSize.height + myCell.FoodImageCollectionView.contentSize.height
 //        //print()
@@ -213,7 +204,7 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
 
         self.dummyTextView.sizeToFit()
         //print(dummyTextView?.frame.size.height)
-        if let tag = User.users[indexPath.section].tagsArray{
+        if let tag = User.users[indexPath.section].tags{
             for index in tag{
                 self.dummyTagView?.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.gray)
             }
@@ -224,11 +215,12 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
 //        if let imageArray = User.users[indexPath.row].imageArray{
 //            height += 120
 //        }
+      
         height += dummyTextView.frame.size.height + dummyTagView.frame.size.height + 200
         return height
     }
    
-   
+    
 }
 
 
