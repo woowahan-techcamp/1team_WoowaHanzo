@@ -130,6 +130,16 @@
                                                             </cells>
                                                         </collectionView>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="HCI-CU-uVs" secondAttribute="trailing" id="1Tn-Km-Ivx"/>
+                                                        <constraint firstItem="qzv-1F-IMb" firstAttribute="top" secondItem="HCI-CU-uVs" secondAttribute="bottom" id="I2k-9i-U4j"/>
+                                                        <constraint firstItem="Kix-Qc-2KK" firstAttribute="leading" secondItem="XCO-3k-lT6" secondAttribute="leading" id="LAg-SI-oEy"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Kix-Qc-2KK" secondAttribute="trailing" id="bcb-ae-0lU"/>
+                                                        <constraint firstAttribute="trailing" secondItem="qzv-1F-IMb" secondAttribute="trailing" id="cKb-CX-Ikb"/>
+                                                        <constraint firstItem="qzv-1F-IMb" firstAttribute="leading" secondItem="XCO-3k-lT6" secondAttribute="leading" id="gmK-Rn-eE9"/>
+                                                        <constraint firstItem="Kix-Qc-2KK" firstAttribute="top" secondItem="qzv-1F-IMb" secondAttribute="bottom" id="psM-g5-JKb"/>
+                                                        <constraint firstItem="HCI-CU-uVs" firstAttribute="leading" secondItem="XCO-3k-lT6" secondAttribute="leading" id="tJA-bW-BVO"/>
+                                                    </constraints>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6J-Xc-Ted">
                                                     <rect key="frame" x="14" y="439" width="340" height="1"/>
@@ -162,6 +172,7 @@
                                                 <constraint firstItem="37g-Sg-JPF" firstAttribute="leading" secondItem="r1N-Ib-I4E" secondAttribute="leadingMargin" constant="8" id="9rm-wd-dyr"/>
                                                 <constraint firstItem="1Lt-1N-7aU" firstAttribute="top" secondItem="1uC-VA-8di" secondAttribute="bottom" constant="-7" id="BvK-wy-ae0"/>
                                                 <constraint firstItem="1uC-VA-8di" firstAttribute="top" secondItem="Cx9-sr-l7K" secondAttribute="top" id="Nqi-bk-YhG"/>
+                                                <constraint firstItem="R6J-Xc-Ted" firstAttribute="top" secondItem="Kix-Qc-2KK" secondAttribute="bottom" constant="29" id="PuV-wS-Dq1"/>
                                                 <constraint firstAttribute="bottom" secondItem="R6J-Xc-Ted" secondAttribute="bottom" constant="47.5" id="Pxx-6P-C2x"/>
                                                 <constraint firstItem="R6J-Xc-Ted" firstAttribute="leading" secondItem="r1N-Ib-I4E" secondAttribute="leadingMargin" constant="6" id="QUl-W7-4DN"/>
                                                 <constraint firstItem="37g-Sg-JPF" firstAttribute="top" secondItem="R6J-Xc-Ted" secondAttribute="bottom" constant="8" symbolic="YES" id="XrM-oD-BkB"/>

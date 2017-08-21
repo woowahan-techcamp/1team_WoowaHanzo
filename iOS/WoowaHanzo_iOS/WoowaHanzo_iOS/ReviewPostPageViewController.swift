@@ -12,7 +12,8 @@ import Photos
 import Firebase
 
 class ReviewPostPageViewController: UIViewController {
-
+    
+    @IBOutlet weak var userNickNameLabel: UILabel!
     @IBOutlet weak var myView: UIView!
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var myImageView: UIImageView!
@@ -69,6 +70,7 @@ class ReviewPostPageViewController: UIViewController {
             myCollectionView.dataSource = self
             myCollectionView.delegate = self
             myCollectionView.allowsSelection = true
+            userNickNameLabel.text = UserDefaults.standard.string(forKey: "userNickName")
             myTagView.removeFromSuperview()
             myTagView = TagView( position: CGPoint( x: 0, y: 380 ), size: CGSize( width: 320, height: 50 ) )
             myTextView.delegate = self as UITextViewDelegate
@@ -128,7 +130,6 @@ class ReviewPostPageViewController: UIViewController {
             myTagView.addGestureRecognizer(tap3)
         }
         }
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -225,7 +226,6 @@ class ReviewPostPageViewController: UIViewController {
         if myTextView.textColor != UIColor.lightGray {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "escape"), object: nil)
         }
-
 
     }
     
@@ -340,16 +340,16 @@ class ReviewPostPageViewController: UIViewController {
         if myTextView.textColor != UIColor.lightGray{
             //DispatchQueue.global().sync{
             if let user = Auth.auth().currentUser{
-                    FirebaseModel().postReview(review: myTextView.text, userID: user.email!, tagArray: myTagView.getTags(withPrefix: false), timestamp: Int(-1000 * Date().timeIntervalSince1970),images:self.imageNameArray, uid: user.uid)
-            FirebaseModel().postImages(assets: self.imageAssets, names: self.imageNameArray)
-            //print(myTagView.getTags(withPrefix: true))
-            print(self.imageNameArray)
-            print("sent post")
-            
-            let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
-            self.present(controller, animated: false, completion: nil)
-            
+                FirebaseModel().postReview(review: myTextView.text, userID: UserDefaults.standard.string(forKey: "userNickName")!, tagArray: myTagView.getTags(withPrefix: false), timestamp: Int(-1000 * Date().timeIntervalSince1970),images:self.imageNameArray, uid: user.uid)
+                FirebaseModel().postImages(assets: self.imageAssets, names: self.imageNameArray)
+                //print(myTagView.getTags(withPrefix: true))
+                print(self.imageNameArray)
+                print("sent post")
+                
+                let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
+                self.present(controller, animated: false, completion: nil)
+                
             }
             //self.tabBarController?.selectedIndex = 0
             
@@ -366,8 +366,8 @@ class ReviewPostPageViewController: UIViewController {
     @IBAction func addButtonTouched(_ sender: Any) {
         let imagePickerController = BSImagePickerViewController()
         bs_presentImagePickerController(imagePickerController, animated: true,
-        select: { (asset: PHAsset) -> Void in
-            print("Selected")
+                                        select: { (asset: PHAsset) -> Void in
+                                            print("Selected")
         }, deselect: { (asset: PHAsset) -> Void in
             print("Deselected")
         }, cancel: { (assets: [PHAsset]) -> Void in
@@ -400,22 +400,22 @@ class ReviewPostPageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 /////////////////////textview_delegate/////////////////////////
 extension ReviewPostPageViewController: UITextViewDelegate{
     
-        //setting placeholder to appear only when textview is empty
+    //setting placeholder to appear only when textview is empty
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         //글자수 제한.
         let newLength = textView.text.characters.count + text.characters.count - range.length
