@@ -1,12 +1,20 @@
-.post .tags_holder {
-
-}
-
 .container_box {
   /*opacity: 0;*/
   -webkit-transition: .5s ;
   -o-transition: .5s;
   transition: .5s;
+}
+
+.post .textbox {
+  font-size: 1.2em;
+}
+
+.tags_holder {
+  margin-top: 5px;
+}
+
+.tagger {
+  font-size: 1.2em;
 }
 
 .post_input {
@@ -61,7 +69,7 @@ div.post {
   height: 45px;
   line-height: 45px;
   background-color: #70b6e5;
-  font-size: 24px;
+  font-size: 1.4em;
   text-align: center;
 }
 
@@ -77,9 +85,85 @@ div.post {
   display: inline-block;
   float: right;
   background-color: #3498db;
-  font-size: 21px;
+  font-size: 1.2em;
 }
 
 #image_input {
   display: none;
+}
+
+/*width가 780 미만이 되면..*/
+@media (max-width: 780px) {
+  .post {
+    margin-bottom: 20px;
+  }
+
+  .post .textbox {
+    font-size: 1.1em;
+  }
+
+  .tags_holder {
+    margin-top: 5px;
+  }
+
+  .tagger {
+    font-size: 1.1em;
+  }
+
+  .buttons_holder {
+    padding: 0 25px;
+  }
+
+  .add_photos {
+    width: 65px;
+    height: 40px;
+    line-height: 41px;
+    font-size: 1.2em;
+  }
+
+  .post_submit {
+    width: 65px;
+    height: 40px;
+    line-height: 41px;
+    font-size: 1em;
+  }
+}
+
+/*width가 360 미만이 되면..*/
+@media (max-width: 360px) {
+  .post {
+    margin-bottom: 15px;
+  }
+
+  .post .textbox {
+    font-size: 0.9em;
+    margin-top: 5px;
+  }
+
+  .tags_holder {
+    margin-bottom: 0px;
+  }
+
+  .tagger {
+    font-size: 0.9em;
+  }
+
+  .buttons_holder {
+    padding: 0 15px;
+    min-width: 260px;
+  }
+
+  .add_photos {
+    width: 60px;
+    height: 37px;
+    line-height: 38px;
+    font-size: 1.1em;
+  }
+
+  .post_submit {
+    width: 60px;
+    height: 37px;
+    line-height: 38px;
+    font-size: 0.9em;
+  }
 }
