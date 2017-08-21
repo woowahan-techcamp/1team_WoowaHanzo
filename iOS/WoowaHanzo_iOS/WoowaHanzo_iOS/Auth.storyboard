@@ -129,13 +129,19 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="emailCheckAction:" destination="csN-yD-Upv" eventType="editingDidEnd" id="czQ-Rn-sFU"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="6자 이상의 비밀번호" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R3T-oo-oQn">
                                 <rect key="frame" x="93" y="194" width="266" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <action selector="pwCheckAction:" destination="csN-yD-Upv" eventType="editingDidEnd" id="ZUG-wt-28V"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="닉네임" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yb9-hj-g43">
                                 <rect key="frame" x="93" y="258" width="266" height="30"/>
@@ -201,10 +207,10 @@
                                     <action selector="registerButtonTouched:" destination="csN-yD-Upv" eventType="touchUpInside" id="6ag-SS-06q"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="한마디" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="p4f-0M-c14">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="p4f-0M-c14">
                                 <rect key="frame" x="93" y="341" width="217" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -213,11 +219,12 @@
                     </view>
                     <connections>
                         <outlet property="emailCheckLabel" destination="Zm8-HL-F4o" id="KdL-QF-VC6"/>
-                        <outlet property="nickName" destination="yb9-hj-g43" id="upH-rM-a8y"/>
                         <outlet property="nickNameCheckLabel" destination="dx8-fL-EIZ" id="7nu-1n-3CK"/>
+                        <outlet property="nickNameTextField" destination="yb9-hj-g43" id="ilD-g7-W6r"/>
                         <outlet property="pwCheckLabel" destination="W6b-FR-Uia" id="SSV-kP-NuY"/>
                         <outlet property="registerEmailTextField" destination="VrF-Gw-5EA" id="CNq-oa-zZI"/>
                         <outlet property="registerPwTextField" destination="R3T-oo-oQn" id="hLO-C4-hCi"/>
+                        <outlet property="userSayTextView" destination="p4f-0M-c14" id="j3M-4R-ONd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="73D-DW-4v5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -229,7 +236,7 @@
             <objects>
                 <navigationController storyboardIdentifier="loginNavigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2aR-lG-x00" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xp7-gQ-2Rj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xp7-gQ-2Rj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
