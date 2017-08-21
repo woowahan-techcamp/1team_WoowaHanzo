@@ -15,11 +15,11 @@ body {
 }
 
 .right_side {
-  display: none;
+  display: block;
 }
 
 .right_side_icon {
-  display: block;
+  display: none;
 }
 
 .fa-search {
@@ -557,10 +557,6 @@ div.img-divgo{
 
 .nav_user_info {
   display: inline-block;
-}
-
-.nav_user_info {
-
 }
 
 .nav_user_img {
