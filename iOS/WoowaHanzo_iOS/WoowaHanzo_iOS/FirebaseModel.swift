@@ -125,6 +125,7 @@ class FirebaseModel{
         
 
     }
+
 //    func loadTagFeed(){
 //        self.ref = Database.database().reference().child("posts")
 //        
@@ -150,3 +151,25 @@ class FirebaseModel{
 //
 //    }
 
+    
+    func loadUsers(){
+        print("loadUsers called")
+        var rankUserList = [RankUser]()
+        self.ref = Database.database().reference().child("users")
+        //나중에 Likes가 확보되면  likes로 바꾸기.
+        self.ref.queryOrdered(byChild: "username").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let result = snapshot.children.allObjects as? [DataSnapshot]{
+                print(result)
+                for child in result {
+                    let rankuser = RankUser(snapshot: child)
+                    rankUserList.append(rankuser)
+                    print(rankuser.nickName)
+                }
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "rankusers"), object: self, userInfo: ["rankusers":rankUserList])
+            }
+        })
+        
+        //rankUserList를 Rankviewcontroller로 보내준다.
+        //사진은 어떻게 할지는 있다가.
+    }
+}
