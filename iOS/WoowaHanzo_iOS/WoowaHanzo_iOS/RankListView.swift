@@ -75,6 +75,7 @@ class RankListView: UIScrollView {
         
         
         let profileimgview = UIImageView()
+        profileimgview.contentMode = UIViewContentMode.scaleAspectFill
         profileimgview.image = UIImage(named: "profile.png")
         profileimgview.frame = CGRect(x:10, y:10, width: 60, height: 60)
         profileimgview.clipsToBounds = true

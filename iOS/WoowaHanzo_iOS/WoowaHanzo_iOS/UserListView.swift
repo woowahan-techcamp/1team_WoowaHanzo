@@ -75,9 +75,10 @@ class UserListView: UIScrollView {
         self.addSubview(cellview)
         
         let profileimgview = UIImageView()
-        profileimgview.image = UIImage(named: "profile.png")
         profileimgview.frame = CGRect(x:10, y:inypos, width: 60, height: 60)
-        profileimgview.clipsToBounds = true
+        profileimgview.contentMode = UIViewContentMode.scaleAspectFill
+        profileimgview.clipsToBounds = true //image set 전에 해주어야 한다.
+        profileimgview.image = UIImage(named: "profile.png")
         profileimgview.layer.cornerRadius = profileimgview.frame.width / 2
         
         //사진 나중에 업데이트해주어야 함.
@@ -115,27 +116,31 @@ class UserListView: UIScrollView {
         lastview = tagListView
         inypos = inypos + Int(lastview.frame.size.height) + 10
 
+        
         let scrollview = UIScrollView()
-        scrollview.frame = CGRect(x: 0, y: inypos, width: Int(cellview.frame.width), height: 80)
+        let imgsize = 120
+        scrollview.frame = CGRect(x: 0, y: inypos, width: Int(cellview.frame.width), height: imgsize)
         let scrollcontainerView = UIView(frame: scrollview.frame)
         scrollview.addSubview(scrollcontainerView)
-        var images = [UIImageView]()
+        
         if user.imageArray! != [] {
             for index in 0...user.imageArray!.count - 1{
                 let name : String = user.imageArray![index]
                 let imageview = UIImageView()
-                Storage.storage().reference(withPath: "Images/" + name).downloadURL { (url, error) in
+                Storage.storage().reference(withPath: "images/" + name).downloadURL { (url, error) in
+                    imageview.contentMode = UIViewContentMode.scaleAspectFill
+                    //fill을 안하면 Horizontal scroll이 가능하다!
+                    imageview.clipsToBounds = true
                     imageview.kf.setImage(with: url)
+                    //images.append(imageview)
+                    imageview.frame = CGRect(x:10 + index * (imgsize + 10), y:0, width: imgsize, height: imgsize)
+                    
+
+                    scrollview.addSubview(imageview)
+                    scrollview.contentSize = CGSize(width: Int(imageview.frame.origin.x) + imgsize, height: imgsize)
+                    cellview.addSubview(scrollview)
                 }
             }
-        }
-        if images.count > 0 {
-        for index in 0...images.count - 1{
-            let imageview = images[index]
-            imageview.frame = CGRect(x:index * 80, y:0, width: 80, height: 80)
-            scrollview.addSubview(imageview)
-            scrollview.contentSize = CGSize(width: imageview.frame.origin.x + 80, height: 80)
-        }
         }
         else{
             scrollview.frame.size.height = 0
