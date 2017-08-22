@@ -15,7 +15,6 @@ class TagResultTableViewController: UITableViewController {
 
     var tagName:String = ""
     var tagFeedArray = [Any]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(getTagFeed(_ :)), name: NSNotification.Name(rawValue: "sendResultViewController"), object: nil)
@@ -24,10 +23,7 @@ class TagResultTableViewController: UITableViewController {
         self.navigationController?.navigationBar.topItem?.title = "태그"
        //self.title = tagName
         self.navigationItem.title = tagName
-        
-        
-        
-    }
+  }
 
     // MARK: - Table view data source
 
@@ -35,26 +31,23 @@ class TagResultTableViewController: UITableViewController {
 //        // #warning Incomplete implementation, return the number of sections
 //        return 0
 //    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 0
     }
 
+    
     func getTagFeed(_ notification: Notification){
         tagFeedArray = notification.userInfo?["tagResultArray"] as! [Any]
         print(tagFeedArray)
         self.ref = Database.database().reference().child("posts")
         for index in 1..<tagFeedArray.count{
             
-            let refHandle = ref.observe(DataEventType.value, with: { (snapshot) in
-                if let result = snapshot.childSnapshot(forPath: self.tagFeedArray[index] as! String).value {
+           self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let result = snapshot.childSnapshot(forPath: self.tagFeedArray[index] as! String).value {
                     print(result)
                 }
-                
-                    
             })
-
         }
     }
     
@@ -63,9 +56,7 @@ class TagResultTableViewController: UITableViewController {
         cell.tagResultNickNameLabel.text = "dd"
         return cell
     }
-    
-
-    /*
+     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
