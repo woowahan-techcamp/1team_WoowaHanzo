@@ -124,7 +124,7 @@ class FirebaseModel{
 //        })
         
 
-    }
+//    }
 
 //    func loadTagFeed(){
 //        self.ref = Database.database().reference().child("posts")
