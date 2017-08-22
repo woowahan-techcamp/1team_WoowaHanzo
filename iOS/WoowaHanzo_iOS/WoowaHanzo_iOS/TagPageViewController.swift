@@ -82,11 +82,12 @@ class TagPageViewController: UIViewController {
                 self.tagResultArray = []
                 //print(result as? [String])//print(self.tagResultArray)
                 self.tagResultArray = result as? [String]
-                
+                print(self.tagResultArray)
                 
             }
-        
             if (self.tagResultArray?.count ?? 0) > 1 {
+                print("send table view controller tag array")
+                
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sendResultViewController"), object: self, userInfo: ["tagResultArray": self.tagResultArray])
             }
         })
