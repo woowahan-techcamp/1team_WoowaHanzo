@@ -15,6 +15,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
   });
 
+  $("#post").on("click", function() {
+    window.location.href = "post.html";
+  });
+
+  $("#ranking").on("click", function() {
+    window.location.href = "ranking.html";
+  });
+
+  $("#tag").on("click", function() {
+    window.location.href = "tag.html";
+  });
+
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
