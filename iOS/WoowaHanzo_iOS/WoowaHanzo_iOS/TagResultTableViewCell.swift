@@ -7,26 +7,56 @@
 //
 
 import UIKit
+import Firebase
+import Kingfisher
 
 class TagResultTableViewCell: UITableViewCell {
-
+    
     
     @IBOutlet weak var tagResultTimeLabel: UILabel!
     @IBOutlet weak var tagResultNickNameLabel: UILabel!
     @IBOutlet weak var tagResultLikeButton: UIButton!
     @IBOutlet weak var tagResultFoodCollectionView: UICollectionView!
-    @IBOutlet weak var tagResultTagView: UIView!
+    @IBOutlet weak var tagResultTagView: TagListView!
     @IBOutlet weak var tagResultImageView: UIImageView!
     @IBOutlet weak var tagResultTextView: UITextView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
+}
+extension TagResultTableViewCell : UICollectionViewDelegate, UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        if let count = TagUser.tagUsers[section].imageArray?.count{
+            print(count)
+            return count
+            
+        }
+        return 0
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TagResultCollectionViewCell
+        
+        if let imageArray = TagUser.tagUsers[indexPath.row].imageArray{
+            //print(User.users[userid])
+            //print("A")
+            let ref = Storage.storage().reference(withPath: "images/" + imageArray[indexPath.row]).downloadURL { (url, error) in
+                cell.TagResultFoodImage.kf.setImage(with: url)
+                //cell.foodImageView.layer.cornerRadius = 3.0
+                //print(url)
+            }
+        }
+        // print(imageArr)
+        //        cell.foodImageView.image = imageArr[indexPath.item]
+        //
+        return cell
+    }
 }

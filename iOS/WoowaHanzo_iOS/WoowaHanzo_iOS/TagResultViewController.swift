@@ -86,11 +86,23 @@ extension TagResultViewController : UITableViewDelegate,UITableViewDataSource{
         if TagUser.tagUsers.count > 0{
             cell.tagResultNickNameLabel.text = " "
             cell.tagResultTextView.text = " "
+            cell.tagResultTagView.reset()
+            DispatchQueue.main.async {
+                cell.tagResultFoodCollectionView.reloadData()
+            }
+
+
             cell.tagResultNickNameLabel.text = TagUser.tagUsers[indexPath.row].nickName
             cell.tagResultTextView.text =  TagUser.tagUsers[indexPath.row].contents
             cell.tagResultTimeLabel.text =  String(describing: Date().postTimeDisplay(timestamp: TagUser.tagUsers[indexPath.row].postDate))
             print(TagUser.tagUsers[indexPath.row].contents)
             //tableView.reloadData()
+            if let tag = User.users[indexPath.row].tags{
+                for index in tag{
+                    cell.tagResultTagView.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.gray)
+                }
+            }
+            
             return cell
         }
         return cell
