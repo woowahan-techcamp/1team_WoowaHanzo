@@ -14,9 +14,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
       username.on('value', function(snapshot) {
         author = snapshot.val();
         $(".Name").html(author);
-        $(".container_box").css("opacity", 1);
+
+        var curObject= {};
+        var curPost = document.querySelector(".post");
+        curObject.curPost = curPost;
+
+        curObject.uid = user.uid;
+      	curObject.queryClass = "profilePic";
+      	loadUserProfile.bind(curObject, user.uid)();
+
       });
     }
+  });
+
+  $(".buttons_holder").on("postLoaded", function() {
+    $(".loading-indicator-box").css("display", "none");
   });
 
   autosize($("textarea"));

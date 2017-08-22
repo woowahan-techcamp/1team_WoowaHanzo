@@ -35,7 +35,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
       });
 
 
-      $("#logout").on("click", function() {
+      $(".mypage_setting").on("click", function() {
+        // 톱니바퀴를 누르면 모달이 나오고
+        // 모달내에서 로그아웃, 푸시알림, 회원탈퇴 등의 항목을 보여준다
+        // 일단은 그냥 로그아웃으로 연결시킴
+
         firebase.auth().signOut().then(function() {
           // Sign-out successful.
           alert("로그아웃 하셨습니다.");
@@ -53,11 +57,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       });
 
-      var user_box = document.querySelector(".mypage_user_box");
-      user_box.uid = user.uid;
-      user_box.queryClass = "mypage_user_profilePic";
-      loadUserProfile.bind(user_box, user_box.uid)();
+      var curObject= {};
+      var curPost = document.querySelector(".mypage_user_box");
+      curObject.curPost = curPost;
 
+      curObject.uid = user.uid;
+      curObject.queryClass = "mypage_user_profilePic";
+      loadUserProfile.bind(curObject, user.uid)();
 
     }
   });

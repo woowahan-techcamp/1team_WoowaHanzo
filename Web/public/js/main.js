@@ -18,17 +18,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
+      //signin버튼 display none
       $(".nav_signin_btn").css("display", "none");
-      $(".nav_user_info").css("display", "block");
-      // 여기에 사용자 사진불러오기 추가해야함
-      var uid = firebase.auth().currentUser.uid;
-      var currentUsername = firebase.database().ref("users/" + uid + "/username");
+
+      var currentUsername = firebase.database().ref("users/" + user.uid + "/username");
       currentUsername.on('value', function(snapshot) {
         $(".nav_username").html(snapshot.val());
         $(".nav_user_info").on("click", function() {
           window.location.href = 'mypage.html';
         });
+        $(".nav_user_info").css("visibility", "visible");
       });
+
+      var curObject= {};
+      var curPost = document.querySelector(".nav_user_info");
+      curObject.curPost = curPost;
+
+      curObject.uid = user.uid;
+      curObject.queryClass = "nav_user_img";
+      loadUserProfile.bind(curObject, user.uid)();
+
     }
     else {
       // No user is signed in.
