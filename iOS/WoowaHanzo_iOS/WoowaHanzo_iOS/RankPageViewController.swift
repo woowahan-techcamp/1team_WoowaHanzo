@@ -9,17 +9,33 @@
 import UIKit
 
 class RankPageViewController: UIViewController {
-
+    var rankListView : RankListView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "rankusers"), object: nil)
+        
+        FirebaseModel().loadUsers()
+        
+        
+        
+        
+        rankListView = RankListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        self.view.addSubview(rankListView)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func viewload(_ notification: Notification){
+        let rankuserlist = notification.userInfo?["rankusers"] as? [RankUser] ?? [RankUser]()
+        print(rankuserlist.count)
+        print(rankuserlist)
+        rankListView.addRankUserList(rankusers: rankuserlist)
+    }
+
 
     /*
     // MARK: - Navigation

@@ -6,7 +6,6 @@
 //  Copyright © 2017년 woowabrothers_dain. All rights reserved.
 //
 
-import Foundation
 //
 //  ListView.swift
 //

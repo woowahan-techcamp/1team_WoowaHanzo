@@ -35,6 +35,7 @@
 		98895BE91F4AA098000D1E15 /* TagPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98895BE81F4AA098000D1E15 /* TagPageView.swift */; };
 		98895BEB1F4AEDDD000D1E15 /* TabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98895BEA1F4AEDDD000D1E15 /* TabBarControllerViewController.swift */; };
 		98895BED1F4BB543000D1E15 /* RankModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98895BEC1F4BB543000D1E15 /* RankModel.swift */; };
+		98895BF11F4BC2E3000D1E15 /* RankListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98895BF01F4BC2E3000D1E15 /* RankListView.swift */; };
 		988C70F41F4AD56E0044FEE0 /* TagResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C70F31F4AD56E0044FEE0 /* TagResultTableViewCell.swift */; };
 		9894B7611F441F2E00DAB38E /* MyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894B7601F441F2E00DAB38E /* MyCollectionCell.swift */; };
 		9894B7631F4438FE00DAB38E /* add-square_318-121632.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9894B7621F4438FE00DAB38E /* add-square_318-121632.jpg */; };
@@ -114,6 +115,7 @@
 		98895BE81F4AA098000D1E15 /* TagPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagPageView.swift; sourceTree = "<group>"; };
 		98895BEA1F4AEDDD000D1E15 /* TabBarControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarControllerViewController.swift; sourceTree = "<group>"; };
 		98895BEC1F4BB543000D1E15 /* RankModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankModel.swift; sourceTree = "<group>"; };
+		98895BF01F4BC2E3000D1E15 /* RankListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankListView.swift; sourceTree = "<group>"; };
 		988C70F31F4AD56E0044FEE0 /* TagResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagResultTableViewCell.swift; sourceTree = "<group>"; };
 		9894B7601F441F2E00DAB38E /* MyCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionCell.swift; sourceTree = "<group>"; };
 		9894B7621F4438FE00DAB38E /* add-square_318-121632.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "add-square_318-121632.jpg"; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				9854BFA91F340AEF008FA337 /* RankPage.storyboard */,
 				9854BF9C1F3407FC008FA337 /* RankPageViewController.swift */,
 				98895BEC1F4BB543000D1E15 /* RankModel.swift */,
+				98895BF01F4BC2E3000D1E15 /* RankListView.swift */,
 			);
 			name = RankPage;
 			sourceTree = "<group>";
@@ -671,6 +674,7 @@
 				98ECA42D1F440E570069DA87 /* DateExtension.swift in Sources */,
 				9854BF9B1F3407F1008FA337 /* MainPageViewController.swift in Sources */,
 				98C563CD1F39BE310017E68A /* AuthModel.swift in Sources */,
+				98895BF11F4BC2E3000D1E15 /* RankListView.swift in Sources */,
 				98ECA4421F4ACDB60069DA87 /* TagResultFoodImageCollectionViewCell.swift in Sources */,
 				984397641F3ACD3200743B63 /* TagFilter.swift in Sources */,
 				98ECA3AD1F4160AC0069DA87 /* TagCollectionViewCell.swift in Sources */,
