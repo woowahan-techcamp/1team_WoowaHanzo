@@ -17,7 +17,7 @@ class RankListView: UIScrollView {
     var containerView:UIView!
     var rowHeight : CGFloat = 100
     var xoffset = 0
-    var yoffset = 80
+    var yoffset = 20
     
     
     override init(frame:CGRect)
