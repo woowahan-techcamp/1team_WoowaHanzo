@@ -97,10 +97,18 @@ class UserListView: UIScrollView {
         
         let textview = UITextView()
         textview.text = user.contents
-        textview.font = UIFont(name: "NotoSans", size: 17.0)!
-        textview.isScrollEnabled = false
-        textview.sizeToFit()
+        textview.font = UIFont(name: "NotoSans", size: 16.0)!
         textview.frame.origin = CGPoint(x:0, y:inypos)
+        textview.frame.size = CGSize(width: self.frame.width, height: 70)
+        let contentSize = textview.sizeThatFits(textview.bounds.size)
+        var frame = textview.frame
+        frame.size.height = max(contentSize.height, 70)
+        textview.frame = frame
+        let aspectRatioTextViewConstraint = NSLayoutConstraint(item: textview, attribute: .height, relatedBy: .equal, toItem: textview, attribute: .width, multiplier: textview.bounds.height/textview.bounds.width, constant: 1)
+        textview.addConstraint(aspectRatioTextViewConstraint)
+        
+        textview.isScrollEnabled = false
+        textview.isEditable = false
         cellview.addSubview(textview)
         lastview = textview
         inypos = inypos + Int(lastview.frame.size.height) + 10
@@ -120,6 +128,7 @@ class UserListView: UIScrollView {
         let scrollview = UIScrollView()
         let imgsize = 120
         scrollview.frame = CGRect(x: 0, y: inypos, width: Int(cellview.frame.width), height: imgsize)
+        scrollview.showsHorizontalScrollIndicator = false
         let scrollcontainerView = UIView(frame: scrollview.frame)
         scrollview.addSubview(scrollcontainerView)
         
@@ -134,10 +143,11 @@ class UserListView: UIScrollView {
                     imageview.kf.setImage(with: url)
                     //images.append(imageview)
                     imageview.frame = CGRect(x:10 + index * (imgsize + 10), y:0, width: imgsize, height: imgsize)
+                    imageview.layer.cornerRadius = 3
                     
 
                     scrollview.addSubview(imageview)
-                    scrollview.contentSize = CGSize(width: Int(imageview.frame.origin.x) + imgsize, height: imgsize)
+                    scrollview.contentSize = CGSize(width: Int(10 + user.imageArray!.count * (imgsize + 10)), height: imgsize)
                     cellview.addSubview(scrollview)
                 }
             }
@@ -157,7 +167,7 @@ class UserListView: UIScrollView {
         
         
         
-        cellview.frame.size.height = lastview.frame.origin.y + lastview.frame.size.height
+        cellview.frame.size.height = CGFloat(inypos)
         ypos = ypos + Int(cellview.frame.size.height) + 10
         self.contentSize = CGSize(width: Int(self.frame.width), height: yoffset + ypos)
         

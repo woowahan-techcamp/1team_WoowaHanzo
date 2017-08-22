@@ -63,6 +63,7 @@ class TagPageView:UIScrollView
         label.backgroundColor = backgroundColor
         label.text = text
         label.textColor = textColor
+        label.font = UIFont(name: "NotoSans", size: 18.0)!
         label.sizeToFit()
         label.textAlignment = NSTextAlignment.center
         label.layer.cornerRadius = 10

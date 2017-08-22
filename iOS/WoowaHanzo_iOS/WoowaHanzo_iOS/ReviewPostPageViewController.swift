@@ -511,6 +511,8 @@ extension ReviewPostPageViewController: UICollectionViewDelegate, UICollectionVi
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseidentifier", for: indexPath as IndexPath) as! MyCollectionCell
         cell.imageView.image = imageArray[indexPath.row - 1]
+        cell.imageView.contentMode = UIViewContentMode.scaleAspectFill
+        cell.imageView.clipsToBounds = true
         cell.layer.cornerRadius = 3.0
         return cell
     }
