@@ -38,10 +38,39 @@
   margin-bottom: 20px;
 }
 
+.user_setting_wrapper {
+  display: flex;
+  /*align-items: center;*/
+  justify-content: center;
+}
+
 .mypage_username {
   font-size: 32px;
   line-height: 40px;
   font-weight: 200;
+  margin-right: 10px;
+  /*outline: 1px solid lightpink;*/
+  display: inline-block;
+}
+
+.mypage_setting {
+  width: 33px;
+  height: 33px;
+  line-height: 40px;
+  border: 1px solid #2ac1bc;
+  display: inline-block;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+.fa-cog {
+  font-size: 20px;
+  color: #2ac1bc;
+  /*outline: 1px solid lightblue;*/
+  margin: 0 auto;
 }
 
 .mypage_user_sayhi {
@@ -82,6 +111,20 @@
     font-size: 28px;
     line-height: 32px;
     font-weight: 200;
+    margin-right: 8px;
+  }
+
+  .mypage_setting {
+    width: 26px;
+    height: 26px;
+    line-height: 33px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+  }
+
+  .fa-cog {
+    font-size: 15px;
   }
 
   .mypage_user_sayhi {
@@ -114,6 +157,20 @@
     font-size: 23px;
     line-height: 28px;
     font-weight: 200;
+    margin-right: 6px;
+  }
+
+  .mypage_setting {
+    width: 22px;
+    height: 22px;
+    line-height: 30px;
+    border-radius: 7px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+  }
+
+  .fa-cog {
+    font-size: 13px;
   }
 
   .mypage_user_sayhi {
