@@ -17,7 +17,7 @@ class RankListView: UIScrollView {
     var containerView:UIView!
     var rowHeight : CGFloat = 100
     var xoffset = 0
-    var yoffset = 20
+    var yoffset = 80
     
     
     override init(frame:CGRect)
@@ -71,6 +71,7 @@ class RankListView: UIScrollView {
         cellview.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
         cellview.frame = CGRect(x: 66, y: ypos + 10, width : 301, height: 80)
         self.addSubview(cellview)
+        self.contentSize = CGSize(width: Int(self.frame.width), height: Int(rowHeight) * (index + 1) + yoffset + 50)
         
         
         let profileimgview = UIImageView()

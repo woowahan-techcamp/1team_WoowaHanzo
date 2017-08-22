@@ -17,10 +17,11 @@ class RankPageViewController: UIViewController {
         
         FirebaseModel().loadUsers()
         
-        
-        
-        
         rankListView = RankListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        self.view.addSubview(rankListView)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        FirebaseModel().loadUsers()
         self.view.addSubview(rankListView)
     }
 
