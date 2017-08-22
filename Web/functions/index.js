@@ -33,7 +33,7 @@ exports.makeUppercase = functions.database.ref('/messages/{pushId}/original')
 
 
 exports.getTagQuery = functions.database.ref("/tagQuery/{queryId}/tag")
-  .onWrite(event => {
+  .onCreate(event => {
     var original = event.data.val();
     original = original.substring(1, original.length);
     var uppercase = original.toUpperCase();
@@ -65,5 +65,77 @@ exports.getTagQuery = functions.database.ref("/tagQuery/{queryId}/tag")
     });
 
     event.tag = original;
+
+  });
+
+exports.handlePostUpload = functions.database.ref("/posts/{postId}")
+  .onCreate(event => {
+    var key = event.data.key;
+    var original = event.data.val();
+    var promises = [];
+    promises.push(admin.database().ref("/postLikes/" + key + "/userList").set([1]));
+    promises.push(admin.database().ref("/postLikes/" + key + "/likes").set(0));
+    return Promise.all(promises);
+  });
+
+exports.handleLikeRequest = functions.database.ref("/likeRequest/{likeId}")
+  .onCreate(event => {
+    var key = event.data.key;
+    var value = event.data.val();
+    var promises = [];
+
+    var postId = value.postId;
+    var uid = value.uid;
+    return admin.database().ref("/postLikes/" + postId).once("value").then(snapshot => {
+
+      var update = {};
+      var userList = snapshot.val().userList.slice();
+      if(!userList || userList.length == 0) {
+        userList = [1];
+      }
+
+      // inside userList
+      if(userList.indexOf(uid) >= 0) {
+        var index = userList.indexOf(uid);
+        //userList = userList.splice(index, 1);
+        console.log(userList);
+        promises.push(admin.database().ref("/postLikes/" + postId + "/userList/" + index).remove());//.set(userList));
+        promises.push(admin.database().ref("/postLikes/" + postId + "/likes").set(Object.keys(userList).length - 2));
+        promises.push(admin.database().ref("/likeRequest/" + key + "/result/count").set(Object.keys(userList).length - 2));
+        promises.push(admin.database().ref("/likeRequest/" + key + "/result/state").set("false"));
+        admin.database().ref("/posts/" + postId).once("value").then(snapshot => {
+          var authorId = snapshot.val().uid;
+          admin.database().ref("/users/" + authorId).once("value").then(snapshot => {
+            var userData = snapshot.val();
+            if(!userData.likes) {
+              promises.push(admin.database().ref("/users/" + authorId + "/likes").set(0));
+            } else {
+              promises.push(admin.database().ref("/users/" + authorId + "/likes").set(userData.likes - 1));
+            }
+          });
+          return Promise.all(promises);
+        });
+      } else {
+        userList.push(uid);
+        promises.push(admin.database().ref("/postLikes/" + postId + "/userList").set(userList));
+        promises.push(admin.database().ref("/postLikes/" + postId + "/likes").set(Object.keys(userList).length - 1));
+        promises.push(admin.database().ref("/likeRequest/" + key + "/result/count").set(Object.keys(userList).length - 1));
+        promises.push(admin.database().ref("/likeRequest/" + key + "/result/state").set("true"));
+        admin.database().ref("/posts/" + postId).once("value").then(snapshot => {
+          var authorId = snapshot.val().uid;
+          admin.database().ref("/users/" + authorId).once("value").then(snapshot => {
+            var userData = snapshot.val();
+            if(!userData.likes) {
+              promises.push(admin.database().ref("/users/" + authorId + "/likes").set(1));
+            } else {
+              promises.push(admin.database().ref("/users/" + authorId + "/likes").set(userData.likes + 1));
+            }
+          });
+          return Promise.all(promises);
+        });
+      }
+
+    });
+
 
   });

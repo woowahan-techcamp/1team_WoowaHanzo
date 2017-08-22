@@ -419,6 +419,8 @@ div.img-divgo{
 
 .like_btn {
   font-size: 1.8em;
+  line-height: 100%;
+  vertical-align: middle;
   padding: 10px 15px;
 }
 
@@ -426,7 +428,14 @@ div.img-divgo{
   cursor: pointer;
 }
 
+.like_number {
+  line-height: 100%;
+  vertical-align: middle;
+}
+
 .post_time {
+  position: absolute;
+  display: inline-block;
   font-family: Jua;
   font-size: 0.9em;
   margin-left: auto;
