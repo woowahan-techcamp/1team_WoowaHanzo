@@ -330,15 +330,29 @@ function loadActualPost(snapshot, likeObject) {
 		pageObject.imageUrls[buffer.id] = [];
 	}
 
+	buffer["checkTime"] = - buffer["time"];
+
   // replacing new lines with line breaks
   buffer["body"] = buffer["body"].replace(/\n/g, "<br>");
   buffer["time"] = getCurrentTime(-buffer["time"]);
-	buffer["likes"] = likeObject.val().likes ? likeObject.val().likes : 0;
-	if(!$("#post_" + buffer.id).length) {
-		$(".container_box").append(pageObject.postTemplate(buffer));
+	if(likeObject.val()) {
+		buffer["likes"] = likeObject.val().likes ? likeObject.val().likes : 0;
+	} else {
+		buffer["likes"] = 0;
 	}
-	else {
-		$(".loading-indicator-box").css("display", "none");
+
+	// update current track of load time
+	if(pageObject.pastTime == undefined || pageObject.pastTime > buffer["checkTime"]) {
+		pageObject.pastTime = buffer["checkTime"];
+		if(!$("#post_" + buffer.id).length) {
+			$(".container_box").append(pageObject.postTemplate(buffer));
+		}
+	}
+	if(pageObject.futureTime == undefined || pageObject.futureTime < buffer["checkTime"]) {
+		pageObject.futureTime = buffer["checkTime"];
+		if(!$("#post_" + buffer.id).length) {
+			$(".container_box").prepend(pageObject.postTemplate(buffer));
+		}
 	}
 
   var $curPost = $("#post_" + buffer.id);
@@ -385,7 +399,7 @@ function loadActualPost(snapshot, likeObject) {
 	});
 
 	if(firebase.auth().currentUser) {
-		if(likeObject.val().userList.indexOf(firebase.auth().currentUser.uid) >= 0) {
+		if(likeObject.val() && likeObject.val().userList.indexOf(firebase.auth().currentUser.uid) >= 0) {
 			like_button.classList.add("clicked_like_btn");
 		}
 	}

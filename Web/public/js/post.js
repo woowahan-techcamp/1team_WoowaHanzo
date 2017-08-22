@@ -5,6 +5,8 @@ firebase.auth().onAuthStateChanged(user => {
   }
 });
 
+var tagEdited = false;
+
 document.addEventListener("DOMContentLoaded", function(event) {
   console.log("DOM fully loaded and parsed");
 
@@ -53,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 
   $(".tagger_input").last().on("focus", function(evt){
+    tagEdited = true;
     $(".tagger_input").last().off("focus");
     $(".tagger_input").last().val("");
     $(".tagger_input").trigger("update");
@@ -267,6 +270,7 @@ function uploadPost() {
   var postText = refineText($(".textbox").first().val());
   var postTags = [];
   $(".tagger_input").each(function(index) {
+    if(!tagEdited) return;
     var tagValue = refineText($(this).val());
     if(tagValue.length > 0) {
       postTags.push(refineText(tagValue));
