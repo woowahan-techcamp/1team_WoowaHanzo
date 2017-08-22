@@ -17,6 +17,7 @@
 
 .ranking_content {
   width: calc(100% - 80px);
+  height: 80px;
   background-color: rgb(246, 246, 246);
   border: 2px solid rgb(66, 156, 240);
   padding: 0 20px 0 10px;
@@ -24,21 +25,41 @@
   -moz-border-radius: 25px;
   -webkit-border-radius: 25px;
   float: left;
+  vertical-align: middle;
 }
 
 .ranking_profile_pic_box {
-  width: 70px;
+  width: 80px;
   height: 80px;
   line-height: 80px;
+  vertical-align: middle;
   text-align: center;
+  display: inline-block;
   margin-right: 10px;
   float: left;
+  /*outline: 1px solid green;*/
+  position: relative;
+}
+
+.ranking_pic_tmp {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 50%;
+  /*outline: 1px solid red;*/
+  display: block;
+  position: absolute;
+  top: 50%;
+  margin-top: -30px;
+  left: 50%;
+  margin-left: -30px;
 }
 
 .ranking_profile_pic {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  max-height: 100%;
+  margin-left: 50%;
+  transform: translate(-50%);
+  display: block;
 }
 
 .ranking_center_side {
