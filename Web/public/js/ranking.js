@@ -1,48 +1,47 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   console.log('랭킹페이지');
 
-  var rankingList = [];
-  var item = new Object();
-  item.titlePic = '<i class="fa fa-bolt" aria-hidden="true"></i>'
-  item.titleText = "오늘의 신";
-  item.username = "hyesun03";
-  item.like = 1499;
+  sortedUserList().then(function(userList) {
+    var itemList = [];
+    var storageRef = firebase.storage().ref();
+    var promises = [];
+    console.log('user... ', userList[0].val());
 
-  var item2 = new Object();
-  item2.titlePic = '<i class="fa fa-car" aria-hidden="true"></i>'
-  item2.titleText = "내일의 신";
-  item2.username = "samsung_note_book";
-  item2.like = 1200;
+    userList.forEach(function(item) {
+      var itemObject = new Object();
+      var downloadUrl = storageRef.child("profileImages/" + item.val().profileImg).getDownloadURL();
 
-  var item3 = new Object();
-  item3.titlePic = '<i class="fa fa-flask" aria-hidden="true"></i>'
-  item3.titleText = "모레의 신";
-  item3.username = "xxx_sorry_tree";
-  item3.like = 904;
+      promises.push(downloadUrl.then(function(url) {
+        itemObject.userProfileImg = url;
+        itemObject.titlePic = '<i class="fa fa-car" aria-hidden="true"></i>';
+        itemObject.titleText = item.val().rankName ? item.val().rankName : "평민";
+        itemObject.username = item.val().username;
+        itemObject.like = item.val().likes ? item.val().likes : 0;
 
-  var item4 = new Object();
-  item4.titlePic = '<i class="fa fa-camera-retro" aria-hidden="true"></i>'
-  item4.titleText = "언젠가의 신";
-  item4.username = "choihyeseon__ii";
-  item4.like = 564;
+        itemList.push(itemObject);
+      }));
 
-  rankingList.push(item);
-  rankingList.push(item2);
-  rankingList.push(item3);
-  rankingList.push(item4);
+    });
 
-  console.log(rankingList);
-  sortedUserList().then(function() {
-    console.log("continue");
+    Promise.all(promises).then(() => {
+      console.log("continue");
+      console.log(itemList);
+
+      itemList.sort(function (a, b) {
+        if (a.like > b.like) return -1;
+        if (a.like < b.like) return 1;
+        return 0;
+      });
+
+      var source = document.getElementById("ranking_template").innerHTML;
+      var template = Handlebars.compile(source);
+      document.querySelector(".container_box").innerHTML += template(itemList);
+    });
   });
+
   Handlebars.registerHelper("counter", function (index){
     return index + 1;
   });
-
-
-  var source = document.getElementById("ranking_template").innerHTML;
-	var template = Handlebars.compile(source);
-	document.querySelector(".container_box").innerHTML += template(rankingList);
 
 });
 
@@ -51,11 +50,11 @@ function sortedUserList() {
     var userList = [];
     snapshots.forEach(function(child) {
       userList.push(child);
-
     });
     userList.reverse();
     userList.forEach(function(child) {
-      console.log(child.val().username);
+      // console.log(child.val().username);
     });
+    return userList;
   });
 }
