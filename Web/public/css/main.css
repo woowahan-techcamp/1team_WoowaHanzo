@@ -43,6 +43,14 @@ body {
   color: #FFF !important;
 }
 
+.navbar-brand:hover {
+  cursor: pointer;
+}
+
+.navbar-nav:hover {
+  cursor: pointer;
+}
+
 .container_box {
   width: inherit;
   max-width: 720px;
@@ -433,7 +441,7 @@ div.img-divgo{
 }
 
 .post_time {
-  
+
   display: inline-block;
   font-family: Jua;
   font-size: 0.9em;
@@ -577,16 +585,23 @@ div.img-divgo{
 .nav_user_img_box {
   width: 37px;
   height: 37px;
+  vertical-align: middle;
   display: inline-block;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  overflow: hidden;
   margin-right: 10px;
 }
 
 .nav_user_img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
+  max-height: 100%;
+  -webkit-transform:translate(-50%);
+  -moz-tranform:translate(-50%);
+  -ms-transform: translate(-50%); /* IE 9 */
+  transform: translate(-50%);
+  margin-left: 50%;
+
 }
 
 .nav_username {
