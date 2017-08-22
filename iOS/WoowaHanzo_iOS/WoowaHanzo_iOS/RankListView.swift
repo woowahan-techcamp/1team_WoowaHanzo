@@ -17,7 +17,7 @@ class RankListView: UIScrollView {
     var containerView:UIView!
     var rowHeight : CGFloat = 100
     var xoffset = 0
-    var yoffset = 80
+    var yoffset = 20
     
     
     override init(frame:CGRect)
@@ -71,7 +71,7 @@ class RankListView: UIScrollView {
         cellview.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
         cellview.frame = CGRect(x: 66, y: ypos + 10, width : 301, height: 80)
         self.addSubview(cellview)
-        self.contentSize = CGSize(width: Int(self.frame.width), height: Int(rowHeight) * (index + 1) + yoffset + 50)
+        self.contentSize = CGSize(width: Int(self.frame.width), height: Int(rowHeight) * (index + 1) + yoffset + 20)
         
         
         let profileimgview = UIImageView()
@@ -96,8 +96,18 @@ class RankListView: UIScrollView {
         namelabel.font = UIFont(name: "NotoSans", size: 17.0)!
         namelabel.textColor = UIColor.darkGray
         namelabel.sizeToFit()
-        namelabel.frame.origin = CGPoint(x: 85, y: 30)
+        namelabel.frame.origin = CGPoint(x: 85, y: 37)
         cellview.addSubview(namelabel)
+        
+        let ranknamelabel = UILabel()
+        ranknamelabel.text = rankuser.rankName!
+        ranknamelabel.textAlignment = NSTextAlignment.center
+        ranknamelabel.font = UIFont(name: "NotoSans-Bold", size: 18.0)!
+        ranknamelabel.textColor = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0)
+        ranknamelabel.sizeToFit()
+        ranknamelabel.frame.origin = CGPoint(x:85, y:15)
+        cellview.addSubview(ranknamelabel)
+        
         
         let likenumlabel = UILabel()
         likenumlabel.text = String(describing: rankuser.likes!)

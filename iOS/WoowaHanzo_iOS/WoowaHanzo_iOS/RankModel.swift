@@ -14,26 +14,29 @@ import Firebase
 //RankModel을 만들어서, 전달한다.
 
 class RankUser {
-    var email : String
+    var email : String?
     var likes : Int?
     //optional은 필수적이지 않은 것들
     var profileImg : String? // String으로 할지 말지, UIImage로할지.. 결정해야한다.
+    var rankName : String?
     var sayhi : String?
     let nickName : String
     
-    init(email: String, likes:Int, profileImg: String?, sayhi : String? , nickName: String) {
+    init(email: String?, likes:Int?, profileImg: String?, rankName: String?, sayhi : String? , nickName: String) {
         self.email = email
         self.likes = likes
         self.profileImg = profileImg
+        self.rankName = rankName
         self.sayhi = sayhi
         self.nickName = nickName
     }
     
     init(snapshot: DataSnapshot) {
         let snapshotValue = snapshot.value as! [String: AnyObject]
-        self.email = snapshotValue["email"] as! String
+        self.email = snapshotValue["email"] as? String ?? ""
         self.likes = snapshotValue["likes"] as? Int ?? 0
         self.profileImg = snapshotValue["profileImg"] as? String ?? nil
+        self.rankName = snapshotValue["rankName"] as? String ?? ""
         self.sayhi = snapshotValue["sayhi"] as? String ?? nil
         self.nickName = snapshotValue["username"] as! String
     }

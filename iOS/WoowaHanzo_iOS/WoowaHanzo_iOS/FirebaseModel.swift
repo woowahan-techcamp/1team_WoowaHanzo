@@ -163,7 +163,6 @@ class FirebaseModel{
                 for child in result {
                     let rankuser = RankUser(snapshot: child)
                     rankUserList.append(rankuser)
-                    print(rankuser.nickName)
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "rankusers"), object: self, userInfo: ["rankusers":rankUserList])
             }
