@@ -49,9 +49,9 @@
 
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a data-toggle="tab" onclick="document.location.href = 'post.html'">글쓰기</a></li>
-            <li><a data-toggle="tab" onclick="document.location.href = 'ranking.html'">랭킹</a></li>
-            <li><a data-toggle="tab" onclick="document.location.href = 'test-tag.html'">태그</a></li>
+            <li><a data-toggle="tab" id="post">글쓰기</a></li>
+            <li><a data-toggle="tab" id="ranking">랭킹</a></li>
+            <li><a data-toggle="tab" id="tag">태그</a></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right right_side">
@@ -89,12 +89,12 @@
         <div class="input_holder">
           <div class="form_container email_container">
             <i class="fa fa-envelope-o" aria-hidden="true"></i>
-            <input type="text" name="email" id="email" placeholder="이메일" />
+            <input type="text" name="email" id="email" placeholder="이메일" spellcheck="false"/>
           </div>
 
           <div class="form_container">
             <i class="fa fa-lock" aria-hidden="true"></i>
-            <input type="password" name="password" id="password" placeholder="비밀번호"/>
+            <input type="password" name="password" id="password" placeholder="비밀번호" spellcheck="false"/>
           </div>
 
         </div>

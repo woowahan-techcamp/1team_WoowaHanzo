@@ -1,4 +1,22 @@
-.container_box {
+.post_indicator {
+  /*outline: 1px solid red;*/
+  padding: 0 !important;
+  -webkit-transition: all .7s;
+  transition: all .7s;
+}
+
+.loading-text {
+  -webkit-transition: all .7s;
+  transition: all .7s;
+}
+
+.spinner {
+  -webkit-transition: all .7s;
+  transition: all .7s;
+}
+
+.post_container_box {
+  margin-top: 20px;
 }
 
 .post .textbox {
@@ -14,7 +32,6 @@
 }
 
 .post_input {
-  margin-top: 100px;
 }
 
 .tagger_input {

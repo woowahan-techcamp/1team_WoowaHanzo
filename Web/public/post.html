@@ -55,9 +55,9 @@
 
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a data-toggle="tab" onclick="document.location.href = 'post.html'">글쓰기</a></li>
-            <li><a data-toggle="tab" onclick="document.location.href = 'ranking.html'">랭킹</a></li>
-            <li><a data-toggle="tab" onclick="document.location.href = 'test-tag.html'">태그</a></li>
+            <li><a data-toggle="tab" id="post">글쓰기</a></li>
+            <li><a data-toggle="tab" id="ranking">랭킹</a></li>
+            <li><a data-toggle="tab" id="tag">태그</a></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right right_side">
@@ -87,7 +87,7 @@
       </div>
     </nav>
 
-    <div class="loading-indicator-box">
+    <div class="loading-indicator-box post_indicator">
       <div class="loading-text">로딩 중입니다.</div>
       <div class="spinner">
         <div class="rect1"></div>
@@ -98,7 +98,7 @@
       </div>
     </div>
 
-    <div class="container_box">
+    <div class="container_box post_container_box">
       <div class="post post_input">
         <div class="post-header">
           <div class="img-divgo">
