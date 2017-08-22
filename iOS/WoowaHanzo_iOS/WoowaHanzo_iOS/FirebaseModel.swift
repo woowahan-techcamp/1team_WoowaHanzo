@@ -88,9 +88,9 @@ class FirebaseModel{
                         User.users.append(user)
                     
                     
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
+                    
                 }
-                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
                 
                 
             }

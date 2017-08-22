@@ -18,7 +18,7 @@ class TagResultTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(getTagFeed(_ :)), name: NSNotification.Name(rawValue: "sendResultViewController"), object: nil)
-        print(tagName)
+        //print(tagName)
         self.navigationController?.navigationBar.tintColor = UIColor(red: 42/255, green: 193/255, blue: 188/255, alpha: 1)
         self.navigationController?.navigationBar.topItem?.title = "태그"
         //self.title = tagName
@@ -33,7 +33,7 @@ class TagResultTableViewController: UITableViewController {
     //    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return TagUser.tagUsers.count ?? 1
     }
     
     
@@ -43,9 +43,8 @@ class TagResultTableViewController: UITableViewController {
         if let notiArray =  notification.userInfo?["tagResultArray"]{
             tagFeedArray = notiArray as! [String]
         }
-        print("\(tagFeedArray)")
-//        TagUser.tagUsers = [TagUser]()
-//        self.ref = Database.database().reference().child("posts")
+        //print("\(tagFeedArray)")
+//        //        self.ref = Database.database().reference().child("posts")
 //        for index in 0..<tagFeedArray.count{
 //            self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
 //                if let result = snapshot.childSnapshot(forPath: self.tagFeedArray[index]).value  {
@@ -63,6 +62,8 @@ class TagResultTableViewController: UITableViewController {
 //            })
 //            
 //        }
+        TagUser.tagUsers = [TagUser]()
+
         for i in 0..<tagFeedArray.count{
             for j in 0..<User.users.count{
                 if User.users[j].key == tagFeedArray[i]{
@@ -71,11 +72,15 @@ class TagResultTableViewController: UITableViewController {
                 }
             }
         }
+        self.reloadInputViews()
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TagResultTableViewCell
-        cell.tagResultNickNameLabel.text = "dd"
+        cell.tagResultNickNameLabel.text = " "
+        cell.tagResultNickNameLabel.text = TagUser.tagUsers[indexPath.row].nickName
+        
         return cell
     }
     /*

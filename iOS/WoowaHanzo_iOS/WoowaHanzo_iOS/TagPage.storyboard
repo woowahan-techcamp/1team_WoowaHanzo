@@ -59,7 +59,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jkd-Vu-bxG">
-                                            <rect key="frame" x="80" y="8" width="42" height="21"/>
+                                            <rect key="frame" x="80" y="8" width="277" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -173,7 +173,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="q05-Yh-OsF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="태그" id="Fgl-fc-Jyd" userLabel="Item"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ewo-Ub-HSh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Ewo-Ub-HSh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
