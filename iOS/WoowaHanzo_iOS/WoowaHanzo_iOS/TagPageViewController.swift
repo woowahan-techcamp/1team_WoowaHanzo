@@ -16,7 +16,7 @@ class TagPageViewController: UIViewController {
     var key : String = ""
     var shouldalert = false
     var tagName:String = ""
-    var tagResultArray = [Any]()
+    var tagResultArray : [String]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,20 +77,17 @@ class TagPageViewController: UIViewController {
         tagResultArray = []
         self.ref = Database.database().reference().child("tagQuery")
         let refHandle = ref.observe(DataEventType.value, with: { (snapshot) in
-            let postDict = snapshot.value as! [String : AnyObject]
+            let postDict = snapshot.value as! [String : Any]
             if let result = snapshot.childSnapshot(forPath: notification.userInfo?["key"] as! String).childSnapshot(forPath: "queryResult").value {
                 self.tagResultArray = []
-                if let tagResult = result as? [Any]
-                {
-                    for index in tagResult{
-                        self.tagResultArray.append(index)
-                    }
-                }
-                //print(self.tagResultArray)
+                //print(result as? [String])//print(self.tagResultArray)
+                self.tagResultArray = result as? [String]
+                
                 
             }
-            if self.tagResultArray.count > 1{
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sendResultViewController"), object: self, userInfo: ["tagResultArray": self.tagResultArray] )
+        
+            if (self.tagResultArray?.count ?? 0) > 1 {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sendResultViewController"), object: self, userInfo: ["tagResultArray": self.tagResultArray])
             }
         })
         

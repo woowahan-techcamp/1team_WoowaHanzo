@@ -14,7 +14,7 @@ class TagResultTableViewController: UITableViewController {
     var ref: DatabaseReference!
 
     var tagName:String = ""
-    var tagFeedArray = [Any]()
+    var tagFeedArray = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(getTagFeed(_ :)), name: NSNotification.Name(rawValue: "sendResultViewController"), object: nil)
@@ -38,14 +38,32 @@ class TagResultTableViewController: UITableViewController {
 
     
     func getTagFeed(_ notification: Notification){
-        tagFeedArray = notification.userInfo?["tagResultArray"] as! [Any]
-        print(tagFeedArray)
+        
+        if let notiArray =  notification.userInfo?["tagResultArray"]{
+            tagFeedArray = notiArray as! [String]
+        }
+        print("\(tagFeedArray)")
+        TagUser.tagUsers = [TagUser]()
         self.ref = Database.database().reference().child("posts")
-        for index in 1..<tagFeedArray.count{
+        for index in 0..<tagFeedArray.count{
+            self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
+                if let result = snapshot.childSnapshot(forPath: self.tagFeedArray[index]).value  {
+                    let dicResult = result as? [String:Any] ?? [:]
+                    if dicResult.count > 0 {
+                        print(dicResult["author"] as! String)
+                    }
+                    
+                
             
-           self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let result = snapshot.childSnapshot(forPath: self.tagFeedArray[index] as! String).value {
-                    print(result)
+                
+    //            if let result = snapshot.childSnapshot(forPath: self.tagFeedArray[index] as! String).value {
+//                    print(result)
+//                var userKey = child.key as! String
+//                //print(child.childSnapshot(forPath: "author").value!)
+//                let tagUser = TagUser(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil, postDate : child.childSnapshot(forPath: "time").value as! Int)
+//                User.users.append(user)
+                
+
                 }
             })
         }
