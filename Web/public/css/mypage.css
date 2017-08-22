@@ -66,8 +66,8 @@
   -webkit-border-radius: 10px;
 }
 
-.fa-cog {
-  font-size: 20px;
+.fa-sign-out {
+  font-size: 18px;
   color: #2ac1bc;
   /*outline: 1px solid lightblue;*/
   margin: 0 auto;
@@ -123,8 +123,8 @@
     -webkit-border-radius: 10px;
   }
 
-  .fa-cog {
-    font-size: 15px;
+  .fa-sign-out {
+    font-size: 14px;
   }
 
   .mypage_user_sayhi {
@@ -169,8 +169,8 @@
     -webkit-border-radius: 7px;
   }
 
-  .fa-cog {
-    font-size: 13px;
+  .fa-sign-out {
+    font-size: 12px;
   }
 
   .mypage_user_sayhi {
