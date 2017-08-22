@@ -147,7 +147,7 @@ extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
        
         
-        print(User.users[indexPath.section].key)
+        //print(User.users[indexPath.section].key)
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as!MainPageTableViewCell
         cell.contentsTextView.text = User.users[indexPath.section].contents
         cell.contentsTextView.sizeToFit()
