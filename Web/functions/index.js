@@ -82,21 +82,18 @@ exports.handleLikeRequest = functions.database.ref("/likeRequest/{likeId}")
   .onCreate(event => {
     var key = event.data.key;
     var value = event.data.val();
+    var promises = [];
 
     var postId = value.postId;
     var uid = value.uid;
     return admin.database().ref("/postLikes/" + postId).once("value").then(snapshot => {
-      var promises = [];
+
       var update = {};
       var userList = snapshot.val().userList.slice();
       if(!userList || userList.length == 0) {
         userList = [1];
       }
 
-      console.log(1, userList.indexOf(uid));
-      console.log(3, userList);
-      console.log(2, uid);
-      console.log(4, Object.keys(userList).length);
       // inside userList
       if(userList.indexOf(uid) >= 0) {
         var index = userList.indexOf(uid);
@@ -106,13 +103,39 @@ exports.handleLikeRequest = functions.database.ref("/likeRequest/{likeId}")
         promises.push(admin.database().ref("/postLikes/" + postId + "/likes").set(Object.keys(userList).length - 2));
         promises.push(admin.database().ref("/likeRequest/" + key + "/result/count").set(Object.keys(userList).length - 2));
         promises.push(admin.database().ref("/likeRequest/" + key + "/result/state").set("false"));
+        admin.database().ref("/posts/" + postId).once("value").then(snapshot => {
+          var authorId = snapshot.val().uid;
+          admin.database().ref("/users/" + authorId).once("value").then(snapshot => {
+            var userData = snapshot.val();
+            if(!userData.likes) {
+              promises.push(admin.database().ref("/users/" + authorId + "/likes").set(0));
+            } else {
+              promises.push(admin.database().ref("/users/" + authorId + "/likes").set(userData.likes - 1));
+            }
+          });
+          return Promise.all(promises);
+        });
       } else {
         userList.push(uid);
         promises.push(admin.database().ref("/postLikes/" + postId + "/userList").set(userList));
         promises.push(admin.database().ref("/postLikes/" + postId + "/likes").set(Object.keys(userList).length - 1));
         promises.push(admin.database().ref("/likeRequest/" + key + "/result/count").set(Object.keys(userList).length - 1));
         promises.push(admin.database().ref("/likeRequest/" + key + "/result/state").set("true"));
+        admin.database().ref("/posts/" + postId).once("value").then(snapshot => {
+          var authorId = snapshot.val().uid;
+          admin.database().ref("/users/" + authorId).once("value").then(snapshot => {
+            var userData = snapshot.val();
+            if(!userData.likes) {
+              promises.push(admin.database().ref("/users/" + authorId + "/likes").set(1));
+            } else {
+              promises.push(admin.database().ref("/users/" + authorId + "/likes").set(userData.likes + 1));
+            }
+          });
+          return Promise.all(promises);
+        });
       }
-      return Promise.all(promises);
+
     });
+
+
   });

@@ -354,19 +354,27 @@ function loadPosts(snapshot) {
 
 	// add functionality to like button
 	var like_button = curPost.querySelector(".like_btn");
-	like_button.addEventListener("click", function(evt) {
-		var id = evt.target.parentElement.parentElement.id;
-		console.log(getIdFromPostId(evt.target.parentElement.parentElement.id));
+	like_button.addEventListener("click", function(event) {
+		var id = event.target.parentElement.parentElement.id;
+		console.log(getIdFromPostId(event.target.parentElement.parentElement.id));
 		var requestKey = firebase.database().ref().child("likeRequest").push().key;
+		var bufferObject = {};
+		bufferObject.requestKey = requestKey;
+		bufferObject.target = event.target;
 		var update = {};
 		update["/likeRequest/" + requestKey + "/postId"] = getIdFromPostId(id);
 		update["/likeRequest/" + requestKey + "/uid"] = firebase.auth().currentUser.uid;
 		update["/likeRequest/" + requestKey + "/result/count"] = 0;
 		update["/likeRequest/" + requestKey + "/result/state"] = "default";
-		firebase.database().ref().update(update).then(evt => {
+		firebase.database().ref().update(update).then(function(evt) {
+			firebase.database().ref("/likeRequest/" + this.requestKey + "/result").on("value", function(snapshot) {
+				console.log(snapshot.val());
+				console.log(this.target.outerHTML);
+				$(this.target).parent().children(".like_number").html(snapshot.val().count);
+			}.bind(this));
 			console.log("request made!");
 
-		});
+		}.bind(bufferObject));
 	});
 
   if(buffer.images) {

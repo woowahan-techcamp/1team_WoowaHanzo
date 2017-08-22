@@ -409,6 +409,7 @@ div.img-divgo{
 .post_footer {
   padding-left: 0;
   padding-right: 10px;
+  position: relative;
 }
 
 .post hr {
@@ -417,6 +418,8 @@ div.img-divgo{
 
 .like_btn {
   font-size: 1.8em;
+  line-height: 100%;
+  vertical-align: middle;
   padding: 10px 15px;
 }
 
@@ -424,11 +427,20 @@ div.img-divgo{
   cursor: pointer;
 }
 
+.like_number {
+  line-height: 100%;
+  vertical-align: middle;
+}
+
 .post_time {
+  position: absolute;
+  display: inline-block;
   font-family: Jua;
   font-size: 0.9em;
-  float: right;
-  margin-top: 13px;
+  top: 0px;
+  right: 10px;
+  transform: translateY(50%);
+  vertical-align: middle;
   font-weight: bold;
   color: #AAA;
 }
