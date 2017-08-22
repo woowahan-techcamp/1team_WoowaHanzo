@@ -12,7 +12,7 @@ import Kingfisher
 
 class TagResultTableViewCell: UITableViewCell {
     
-    
+    var userid : Int = 0
     @IBOutlet weak var tagResultTimeLabel: UILabel!
     @IBOutlet weak var tagResultNickNameLabel: UILabel!
     @IBOutlet weak var tagResultLikeButton: UIButton!
@@ -22,6 +22,8 @@ class TagResultTableViewCell: UITableViewCell {
     @IBOutlet weak var tagResultTextView: UITextView!
     override func awakeFromNib() {
         super.awakeFromNib()
+        tagResultFoodCollectionView.delegate = self
+        tagResultFoodCollectionView.dataSource = self
         // Initialization code
     }
     
@@ -35,17 +37,17 @@ class TagResultTableViewCell: UITableViewCell {
 extension TagResultTableViewCell : UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        if let count = TagUser.tagUsers[section].imageArray?.count{
+        print("A")
+        if let count = TagUser.tagUsers[userid].imageArray?.count{
             print(count)
             return count
-            
         }
         return 0
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TagResultCollectionViewCell
-        
-        if let imageArray = TagUser.tagUsers[indexPath.row].imageArray{
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "foodImagCell", for: indexPath) as! TagResultCollectionViewCell
+        print(TagUser.tagUsers[userid].imageArray?.count)
+        if let imageArray = TagUser.tagUsers[userid].imageArray{
             //print(User.users[userid])
             //print("A")
             let ref = Storage.storage().reference(withPath: "images/" + imageArray[indexPath.row]).downloadURL { (url, error) in
@@ -54,6 +56,7 @@ extension TagResultTableViewCell : UICollectionViewDelegate, UICollectionViewDat
                 //print(url)
             }
         }
+        
         // print(imageArr)
         //        cell.foodImageView.image = imageArr[indexPath.item]
         //
