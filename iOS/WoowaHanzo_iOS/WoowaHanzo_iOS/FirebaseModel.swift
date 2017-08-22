@@ -123,4 +123,10 @@ class FirebaseModel{
         
 
     }
+    
+    func loadUsers(){
+        
+    }
+    
+    
 }
