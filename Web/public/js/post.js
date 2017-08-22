@@ -28,7 +28,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 
   $(".buttons_holder").on("postLoaded", function() {
-    $(".loading-indicator-box").css("display", "none");
+    $(".loading-text").html("");
+    $(".loading-text").css("height", 0);
+    $(".spinner").css("height", 0);
+
+    $(".post_indicator").css("height", 0);
+    // $(".post_indicator").css("opacity", 0);
   });
 
   autosize($("textarea"));
