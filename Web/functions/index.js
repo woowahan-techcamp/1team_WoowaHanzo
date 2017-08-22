@@ -135,6 +135,32 @@ exports.handleLikeRequest = functions.database.ref("/likeRequest/{likeId}")
         });
       }
 
+    }).then(() => {
+      return admin.database().ref("/users/").orderByChild("likes").once("value").then(snapshots => {
+        var userList = [];
+        snapshots.forEach(function(child) {
+          userList.push(child);
+        });
+
+        userList.reverse();
+        for(var i = 0; i < userList.length; ++i) {
+          console.log(i, userList[i].val().username, userList[i].val().likes);
+          var rankName = "";
+          if(i < 1) {
+            rankName = "오늘의 신";
+          } else if (i < 10) {
+            rankName = "왕족";
+          } else if (i < 50) {
+            rankName = "양반";
+          } else if (i < 100) {
+            rankName = "평민";
+          } else {
+            rankName = "오랑캐";
+          }
+          promises.push(admin.database().ref("/users/" + userList[i].key + "/rankName").set(rankName));
+        }
+
+      });
     });
 
 

@@ -79,7 +79,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
         username: userName,
         email: userEmail,
-        sayhi: userSayhi
+        sayhi: userSayhi,
+        likes: 0
       })
       .then(function() {
         console.log('user created.....');

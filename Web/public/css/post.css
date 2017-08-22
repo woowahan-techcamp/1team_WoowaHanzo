@@ -1,18 +1,20 @@
 .post_indicator {
+
   /*outline: 1px solid red;*/
   padding: 0 !important;
-  -webkit-transition: all .7s;
-  transition: all .7s;
+  padding-top: 80px !important;
+  -webkit-transition: all .2s;
+  transition: all .2s;
 }
 
 .loading-text {
-  -webkit-transition: all .7s;
-  transition: all .7s;
+  -webkit-transition: all .2s;
+  transition: all .2s;
 }
 
 .spinner {
-  -webkit-transition: all .7s;
-  transition: all .7s;
+  -webkit-transition: all .2s;
+  transition: all .2s;
 }
 
 .post_container_box {
