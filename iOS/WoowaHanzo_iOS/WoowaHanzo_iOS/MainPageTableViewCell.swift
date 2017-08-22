@@ -74,7 +74,7 @@ extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDe
                 let ref = Storage.storage().reference(withPath: "images/" + imageArray[indexPath.row]).downloadURL { (url, error) in
                     cell.foodImageView.kf.setImage(with: url)
                     //cell.foodImageView.layer.cornerRadius = 3.0
-                    print(url)
+                    //print(url)
             }
         }
        // print(imageArr)
