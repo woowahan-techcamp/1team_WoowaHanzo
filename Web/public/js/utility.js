@@ -81,7 +81,7 @@ function fadeInPost($curPost) {
 	resizeThumbnails();
 	$curPost.animate({
 		opacity: 1.0
-	}, 200, function() {
+	}, 300, function() {
 		if(this.next().length != 0) {
 			this.next().trigger("postLoaded");
 		}
@@ -282,13 +282,13 @@ function loadUserProfile(uid) {
 				var profilePic = curPost.querySelector("." + this.queryClass);
 				profilePic.classList.add("loading");
 				profilePic.src = url;
-				profilePic.onload = function(evt) {
+				profilePic.addEventListener("load", function(evt) {
 
 					if(prevLoaded(this) && imagesAllLoaded(evt.target)) {
 						$(".buttons_holder").css("display", "block");
 					 	fadeInPost(this);
 					}
-				}.bind($(curPost));
+				}.bind($(curPost)));
 			}.bind(this));
 		} else {
 			pageObject.userProfileImage[this.uid] = "pictures/profile.png";
@@ -296,7 +296,7 @@ function loadUserProfile(uid) {
 			var profilePic = curPost.querySelector("." + this.queryClass);
 			profilePic.classList.add("loading");
 			profilePic.src = pageObject.userProfileImage[this.uid];
-			profilePic.onload = function(evt) {
+			profilePic.addEventListener("load", function(evt) {
 
 				if(prevLoaded(this) && imagesAllLoaded(evt.target)) {
 				 	console.log("fadeIn through profile");
@@ -308,7 +308,7 @@ function loadUserProfile(uid) {
 					// }
 				 	fadeInPost(this);
 				}
-			}.bind($(curPost));
+			}.bind($(curPost)));
 		}
 
 	}.bind(this));

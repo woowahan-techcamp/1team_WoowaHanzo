@@ -32,7 +32,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
   rankingList.push(item4);
 
   console.log(rankingList);
-
+  sortedUserList().then(function() {
+    console.log("continue");
+  });
   Handlebars.registerHelper("counter", function (index){
     return index + 1;
   });
@@ -42,5 +44,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	var template = Handlebars.compile(source);
 	document.querySelector(".container_box").innerHTML += template(rankingList);
 
-
 });
+
+function sortedUserList() {
+  return firebase.database().ref("users/").orderByChild("likes").once("value").then(function(snapshots) {
+    var userList = [];
+    snapshots.forEach(function(child) {
+      userList.push(child);
+
+    });
+    userList.reverse();
+    userList.forEach(function(child) {
+      console.log(child.val().username);
+    });
+  });
+}
