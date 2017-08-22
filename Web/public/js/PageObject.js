@@ -47,9 +47,11 @@ class PageObject {
   	for(var i = 0; i < postIds.length; ++i) {
   		var curId = postIds[i];
   		var postElem = document.querySelector("#post_" + curId);
-  		var footer = postElem.querySelector(".post_footer");
-  		var time = footer.querySelector(".post_time");
-  		time.innerHTML = getCurrentTime(this.postTimes[curId]);
+      if(postElem) {
+        var footer = postElem.querySelector(".post_footer");
+        var time = footer.querySelector(".post_time");
+        time.innerHTML = getCurrentTime(this.postTimes[curId]);
+      }
   	}
   }
 
