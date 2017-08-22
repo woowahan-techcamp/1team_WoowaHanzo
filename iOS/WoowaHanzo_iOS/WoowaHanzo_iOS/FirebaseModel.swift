@@ -65,7 +65,7 @@ class FirebaseModel{
         
         ref = Database.database().reference()
         let key = ref.child("tagQuery").childByAutoId().key
-        print(key)
+        //print(key)
         let post = ["queryResult": "1" ,"tag": tagName] as [String : String]
         let childUpdates = ["/tagQuery/\(key)": post]
         ref.updateChildValues(childUpdates)

@@ -57,7 +57,6 @@
 		98ECA42D1F440E570069DA87 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98ECA42C1F440E570069DA87 /* DateExtension.swift */; };
 		98ECA4381F4557990069DA87 /* icon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98ECA4371F4557990069DA87 /* icon.xcassets */; };
 		98ECA43A1F4A95A90069DA87 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98ECA4391F4A95A90069DA87 /* GoogleService-Info.plist */; };
-		98ECA43E1F4AC42C0069DA87 /* TagResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98ECA43D1F4AC42C0069DA87 /* TagResultTableViewController.swift */; };
 		98ECA4421F4ACDB60069DA87 /* TagResultFoodImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98ECA4411F4ACDB60069DA87 /* TagResultFoodImageCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -137,7 +136,6 @@
 		98ECA42C1F440E570069DA87 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		98ECA4371F4557990069DA87 /* icon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = icon.xcassets; sourceTree = "<group>"; };
 		98ECA4391F4A95A90069DA87 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		98ECA43D1F4AC42C0069DA87 /* TagResultTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagResultTableViewController.swift; sourceTree = "<group>"; };
 		98ECA4411F4ACDB60069DA87 /* TagResultFoodImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagResultFoodImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		B1F64866749E63894066246D /* Pods_WoowaHanzo_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WoowaHanzo_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9025DB6C60E4ACC8554AB0B /* Pods-WoowaHanzo_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoowaHanzo_iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-WoowaHanzo_iOS/Pods-WoowaHanzo_iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 				9843974F1F3835E800743B63 /* TagPageViewController.swift */,
 				98895BE81F4AA098000D1E15 /* TagPageView.swift */,
 				988C713D1F4BF2BD0044FEE0 /* TagResultViewController.swift */,
-				98ECA43D1F4AC42C0069DA87 /* TagResultTableViewController.swift */,
 				988C70F31F4AD56E0044FEE0 /* TagResultTableViewCell.swift */,
 				98ECA4411F4ACDB60069DA87 /* TagResultFoodImageCollectionViewCell.swift */,
 			);
@@ -692,7 +689,6 @@
 				9894B7611F441F2E00DAB38E /* MyCollectionCell.swift in Sources */,
 				9854BF9D1F3407FC008FA337 /* RankPageViewController.swift in Sources */,
 				9854BF591F331203008FA337 /* AppDelegate.swift in Sources */,
-				98ECA43E1F4AC42C0069DA87 /* TagResultTableViewController.swift in Sources */,
 				98C563CB1F39BD930017E68A /* LoginViewController.swift in Sources */,
 				984397A21F3C34B800743B63 /* StringExtension.swift in Sources */,
 				98ECA3AF1F4160B70069DA87 /* FoodImageCollectionViewCell.swift in Sources */,
