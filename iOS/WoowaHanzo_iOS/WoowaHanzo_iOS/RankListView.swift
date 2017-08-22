@@ -96,8 +96,18 @@ class RankListView: UIScrollView {
         namelabel.font = UIFont(name: "NotoSans", size: 17.0)!
         namelabel.textColor = UIColor.darkGray
         namelabel.sizeToFit()
-        namelabel.frame.origin = CGPoint(x: 85, y: 30)
+        namelabel.frame.origin = CGPoint(x: 85, y: 37)
         cellview.addSubview(namelabel)
+        
+        let ranknamelabel = UILabel()
+        ranknamelabel.text = rankuser.rankName!
+        ranknamelabel.textAlignment = NSTextAlignment.center
+        ranknamelabel.font = UIFont(name: "NotoSans-Bold", size: 18.0)!
+        ranknamelabel.textColor = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0)
+        ranknamelabel.sizeToFit()
+        ranknamelabel.frame.origin = CGPoint(x:85, y:15)
+        cellview.addSubview(ranknamelabel)
+        
         
         let likenumlabel = UILabel()
         likenumlabel.text = String(describing: rankuser.likes!)
