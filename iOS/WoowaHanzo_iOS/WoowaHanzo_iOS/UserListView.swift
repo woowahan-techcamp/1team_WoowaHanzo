@@ -115,6 +115,42 @@ class UserListView: UIScrollView {
         lastview = tagListView
         inypos = inypos + Int(lastview.frame.size.height) + 10
 
+        let scrollview = UIScrollView()
+        scrollview.frame = CGRect(x: 0, y: inypos, width: Int(cellview.frame.width), height: 80)
+        let scrollcontainerView = UIView(frame: scrollview.frame)
+        scrollview.addSubview(scrollcontainerView)
+        var images = [UIImageView]()
+        if user.imageArray! != [] {
+            for index in 0...user.imageArray!.count - 1{
+                let name : String = user.imageArray![index]
+                let imageview = UIImageView()
+                Storage.storage().reference(withPath: "Images/" + name).downloadURL { (url, error) in
+                    imageview.kf.setImage(with: url)
+                }
+            }
+        }
+        if images.count > 0 {
+        for index in 0...images.count - 1{
+            let imageview = images[index]
+            imageview.frame = CGRect(x:index * 80, y:0, width: 80, height: 80)
+            scrollview.addSubview(imageview)
+            scrollview.contentSize = CGSize(width: imageview.frame.origin.x + 80, height: 80)
+        }
+        }
+        else{
+            scrollview.frame.size.height = 0
+        }
+        cellview.addSubview(scrollview)
+        lastview = scrollview
+        inypos = inypos + Int(lastview.frame.size.height) + 10
+
+        
+
+        
+        
+        
+        
+        
         
         cellview.frame.size.height = lastview.frame.origin.y + lastview.frame.size.height
         ypos = ypos + Int(cellview.frame.size.height) + 10
