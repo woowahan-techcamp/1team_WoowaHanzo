@@ -8,13 +8,14 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class RankListView: UIScrollView {
     var numberOfRows = 0
     var currentRow = 0
     var tags = [UILabel]()
     var containerView:UIView!
-    var rowHeight : CGFloat = 80
+    var rowHeight : CGFloat = 100
     var xoffset = 0
     var yoffset = 20
     
@@ -57,20 +58,35 @@ class RankListView: UIScrollView {
         numlabel.text = "\(index + 1)"
         numlabel.textAlignment = NSTextAlignment.center
         numlabel.font = UIFont(name: "NotoSansUI", size: 25.0)!
-        //calculate frame
-        numlabel.frame = CGRect(x: xoffset, y: ypos, width: 40, height: 80)
+        numlabel.frame = CGRect(x: xoffset, y: ypos, width: 66, height: 80)
         
         self.addSubview(numlabel)
         
-        //image는 어떻게 할지 나중에.
+        //image는 어떻게 할지 나중에. ! 미리 다운받아놓을 수 있도록...
         
         let cellview = UIView()
-        cellview.layer.cornerRadius = 10
+        cellview.layer.cornerRadius = 15
         cellview.layer.borderColor = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0).cgColor
-        cellview.layer.borderWidth = 1.5
-        cellview.frame = CGRect(x: 66, y: ypos + 10, width : 301, height: 60)
+        cellview.layer.borderWidth = 2.5
+        cellview.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+        cellview.frame = CGRect(x: 66, y: ypos + 10, width : 301, height: 80)
         self.addSubview(cellview)
         
+        
+        let profileimgview = UIImageView()
+        profileimgview.image = UIImage(named: "profile.png")
+        profileimgview.frame = CGRect(x:10, y:10, width: 60, height: 60)
+        profileimgview.clipsToBounds = true
+        profileimgview.layer.cornerRadius = profileimgview.frame.width / 2
+        
+        if rankuser.profileImg != nil {
+            Storage.storage().reference(withPath: "profileImages/" + rankuser.profileImg!).downloadURL { (url, error) in
+                profileimgview.kf.setImage(with: url)
+                cellview.addSubview(profileimgview)
+            }
+        }
+
+        cellview.addSubview(profileimgview)
         
         
         let namelabel = UILabel()
@@ -79,9 +95,22 @@ class RankListView: UIScrollView {
         namelabel.font = UIFont(name: "NotoSans", size: 17.0)!
         namelabel.textColor = UIColor.darkGray
         namelabel.sizeToFit()
-        //let frame = CGRect(x: 200, y: ypos + 30, width: namelabel.frame.width, height: namelabel.frame.height)
-        namelabel.frame.origin = CGPoint(x: 22, y: 20)
+        namelabel.frame.origin = CGPoint(x: 85, y: 30)
         cellview.addSubview(namelabel)
+        
+        let likenumlabel = UILabel()
+        likenumlabel.text = String(describing: rankuser.likes!)
+        likenumlabel.textAlignment = NSTextAlignment.center
+        likenumlabel.font = UIFont(name: "NotoSansUI", size: 17.0)!
+        likenumlabel.sizeToFit()
+        likenumlabel.frame.origin = CGPoint(x:260-likenumlabel.frame.width, y : 30)
+        cellview.addSubview(likenumlabel)
+        
+        let heartimgview = UIImageView()
+        heartimgview.image = #imageLiteral(resourceName: "emptyheart")
+        heartimgview.sizeToFit()
+        heartimgview.frame.origin = CGPoint(x:260, y:30)
+        cellview.addSubview(heartimgview)
         
         
     }

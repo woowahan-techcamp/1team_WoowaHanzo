@@ -32,7 +32,7 @@ class RankUser {
     init(snapshot: DataSnapshot) {
         let snapshotValue = snapshot.value as! [String: AnyObject]
         self.email = snapshotValue["email"] as! String
-        self.likes = snapshotValue["likes"] as? Int ?? nil
+        self.likes = snapshotValue["likes"] as? Int ?? 0
         self.profileImg = snapshotValue["profileImg"] as? String ?? nil
         self.sayhi = snapshotValue["sayhi"] as? String ?? nil
         self.nickName = snapshotValue["username"] as! String
