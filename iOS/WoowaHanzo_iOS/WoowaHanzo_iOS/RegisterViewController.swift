@@ -28,7 +28,8 @@ class RegisterViewController: UIViewController,NVActivityIndicatorViewable {
         pwCheckLabel.isHidden = true
         emailCheckLabel.isHidden = true
         
-        
+        userSayTextView.layer.borderWidth = 1.0
+        userSayTextView.layer.borderColor = UIColor(red: 184/255, green: 184/255, blue: 184/255, alpha: 1).cgColor
         // Do any additional setup after loading the view.
     }
     

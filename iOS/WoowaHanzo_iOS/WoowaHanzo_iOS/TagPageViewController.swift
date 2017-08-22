@@ -20,7 +20,7 @@ class TagPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(getTagResult(_ :)), name: NSNotification.Name(rawValue: "tagResult"), object: nil)
         
         let color = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0)
@@ -48,11 +48,11 @@ class TagPageViewController: UIViewController {
                 self.tagListView.addTag(text:"태그를 추가해주세요.", target: self, backgroundColor: UIColor.white, textColor: color)
             }
         })
-
+        
         
     }
     
-
+    
     func handleTap(sender: UITapGestureRecognizer) {
         if let a = (sender.view as? UILabel)?.text {
             tagName = a
@@ -78,20 +78,23 @@ class TagPageViewController: UIViewController {
         tagResultArray = []
         self.ref = Database.database().reference().child("tagQuery")
         let refHandle = ref.observe(DataEventType.value, with: { (snapshot) in
-            let postDict = snapshot.value as! [String : Any]
-            if let result = snapshot.childSnapshot(forPath: notification.userInfo?["key"] as! String).childSnapshot(forPath: "queryResult").value {
-                self.tagResultArray = []
-                //print(result as? [String])//print(self.tagResultArray)
-                self.tagResultArray = result as? [String]
-                //print(self.tagResultArray)
-                
+            if snapshot.hasChildren(){
+                let postDict = snapshot.value as! [String : Any]
+                if let result = snapshot.childSnapshot(forPath: notification.userInfo?["key"] as! String).childSnapshot(forPath: "queryResult").value {
+                    self.tagResultArray = []
+                    //print(result as? [String])//print(self.tagResultArray)
+                    self.tagResultArray = result as? [String]
+                    //print(self.tagResultArray)
+                    
+                }
+                if (self.tagResultArray?.count ?? 0) > 1 {
+                    print("send table view controller tag array")
+                    print(self.tagResultArray)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sendResultViewController"), object: self, userInfo: ["tagResultArray": self.tagResultArray])
+                }
             }
-            if (self.tagResultArray?.count ?? 0) > 1 {
-                print("send table view controller tag array")
-                print(self.tagResultArray)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sendResultViewController"), object: self, userInfo: ["tagResultArray": self.tagResultArray])
-            }
-        })
+            })
+        
         
     }
     //    func tap(sender:UIGestureRecognizer)
@@ -104,7 +107,7 @@ class TagPageViewController: UIViewController {
     //        let label = (sender.view as! UILabel)
     //        print("long press from \(label.text!)")
     //    }
-        
+    
     @IBAction func tagButtonTouched(_ sender: Any) {
         let storyboard = UIStoryboard(name: "SearchPage", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "searchView")
