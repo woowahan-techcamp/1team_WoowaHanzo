@@ -19,6 +19,7 @@ class UserListView: UIScrollView {
     var xoffset = 0
     var yoffset = 100
     var ypos = 100
+    let color = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0)
     
     
     override init(frame:CGRect)
@@ -61,6 +62,10 @@ class UserListView: UIScrollView {
         
         //image는 어떻게 할지 나중에. ! 미리 다운받아놓을 수 있도록...
         
+        
+        var inypos = 0
+        
+        
         let cellview = UIView()
         cellview.layer.borderColor = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0).cgColor
         cellview.layer.borderWidth = 1
@@ -71,33 +76,48 @@ class UserListView: UIScrollView {
         
         let profileimgview = UIImageView()
         profileimgview.image = UIImage(named: "profile.png")
-        profileimgview.frame = CGRect(x:10, y:10, width: 60, height: 60)
+        profileimgview.frame = CGRect(x:10, y:inypos, width: 60, height: 60)
         profileimgview.clipsToBounds = true
         profileimgview.layer.cornerRadius = profileimgview.frame.width / 2
         
-        
+        //사진 나중에 업데이트해주어야 함.
         //profimag!??
-        if user != nil {
-            Storage.storage().reference(withPath: "profileImages/" + user.profileImg!).downloadURL { (url, error) in
-                profileimgview.kf.setImage(with: url)
-                cellview.addSubview(profileimgview)
-            }
-        }
+//        if user != nil {
+//            Storage.storage().reference(withPath: "profileImages/" + user.profileImg!).downloadURL { (url, error) in
+//                profileimgview.kf.setImage(with: url)
+//                cellview.addSubview(profileimgview)
+//            }
+//        }
         
         cellview.addSubview(profileimgview)
+        var lastview : UIView =  profileimgview
+        inypos = inypos + Int(lastview.frame.size.height) + 10
         
         
         let textview = UITextView()
         textview.text = user.contents
         textview.font = UIFont(name: "NotoSans", size: 17.0)!
+        textview.isScrollEnabled = false
         textview.sizeToFit()
-        textview.frame.origin = CGPoint(x:0, y:0)
+        textview.frame.origin = CGPoint(x:0, y:inypos)
         cellview.addSubview(textview)
+        lastview = textview
+        inypos = inypos + Int(lastview.frame.size.height) + 10
         
+        let tagListView = TagPageView2(frame: CGRect(x: 0, y: inypos, width: Int(cellview.frame.width), height: 70))
+        for i in user.tags!{
+            tagListView.addTag(text: "#"+i, target: self, backgroundColor: UIColor.white, textColor: color)
+        }
+        tagListView.frame.size.height = tagListView.contentSize.height
+        tagListView.layer.borderWidth = 0.5
+        tagListView.layer.borderColor = UIColor.blue.cgColor
+        cellview.addSubview(tagListView)
+        lastview = tagListView
+        inypos = inypos + Int(lastview.frame.size.height) + 10
+
         
-        
-        cellview.frame.size.height = textview.frame.size.height
-        ypos = ypos + Int(textview.frame.size.height) + 10
+        cellview.frame.size.height = lastview.frame.origin.y + lastview.frame.size.height
+        ypos = ypos + Int(cellview.frame.size.height) + 10
         self.contentSize = CGSize(width: Int(self.frame.width), height: yoffset + ypos)
         
 //        let numlabel = UILabel()
