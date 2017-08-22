@@ -159,7 +159,6 @@ class FirebaseModel{
         //나중에 Likes가 확보되면  likes로 바꾸기.
         self.ref.queryOrdered(byChild: "username").observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
-                print(result)
                 for child in result {
                     let rankuser = RankUser(snapshot: child)
                     rankUserList.append(rankuser)

@@ -14,11 +14,7 @@ class RankPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "rankusers"), object: nil)
-        
-        FirebaseModel().loadUsers()
-        
         rankListView = RankListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        self.view.addSubview(rankListView)
     }
     override func viewWillAppear(_ animated: Bool) {
         FirebaseModel().loadUsers()
@@ -32,8 +28,7 @@ class RankPageViewController: UIViewController {
     
     func viewload(_ notification: Notification){
         let rankuserlist = notification.userInfo?["rankusers"] as? [RankUser] ?? [RankUser]()
-        print(rankuserlist.count)
-        print(rankuserlist)
+        print("\(rankuserlist.count)개의 랭크 데이터가 존재합니다.")
         rankListView.addRankUserList(rankusers: rankuserlist)
     }
 
