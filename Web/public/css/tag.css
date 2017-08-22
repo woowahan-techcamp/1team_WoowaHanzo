@@ -4,7 +4,7 @@
 }
 
 /*이렇게 하면 안되지만...*/
-.container_box {
+div .post {
   opacity: 1;
 }
 
@@ -28,5 +28,5 @@
   .container_box {
     /*width: 100%;*/
   }
-  
+
 }
