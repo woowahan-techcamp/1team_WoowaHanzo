@@ -14,9 +14,7 @@ class MyPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UINavigationBar.appearance().backgroundColor = UIColor.white
-    
-        
-        // Do any additional setup after loading the view.
+        self.title = UserDefaults.standard.string(forKey: "userNickName")
     }
     
     @IBAction func logout(_ sender: Any) {
