@@ -40,7 +40,7 @@ exports.getTagQuery = functions.database.ref("/tagQuery/{queryId}/tag")
 
     var key = event.data.ref.parent.key;
     return admin.database().ref("/tagQuery/" + key).once("value").then(snapshot => {
-      var ret = [1];
+      var ret = ["1"];
       var updates = {};
       updates["/tagQuery/" + key + "/queryResult"] = ret;
       console.log(snapshot.key);
