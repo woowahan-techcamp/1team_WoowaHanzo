@@ -316,7 +316,7 @@ function loadUserProfile(uid) {
 
 var count = 0;
 
-function loadPosts(snapshot) {
+function loadActualPost(snapshot, likeObject) {
   var storageRef = firebase.storage().ref();
 
   var buffer = snapshot.val();
@@ -333,7 +333,7 @@ function loadPosts(snapshot) {
   // replacing new lines with line breaks
   buffer["body"] = buffer["body"].replace(/\n/g, "<br>");
   buffer["time"] = getCurrentTime(-buffer["time"]);
-
+	buffer["likes"] = likeObject.val().likes ? likeObject.val().likes : 0;
 	if(!$("#post_" + buffer.id).length) {
 		$(".container_box").append(pageObject.postTemplate(buffer));
 	}
@@ -366,14 +366,30 @@ function loadPosts(snapshot) {
 		update["/likeRequest/" + requestKey + "/result/state"] = "default";
 		firebase.database().ref().update(update).then(function(evt) {
 			firebase.database().ref("/likeRequest/" + this.requestKey + "/result").on("value", function(snapshot) {
+				if(!snapshot.val()) return;
+				if(snapshot.val().state == "default") return;
 				console.log(snapshot.val());
 				console.log(this.target.outerHTML);
 				$(this.target).parent().children(".like_number").html(snapshot.val().count);
+				if(snapshot.val().state == "true") {
+					$(this.target).parent().children(".like_btn").addClass("clicked_like_btn");
+				} else {
+					$(this.target).parent().children(".like_btn").removeClass("clicked_like_btn");
+				}
+				firebase.database().ref("/likeRequest/" + this.requestKey).off("value");
+				firebase.database().ref("/likeRequest/" + this.requestKey).remove();
 			}.bind(this));
 			console.log("request made!");
 
 		}.bind(bufferObject));
 	});
+
+	if(firebase.auth().currentUser) {
+		if(likeObject.val().userList.indexOf(firebase.auth().currentUser.uid) >= 0) {
+			like_button.classList.add("clicked_like_btn");
+		}
+	}
+
 
   if(buffer.images) {
     // only three images are loaded at a time
@@ -472,6 +488,12 @@ function loadPosts(snapshot) {
 	addTagListeners(curPost);
 
   resizeThumbnails();
+}
+
+function loadPosts(snapshot) {
+	firebase.database().ref("/postLikes/" + snapshot.key).once("value").then((likeObject) => {
+		loadActualPost(snapshot, likeObject);
+	});
 }
 
 document.addEventListener("DOMContentLoaded", function(evt) {

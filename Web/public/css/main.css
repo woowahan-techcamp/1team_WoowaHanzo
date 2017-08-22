@@ -431,6 +431,10 @@ div.img-divgo{
   padding: 10px 15px;
 }
 
+.clicked_like_btn {
+  color: #3498db;
+}
+
 .like_btn:hover {
   cursor: pointer;
 }

@@ -8,6 +8,8 @@ class PageObject {
     this.postTemplate;
     this.galleryURLs = [];
     this.galleryIndex = 0;
+    this.pastTime = undefined;
+    this.futureTime = undefined;
 
     this.init();
 
