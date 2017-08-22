@@ -35,7 +35,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sS8-WM-45f" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="랭킹" image="Icon" id="bV0-MP-4RP"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="n3d-CD-H7l">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="n3d-CD-H7l">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

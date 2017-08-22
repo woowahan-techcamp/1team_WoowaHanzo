@@ -36,6 +36,7 @@
 		98895BEB1F4AEDDD000D1E15 /* TabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98895BEA1F4AEDDD000D1E15 /* TabBarControllerViewController.swift */; };
 		98895BED1F4BB543000D1E15 /* RankModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98895BEC1F4BB543000D1E15 /* RankModel.swift */; };
 		98895BF11F4BC2E3000D1E15 /* RankListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98895BF01F4BC2E3000D1E15 /* RankListView.swift */; };
+		98895BF31F4C1589000D1E15 /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98895BF21F4C1589000D1E15 /* UserListView.swift */; };
 		988C70F41F4AD56E0044FEE0 /* TagResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C70F31F4AD56E0044FEE0 /* TagResultTableViewCell.swift */; };
 		988C70F61F4BAFAC0044FEE0 /* TagUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C70F51F4BAFAC0044FEE0 /* TagUser.swift */; };
 		988C713E1F4BF2BD0044FEE0 /* TagResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C713D1F4BF2BD0044FEE0 /* TagResultViewController.swift */; };
@@ -117,6 +118,7 @@
 		98895BEA1F4AEDDD000D1E15 /* TabBarControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarControllerViewController.swift; sourceTree = "<group>"; };
 		98895BEC1F4BB543000D1E15 /* RankModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankModel.swift; sourceTree = "<group>"; };
 		98895BF01F4BC2E3000D1E15 /* RankListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankListView.swift; sourceTree = "<group>"; };
+		98895BF21F4C1589000D1E15 /* UserListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
 		988C70F31F4AD56E0044FEE0 /* TagResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagResultTableViewCell.swift; sourceTree = "<group>"; };
 		988C70F51F4BAFAC0044FEE0 /* TagUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagUser.swift; sourceTree = "<group>"; };
 		988C713D1F4BF2BD0044FEE0 /* TagResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagResultViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				98ECA3AE1F4160B70069DA87 /* FoodImageCollectionViewCell.swift */,
 				98ECA3B01F4180A00069DA87 /* CounterViewer.swift */,
 				98ECA42C1F440E570069DA87 /* DateExtension.swift */,
+				98895BF21F4C1589000D1E15 /* UserListView.swift */,
 			);
 			name = MainPage;
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 				98C563CD1F39BE310017E68A /* AuthModel.swift in Sources */,
 				98895BF11F4BC2E3000D1E15 /* RankListView.swift in Sources */,
 				98ECA4421F4ACDB60069DA87 /* TagResultFoodImageCollectionViewCell.swift in Sources */,
+				98895BF31F4C1589000D1E15 /* UserListView.swift in Sources */,
 				984397641F3ACD3200743B63 /* TagFilter.swift in Sources */,
 				98ECA3AD1F4160AC0069DA87 /* TagCollectionViewCell.swift in Sources */,
 				9854BF9F1F340806008FA337 /* MyPageViewController.swift in Sources */,
