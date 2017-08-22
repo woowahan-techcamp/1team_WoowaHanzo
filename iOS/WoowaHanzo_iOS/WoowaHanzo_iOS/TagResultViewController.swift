@@ -73,7 +73,11 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
         
         
     }
-    
+    func tap(_ sender:UIGestureRecognizer)
+    {
+        let label = (sender.view as! UILabel)
+        print("tap from \(label.text!)")
+    }
     
 }
 extension TagResultViewController : UITableViewDelegate,UITableViewDataSource{
@@ -95,9 +99,9 @@ extension TagResultViewController : UITableViewDelegate,UITableViewDataSource{
             cell.tagResultNickNameLabel.text = TagUser.tagUsers[indexPath.row].nickName
             cell.tagResultTextView.text =  TagUser.tagUsers[indexPath.row].contents
             cell.tagResultTimeLabel.text =  String(describing: Date().postTimeDisplay(timestamp: TagUser.tagUsers[indexPath.row].postDate))
-            print(TagUser.tagUsers[indexPath.row].contents)
+            print(TagUser.tagUsers[indexPath.row].tags)
             //tableView.reloadData()
-            if let tag = User.users[indexPath.row].tags{
+            if let tag = TagUser.tagUsers[indexPath.row].tags{
                 for index in tag{
                     cell.tagResultTagView.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.gray)
                 }

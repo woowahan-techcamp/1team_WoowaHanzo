@@ -52,6 +52,7 @@ class TagPageViewController: UIViewController {
         
     }
     
+
     func handleTap(sender: UITapGestureRecognizer) {
         if let a = (sender.view as? UILabel)?.text {
             tagName = a
