@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import Kingfisher
-
+import YPImagePicker
 
 class MyPageViewController: UIViewController {
     
@@ -29,12 +29,13 @@ class MyPageViewController: UIViewController {
             // your time-consuming code here
             sleep(1) //Do NOT use sleep on the main thread in real code!!!
             self.imageIndicator.stopAnimating()
-        
+            
         }
         FirebaseModel().loadProfileImageFromUsers()
         UINavigationBar.appearance().backgroundColor = UIColor.white
         if AuthModel.isLoginStatus(){
             self.navigationController?.navigationBar.topItem?.title = UserDefaults.standard.string(forKey: "userNickName")
+            
             
         }
         else {
@@ -100,12 +101,23 @@ class MyPageViewController: UIViewController {
         
     }
     func imageViewTouched(){
-        print("imageTouched")
+        print("touched")
+        let picker = YPImagePicker()
+        picker.didSelectImage = { img in
+            // image picked
+            self.myProfileImageView.image = img
+            picker.dismiss(animated: true, completion: nil)
+        }
+        picker.didSelectVideo = { videoData in
+            // video picked
+        }
+        present(picker, animated: true, completion: nil)
     }
     
-    
-    
-    
+
+
+
+
 }
 
 
