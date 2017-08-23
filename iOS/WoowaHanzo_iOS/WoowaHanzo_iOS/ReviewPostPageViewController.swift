@@ -68,11 +68,11 @@ class ReviewPostPageViewController: UIViewController {
             present(alert, animated: true, completion: nil)
         }
         else{
-            //로그인이 되었다면? 내 마이페이지를 보여줘야함.
+            //로그인이 되었다면? 내 마이페이지를 보여줘야함. - did
             
             if shouldloadview{
-                
-                
+                //여기에 프로필 이미지
+                FirebaseModel().loadProfileImageFromUsers()
                 shouldloadview = false
                 myCollectionView.dataSource = self
                 myCollectionView.delegate = self
@@ -176,19 +176,8 @@ class ReviewPostPageViewController: UIViewController {
         else{
             //로그인이 되었다면? 내 마이페이지를 보여줘야함.
             
-            
             if shouldloadview{
-                let userID = Auth.auth().currentUser?.uid
-                ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-                    // Get user value
-                    let value = snapshot.value as? NSDictionary
-                    let profileImg = value?["profileImg"] as? String ?? ""
-                    print("ddd\(profileImg)")
-                    
-                    // ...
-                }) { (error) in
-                    print(error.localizedDescription)
-                }
+               
                 shouldloadview = false
                 myCollectionView.dataSource = self
                 myCollectionView.delegate = self
