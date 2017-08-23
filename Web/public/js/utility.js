@@ -122,10 +122,12 @@ function handleThumbnailNumber($curPost, imagenumber) {
 		thumbnail_cover.style.display = "none";
 	} else {
 		thumbnail_cover.innerHTML = "+" + (imagenumber - 3);
-		thumbnail_cover.addEventListener("click", function(evt) {
+		console.log('imagenumber: ', imagenumber);
+		$(thumbnail_cover).on("mousedown touchstart", function(evt) {
+			console.log('thumbnail_cover mousedown...');
 			var thumbnail = evt.target.parentElement;
 			var image = thumbnail.querySelector("img");
-			image.click();
+			$(image).trigger("mousedown");
 		})
 	}
 
@@ -192,7 +194,7 @@ function fixExifOrientation($img) {
 
 
 function resizeThumbnails() {
-  $(".image_thumbnails td").each(function(index, elem) {"click"
+  $(".image_thumbnails td").each(function(index, elem) {"mousedown touchstart"
 		var thumbnailHolder = elem.parentElement;
 		var td = thumbnailHolder.querySelector("td");
     var bufferWidth = td.offsetWidth;
@@ -253,7 +255,7 @@ function getIdFromPostId(id) {
 function addTagListeners(curPost) {
 	var tags = curPost.querySelectorAll(".tagger");
 	for(var i = 0; i < tags.length; ++i) {
-		tags[i].addEventListener("click", function(evt) {
+		$(tags[i]).on("mousedown touchstart", function(evt) {
 			var tagValue = evt.target.innerHTML.trim();
 			var queryKey = firebase.database().ref().child("tagQuery").push().key;
 
@@ -392,7 +394,7 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 
 	// add functionality to like button
 	var like_button = curPost.querySelector(".like_btn");
-	like_button.addEventListener("click", function(event) {
+	$(like_button).on("mousedown touchstart", function(event) {
 		var id = event.target.parentElement.parentElement.id;
 		var requestKey = firebase.database().ref().child("likeRequest").push().key;
 		var bufferObject = {};
@@ -466,7 +468,7 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 
           }.bind(this));
 
-					imageParent.on("click", function(evt) {
+					imageParent.on("mousedown touchstart", function(evt) {
 						var curImage = evt.target;
 
 						showGallery(pageObject.imageUrls[this.id], this.i);
@@ -554,7 +556,7 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 		resizeThumbnails();
 	});
 
-	$("#galleryoverlay").on("click", function(evt) {
+	$("#galleryoverlay").on("mousedown touchstart", function(evt) {
 		$('#galleryoverlay').css('display', 'none');
 		$('#justblackbackground').css('display', 'none');
 		$('#actualimage').css('display', 'none');
@@ -590,16 +592,16 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 	});
 
 
-	$("#actualimage").on("click", function(evt) {
+	$("#actualimage").on("mousedown touchstart", function(evt) {
 		evt.stopPropagation();
 		var mouseX = evt.clientX;
 		var actualimage = document.querySelector("#actualimage");
 		mouseX -= actualimage.getBoundingClientRect().left;
 		var width = actualimage.offsetWidth;
 		if(mouseX < width / 2) {
-			$("#navleft").click();
+			$("#navleft").trigger("mousedown");
 		} else {
-			$("#navright").click();
+			$("#navright").trigger("mousedown");
 		}
 	});
 
@@ -615,19 +617,19 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 
 	$(window).keydown(function(e) {
 		if(e.keyCode == 37) {
-			$('#navleft').click();
+			$('#navleft').trigger("mousedown");
 		} else if (e.keyCode == 39) {
-			$('#navright').click();
+			$('#navright').trigger("mousedown");
 		}
 	});
 
 
-	$("#navleft").on("click", function(evt) {
+	$("#navleft").on("mousedown touchstart", function(evt) {
 		evt.stopPropagation();
 		galleryLeft();
 	});
 
-	$("#navright").on("click", function(evt) {
+	$("#navright").on("mousedown touchstart", function(evt) {
 		evt.stopPropagation();
 		galleryRight();
 	});
