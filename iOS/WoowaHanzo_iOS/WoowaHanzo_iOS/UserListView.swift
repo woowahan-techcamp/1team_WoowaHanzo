@@ -63,7 +63,7 @@ class UserListView: UIScrollView {
         //image는 어떻게 할지 나중에. ! 미리 다운받아놓을 수 있도록...
         
         
-        var inypos = 0
+        var inypos = 10
         
         
         let cellview = UIView()
@@ -98,8 +98,8 @@ class UserListView: UIScrollView {
         let textview = UITextView()
         textview.text = user.contents
         textview.font = UIFont(name: "NotoSans", size: 16.0)!
-        textview.frame.origin = CGPoint(x:0, y:inypos)
-        textview.frame.size = CGSize(width: self.frame.width, height: 70)
+        textview.frame.origin = CGPoint(x:8, y:inypos)
+        textview.frame.size = CGSize(width: self.frame.width - 16, height: 70)
         let contentSize = textview.sizeThatFits(textview.bounds.size)
         var frame = textview.frame
         frame.size.height = max(contentSize.height, 70)
@@ -111,7 +111,7 @@ class UserListView: UIScrollView {
         textview.isEditable = false
         cellview.addSubview(textview)
         lastview = textview
-        inypos = inypos + Int(lastview.frame.size.height) + 10
+        inypos = inypos + Int(lastview.frame.size.height) + 5
         
         let tagListView = TagPageView2(frame: CGRect(x: 0, y: inypos, width: Int(cellview.frame.width), height: 70))
         for i in user.tags!{
@@ -122,7 +122,7 @@ class UserListView: UIScrollView {
         tagListView.layer.borderColor = UIColor.blue.cgColor
         cellview.addSubview(tagListView)
         lastview = tagListView
-        inypos = inypos + Int(lastview.frame.size.height) + 10
+        inypos = inypos + Int(lastview.frame.size.height) + 5
 
         
         let scrollview = UIScrollView()
@@ -138,16 +138,15 @@ class UserListView: UIScrollView {
                 let imageview = UIImageView()
                 Storage.storage().reference(withPath: "images/" + name).downloadURL { (url, error) in
                     imageview.contentMode = UIViewContentMode.scaleAspectFill
-                    //fill을 안하면 Horizontal scroll이 가능하다!
                     imageview.clipsToBounds = true
                     imageview.kf.setImage(with: url)
-                    //images.append(imageview)
                     imageview.frame = CGRect(x:10 + index * (imgsize + 10), y:0, width: imgsize, height: imgsize)
                     imageview.layer.cornerRadius = 3
                     
 
                     scrollview.addSubview(imageview)
-                    scrollview.contentSize = CGSize(width: Int(10 + user.imageArray!.count * (imgsize + 10)), height: imgsize)
+                    scrollview.contentSize = CGSize(width: max(Int(scrollview.frame.width + 1),Int(10 + user.imageArray!.count * (imgsize + 25))), height: imgsize)
+                    //contentsize를 크게 줘야 bouncing이 항상 가능하다.
                     cellview.addSubview(scrollview)
                 }
             }
@@ -159,8 +158,14 @@ class UserListView: UIScrollView {
         lastview = scrollview
         inypos = inypos + Int(lastview.frame.size.height) + 10
 
+        let likebutton = LikeButton()
+        //피드에 따라 기본 그림이 달라져야 한다. 나중에 설정해주기.
+        likebutton.whenButtonTouched(postkey: user.key)
+        likebutton.frame = CGRect(x: 20, y: inypos, width: 30, height: 30)
+        cellview.addSubview(likebutton)
+        lastview = likebutton
+        inypos = inypos + Int(lastview.frame.size.height) + 10
         
-
         
         
         
@@ -229,40 +234,4 @@ class UserListView: UIScrollView {
         
         
     }
-    
-    func addTag(text:String, target:AnyObject, backgroundColor:UIColor,textColor:UIColor)
-    {
-        //instantiate label
-        //you can customize your label here! but make sure everything fit. Default row height is 30.
-        let label = UILabel()
-        label.clipsToBounds = true
-        label.backgroundColor = backgroundColor
-        label.text = text
-        label.textColor = textColor
-        label.sizeToFit()
-        label.textAlignment = NSTextAlignment.center
-        label.layer.cornerRadius = 10
-        label.layer.borderColor = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0).cgColor
-        label.layer.borderWidth = 1.5
-        let tapGesture = UITapGestureRecognizer(target: target, action: #selector(TagPageViewController.handleTap))
-        label.addGestureRecognizer(tapGesture)
-        label.isUserInteractionEnabled = true
-        self.tags.append(label)
-        
-        //calculate frame
-        //        label.frame = CGRect(x: label.frame.origin.x, y: label.frame.origin.y , width: label.frame.width + tagCombinedMargin, height: rowHeight - tagVerticalPadding)
-        //        if self.tags.count == 0
-        //        {
-        //            label.frame = CGRect(x: hashtagsOffset.left, y: hashtagsOffset.top, width: label.frame.width, height: label.frame.height)
-        //            self.addSubview(label)
-        //        }
-        //        else
-        //        {
-        //            label.frame = self.generateFrameAtIndex(index: tags.count-1, rowNumber: &currentRow)
-        //            self.addSubview(label)
-        //        }
-    }
-    
-    
-    
 }
