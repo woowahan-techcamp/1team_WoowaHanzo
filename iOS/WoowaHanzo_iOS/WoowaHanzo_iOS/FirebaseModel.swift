@@ -39,14 +39,14 @@ class FirebaseModel{
             
             // Request Image
             DispatchQueue.global().async{
-            manager.requestImageData(for: asset, options: requestOptions, resultHandler: { (data, str, orientation, info) -> Void in
-                if let imagedata = data{
-                    let metadata = StorageMetadata()
-                    metadata.contentType = "image/jpeg"
-                    let ref = Storage.storage().reference(withPath: "images/" + names[i]).putData(imagedata, metadata:metadata)
-                    ref.resume()
-                }
-            })
+                manager.requestImageData(for: asset, options: requestOptions, resultHandler: { (data, str, orientation, info) -> Void in
+                    if let imagedata = data{
+                        let metadata = StorageMetadata()
+                        metadata.contentType = "image/jpeg"
+                        let ref = Storage.storage().reference(withPath: "images/" + names[i]).putData(imagedata, metadata:metadata)
+                        ref.resume()
+                    }
+                })
             }
         }
     }
@@ -60,7 +60,7 @@ class FirebaseModel{
         })
         return thumbnail
     }
-
+    
     func tagQuery(tagName:String){
         
         ref = Database.database().reference()
@@ -71,7 +71,7 @@ class FirebaseModel{
         ref.updateChildValues(childUpdates)
         print("send tag result")
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResult"), object: self, userInfo: ["key":key])
-
+        
     }
     
     func loadFeed(){
@@ -86,72 +86,72 @@ class FirebaseModel{
                     var userKey = child.key as! String
                     //print(child.childSnapshot(forPath: "author").value!)
                     let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil, postDate : child.childSnapshot(forPath: "time").value as! Int, uid: child.childSnapshot(forPath: "uid").value as! String)
-                        User.users.append(user)
+                    User.users.append(user)
                     
                     
                     
-                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
                 }
-               
+                
                 
                 
             }
         })
         
-            
-    }
-//    func loadFeedTag(){
-//        
-//        self.ref = Database.database().reference().child("posts")
-//        
-//        self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
-//            if let result = snapshot.children.allObjects as? [DataSnapshot]{
-//                User.users = [User]()
-//                for child in result {
-//                    //print(child)
-//                    var userKey = child.key as! String
-//                    //print(child.childSnapshot(forPath: "author").value!)
-//                    let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil, postDate : child.childSnapshot(forPath: "time").value as! Int)
-//                    User.users.append(user)
-//                    
-//                    
-//                    //태그!!
-//                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResult"), object: nil)
-//                }
-//                
-//                
-//                
-//            }
-//        })
         
-
-//    }
-
-//    func loadTagFeed(){
-//        self.ref = Database.database().reference().child("posts")
-//        
-//        self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
-//            if let result = snapshot.children.allObjects as? [DataSnapshot]{
-//                User.users = [User]()
-//                for child in result {
-//                    //print(child)
-//                    var userKey = child.key as! String
-//                    //print(child.childSnapshot(forPath: "author").value!)
-//                    let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil, postDate : child.childSnapshot(forPath: "time").value as! Int)
-//                    User.users.append(user)
-//                    
-//                    
-//                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
-//                }
-//                
-//                
-//                
-//            }
-//        })
-//        
-//
-//    }
-
+    }
+    //    func loadFeedTag(){
+    //
+    //        self.ref = Database.database().reference().child("posts")
+    //
+    //        self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
+    //            if let result = snapshot.children.allObjects as? [DataSnapshot]{
+    //                User.users = [User]()
+    //                for child in result {
+    //                    //print(child)
+    //                    var userKey = child.key as! String
+    //                    //print(child.childSnapshot(forPath: "author").value!)
+    //                    let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil, postDate : child.childSnapshot(forPath: "time").value as! Int)
+    //                    User.users.append(user)
+    //
+    //
+    //                    //태그!!
+    //                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResult"), object: nil)
+    //                }
+    //
+    //
+    //
+    //            }
+    //        })
+    
+    
+    //    }
+    
+    //    func loadTagFeed(){
+    //        self.ref = Database.database().reference().child("posts")
+    //
+    //        self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
+    //            if let result = snapshot.children.allObjects as? [DataSnapshot]{
+    //                User.users = [User]()
+    //                for child in result {
+    //                    //print(child)
+    //                    var userKey = child.key as! String
+    //                    //print(child.childSnapshot(forPath: "author").value!)
+    //                    let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil, postDate : child.childSnapshot(forPath: "time").value as! Int)
+    //                    User.users.append(user)
+    //
+    //
+    //                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
+    //                }
+    //
+    //
+    //
+    //            }
+    //        })
+    //
+    //
+    //    }
+    
     
     func loadUsers(){
         print("loadUsers called")
@@ -174,26 +174,28 @@ class FirebaseModel{
     
     func loadUsers2(){
         print("loadUsers2 called")
-        var UserList = [User]()
+        
         self.ref = Database.database().reference().child("posts")
         //나중에 Likes가 확보되면  likes로 바꾸기.
         self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
                 for child in result {
                     let user = User(snapshot: child)
-                    UserList.append(user)
+                    User.users.append(user)
                 }
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "users2"), object: self, userInfo: ["users":UserList])
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "users2"), object: self)
             }
         })
-    func likeRequest(){
-        ref = Database.database().reference()
-        let key = ref.child("likeRequest").childByAutoId().key
-        //print(key)
-        let post = ["postId": "1" ,"result": ["count":0,"state":"default"],"uid":Auth.auth().currentUser?.uid] as [String : Any]
-        let childUpdates = ["/likeRequest/\(key)": post]
-        ref.updateChildValues(childUpdates)
-        print("")
-        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResult"), object: self, userInfo: ["key":key])
     }
+        func likeRequest(){
+            ref = Database.database().reference()
+            let key = ref.child("likeRequest").childByAutoId().key
+            //print(key)
+            let post = ["postId": "1" ,"result": ["count":0,"state":"default"],"uid":Auth.auth().currentUser?.uid] as [String : Any]
+            let childUpdates = ["/likeRequest/\(key)": post]
+            ref.updateChildValues(childUpdates)
+            print("")
+            //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResult"), object: self, userInfo: ["key":key])
+        }
+    
 }

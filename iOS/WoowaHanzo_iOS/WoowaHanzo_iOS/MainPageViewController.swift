@@ -46,9 +46,9 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
   
    
     func viewload(_ notification: Notification){
-        let userlist = notification.userInfo?["users"] as? [User] ?? [User]()
-        print("\(userlist.count)개의 피드 데이터가 존재합니다.")
-        userListView.addUserList(users: userlist)
+        //let userlist = notification.userInfo?["users"] as? [User] ?? [User]()
+        //print("\(userlist.count)개의 피드 데이터가 존재합니다.")
+        userListView.addUserList(users: User.users)
         
     }
     
