@@ -38,7 +38,7 @@ extension TagResultTableViewCell : UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         print("A")
-        if let count = TagUser.tagUsers[userid].imageArray?.count{
+        if let count = User.tagUsers[userid].imageArray?.count{
             print(count)
             return count
         }
@@ -46,8 +46,8 @@ extension TagResultTableViewCell : UICollectionViewDelegate, UICollectionViewDat
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "foodImagCell", for: indexPath) as! TagResultCollectionViewCell
-        print(TagUser.tagUsers[userid].imageArray?.count)
-        if let imageArray = TagUser.tagUsers[userid].imageArray{
+        print(User.tagUsers[userid].imageArray?.count)
+        if let imageArray = User.tagUsers[userid].imageArray{
             //print(User.users[userid])
             //print("A")
             let ref = Storage.storage().reference(withPath: "images/" + imageArray[indexPath.row]).downloadURL { (url, error) in

@@ -12,6 +12,7 @@ import Firebase
 class User {
     
     static var users = Array<User>()
+    static var tagUsers = Array<User>()
     
     let key : String
     let nickName : String

@@ -99,7 +99,12 @@ class RankListView: UIScrollView {
         namelabel.font = UIFont(name: "NotoSans", size: 17.0)!
         namelabel.textColor = UIColor.darkGray
         namelabel.sizeToFit()
+        namelabel.frame.size.height = namelabel.frame.size.height + 10
         namelabel.frame.origin = CGPoint(x: 85, y: 37)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(nickNameTouched))
+        namelabel.addGestureRecognizer(tap)
+        namelabel.isUserInteractionEnabled = true
+        
         cellview.addSubview(namelabel)
         
         let ranknamelabel = UILabel()
@@ -127,6 +132,9 @@ class RankListView: UIScrollView {
         cellview.addSubview(heartimgview)
         
         
+    }
+    func nickNameTouched(){
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "nickNameTouched"), object: nil, userInfo: ["nickName":self.])
     }
     
     func addTag(text:String, target:AnyObject, backgroundColor:UIColor,textColor:UIColor)

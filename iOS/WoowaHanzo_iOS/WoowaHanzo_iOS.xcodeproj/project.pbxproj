@@ -40,7 +40,6 @@
 		98895BF51F4C1E7A000D1E15 /* TagListView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98895BF41F4C1E7A000D1E15 /* TagListView2.swift */; };
 		98895BF71F4D0E0D000D1E15 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98895BF61F4D0E0D000D1E15 /* LikeButton.swift */; };
 		988C70F41F4AD56E0044FEE0 /* TagResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C70F31F4AD56E0044FEE0 /* TagResultTableViewCell.swift */; };
-		988C70F61F4BAFAC0044FEE0 /* TagUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C70F51F4BAFAC0044FEE0 /* TagUser.swift */; };
 		988C713E1F4BF2BD0044FEE0 /* TagResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C713D1F4BF2BD0044FEE0 /* TagResultViewController.swift */; };
 		9894B7611F441F2E00DAB38E /* MyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894B7601F441F2E00DAB38E /* MyCollectionCell.swift */; };
 		9894B7631F4438FE00DAB38E /* add-square_318-121632.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9894B7621F4438FE00DAB38E /* add-square_318-121632.jpg */; };
@@ -131,7 +130,6 @@
 		98895BF41F4C1E7A000D1E15 /* TagListView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListView2.swift; sourceTree = "<group>"; };
 		98895BF61F4D0E0D000D1E15 /* LikeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		988C70F31F4AD56E0044FEE0 /* TagResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagResultTableViewCell.swift; sourceTree = "<group>"; };
-		988C70F51F4BAFAC0044FEE0 /* TagUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagUser.swift; sourceTree = "<group>"; };
 		988C713D1F4BF2BD0044FEE0 /* TagResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagResultViewController.swift; sourceTree = "<group>"; };
 		9894B7601F441F2E00DAB38E /* MyCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionCell.swift; sourceTree = "<group>"; };
 		9894B7621F4438FE00DAB38E /* add-square_318-121632.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "add-square_318-121632.jpg"; sourceTree = "<group>"; };
@@ -381,7 +379,6 @@
 			children = (
 				9843975C1F39704A00743B63 /* FirebaseModel.swift */,
 				9843975F1F397F6E00743B63 /* User.swift */,
-				988C70F51F4BAFAC0044FEE0 /* TagUser.swift */,
 			);
 			name = firebase;
 			sourceTree = "<group>";
@@ -742,7 +739,6 @@
 				984397A21F3C34B800743B63 /* StringExtension.swift in Sources */,
 				98ECA3AF1F4160B70069DA87 /* FoodImageCollectionViewCell.swift in Sources */,
 				984397601F397F6E00743B63 /* User.swift in Sources */,
-				988C70F61F4BAFAC0044FEE0 /* TagUser.swift in Sources */,
 				98895BED1F4BB543000D1E15 /* RankModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

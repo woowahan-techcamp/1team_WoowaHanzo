@@ -42,27 +42,27 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
         }
 
         tagResultTableView.reloadData()
-        TagUser.tagUsers = [TagUser]()
+        User.tagUsers = [User]()
         
     }
     override func viewDidAppear(_ animated: Bool) {
         tagResultTableView.reloadData()
-        TagUser.tagUsers = [TagUser]()
+        User.tagUsers = [User]()
         
     }
     
    
     func getTagFeed(_ notification: Notification){
         
-        TagUser.tagUsers = [TagUser]()
+        User.tagUsers = [User]()
         tagFeedArray = []
         if let notiArray = notification.userInfo?["tagResultArray"] {
             tagFeedArray = notiArray as! [String]
             for i in 1..<tagFeedArray.count{
                 for j in 0..<User.users.count{
                     if User.users[j].key == tagFeedArray[i]{
-                        let tagUser = TagUser(key: tagFeedArray[i], nickName: User.users[j].nickName, contents: User.users[j].contents, tags: User.users[j].tags, imageArray: User.users[j].imageArray, postDate: User.users[j].postDate)
-                        TagUser.tagUsers.append(tagUser)
+                        let tagUser = User(key: tagFeedArray[i], nickName: User.users[j].nickName, contents: User.users[j].contents, tags: User.users[j].tags, imageArray: User.users[j].imageArray, postDate: User.users[j].postDate,uid:User.users[j].uid)
+                        User.tagUsers.append(tagUser)
                         print(User.users[j].contents)
                     }
                 }
@@ -83,24 +83,24 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
 extension TagResultViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return TagUser.tagUsers.count as? Int ?? 1
+        return User.tagUsers.count as? Int ?? 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TagResultTableViewCell
-        if TagUser.tagUsers.count > 0{
+        if User.tagUsers.count > 0{
             cell.tagResultNickNameLabel.text = " "
             cell.tagResultTextView.text = " "
             cell.tagResultTagView.reset()
             
 
             cell.userid = indexPath.row
-            cell.tagResultNickNameLabel.text = TagUser.tagUsers[indexPath.row].nickName
-            cell.tagResultTextView.text =  TagUser.tagUsers[indexPath.row].contents
-            cell.tagResultTimeLabel.text =  String(describing: Date().postTimeDisplay(timestamp: TagUser.tagUsers[indexPath.row].postDate))
+            cell.tagResultNickNameLabel.text = User.tagUsers[indexPath.row].nickName
+            cell.tagResultTextView.text =  User.tagUsers[indexPath.row].contents
+            cell.tagResultTimeLabel.text =  String(describing: Date().postTimeDisplay(timestamp: User.tagUsers[indexPath.row].postDate))
             //print(TagUser.tagUsers[indexPath.row].tags)
             //tableView.reloadData()
             //print(TagUser.tagUsers[indexPath.row].imageArray)
-            if let tag = TagUser.tagUsers[indexPath.row].tags{
+            if let tag = User.tagUsers[indexPath.row].tags{
                 for index in tag{
                     cell.tagResultTagView.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.gray)
                 }
