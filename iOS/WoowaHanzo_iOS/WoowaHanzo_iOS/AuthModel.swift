@@ -68,7 +68,14 @@ class AuthModel{
             ref.updateChildValues(childUpdates)
         }
     }
-  
+    func returnUsersUid()->String{
+        if AuthModel.isLoginStatus(){
+            return (Auth.auth().currentUser?.uid)!
+        }
+        else{
+            return " "
+        }
+    }
     
     
 }

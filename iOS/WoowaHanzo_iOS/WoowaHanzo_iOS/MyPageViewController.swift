@@ -12,7 +12,7 @@ import Firebase
 
 class MyPageViewController: UIViewController {
     
-    
+    var count  = 0
     @IBOutlet weak var myPageFeedContentsTextView: UITextView!
     @IBOutlet weak var myPageFeedTimeLabel: UILabel!
     @IBOutlet weak var myPageFeedNickNameLabel: UILabel!
@@ -26,6 +26,13 @@ class MyPageViewController: UIViewController {
         else {
             self.navigationController?.navigationBar.topItem?.title = "마이페이지"
         }
+        
+        for index in User.users{
+            if (AuthModel().returnUsersUid() == index.uid){
+                print(index.contents)
+            }
+        }
+        
         
     }
     
@@ -75,15 +82,7 @@ class MyPageViewController: UIViewController {
     }
     
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    
     
 }
 
