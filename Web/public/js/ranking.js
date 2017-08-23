@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var itemList = [];
     var storageRef = firebase.storage().ref();
     var promises = [];
-    console.log('user... ', userList[0].val());
 
     userList.forEach(function(item) {
       var itemObject = new Object();
@@ -19,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         itemObject.like = item.val().likes ? item.val().likes : 0;
 
         itemList.push(itemObject);
+        // console.log('itemObject', itemObject);
       }));
 
     });
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       var source = document.getElementById("ranking_template").innerHTML;
       var template = Handlebars.compile(source);
-      document.querySelector(".container_box").innerHTML += template(itemList);
+      document.querySelector(".ranking_box").innerHTML += template(itemList);
     });
   });
 
