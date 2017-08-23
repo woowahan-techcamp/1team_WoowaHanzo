@@ -161,28 +161,24 @@ function fixExifOrientation($img) {
                 case 5:
                     $img.addClass('flip-and-rotate-270');
 										$img.parent().css('height', $img.get(0).getBoundingClientRect().height);
-										console.log($img.get(0).getBoundingClientRect().height);
 										$img.css('margin-top', Math.abs($img.get(0).getBoundingClientRect().height - $img.height()) / 2);
 										$img.parent().css('display', 'block');
 										break;
                 case 6:
                     $img.addClass('rotate-90');
 										$img.parent().css('height', $img.get(0).getBoundingClientRect().height);
-										console.log($img.get(0).getBoundingClientRect().height);
 										$img.css('margin-top', Math.abs($img.get(0).getBoundingClientRect().height - $img.height()) / 2);
 										$img.parent().css('display', 'block');
 										break;
                 case 7:
                     $img.addClass('flip-and-rotate-90');
 										$img.parent().css('height', $img.get(0).getBoundingClientRect().height);
-										console.log($img.get(0).getBoundingClientRect().height);
 										$img.css('margin-top', Math.abs($img.get(0).getBoundingClientRect().height - $img.height()) / 2);
 										$img.parent().css('display', 'block');
 										break;
                 case 8:
                     $img.addClass('rotate-270');
 										$img.parent().css('height', $img.get(0).getBoundingClientRect().height);
-										console.log($img.get(0).getBoundingClientRect().height);
 										$img.css('margin-top', Math.abs($img.get(0).getBoundingClientRect().height - $img.height()) / 2);
 										$img.parent().css('display', 'block');
 										break;
@@ -202,7 +198,10 @@ function resizeThumbnails() {
     elem.style.height = bufferWidth + "px";
 		var thumbnail_cover = elem.querySelector(".thumbnail_cover");
     if(thumbnail_cover) {
-        thumbnail_cover.style.lineHeight = bufferWidth - 20 + "px";
+				var paddingValue = window.getComputedStyle(td, null).getPropertyValue('padding-left');
+				paddingValue = parseInt(paddingValue.substring(0, paddingValue.length - 2));
+				paddingValue *= 2;
+        thumbnail_cover.style.lineHeight = bufferWidth - paddingValue + "px";
     }
 
   });
@@ -254,7 +253,6 @@ function addTagListeners(curPost) {
 	var tags = curPost.querySelectorAll(".tagger");
 	for(var i = 0; i < tags.length; ++i) {
 		tags[i].addEventListener("click", function(evt) {
-			console.log(evt.target.innerHTML.trim());
 			var tagValue = evt.target.innerHTML.trim();
 			var queryKey = firebase.database().ref().child("tagQuery").push().key;
 
@@ -262,7 +260,6 @@ function addTagListeners(curPost) {
 			update["/tagQuery/" + queryKey + '/tag'] = tagValue;
 			update["/tagQuery/" + queryKey + '/queryResult'] = [1];
 			firebase.database().ref().update(update).then(evt => {
-				console.log("Query made!");
 				window.location.href = "./index.html?tagQuery=" + queryKey;
 			});
 		});
@@ -274,6 +271,21 @@ function loadUserProfile(uid) {
 	var ref = firebase.database().ref("/users/" + uid);
 
 	ref.once('value').then(function(snapshot) {
+		if(snapshot.val().rankName) {
+			var curPost = this.curPost;
+			var title = curPost.querySelector(".Title");
+			if(title) {
+				title.innerHTML = snapshot.val().rankName;
+			}
+		} else {
+			var curPost = this.curPost;
+			var title = curPost.querySelector(".Title");
+			if(title) {
+				title.innerHTML = "오랑캐";
+			}
+
+		}
+
 		if(snapshot.val().profileImg) {
 			pageObject.userProfileImage[this.uid] = snapshot.val().profileImg;
 			var downloadUrl = storageRef.child("profileImages/" + pageObject.userProfileImage[this.uid]).getDownloadURL();
@@ -299,13 +311,6 @@ function loadUserProfile(uid) {
 			profilePic.addEventListener("load", function(evt) {
 
 				if(prevLoaded(this) && imagesAllLoaded(evt.target)) {
-				 	console.log("fadeIn through profile");
-					// if($(".buttons_holder")) {
-					// 	$(".buttons_holder").css("display", "block");
-					// }
-					// if($(".nav_user_info")) {
-					// 	$(".nav_user_info").css("display", "block");
-					// }
 				 	fadeInPost(this);
 				}
 			}.bind($(curPost)));
@@ -336,9 +341,9 @@ function loadActualPost(snapshot, likeObject) {
   buffer["body"] = buffer["body"].replace(/\n/g, "<br>");
   buffer["time"] = getCurrentTime(-buffer["time"]);
 	if(likeObject.val()) {
-		buffer["likes"] = likeObject.val().likes ? likeObject.val().likes : 0;
+		buffer["likes"] = likeObject.val().likes ? likeObject.val().likes + "명" : "";
 	} else {
-		buffer["likes"] = 0;
+		buffer["likes"] = "";
 	}
 
 	// update current track of load time
@@ -368,7 +373,6 @@ function loadActualPost(snapshot, likeObject) {
 	var like_button = curPost.querySelector(".like_btn");
 	like_button.addEventListener("click", function(event) {
 		var id = event.target.parentElement.parentElement.id;
-		console.log(getIdFromPostId(event.target.parentElement.parentElement.id));
 		var requestKey = firebase.database().ref().child("likeRequest").push().key;
 		var bufferObject = {};
 		bufferObject.requestKey = requestKey;
@@ -383,8 +387,12 @@ function loadActualPost(snapshot, likeObject) {
 				if(!snapshot.val()) return;
 				if(snapshot.val().state == "default") return;
 				console.log(snapshot.val());
-				console.log(this.target.outerHTML);
-				$(this.target).parent().children(".like_number").html(snapshot.val().count);
+				if(snapshot.val().count > 0) {
+					$(this.target).parent().children(".like_number").html(snapshot.val().count + "명");
+				} else {
+					$(this.target).parent().children(".like_number").html("");
+				}
+
 				if(snapshot.val().state == "true") {
 					$(this.target).parent().children(".like_btn").addClass("clicked_like_btn");
 				} else {
@@ -393,7 +401,6 @@ function loadActualPost(snapshot, likeObject) {
 				firebase.database().ref("/likeRequest/" + this.requestKey).off("value");
 				firebase.database().ref("/likeRequest/" + this.requestKey).remove();
 			}.bind(this));
-			console.log("request made!");
 
 		}.bind(bufferObject));
 	});

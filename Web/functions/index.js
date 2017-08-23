@@ -75,6 +75,15 @@ exports.handlePostUpload = functions.database.ref("/posts/{postId}")
     var promises = [];
     promises.push(admin.database().ref("/postLikes/" + key + "/userList").set([1]));
     promises.push(admin.database().ref("/postLikes/" + key + "/likes").set(0));
+    if(event.data.val().tags) {
+      var tagList = event.data.val().tags;
+      for(var i = 0; i < tagList.length; ++i) {
+        promises.push(admin.database().ref("/tagCounter/" + tagList[i]).once("value").then(snapshot => {
+          console.log(tagList[i]);
+          return admin.database().ref("/tagCounter/" + snapshot.key + "/time").set(Date.now());
+        }));
+      }
+    }
     return Promise.all(promises);
   });
 
@@ -147,7 +156,7 @@ exports.handleLikeRequest = functions.database.ref("/likeRequest/{likeId}")
           console.log(i, userList[i].val().username, userList[i].val().likes);
           var rankName = "";
           if(i < 1) {
-            rankName = "오늘의 신";
+            rankName = "신선";
           } else if (i < 10) {
             rankName = "왕족";
           } else if (i < 50) {
