@@ -55,13 +55,13 @@ class TagPageView2: UIScrollView
         label.clipsToBounds = true
         label.backgroundColor = backgroundColor
         label.text = text
-        label.font = UIFont(name: "NotoSans", size: 16.0)!
-        label.textColor = textColor
+        label.font = UIFont(name: "NotoSans-Bold", size: 16.0)!
+        label.textColor = UIColor.black
         label.sizeToFit()
         label.textAlignment = NSTextAlignment.center
-        label.layer.cornerRadius = 10
-        label.layer.borderColor = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0).cgColor
-        label.layer.borderWidth = 1.5
+        //label.layer.cornerRadius = 10
+        //label.layer.borderColor = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0).cgColor
+        //label.layer.borderWidth = 1.5
         let tapGesture = UITapGestureRecognizer(target: target, action: #selector(TagPageViewController.handleTap))
         label.addGestureRecognizer(tapGesture)
         label.isUserInteractionEnabled = true

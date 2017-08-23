@@ -18,15 +18,18 @@ class UserListView: UIScrollView {
     var rowHeight : CGFloat = 100
     var xoffset = 0
     var yoffset = 100
-    var ypos = 100
+    var ypos = 58
     let color = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0)
     
     
     override init(frame:CGRect)
     {
         super.init(frame: frame)
+        self.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
+
         numberOfRows = Int(frame.height / rowHeight)
         containerView = UIView(frame: self.frame)
+        containerView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
         self.addSubview(containerView)
         self.showsVerticalScrollIndicator = false
         self.isScrollEnabled = true
@@ -34,6 +37,8 @@ class UserListView: UIScrollView {
     override func awakeFromNib() {
         numberOfRows = Int(self.frame.height / rowHeight)
         containerView = UIView(frame: self.frame)
+        containerView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
+
         self.addSubview(containerView)
         self.showsVerticalScrollIndicator = false
         self.isScrollEnabled = true
@@ -72,8 +77,9 @@ class UserListView: UIScrollView {
         
         
         let cellview = UIView()
-        cellview.layer.borderColor = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0).cgColor
+        cellview.layer.borderColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1.0).cgColor
         cellview.layer.borderWidth = 1
+        cellview.backgroundColor = UIColor.white
         
         //높이: 기본값으로 둘 수 있을 것이다. 나중에 max등으로 비교해서 적용하도록.
         cellview.frame = CGRect(x: 0, y: ypos + 10, width : Int(self.frame.width), height: 80)
@@ -134,7 +140,7 @@ class UserListView: UIScrollView {
         inypos = inypos + Int(lastview.frame.size.height) + 0
         
 //tagListview//////////////////////////////////////
-        let tagListView = TagPageView2(frame: CGRect(x: 0, y: inypos, width: Int(cellview.frame.width), height: 70))
+        let tagListView = TagPageView2(frame: CGRect(x: 0, y: inypos, width: Int(cellview.frame.width), height: 70)) // taglistview2 파일에 있다.
         for i in user.tags!{
             tagListView.addTag(text: "#"+i, target: self, backgroundColor: UIColor.white, textColor: color)
         }
@@ -208,7 +214,7 @@ class UserListView: UIScrollView {
         
         
         cellview.frame.size.height = CGFloat(inypos)
-        ypos = ypos + Int(cellview.frame.size.height) + 10
+        ypos = ypos + Int(cellview.frame.size.height) + 7
         self.contentSize = CGSize(width: Int(self.frame.width), height: yoffset + ypos)
     }
     func updateProfileImg(_ notification: Notification){

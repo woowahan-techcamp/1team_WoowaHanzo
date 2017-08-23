@@ -37,6 +37,10 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
         searchBar.alpha = 0
         searchBar.searchBarStyle = UISearchBarStyle.minimal
+        let titleAttributes = [
+            NSFontAttributeName: UIFont(name:"NotoSans-Bold", size: 19.0)!
+        ]
+        self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
         
         userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         
