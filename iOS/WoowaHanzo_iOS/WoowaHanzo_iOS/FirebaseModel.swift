@@ -153,14 +153,18 @@ class FirebaseModel{
     //    }
     
     
+    
+//For RankPage////////////////////////////////////
     func loadUsers(){
         print("loadUsers called")
         var rankUserList = [RankUser]()
         self.ref = Database.database().reference().child("users")
         //나중에 Likes가 확보되면  likes로 바꾸기.
-        self.ref.queryOrdered(byChild: "username").observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.queryOrdered(byChild: "likes").observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
-                for child in result {
+                //result.count = 0 일 때 처리 필요할 수도 있다.
+                for index in 0...result.count - 1 {
+                    let child = result[result.count - 1 - index]
                     let rankuser = RankUser(snapshot: child)
                     rankUserList.append(rankuser)
                 }
@@ -171,6 +175,7 @@ class FirebaseModel{
         //rankUserList를 Rankviewcontroller로 보내준다.
         //사진은 어떻게 할지는 있다가.
     }
+//For mainPage/////////////////////////////////////
     func loadProfileimg(uid: String, imgview: UIImageView){
         print("loadProfileimg called")
         self.ref = Database.database().reference().child("users").child(uid)
@@ -183,7 +188,7 @@ class FirebaseModel{
         })
     }
     
-    
+//For mainPage///////////////////////////////////
     func loadUsers2(){
         print("loadUsers2 called")
         
@@ -191,7 +196,7 @@ class FirebaseModel{
         //나중에 Likes가 확보되면  likes로 바꾸기.
         self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
-                for child in result {
+                    for child in result {
                     let user = User(snapshot: child)
                     User.users.append(user)
                 }

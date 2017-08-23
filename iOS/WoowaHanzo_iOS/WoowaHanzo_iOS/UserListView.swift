@@ -123,10 +123,16 @@ class UserListView: UIScrollView {
         for i in user.tags!{
             tagListView.addTag(text: "#"+i, target: self, backgroundColor: UIColor.white, textColor: color)
         }
-        tagListView.frame.size.height = tagListView.contentSize.height
+        if user.tags!.count > 0 {
+        tagListView.frame.size.height = max(tagListView.contentSize.height, 40)
+        }
+        else{
+            tagListView.frame.size.height = 0
+        }
         cellview.addSubview(tagListView)
         lastview = tagListView
         inypos = inypos + Int(lastview.frame.size.height) + 0
+        
 
 //scrollview///////////////////////////////////////
         let scrollview = UIScrollView()
@@ -183,7 +189,6 @@ class UserListView: UIScrollView {
         self.contentSize = CGSize(width: Int(self.frame.width), height: yoffset + ypos)
     }
     func updateProfileImg(_ notification: Notification){
-        print("called////")
         let profileimg = notification.userInfo?["profileimg"] as? String ?? nil
         let cellview = notification.userInfo?["cellview"] as? UIView ?? nil
         let imageview = notification.userInfo?["imgview"] as? UIImageView ?? nil
