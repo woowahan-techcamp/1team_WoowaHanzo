@@ -122,10 +122,13 @@ function handleThumbnailNumber($curPost, imagenumber) {
 		thumbnail_cover.style.display = "none";
 	} else {
 		thumbnail_cover.innerHTML = "+" + (imagenumber - 3);
-		thumbnail_cover.addEventListener("click", function(evt) {
+		console.log('imagenumber: ', imagenumber);
+		$(thumbnail_cover).on("mousedown touchend", function(evt) {
+			evt.preventDefault();
+			console.log('thumbnail_cover mousedown...');
 			var thumbnail = evt.target.parentElement;
 			var image = thumbnail.querySelector("img");
-			image.click();
+			$(image).trigger("mousedown");
 		})
 	}
 
@@ -192,7 +195,7 @@ function fixExifOrientation($img) {
 
 
 function resizeThumbnails() {
-  $(".image_thumbnails td").each(function(index, elem) {"click touchstart"
+  $(".image_thumbnails td").each(function(index, elem) {
 		var thumbnailHolder = elem.parentElement;
 		var td = thumbnailHolder.querySelector("td");
     var bufferWidth = td.offsetWidth;
@@ -253,7 +256,8 @@ function getIdFromPostId(id) {
 function addTagListeners(curPost) {
 	var tags = curPost.querySelectorAll(".tagger");
 	for(var i = 0; i < tags.length; ++i) {
-		tags[i].addEventListener("click", function(evt) {
+		$(tags[i]).on("mousedown touchend", function(evt) {
+			evt.preventDefault();
 			var tagValue = evt.target.innerHTML.trim();
 			var queryKey = firebase.database().ref().child("tagQuery").push().key;
 
@@ -264,6 +268,15 @@ function addTagListeners(curPost) {
 				window.location.href = "./index.html?tagQuery=" + queryKey;
 			});
 		});
+	}
+}
+
+// if true landscape non jquery
+function imageDimensions(img) {
+	if(img.height > img.width) {
+		return false;
+	} else {
+		return true;
 	}
 }
 
@@ -296,6 +309,11 @@ function loadUserProfile(uid) {
 				profilePic.classList.add("loading");
 				profilePic.src = url;
 				profilePic.addEventListener("load", function(evt) {
+					if(!imageDimensions(evt.target)) {
+						evt.target.classList.add("circularLongImage");
+					} else {
+						evt.target.classList.remove("circularLongImage");
+					}
 
 					if(prevLoaded(this) && imagesAllLoaded(evt.target)) {
 						$(".buttons_holder").css("display", "block");
@@ -310,6 +328,7 @@ function loadUserProfile(uid) {
 			profilePic.classList.add("loading");
 			profilePic.src = pageObject.userProfileImage[this.uid];
 			profilePic.addEventListener("load", function(evt) {
+
 
 				if(prevLoaded(this) && imagesAllLoaded(evt.target)) {
 				 	fadeInPost(this);
@@ -392,7 +411,8 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 
 	// add functionality to like button
 	var like_button = curPost.querySelector(".like_btn");
-	like_button.addEventListener("click", function(event) {
+	$(like_button).on("mousedown touchend", function(event) {
+		event.preventDefault();
 		var id = event.target.parentElement.parentElement.id;
 		var requestKey = firebase.database().ref().child("likeRequest").push().key;
 		var bufferObject = {};
@@ -466,7 +486,8 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 
           }.bind(this));
 
-					imageParent.on("click touchstart", function(evt) {
+					imageParent.on("mousedown touchend", function(evt) {
+						evt.preventDefault();
 						var curImage = evt.target;
 
 						showGallery(pageObject.imageUrls[this.id], this.i);
@@ -554,7 +575,8 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 		resizeThumbnails();
 	});
 
-	$("#galleryoverlay").on("click touchstart", function(evt) {
+	$("#galleryoverlay").on("mousedown touchend", function(evt) {
+		evt.preventDefault();
 		$('#galleryoverlay').css('display', 'none');
 		$('#justblackbackground').css('display', 'none');
 		$('#actualimage').css('display', 'none');
@@ -590,16 +612,17 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 	});
 
 
-	$("#actualimage").on("click touchstart", function(evt) {
+	$("#actualimage").on("mousedown touchend", function(evt) {
+		evt.preventDefault();
 		evt.stopPropagation();
 		var mouseX = evt.clientX;
 		var actualimage = document.querySelector("#actualimage");
 		mouseX -= actualimage.getBoundingClientRect().left;
 		var width = actualimage.offsetWidth;
 		if(mouseX < width / 2) {
-			$("#navleft").click();
+			$("#navleft").trigger("mousedown");
 		} else {
-			$("#navright").click();
+			$("#navright").trigger("mousedown");
 		}
 	});
 
@@ -615,19 +638,21 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 
 	$(window).keydown(function(e) {
 		if(e.keyCode == 37) {
-			$('#navleft').click();
+			$('#navleft').trigger("mousedown");
 		} else if (e.keyCode == 39) {
-			$('#navright').click();
+			$('#navright').trigger("mousedown");
 		}
 	});
 
 
-	$("#navleft").on("click touchstart", function(evt) {
+	$("#navleft").on("mousedown touchend", function(evt) {
+		evt.preventDefault();
 		evt.stopPropagation();
 		galleryLeft();
 	});
 
-	$("#navright").on("click touchstart", function(evt) {
+	$("#navright").on("mousedown touchend", function(evt) {
+		evt.preventDefault();
 		evt.stopPropagation();
 		galleryRight();
 	});

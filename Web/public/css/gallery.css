@@ -1,0 +1,98 @@
+#justblackbackground {
+  top: 50px;
+  height: 100%;
+  width: 100%;
+  z-index: 3002;
+  position: fixed;
+  background-color: black;
+  opacity: 0.9;
+  display: none;
+}
+
+#galleryoverlay {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 3003;
+  display: none;
+  text-align: center;
+  top: 50px;
+}
+
+#galleryoverlay:hover {
+  cursor: pointer;
+}
+
+.gallerycloser {
+  display: none;
+}
+
+#actualimage {
+  max-width: 90%;
+  max-height: 90%;
+  vertical-align: middle;
+  display: inline-block;
+  z-index: 3005;
+  position: fixed;
+  display: none;
+}
+
+.holder {
+  width: 100%;
+  position: relative;
+}
+
+#navleft {
+  display: inline-block;
+  position: absolute;
+  left: 40px;
+  padding: 40px;
+  z-index: 3006;
+  opacity: 0;
+}
+
+#navleft:hover {
+  cursor: pointer;
+  opacity: 1.0 !important;
+}
+
+#navright {
+  display: inline-block;
+  position: absolute;
+  right: 40px;
+  padding: 40px;
+  z-index: 3006;
+  opacity: 0;
+}
+
+#navright:hover {
+  cursor: pointer;
+  opacity: 1.0 !important;
+}
+
+#navleft > img {
+  height: 100px;
+}
+
+#navright > img {
+  height: 100px;
+}
+
+/*width가 768 미만이 되면..*/
+@media (max-width: 768px) {
+  #navleft {
+    display: none;
+  }
+
+  #navright {
+    display: none;
+  }
+
+  #navleft > img {
+    height: 40px;
+  }
+
+  #navright > img {
+    height: 40px;
+  }
+}

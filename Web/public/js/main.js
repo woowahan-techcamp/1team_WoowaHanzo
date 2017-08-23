@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Create a storage reference from our storage service
   var storageRef = storage.ref();
 
-  $(".nav_signin_btn").on("click", function() {
+  $(".nav_signin_btn").on("mousedown touchend", function(evt) {
+    evt.preventDefault();
     if(firebase.auth().currentUser !== null) {
       firebase.auth().signOut().then(function() {
         $(".nav_signin_btn").html("로그인");
@@ -15,15 +16,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
   });
 
-  $("#post").on("click", function() {
+  $("#post").on("mousedown touchend", function(evt) {
+    evt.preventDefault();
     window.location.href = "post.html";
   });
 
-  $("#ranking").on("click", function() {
+  $("#ranking").on("mousedown touchend", function(evt) {
+    evt.preventDefault();
     window.location.href = "ranking.html";
   });
 
-  $("#tag").on("click", function() {
+  $("#tag").on("mousedown touchend", function(evt) {
+    evt.preventDefault();
     window.location.href = "tag.html";
   });
 
@@ -36,7 +40,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var currentUsername = firebase.database().ref("users/" + user.uid + "/username");
       currentUsername.on('value', function(snapshot) {
         $(".nav_username").html(snapshot.val());
-        $(".nav_user_info").on("click", function() {
+        $(".nav_user_info").on("mousedown touchend", function(evt) {
+          evt.preventDefault();
           window.location.href = 'mypage.html';
         });
         $(".nav_user_info").css("visibility", "visible");
@@ -56,7 +61,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       $(".nav_signin_btn").css("display", "block");
       $(".nav_user_info").css("display", "none");
       $(".nav_signin_btn").html("로그인");
-      $(".nav_signin_btn").on("click", function() {
+      $(".nav_signin_btn").on("mousedown touchend", function(evt) {
+        evt.preventDefault();
         window.location.href = "./login.html";
       });
     }

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css"  />
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/gallery.css">
     <link rel="stylesheet" href="css/mypage.css">
 
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
@@ -45,9 +46,6 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" data-toggle="tab" onclick="document.location.href = 'index.html'">먹소리</a>
-          <button type="button" class="navbar-toggle collapsed custom_search_btn" aria-expanded="false" aria-controls="navbar">
-            <i class="fa fa-search fa-1x" aria-hidden="true"></i>
-          </button>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
@@ -58,12 +56,6 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right right_side">
-            <li>
-              <form class="navbar-form">
-                <input class="form-control mr-sm-2" type="text" placeholder="#검색">
-                <button class="btn btn-info my-2 my-sm-0" type="submit" >Search</button>
-              </form>
-            </li>
             <li>
               <button class="btn btn-success nav_signin_btn navbar-btn">로그인</button>
             </li>
@@ -83,6 +75,24 @@
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
+
+    <div id="justblackbackground">
+    </div>
+
+    <div id="galleryoverlay">
+      <div class="folder">
+        <div class="holder">
+          <div id="navleft">
+            <img src="pictures/navleft.png" />
+          </div>
+          <div id="navright">
+            <img src="pictures/navright.png" />
+          </div>
+
+        </div>
+      </div>
+      <img id="actualimage" src=""/><button type="button" class="close gallerycloser" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
 
     <div class="container_box">
       <div class="mypage_user_box">

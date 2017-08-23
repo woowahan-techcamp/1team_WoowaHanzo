@@ -71,12 +71,16 @@ div.post {
   cursor: pointer;
 }
 
-.buttons_holder .custom_button {
-  display: inline-block;
-}
 
 .buttons_holder {
   margin: 0 20px;
+  opacity: 0;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.buttons_holder .custom_button {
+  display: inline-block;
 }
 
 .add_photos {
