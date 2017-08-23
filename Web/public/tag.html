@@ -26,6 +26,7 @@
     </script>
 
     <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/PageObject.js"></script>
     <script src="js/utility.js"></script>
@@ -83,5 +84,15 @@
         </div>
       </div>
     </div>
+
+    <script id="tag_template" type="tag_template">
+      {{#each this}}
+      <span class="tagger tag_holder">
+        <span class="starting_sharp">#</span>
+        <span class="tag_name">{{this}}</span>
+        <span class="tag_count">100</span>
+      </span>
+      {{/each}}
+    </script>
   </body>
 </html>
