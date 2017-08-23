@@ -46,6 +46,7 @@ class MainPageTableViewCell: UITableViewCell {
     
     @IBAction func likeButtonTouched(_ sender: Any) {
         
+        FirebaseModel().likeRequest()
         if let image = likeButton.currentImage, image == #imageLiteral(resourceName: "emptyHeard") {
             likeButton.setImage(#imageLiteral(resourceName: "emptyheart"), for: .normal)
         } else {

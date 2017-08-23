@@ -21,13 +21,15 @@ class User {
     //image역시 첨부 안할 수 있으니 Optional로 선언.
     var imageArray : [String]?
     var postDate : Int
-    init(key: String,nickName :String, contents :  String, tags : [String]?,imageArray: [String]?,postDate:Int) {
+    var uid : String
+    init(key: String,nickName :String, contents :  String, tags : [String]?,imageArray: [String]?,postDate:Int, uid: String) {
         self.nickName = nickName
         self.contents = contents
         self.key = key
         self.tags = tags
         self.imageArray = imageArray
         self.postDate = postDate
+        self.uid = uid
     }
     
     init(snapshot: DataSnapshot) {
@@ -38,5 +40,6 @@ class User {
         tags = snapshotValue["tags"] as? [String] ?? []
         imageArray = snapshotValue["images"] as? [String] ?? []
         postDate = snapshotValue["time"] as! Int
+        uid  = snapshotValue["uid"] as! String
     }
 }

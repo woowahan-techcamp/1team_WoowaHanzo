@@ -84,6 +84,47 @@ class RegisterViewController: UIViewController,NVActivityIndicatorViewable {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    func subscribeToKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+        //위에서 정의한 keyboardWillShow,keyboardWillHide를 selector로 지정한다.
+        
+    }
+    //키보드 노티에 관한 것을 구독 취소 해주는 함수 -> 꼭 해줘야한다.
+    func unsubscribeFromKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+        //위에서 생성했던 옵저버를 삭제한다.
+        
+    }
+    //키보드가 화면에 나타날 때 수행되는 함수.
+    func keyboardWillShow(_ notification:Notification) {
+        
+        if (userSayTextView?.isFirstResponder)!{
+            view.frame.origin.y = 0 - 20
+        }
+        
+    }
+    //키보드가 사라질 때 수행되는 함수
+    func keyboardWillHide(_ notification:Notification){
+        if (userSayTextView?.isFirstResponder)!{
+            view.frame.origin.y = view.frame.origin.y + 20
+        }
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //키보드 노티 구독.
+        subscribeToKeyboardNotifications()
+        
+        
+    }
     
     
 }
