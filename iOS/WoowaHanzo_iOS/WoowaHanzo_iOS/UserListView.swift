@@ -164,6 +164,7 @@ class UserListView: UIScrollView {
         scrollview.addSubview(scrollcontainerView)
         
         if user.imageArray! != [] {
+            if user.imageArray!.count > 0 {
             for index in 0...user.imageArray!.count - 1{
                 let name : String = user.imageArray![index]
                 let imageview = UIImageView()
@@ -181,6 +182,7 @@ class UserListView: UIScrollView {
                     cellview.addSubview(scrollview)
                 }
             }
+        }
         }
         else{
             scrollview.frame.size.height = 0
@@ -223,7 +225,7 @@ class UserListView: UIScrollView {
         
         cellview.frame.size.height = CGFloat(inypos)
         ypos = ypos + Int(cellview.frame.size.height) + 7
-        self.contentSize = CGSize(width: Int(self.frame.width), height: yoffset + ypos)
+        self.contentSize = CGSize(width: Int(self.frame.width), height: max(yoffset + ypos, Int(self.frame.height + 1)))
     }
     func updateProfileImg(_ notification: Notification){
         let profileimg = notification.userInfo?["profileimg"] as? String ?? nil

@@ -51,6 +51,11 @@ class TagPageViewController: UIViewController {
         
         
     }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        
+//        NotificationCenter.default.removeObserver(self)
+//    }
     
     
     func handleTap(sender: UITapGestureRecognizer) {
@@ -74,6 +79,7 @@ class TagPageViewController: UIViewController {
         }
     }
     func getTagResult(_ notification: Notification){
+        
         
         tagResultArray = []
         self.ref = Database.database().reference().child("tagQuery")
