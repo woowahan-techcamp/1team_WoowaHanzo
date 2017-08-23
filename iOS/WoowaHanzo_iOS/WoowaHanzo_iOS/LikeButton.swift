@@ -20,7 +20,8 @@ class LikeButton: UIButton {
         } else {
             self.setImage(#imageLiteral(resourceName: "emptyHeard"), for: .normal)
             
-        }
+    }
+    FirebaseModel().likeRequest(postId: postkey)
         print("\(postkey) - pressed")
     //postkey에 맞는 likerequest function 보내주어야 함.
     }

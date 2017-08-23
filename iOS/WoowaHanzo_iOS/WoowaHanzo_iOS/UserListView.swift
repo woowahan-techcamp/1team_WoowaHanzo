@@ -159,8 +159,9 @@ class UserListView: UIScrollView {
         inypos = inypos + Int(lastview.frame.size.height) + 10
 
         let likebutton = LikeButton()
-        //피드에 따라 기본 그림이 달라져야 한다. 나중에 설정해주기.
         likebutton.whenButtonTouched(postkey: user.key)
+        //피드에 따라 기본 그림이 달라져야 한다. 나중에 설정해주기.
+
         likebutton.frame = CGRect(x: 20, y: inypos, width: 30, height: 30)
         cellview.addSubview(likebutton)
         lastview = likebutton
