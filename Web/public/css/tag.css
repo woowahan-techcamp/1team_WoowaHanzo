@@ -1,6 +1,5 @@
 #tagholder {
-  line-height: 40px;
-  vertical-align: baseline;
+  line-height: 30px;
 }
 
 /*이렇게 하면 안되지만...*/
@@ -25,8 +24,53 @@ div .post {
 
 /* width가 720미만 */
 @media (max-width: 720px) {
-  .container_box {
-    /*width: 100%;*/
+  #tagholder {
+    line-height: 23px;
   }
 
+  .tag_holder {
+    padding: 5px 10px!important;
+    border-radius: 10px !important;
+    margin-right: 8px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .starting_sharp, .tag_name {
+    font-size: 21px;
+  }
+
+  .tag_count {
+    font-size: 13px;
+    color: #dfdfdf;
+  }
+}
+
+/* width가 360미만 */
+@media (max-width: 360px) {
+  #tagholder {
+    line-height: 17px;
+  }
+
+  .tag_box {
+    border: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 0;
+  }
+
+  .tag_holder {
+    padding: 3px 7px!important;
+    border-radius: 7px !important;
+    margin-right: 6px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .starting_sharp, .tag_name {
+    font-size: 17px;
+  }
+
+  .tag_count {
+    font-size: 11px;
+    color: #dfdfdf;
+  }
 }
