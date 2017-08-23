@@ -178,6 +178,17 @@ class ReviewPostPageViewController: UIViewController {
             
             
             if shouldloadview{
+                let userID = Auth.auth().currentUser?.uid
+                ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+                    // Get user value
+                    let value = snapshot.value as? NSDictionary
+                    let profileImg = value?["profileImg"] as? String ?? ""
+                    print("ddd\(profileImg)")
+                    
+                    // ...
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
                 shouldloadview = false
                 myCollectionView.dataSource = self
                 myCollectionView.delegate = self
