@@ -44,13 +44,12 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         self.view.addSubview(userListView)
         
     }
+    //나중에 completion handler 로 바꿔보자.
     func updateProfileImg(_ notification: Notification){
         print("called////")
         let profileimg = notification.userInfo?["profileimg"] as? String ?? nil
-        let cellview = notification.userInfo?["cellview"] as? UIView ?? nil
         let imageview = notification.userInfo?["imgview"] as? UIImageView ?? nil
-        print(profileimg)
-        if cellview != nil && profileimg != nil && imageview != nil {
+        if profileimg != nil && imageview != nil {
             Storage.storage().reference(withPath: "profileImages/" + profileimg!).downloadURL { (url, error) in
                 imageview?.kf.setImage(with: url)
             }

@@ -90,7 +90,7 @@ class UserListView: UIScrollView {
         profileimgview.layer.cornerRadius = profileimgview.frame.width / 2
         
         print("helloe")
-        FirebaseModel().loadProfileimg(uid: user.uid, cellview: cellview, imgview: profileimgview)
+        FirebaseModel().loadProfileimg(uid: user.uid, imgview: profileimgview)
         //completion handler를 써도 된다.
         //img download 하고 notification을 통해 설정해준다. 아래의 updateprofileimg가 호출됨.
         
