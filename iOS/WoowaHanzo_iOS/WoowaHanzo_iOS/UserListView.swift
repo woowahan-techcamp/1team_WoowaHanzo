@@ -158,7 +158,7 @@ class UserListView: UIScrollView {
 //scrollview///////////////////////////////////////
         let scrollview = UIScrollView()
         let imgsize = 115
-        scrollview.frame = CGRect(x: 0, y: inypos, width: Int(cellview.frame.width), height: imgsize)
+        scrollview.frame = CGRect(x: 10, y: inypos, width: Int(cellview.frame.width) - 20, height: imgsize)
         scrollview.showsHorizontalScrollIndicator = false
         let scrollcontainerView = UIView(frame: scrollview.frame)
         scrollview.addSubview(scrollcontainerView)
@@ -188,6 +188,14 @@ class UserListView: UIScrollView {
         cellview.addSubview(scrollview)
         lastview = scrollview
         inypos = inypos + Int(lastview.frame.size.height) + 10
+//horizontal bar///////////////////////////////////////////////////
+        let horizontalbar = UIView()
+        horizontalbar.frame = CGRect(x:20, y: inypos, width: Int(cellview.frame.width) - inxpos * 2, height: 1)
+        horizontalbar.backgroundColor = UIColor(red:240/255, green:240/255,blue:240/255, alpha: 1.0)
+        cellview.addSubview(horizontalbar)
+        lastview = horizontalbar
+        inypos = inypos + Int(lastview.frame.size.height) + 8
+
 
 //likebutton///////////////////////////////////////////////////////
         let likebutton = LikeButton()
