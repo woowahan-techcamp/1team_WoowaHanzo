@@ -81,7 +81,7 @@ class UserListView: UIScrollView {
         
         
         
-//profile image//////////////////////////////
+//profile image, rank name label, name label //////////////////////////////
         let profileimgview = UIImageView()
         profileimgview.frame = CGRect(x:10, y:inypos, width: 60, height: 60)
         profileimgview.contentMode = UIViewContentMode.scaleAspectFill
@@ -89,17 +89,29 @@ class UserListView: UIScrollView {
         profileimgview.image = UIImage(named: "profile.png")
         profileimgview.layer.cornerRadius = profileimgview.frame.width / 2
         
-        print("helloe")
-        FirebaseModel().loadProfileimg(uid: user.uid, imgview: profileimgview)
+        ///ranknamelabel
+        let ranknamelabel = UILabel()
+        ranknamelabel.font = UIFont(name:"NotoSans-Bold", size: 16.0)
+        ranknamelabel.textColor = UIColor.lightGray
+        ranknamelabel.frame.origin = CGPoint(x:80, y: inypos + 33)
+        cellview.addSubview(ranknamelabel)
+        
+        FirebaseModel().loadProfileimg(uid: user.uid, imgview: profileimgview, ranklabel: ranknamelabel)
+        //rankname도 같이 가져온다.
         //completion handler를 써도 된다.
         //img download 하고 notification을 통해 설정해준다. 아래의 updateprofileimg가 호출됨.
-        
-        
         cellview.addSubview(profileimgview)
+
+        ///namelabel
+        let namelabel = UILabel()
+        namelabel.text = user.nickName
+        namelabel.font = UIFont(name: "NotoSans-Bold", size: 19.0)!
+        namelabel.sizeToFit()
+        namelabel.frame.origin = CGPoint(x: 80, y: inypos + 7)
+        cellview.addSubview(namelabel)
+
         var lastview : UIView =  profileimgview
         inypos = inypos + Int(lastview.frame.size.height) + 10
-        
-//name label/////////////////////////////////
         
         
 //textview///////////////////////////////////////
@@ -178,10 +190,18 @@ class UserListView: UIScrollView {
         likebutton.frame = CGRect(x: 20, y: inypos, width: 30, height: 30)
         cellview.addSubview(likebutton)
         lastview = likebutton
-        inypos = inypos + Int(lastview.frame.size.height) + 10
+
+//timelabel////////////////////////////////////////////////////////
+        let timelabel = UILabel()
+        timelabel.text = String(describing: Date().postTimeDisplay(timestamp: user.postDate))
+        timelabel.font = UIFont(name:"NotoSansUI", size: 14.0)
+        timelabel.textColor = UIColor.lightGray
+        timelabel.sizeToFit()
+        timelabel.frame.origin = CGPoint(x: Int(cellview.frame.width - timelabel.frame.width - 10), y: inypos + 5)
+        cellview.addSubview(timelabel)
         
-        
-        
+        inypos = inypos + Int(lastview.frame.size.height) + 10 //lastview: likebutton
+
         
         
         

@@ -47,10 +47,16 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     func updateProfileImg(_ notification: Notification){
         let profileimg = notification.userInfo?["profileimg"] as? String ?? nil
         let imageview = notification.userInfo?["imgview"] as? UIImageView ?? nil
+        let ranknamelabel = notification.userInfo?["ranklabel"] as? UILabel ?? nil
+        let rankname = notification.userInfo?["rankname"] as? String ?? ""
         if profileimg != nil && imageview != nil {
             Storage.storage().reference(withPath: "profileImages/" + profileimg!).downloadURL { (url, error) in
                 imageview?.kf.setImage(with: url)
             }
+        }
+        if ranknamelabel != nil {
+            ranknamelabel?.text = rankname
+            ranknamelabel?.sizeToFit()
         }
     }
     

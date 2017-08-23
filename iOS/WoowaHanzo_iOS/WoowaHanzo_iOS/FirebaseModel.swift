@@ -176,13 +176,14 @@ class FirebaseModel{
         //사진은 어떻게 할지는 있다가.
     }
 //For mainPage/////////////////////////////////////
-    func loadProfileimg(uid: String, imgview: UIImageView){
+    func loadProfileimg(uid: String, imgview: UIImageView, ranklabel: UILabel){
         print("loadProfileimg called")
         self.ref = Database.database().reference().child("users").child(uid)
         self.ref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.value as? NSDictionary{
                 let profileimg = result["profileImg"] as? String ?? nil
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "profileimg"), object: nil, userInfo: ["profileimg": profileimg, "imgview":imgview])
+                let rankname = result["rankName"] as? String ?? nil
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "profileimg"), object: nil, userInfo: ["profileimg": profileimg, "imgview":imgview, "ranklabel":ranklabel, "rankname": rankname])
 
             }
         })
