@@ -215,5 +215,22 @@ class FirebaseModel{
             print("")
             //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResult"), object: self, userInfo: ["key":key])
         }
-    
+    func loadProfileImageFromUsers(){
+
+        self.ref = Database.database().reference()
+        let userID = Auth.auth().currentUser?.uid
+        ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            
+            let profileImg = value?["profileImg"] as? String ?? ""
+            print("did\(profileImg)")
+            
+            // ...
+        }) { (error) in
+            
+            print(error.localizedDescription)
+        }
+
+    }
 }
