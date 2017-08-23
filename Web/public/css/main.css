@@ -415,6 +415,8 @@ div.img-divgo{
 }
 
 .post_footer {
+  vertical-align: middle;
+
   padding-left: 0;
   padding-right: 10px;
   position: relative;
@@ -440,17 +442,19 @@ div.img-divgo{
 }
 
 .like_number {
+  font-family: Jua;
   line-height: 100%;
+
   vertical-align: middle;
 }
 
 .post_time {
-
-  display: inline-block;
+  display: inline;
   font-family: Jua;
-  font-size: 0.9em;
+  font-size: 1.1em;
   float: right;
-  margin-left: auto;
+  vertical-align: middle;
+  margin-top: 10px;
   font-weight: bold;
   color: #AAA;
 }
@@ -622,8 +626,9 @@ div.img-divgo{
   }
 
   .post {
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
   }
 
   div.img-divgo{
@@ -665,7 +670,7 @@ div.img-divgo{
     border-radius: 14px ;
     -moz-border-radius: 14px;
     -webkit-border-radius: 14px;
-    padding: 18px 18px 0 18px;
+    padding: 12px 12px 0 12px;
   }
 
   .post .tagger {
@@ -680,8 +685,28 @@ div.img-divgo{
     margin-right: 6px;
   }
 
+  .like_btn {
+    font-size: 1.0em;
+    padding: 6px 8px;
+  }
+
+  .like_number {
+    font-size: 0.9em;
+  }
+
+  .post_time {
+    margin-top: 5px;
+    font-size: 0.9em;
+  }
+
+  .image_thumbnails {
+    border-collapse: collapse;
+  }
+
   .image_thumbnails td {
-    padding: 7px;
+
+    padding: 0px;
+    padding-top: 7px;
   }
 
   .post hr {
@@ -704,7 +729,7 @@ div.img-divgo{
 @media (max-width: 360px) {
   .container_box {
     width: 100%;
-    man-width: 280px;
+    min-width: 280px;
   }
 
   .post {

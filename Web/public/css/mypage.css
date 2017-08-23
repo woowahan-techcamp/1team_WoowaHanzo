@@ -25,6 +25,10 @@
   -webkit-border-radius: 50%;
 }
 
+.mypage_user_image_box:hover {
+  cursor: pointer;
+}
+
 .mypage_user_image_box img {
   -webkit-transform:translate(-50%);
   -moz-tranform:translate(-50%);
