@@ -126,19 +126,18 @@ class UserListView: UIScrollView {
         textview.text = user.contents
         textview.font = UIFont(name: "NotoSans", size: 16.0)!
         textview.frame.origin = CGPoint(x:inxpos - 3, y:inypos)
-        textview.frame.size = CGSize(width: Int(self.frame.width) - inxpos * 2 + 6, height: 25)
+        textview.frame.size = CGSize(width: Int(self.frame.width) - inxpos * 2 + 6, height: 30)
         let contentSize = textview.sizeThatFits(textview.bounds.size)
         var frame = textview.frame
-        frame.size.height = max(contentSize.height, 70)
+        frame.size.height = max(contentSize.height, 30)
         textview.frame = frame
         let aspectRatioTextViewConstraint = NSLayoutConstraint(item: textview, attribute: .height, relatedBy: .equal, toItem: textview, attribute: .width, multiplier: textview.bounds.height/textview.bounds.width, constant: 1)
         textview.addConstraint(aspectRatioTextViewConstraint)
-        
         textview.isScrollEnabled = false
         textview.isEditable = false
         cellview.addSubview(textview)
         lastview = textview
-        inypos = inypos + Int(lastview.frame.size.height) + 0
+        inypos = Int(lastview.frame.origin.y) + Int(lastview.frame.size.height) + 0
         
 //tagListview//////////////////////////////////////
         let tagListView = TagPageView2(frame: CGRect(x: inxpos - 10, y: inypos, width: Int(cellview.frame.width), height: 70)) // taglistview2 파일에 있다.

@@ -15,10 +15,10 @@ class TagPageView2: UIScrollView
     var tags = [UILabel]()
     var containerView:UIView!
     
-    var hashtagsOffset:UIEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 0, right: 0)
-    var rowHeight:CGFloat = 35 //height of rows
+    var hashtagsOffset:UIEdgeInsets = UIEdgeInsets(top: 2, left: 10, bottom: 0, right: 0)
+    var rowHeight:CGFloat = 22 //height of rows
     var tagHorizontalPadding:CGFloat = 3.0 // padding between tags horizontally
-    var tagVerticalPadding:CGFloat = 7.0 // padding between tags vertically
+    var tagVerticalPadding:CGFloat = 3.0 // padding between tags vertically
     var tagCombinedMargin:CGFloat = 0 // margin of left and right combined, text in tags are by default centered.
     override init(frame:CGRect)
     {
