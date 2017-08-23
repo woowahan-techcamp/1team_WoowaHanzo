@@ -52,6 +52,7 @@ function getCurrentTime(time) {
 }
 
 function isScrolledIntoView(elem) {
+
     var $elem = $(elem);
     var $window = $(window);
 
@@ -321,7 +322,7 @@ function loadUserProfile(uid) {
 
 var count = 0;
 
-function loadActualPost(snapshot, likeObject) {
+function loadActualPost(snapshot, likeObject, fromScrollTop) {
   var storageRef = firebase.storage().ref();
 
   var buffer = snapshot.val();
@@ -349,15 +350,35 @@ function loadActualPost(snapshot, likeObject) {
 	// update current track of load time
 	if(pageObject.pastTime == undefined || pageObject.pastTime > buffer["checkTime"]) {
 		pageObject.pastTime = buffer["checkTime"];
-		if(!$("#post_" + buffer.id).length) {
+
+		if(!$("#post_" + buffer.id).length && pageObject.initialPostLoads > 0) {
+
 			$(".container_box").append(pageObject.postTemplate(buffer));
+			pageObject.initialPostLoads -= 1;
+		} else {
+			pageObject.bottomLoadStack.push(snapshot);
+			return;
 		}
 	}
 	if(pageObject.futureTime == undefined || pageObject.futureTime < buffer["checkTime"]) {
 		pageObject.futureTime = buffer["checkTime"];
+
 		if(!$("#post_" + buffer.id).length) {
-			$(".container_box").prepend(pageObject.postTemplate(buffer));
+			pageObject.frontLoadStack.push(snapshot);
+			return;
+			// $(".container_box").prepend(pageObject.postTemplate(buffer));
 		}
+	}
+
+	// prepend on scroll Top
+	if(fromScrollTop) {
+		$(".container_box").prepend(pageObject.postTemplate(buffer));
+	}
+
+	if(!$("#post_" + buffer.id).length) {
+
+		$(".container_box").append(pageObject.postTemplate(buffer));
+		pageObject.initialPostLoads -= 1;
 	}
 
   var $curPost = $("#post_" + buffer.id);
@@ -511,9 +532,9 @@ function loadActualPost(snapshot, likeObject) {
   resizeThumbnails();
 }
 
-function loadPosts(snapshot) {
+function loadPosts(snapshot, fromScrollTop) {
 	firebase.database().ref("/postLikes/" + snapshot.key).once("value").then((likeObject) => {
-		loadActualPost(snapshot, likeObject);
+		loadActualPost(snapshot, likeObject, fromScrollTop);
 	});
 }
 
