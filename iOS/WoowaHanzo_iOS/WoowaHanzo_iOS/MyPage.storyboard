@@ -85,12 +85,17 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Z4n-7m-3DE">
+                                <rect key="frame" x="45" y="101" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="마이페이지" id="ya3-kS-ber"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="imageIndicator" destination="Z4n-7m-3DE" id="WeK-GE-epT"/>
                         <outlet property="myPageFeedContentsTextView" destination="dI4-d9-4qN" id="zTO-RF-zqt"/>
                         <outlet property="myPageFeedNickNameLabel" destination="caU-Td-Wdm" id="2yX-w5-EjZ"/>
                         <outlet property="myPageFeedProfileImageView" destination="yqM-iX-UI8" id="ZwX-jq-Ll8"/>

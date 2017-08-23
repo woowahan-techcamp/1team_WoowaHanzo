@@ -13,6 +13,7 @@ import Kingfisher
 
 class MyPageViewController: UIViewController {
     
+    @IBOutlet weak var imageIndicator: UIActivityIndicatorView!
     @IBOutlet weak var myProfileImageView: UIImageView!
     var count  = 0
     @IBOutlet weak var myPageFeedContentsTextView: UITextView!
@@ -22,6 +23,14 @@ class MyPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(loadPorfileImage(_ :)), name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: nil)
+        imageIndicator.startAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            
+            // your time-consuming code here
+            sleep(1) //Do NOT use sleep on the main thread in real code!!!
+            self.imageIndicator.stopAnimating()
+        
+        }
         FirebaseModel().loadProfileImageFromUsers()
         UINavigationBar.appearance().backgroundColor = UIColor.white
         if AuthModel.isLoginStatus(){
@@ -37,6 +46,9 @@ class MyPageViewController: UIViewController {
                 print(index.contents)
             }
         }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(imageViewTouched))
+        myProfileImageView.addGestureRecognizer(tap)
+        myProfileImageView.isUserInteractionEnabled = true
         
         
     }
@@ -87,9 +99,8 @@ class MyPageViewController: UIViewController {
         }
         
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func imageViewTouched(){
+        print("imageTouched")
     }
     
     
