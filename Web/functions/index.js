@@ -54,7 +54,7 @@ exports.getTagQuery = functions.database.ref("/tagQuery/{queryId}/tag")
         childList.forEach(child => {
           console.log(child.val().tags);
           console.log(original);
-          if(child.val().tags.indexOf(original) >= 0) {
+          if(child.val().tags && child.val().tags.indexOf(original) >= 0) {
             ret.push(child.key);
           }
         });

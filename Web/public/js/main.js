@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   $(".nav_signin_btn").on("click", function() {
     if(firebase.auth().currentUser !== null) {
       firebase.auth().signOut().then(function() {
-        $(".nav_signin_btn").html("Sign in");
+        $(".nav_signin_btn").html("로그인");
       }, function(error) {});
     }
     else {
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       // No user is signed in.
       $(".nav_signin_btn").css("display", "block");
       $(".nav_user_info").css("display", "none");
-      $(".nav_signin_btn").html("Sign in");
+      $(".nav_signin_btn").html("로그인");
       $(".nav_signin_btn").on("click", function() {
         window.location.href = "./login.html";
       });
