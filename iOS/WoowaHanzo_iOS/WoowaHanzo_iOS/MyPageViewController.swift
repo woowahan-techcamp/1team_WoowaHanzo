@@ -14,7 +14,13 @@ class MyPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UINavigationBar.appearance().backgroundColor = UIColor.white
-        self.title = UserDefaults.standard.string(forKey: "userNickName")
+        if AuthModel.isLoginStatus(){
+            self.navigationController?.navigationBar.topItem?.title = UserDefaults.standard.string(forKey: "userNickName")
+        }
+        else {
+        self.navigationController?.navigationBar.topItem?.title = "마이페이지"
+        }
+        
     }
     
     @IBAction func logout(_ sender: Any) {
