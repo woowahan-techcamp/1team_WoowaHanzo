@@ -45,9 +45,12 @@ class UserListView: UIScrollView {
     }
     
     func addUserList(users: [User]?){
+        
         if let list = users {
+            if list.count > 0 {
             for index in 0...list.count-1{
                 self.addUser(user: list[index], index: index)
+            }
             }
         }
         
@@ -56,6 +59,8 @@ class UserListView: UIScrollView {
     func addUser(user: User, index: Int){
         
         //height를 최종적으로 결정해주어도 괜찮다.
+        
+        //addsubview는 한번만 해주면된다.
         
         
         
@@ -84,15 +89,11 @@ class UserListView: UIScrollView {
         profileimgview.image = UIImage(named: "profile.png")
         profileimgview.layer.cornerRadius = profileimgview.frame.width / 2
         
-        //사진 나중에 업데이트해주어야 함.
+        print("helloe")
+        FirebaseModel().loadProfileimg(uid: user.uid, cellview: cellview, imgview: profileimgview)
+        //completion handler를 써도 된다.
+        //img download 하고 notification을 통해 설정해준다. 아래의 updateprofileimg가 호출됨.
         
-        //profimag!??
-//        if user != nil {
-//            Storage.storage().reference(withPath: "profileImages/" + user.profileImg!).downloadURL { (url, error) in
-//                profileimgview.kf.setImage(with: url)
-//                cellview.addSubview(profileimgview)
-//            }
-//        }
         
         cellview.addSubview(profileimgview)
         var lastview : UIView =  profileimgview
@@ -180,63 +181,19 @@ class UserListView: UIScrollView {
         cellview.frame.size.height = CGFloat(inypos)
         ypos = ypos + Int(cellview.frame.size.height) + 10
         self.contentSize = CGSize(width: Int(self.frame.width), height: yoffset + ypos)
-        
-//        let numlabel = UILabel()
-//        numlabel.text = "\(index + 1)"
-//        numlabel.textAlignment = NSTextAlignment.center
-//        numlabel.font = UIFont(name: "NotoSansUI", size: 25.0)!
-//        numlabel.frame = CGRect(x: xoffset, y: ypos, width: 66, height: 80)
-//        
-//        self.addSubview(numlabel)
-//        let profileimgview = UIImageView()
-//        profileimgview.image = UIImage(named: "profile.png")
-//        profileimgview.frame = CGRect(x:10, y:10, width: 60, height: 60)
-//        profileimgview.clipsToBounds = true
-//        profileimgview.layer.cornerRadius = profileimgview.frame.width / 2
-//        
-//        if rankuser.profileImg != nil {
-//            Storage.storage().reference(withPath: "profileImages/" + rankuser.profileImg!).downloadURL { (url, error) in
-//                profileimgview.kf.setImage(with: url)
-//                cellview.addSubview(profileimgview)
-//            }
-//        }
-//        
-//        cellview.addSubview(profileimgview)
-//        
-//        
-//        let namelabel = UILabel()
-//        namelabel.text = rankuser.nickName
-//        namelabel.textAlignment = NSTextAlignment.center
-//        namelabel.font = UIFont(name: "NotoSans", size: 17.0)!
-//        namelabel.textColor = UIColor.darkGray
-//        namelabel.sizeToFit()
-//        namelabel.frame.origin = CGPoint(x: 85, y: 37)
-//        cellview.addSubview(namelabel)
-//        
-//        let ranknamelabel = UILabel()
-//        ranknamelabel.text = rankuser.rankName!
-//        ranknamelabel.textAlignment = NSTextAlignment.center
-//        ranknamelabel.font = UIFont(name: "NotoSans-Bold", size: 18.0)!
-//        ranknamelabel.textColor = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0)
-//        ranknamelabel.sizeToFit()
-//        ranknamelabel.frame.origin = CGPoint(x:85, y:15)
-//        cellview.addSubview(ranknamelabel)
-//        
-//        
-//        let likenumlabel = UILabel()
-//        likenumlabel.text = String(describing: rankuser.likes!)
-//        likenumlabel.textAlignment = NSTextAlignment.center
-//        likenumlabel.font = UIFont(name: "NotoSansUI", size: 17.0)!
-//        likenumlabel.sizeToFit()
-//        likenumlabel.frame.origin = CGPoint(x:260-likenumlabel.frame.width, y : 30)
-//        cellview.addSubview(likenumlabel)
-//        
-//        let heartimgview = UIImageView()
-//        heartimgview.image = #imageLiteral(resourceName: "emptyheart")
-//        heartimgview.sizeToFit()
-//        heartimgview.frame.origin = CGPoint(x:260, y:30)
-//        cellview.addSubview(heartimgview)
-        
-        
+    }
+    func updateProfileImg(_ notification: Notification){
+        print("called////")
+        let profileimg = notification.userInfo?["profileimg"] as? String ?? nil
+        let cellview = notification.userInfo?["cellview"] as? UIView ?? nil
+        let imageview = notification.userInfo?["imgview"] as? UIImageView ?? nil
+        print(profileimg)
+        if cellview != nil && profileimg != nil && imageview != nil {
+            Storage.storage().reference(withPath: "profileImages/" + profileimg!).downloadURL { (url, error) in
+                imageview?.kf.setImage(with: url)
+                cellview?.addSubview(imageview!)
+                self.addSubview(cellview!)
+            }
+        }
     }
 }

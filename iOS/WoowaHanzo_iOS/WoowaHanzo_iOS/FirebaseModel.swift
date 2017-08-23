@@ -171,10 +171,16 @@ class FirebaseModel{
         //rankUserList를 Rankviewcontroller로 보내준다.
         //사진은 어떻게 할지는 있다가.
     }
-    func loadProfileimg(){
+    func loadProfileimg(uid: String, cellview: UIView, imgview: UIImageView){
         print("loadProfileimg called")
-        //self.ref = Database.database().reference().child("users")
+        self.ref = Database.database().reference().child("users").child(uid)
+        self.ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let result = snapshot.value as? NSDictionary{
+                let profileimg = result["profileImg"] as? String ?? nil
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "profileimg"), object: ["profileimg":profileimg, "cellview":cellview, "imgview":imgview])
 
+            }
+        })
     }
     
     

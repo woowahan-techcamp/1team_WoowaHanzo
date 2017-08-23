@@ -44,8 +44,10 @@ class RankListView: UIScrollView {
     
     func addRankUserList(rankusers: [RankUser]?){
         if let list = rankusers {
+            if list.count > 0 {
             for index in 0...list.count-1{
                 self.addRankUser(rankuser: list[index], index: index)
+            }
             }
         }
         

@@ -34,7 +34,7 @@ class TagPageViewController: UIViewController {
         var Tags = [String]()
         self.ref = Database.database().reference().child("tags")
         let refHandle = ref.observe(DataEventType.value, with: { (snapshot) in
-            let postDict = snapshot.value as! [String : AnyObject]
+            let postDict = snapshot.value as! [String : AnyObject] //지워도 되는 줄인지 결정
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
                 for index in result{
                     Tags.append(index.key as! String)

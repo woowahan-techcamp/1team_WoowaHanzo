@@ -33,14 +33,28 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users2"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
     
         searchBar.alpha = 0
         searchBar.searchBarStyle = UISearchBarStyle.minimal
         
         userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        
         FirebaseModel().loadUsers2()
         self.view.addSubview(userListView)
         
+    }
+    func updateProfileImg(_ notification: Notification){
+        print("called////")
+        let profileimg = notification.userInfo?["profileimg"] as? String ?? nil
+        let cellview = notification.userInfo?["cellview"] as? UIView ?? nil
+        let imageview = notification.userInfo?["imgview"] as? UIImageView ?? nil
+        print(profileimg)
+        if cellview != nil && profileimg != nil && imageview != nil {
+            Storage.storage().reference(withPath: "profileImages/" + profileimg!).downloadURL { (url, error) in
+                imageview?.kf.setImage(with: url)
+            }
+        }
     }
     
   
