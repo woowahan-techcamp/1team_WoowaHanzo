@@ -191,24 +191,25 @@ class FirebaseModel{
 //For mainPage///////////////////////////////////
     func loadUsers2(){
         print("loadUsers2 called")
-        
+        User.users = [User]()
         self.ref = Database.database().reference().child("posts")
         //나중에 Likes가 확보되면  likes로 바꾸기.
         self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
                     for child in result {
                     let user = User(snapshot: child)
+                    
                     User.users.append(user)
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "users2"), object: self)
             }
         })
     }
-        func likeRequest(){
+    func likeRequest(postId:String){
             ref = Database.database().reference()
             let key = ref.child("likeRequest").childByAutoId().key
             //print(key)
-            let post = ["postId": "1" ,"result": ["count":0,"state":"default"],"uid":Auth.auth().currentUser?.uid] as [String : Any]
+            let post = ["postId": postId ,"result": ["count":0,"state":"default"],"uid": Auth.auth().currentUser?.uid] as [String : Any]
             let childUpdates = ["/likeRequest/\(key)": post]
             ref.updateChildValues(childUpdates)
             print("")
