@@ -84,6 +84,9 @@
     </nav>
 
     <div class="container_box">
+      <ul class="ranking_box">
+
+      </ul>
 
     </div>
 
@@ -91,25 +94,25 @@
 
   <script id="ranking_template" type="ranking_template">
     {{#each this}}
-      <div class="ranking_item">
+      <li class="ranking_item">
         <div class="ranking_num">{{counter @index}}</div>
         <div class="ranking_content">
           <div class="ranking_profile_pic_box">
             <img class="ranking_profile_pic" src="{{userProfileImg}}"/>
           </div>
-          <div class="ranking_center_side">
-            <div class="ranking_title">
+          <div class="ranking_user_info">
+            <div class="ranking_title_box">
               <span class="ranking_title_img">{{{titlePic}}}</span>
               <span class="ranking_title_text">{{titleText}}</span>
             </div>
             <div class="ranking_username">{{username}}</div>
           </div>
-          <div class="ranking_right_side">
+          <div class="ranking_like_info">
             <span>{{like}}</span>
             <span><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span>
           </div>
         </div>
-      </div>
+      </li>
     {{/each}}
   </script>
 </html>
