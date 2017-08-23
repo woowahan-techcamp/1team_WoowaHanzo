@@ -12,17 +12,19 @@ import Firebase
 
 class MyPageViewController: UIViewController {
     
-    @IBOutlet weak var myPageTableView: UITableView!
+    
+    @IBOutlet weak var myPageFeedContentsTextView: UITextView!
+    @IBOutlet weak var myPageFeedTimeLabel: UILabel!
+    @IBOutlet weak var myPageFeedNickNameLabel: UILabel!
+    @IBOutlet weak var myPageFeedProfileImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         UINavigationBar.appearance().backgroundColor = UIColor.white
         if AuthModel.isLoginStatus(){
             self.navigationController?.navigationBar.topItem?.title = UserDefaults.standard.string(forKey: "userNickName")
-            myPageTableView.delegate = self
-            myPageTableView.dataSource = self
         }
         else {
-        self.navigationController?.navigationBar.topItem?.title = "마이페이지"
+            self.navigationController?.navigationBar.topItem?.title = "마이페이지"
         }
         
     }
@@ -63,34 +65,26 @@ class MyPageViewController: UIViewController {
             present(alert, animated: true, completion: nil)
         }
         else{
-            //로그인이 되었다면? 내 마이페이지를 보여줘야함. 
+            //로그인이 되었다면? 내 마이페이지를 보여줘야함.
         }
-
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
-extension MyPageViewController: UITableViewDelegate, UITableViewDataSource{
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 0
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        return cell
-    }
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
+
+
