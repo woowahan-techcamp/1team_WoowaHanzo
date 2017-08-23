@@ -40,13 +40,11 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         
         userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         
-        FirebaseModel().loadUsers2()
-        self.view.addSubview(userListView)
+        
         
     }
     //나중에 completion handler 로 바꿔보자.
     func updateProfileImg(_ notification: Notification){
-        print("called////")
         let profileimg = notification.userInfo?["profileimg"] as? String ?? nil
         let imageview = notification.userInfo?["imgview"] as? UIImageView ?? nil
         if profileimg != nil && imageview != nil {
@@ -67,6 +65,9 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        FirebaseModel().loadUsers2()
+        self.view.addSubview(userListView)
         
         let size = CGSize(width: 30, height: 30)
 
