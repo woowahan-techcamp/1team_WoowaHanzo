@@ -9,10 +9,12 @@
 import UIKit
 import Firebase
 import Kingfisher
-import YPImagePicker
 
 class MyPageViewController: UIViewController {
     
+    var ref: DatabaseReference!
+
+    var postProfileImageName:String = ""
     @IBOutlet weak var imageIndicator: UIActivityIndicatorView!
     @IBOutlet weak var myProfileImageView: UIImageView!
     var count  = 0
@@ -102,18 +104,7 @@ class MyPageViewController: UIViewController {
     }
     func imageViewTouched(){
         print("touched")
-        let picker = YPImagePicker()
-        picker.didSelectImage = { img in
-            // image picked
-            self.myProfileImageView.image = img
-            picker.dismiss(animated: true, completion: nil)
-        }
-        picker.didSelectVideo = { videoData in
-            // video picked
-        }
-        present(picker, animated: true, completion: nil)
     }
-    
 
 
 

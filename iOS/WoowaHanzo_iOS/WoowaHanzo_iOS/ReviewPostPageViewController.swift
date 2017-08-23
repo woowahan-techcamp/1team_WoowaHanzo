@@ -185,7 +185,7 @@ class ReviewPostPageViewController: UIViewController {
             //로그인이 되었다면? 내 마이페이지를 보여줘야함.
             
             if shouldloadview{
-               
+               FirebaseModel().loadProfileImageFromUsers()
                 shouldloadview = false
                 myCollectionView.dataSource = self
                 myCollectionView.delegate = self

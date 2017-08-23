@@ -56,10 +56,7 @@ PODS:
   - NVActivityIndicatorView (3.7.0):
     - NVActivityIndicatorView/Presenter (= 3.7.0)
   - NVActivityIndicatorView/Presenter (3.7.0)
-  - SteviaLayout (3.2.0)
   - UIImageViewModeScaleAspect (1.5)
-  - YPImagePicker (1.2.0):
-    - SteviaLayout (~> 3.2.0)
 
 DEPENDENCIES:
   - BSImagePicker (~> 2.4)
@@ -70,16 +67,6 @@ DEPENDENCIES:
   - FTImageViewer
   - Kingfisher (~> 3.0)
   - NVActivityIndicatorView
-  - YPImagePicker (from `https://github.com/Yummypets/YPImagePicker`)
-
-EXTERNAL SOURCES:
-  YPImagePicker:
-    :git: https://github.com/Yummypets/YPImagePicker
-
-CHECKOUT OPTIONS:
-  YPImagePicker:
-    :commit: 3054b21830e2c15fa8b25f55cf9b9ec1e52d29d5
-    :git: https://github.com/Yummypets/YPImagePicker
 
 SPEC CHECKSUMS:
   BSGridCollectionViewLayout: 8f12c8e1e08c47057f5a39a6828f4395f043d78f
@@ -97,10 +84,8 @@ SPEC CHECKSUMS:
   Kingfisher: dc3a4983e86d2dfa89513664983a82340c11a289
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
-  SteviaLayout: 85c405f118ddb8637d0674ef6a79eefb792bf90b
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
-  YPImagePicker: c1ded98adce94baae70db7144ff583540a2a356c
 
-PODFILE CHECKSUM: a936ea707f9eeec31178a481d422d93623da3313
+PODFILE CHECKSUM: e68bbc66c5a8b39d9f65fa5edd149e6aaab9b300
 
 COCOAPODS: 1.2.1

@@ -12,7 +12,7 @@ pod 'FTImageViewer'
 pod 'Kingfisher', '~> 3.0'
 pod 'NVActivityIndicatorView'
 pod "BSImagePicker", "~> 2.4"
-pod 'YPImagePicker',:git => 'https://github.com/Yummypets/YPImagePicker'
+
 
 
 
