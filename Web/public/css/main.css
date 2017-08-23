@@ -365,11 +365,13 @@ div.img-divgo{
 
 .image_thumbnails {
   table-layout: fixed;
+  margin-top: 10px;
   width: 100%;
 }
 
 .image_thumbnails td {
-  padding: 10px;
+  border: solid 1px #777;
+
 }
 
 .image_thumbnails .single_thumbnail {
@@ -377,7 +379,7 @@ div.img-divgo{
   background-color: #AAA;
   width: 100%;
   height: 100%;
-  border: solid 1px #777;
+
   position: relative;
 }
 
@@ -701,12 +703,12 @@ div.img-divgo{
 
   .image_thumbnails {
     border-collapse: collapse;
+    margin-top: 7px;
   }
 
   .image_thumbnails td {
-
     padding: 0px;
-    padding-top: 7px;
+
   }
 
   .post hr {

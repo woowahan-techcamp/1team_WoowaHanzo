@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var postRef = firebase.database().ref("/posts");
         postRef.orderByChild("time").on("child_added", function(snapshot) {
           if(snapshot.val().author === currentUserName) {
-            loadPosts(snapshot);
+            loadPosts(snapshot, false);
           }
 
         });

@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         console.log(snapshots);
         snapshots.forEach(function(snapshot) {
           console.log(snapshot.key+": "+snapshot.val());
-          loadPosts(snapshot);
+          loadPosts(snapshot, false);
         });
       });
 
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   } else {
     ref.orderByChild("time").on("child_added", function(snapshot) {
-      loadPosts(snapshot);
+      loadPosts(snapshot, false);
     });
   }
 
