@@ -192,7 +192,7 @@ function fixExifOrientation($img) {
 
 
 function resizeThumbnails() {
-  $(".image_thumbnails td").each(function(index, elem) {"click touchstart"
+  $(".image_thumbnails td").each(function(index, elem) {"click"
 		var thumbnailHolder = elem.parentElement;
 		var td = thumbnailHolder.querySelector("td");
     var bufferWidth = td.offsetWidth;
@@ -466,7 +466,7 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 
           }.bind(this));
 
-					imageParent.on("click touchstart", function(evt) {
+					imageParent.on("click", function(evt) {
 						var curImage = evt.target;
 
 						showGallery(pageObject.imageUrls[this.id], this.i);
@@ -554,7 +554,7 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 		resizeThumbnails();
 	});
 
-	$("#galleryoverlay").on("click touchstart", function(evt) {
+	$("#galleryoverlay").on("click", function(evt) {
 		$('#galleryoverlay').css('display', 'none');
 		$('#justblackbackground').css('display', 'none');
 		$('#actualimage').css('display', 'none');
@@ -590,7 +590,7 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 	});
 
 
-	$("#actualimage").on("click touchstart", function(evt) {
+	$("#actualimage").on("click", function(evt) {
 		evt.stopPropagation();
 		var mouseX = evt.clientX;
 		var actualimage = document.querySelector("#actualimage");
@@ -622,12 +622,12 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 	});
 
 
-	$("#navleft").on("click touchstart", function(evt) {
+	$("#navleft").on("click", function(evt) {
 		evt.stopPropagation();
 		galleryLeft();
 	});
 
-	$("#navright").on("click touchstart", function(evt) {
+	$("#navright").on("click", function(evt) {
 		evt.stopPropagation();
 		galleryRight();
 	});

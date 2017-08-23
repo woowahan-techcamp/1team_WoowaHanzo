@@ -30,8 +30,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 
   $(".buttons_holder").on("postLoaded", function() {
-
     $(".post_indicator").css("opacity", 0);
+    $(".post_indicator").css("height", 0);
+    $(".buttons_holder").css("opacity", 1);
   });
 
   autosize($("textarea"));
