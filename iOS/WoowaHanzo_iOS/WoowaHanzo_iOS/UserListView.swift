@@ -122,7 +122,7 @@ class UserListView: UIScrollView {
         tagListView.layer.borderColor = UIColor.blue.cgColor
         cellview.addSubview(tagListView)
         lastview = tagListView
-        inypos = inypos + Int(lastview.frame.size.height) + 10
+        inypos = inypos + Int(lastview.frame.size.height) + 5
 
         
         let scrollview = UIScrollView()
@@ -138,10 +138,8 @@ class UserListView: UIScrollView {
                 let imageview = UIImageView()
                 Storage.storage().reference(withPath: "images/" + name).downloadURL { (url, error) in
                     imageview.contentMode = UIViewContentMode.scaleAspectFill
-                    //fill을 안하면 Horizontal scroll이 가능하다!
                     imageview.clipsToBounds = true
                     imageview.kf.setImage(with: url)
-                    //images.append(imageview)
                     imageview.frame = CGRect(x:10 + index * (imgsize + 10), y:0, width: imgsize, height: imgsize)
                     imageview.layer.cornerRadius = 3
                     
