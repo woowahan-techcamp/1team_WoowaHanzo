@@ -1,155 +1,86 @@
+ul, li {
+  list-style-type: none;
+  padding: 0;
+}
+
+.container_box {
+  /*padding-left: 15px;*/
+  padding-right: 15px;
+}
+
 .ranking_item {
   width: 100%;
   height: 80px;
-  margin-bottom: 20px;
+  line-height: 80px;
   min-width: 350px;
 }
 
 .ranking_num {
-  width: 50px;
-  height: 80px;
-  line-height: 80px;
-  font-size: 2em;
-  margin-right: 10px;
-  text-align: center;
+  width: 10%;
+  height: 100%;
+  font-size: 1.7em;
+  font-weight: 200;
+  text-align: right;
   float: left;
+  margin-right: 15px;
 }
 
 .ranking_content {
-  width: calc(100% - 80px);
-  background-color: rgb(246, 246, 246);
-  border: 2px solid rgb(66, 156, 240);
-  padding: 0 20px 0 10px;
-  border-radius: 25px;
-  -moz-border-radius: 25px;
-  -webkit-border-radius: 25px;
+  width: 85%;
+  height: 100%;
+  line-height: 80px;
   float: left;
+  margin-bottom: 20px;
+  border: 1px solid #2ac1bc;
+  border-radius: 15px;
 }
 
 .ranking_profile_pic_box {
-  width: 70px;
-  height: 80px;
-  line-height: 80px;
-  text-align: center;
-  margin-right: 10px;
-  float: left;
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  line-height: normal;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  overflow: hidden;
+  vertical-align: middle;
+  margin-left: 15px;
 }
 
 .ranking_profile_pic {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  max-height: 100%;
+  -webkit-transform:translate(-50%);
+  -moz-tranform:translate(-50%);
+  -ms-transform: translate(-50%); /* IE 9 */
+  transform: translate(-50%);
+  margin-left: 50%;
 }
 
-.ranking_center_side {
-  width: auto;
-  height: 80px;
-  float: left;
-}
-
-.ranking_title {
-  width: auto;
-  height: 40px;
-  position: relative;
-}
-
-.ranking_title_img {
-  position: absolute;
-  bottom: 0;
+.ranking_user_info {
+  line-height: normal;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
 }
 
 .ranking_title_text {
-  width: 200px;
-  color: rgb(93, 205, 240);
-  margin-right: 5px;
-  position: absolute;
-  bottom: 0;
-  left: 25px;
+  color: #888;
 }
 
 .ranking_username {
-  width: auto;
-  height: 40px;
-  color: #736f6f;
+  color: #888;
 }
 
-.ranking_right_side {
-  width: auto;
-  height: 80px;
-  line-height: 80px;
+.ranking_like_info {
+  padding-right: 20px;
+  text-align: right;
+  display: inline-block;
+  vertical-align: middle;
   float: right;
 }
 
 /*width가 400 미만이 되면..*/
 @media (max-width: 400px) {
-  .ranking_item {
-    height: 60px;
-    margin-bottom: 20px;
-  }
-
-  .ranking_num {
-    width: 50px;
-    height: 60px;
-    line-height: 70px;
-    font-size: 1.5em;
-  }
-
-  .ranking_content {
-    border-radius: 20px;
-    -moz-border-radius: 20px;
-    -webkit-border-radius: 20px;
-  }
-
-  .ranking_profile_pic_box {
-    width: 50px;
-    height: 60px;
-    line-height: 60px;
-    margin-right: 10px;
-  }
-
-  .ranking_profile_pic {
-    width: 45px;
-    height: 45px;
-  }
-
-  .ranking_title {
-    height: 20px;
-    line-height: 20px;
-    margin-top: 10px;
-    font-size: 0.8em;
-  }
-
-  .ranking_title_img {
-    height: 20px;
-    line-height: 18px;
-  }
-
-  .ranking_title_text {
-    width: 150px;
-    height: 20px;
-    line-height: 20px;
-    margin-right: 5px;
-    bottom: 0;
-    left: 20px;
-  }
-
-  .ranking_username {
-    height: 20px;
-    line-height: 20px;
-    font-size: 0.8em;
-  }
-
-  .ranking_center_side {
-    height: 60px;
-  }
-
-  .ranking_right_side {
-    height: 60px;
-    line-height: 60px;
-  }
-
-  .ranking_right_side span {
-    font-size: 0.8em;
-  }
 
 }
