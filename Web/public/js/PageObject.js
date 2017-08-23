@@ -63,7 +63,8 @@ class PageObject {
           loadPosts(snapshot);
           i -= 1;
         }
-      } else if (!isScrolledIntoView(document.querySelector(".loading-indicator-box"))) {
+      } else if (document.querySelector(".loading-indicator-box") &&
+          !isScrolledIntoView(document.querySelector(".loading-indicator-box"))) {
         this.bottomSeen = false;
       }
     }.bind(this));
