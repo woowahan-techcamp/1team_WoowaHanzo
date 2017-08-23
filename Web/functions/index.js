@@ -72,8 +72,15 @@ exports.getUserQuery = functions.database.ref("/userQuery/{queryId}/uid")
   .onCreate(event => {
     var original = event.data.val();
     var key = event.data.ref.parent.key;
-    return admin.database().ref("/users").once("value").then(snapshots => {
-
+    var ret = ["1"];
+    return admin.database().ref("/posts").orderByChild("time").once("value").then(snapshots => {
+      var childList = [];
+      snapshots.forEach(function(item) {
+        if(item.val().uid == original) {
+          ret.push(item.key);
+        }
+      });
+      return event.data.ref.parent.child("queryResult").set("ret");
     });
   });
 

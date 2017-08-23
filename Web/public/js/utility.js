@@ -125,7 +125,6 @@ function handleThumbnailNumber($curPost, imagenumber) {
 		console.log('imagenumber: ', imagenumber);
 		$(thumbnail_cover).on("mousedown touchend", function(evt) {
 			evt.preventDefault();
-			console.log('thumbnail_cover mousedown...');
 			var thumbnail = evt.target.parentElement;
 			var image = thumbnail.querySelector("img");
 			$(image).trigger("mousedown");
