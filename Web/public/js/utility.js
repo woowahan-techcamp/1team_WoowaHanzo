@@ -124,6 +124,7 @@ function handleThumbnailNumber($curPost, imagenumber) {
 		thumbnail_cover.innerHTML = "+" + (imagenumber - 3);
 		console.log('imagenumber: ', imagenumber);
 		$(thumbnail_cover).on("mousedown touchstart", function(evt) {
+			evt.preventDefault();
 			console.log('thumbnail_cover mousedown...');
 			var thumbnail = evt.target.parentElement;
 			var image = thumbnail.querySelector("img");
@@ -194,7 +195,7 @@ function fixExifOrientation($img) {
 
 
 function resizeThumbnails() {
-  $(".image_thumbnails td").each(function(index, elem) {"mousedown touchstart"
+  $(".image_thumbnails td").each(function(index, elem) {
 		var thumbnailHolder = elem.parentElement;
 		var td = thumbnailHolder.querySelector("td");
     var bufferWidth = td.offsetWidth;
@@ -256,6 +257,7 @@ function addTagListeners(curPost) {
 	var tags = curPost.querySelectorAll(".tagger");
 	for(var i = 0; i < tags.length; ++i) {
 		$(tags[i]).on("mousedown touchstart", function(evt) {
+			evt.preventDefault();
 			var tagValue = evt.target.innerHTML.trim();
 			var queryKey = firebase.database().ref().child("tagQuery").push().key;
 
@@ -395,6 +397,7 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 	// add functionality to like button
 	var like_button = curPost.querySelector(".like_btn");
 	$(like_button).on("mousedown touchstart", function(event) {
+		event.preventDefault();
 		var id = event.target.parentElement.parentElement.id;
 		var requestKey = firebase.database().ref().child("likeRequest").push().key;
 		var bufferObject = {};
@@ -469,6 +472,7 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
           }.bind(this));
 
 					imageParent.on("mousedown touchstart", function(evt) {
+						evt.preventDefault();
 						var curImage = evt.target;
 
 						showGallery(pageObject.imageUrls[this.id], this.i);
@@ -557,6 +561,7 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 	});
 
 	$("#galleryoverlay").on("mousedown touchstart", function(evt) {
+		evt.preventDefault();
 		$('#galleryoverlay').css('display', 'none');
 		$('#justblackbackground').css('display', 'none');
 		$('#actualimage').css('display', 'none');
@@ -593,6 +598,7 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 
 
 	$("#actualimage").on("mousedown touchstart", function(evt) {
+		evt.preventDefault();
 		evt.stopPropagation();
 		var mouseX = evt.clientX;
 		var actualimage = document.querySelector("#actualimage");
@@ -625,11 +631,13 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 
 
 	$("#navleft").on("mousedown touchstart", function(evt) {
+		evt.preventDefault();
 		evt.stopPropagation();
 		galleryLeft();
 	});
 
 	$("#navright").on("mousedown touchstart", function(evt) {
+		evt.preventDefault();
 		evt.stopPropagation();
 		galleryRight();
 	});
