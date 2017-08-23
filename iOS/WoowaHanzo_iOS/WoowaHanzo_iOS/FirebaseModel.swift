@@ -89,6 +89,7 @@ class FirebaseModel{
                         User.users.append(user)
                     
                     
+                    
                      NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
                 }
                
@@ -170,5 +171,15 @@ class FirebaseModel{
         
         //rankUserList를 Rankviewcontroller로 보내준다.
         //사진은 어떻게 할지는 있다가.
+    }
+    func likeRequest(){
+        ref = Database.database().reference()
+        let key = ref.child("likeRequest").childByAutoId().key
+        //print(key)
+        let post = ["postId": "1" ,"result": ["count":0,"state":"default"],"uid":Auth.auth().currentUser?.uid] as [String : Any]
+        let childUpdates = ["/likeRequest/\(key)": post]
+        ref.updateChildValues(childUpdates)
+        print("")
+        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResult"), object: self, userInfo: ["key":key])
     }
 }
