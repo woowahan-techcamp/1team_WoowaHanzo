@@ -147,7 +147,8 @@ class UserListView: UIScrollView {
                     
 
                     scrollview.addSubview(imageview)
-                    scrollview.contentSize = CGSize(width: Int(10 + user.imageArray!.count * (imgsize + 10)), height: imgsize)
+                    scrollview.contentSize = CGSize(width: max(Int(scrollview.frame.width + 1),Int(10 + user.imageArray!.count * (imgsize + 25))), height: imgsize)
+                    //contentsize를 크게 줘야 bouncing이 항상 가능하다.
                     cellview.addSubview(scrollview)
                 }
             }
