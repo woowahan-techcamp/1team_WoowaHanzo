@@ -93,7 +93,8 @@ class RankListView: UIScrollView {
         cellview.addSubview(profileimgview)
         
         
-        let namelabel = UILabel()
+        let namelabel = NickNameLabel()
+        namelabel.whenLabelTouched()
         namelabel.text = rankuser.nickName
         namelabel.textAlignment = NSTextAlignment.center
         namelabel.font = UIFont(name: "NotoSans", size: 17.0)!
@@ -101,9 +102,7 @@ class RankListView: UIScrollView {
         namelabel.sizeToFit()
         namelabel.frame.size.height = namelabel.frame.size.height + 10
         namelabel.frame.origin = CGPoint(x: 85, y: 37)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(nickNameTouched))
-        namelabel.addGestureRecognizer(tap)
-        namelabel.isUserInteractionEnabled = true
+        
         
         cellview.addSubview(namelabel)
         
@@ -133,9 +132,7 @@ class RankListView: UIScrollView {
         
         
     }
-    func nickNameTouched(){
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "nickNameTouched"), object: nil, userInfo: ["nickName":self.])
-    }
+    
     
     func addTag(text:String, target:AnyObject, backgroundColor:UIColor,textColor:UIColor)
     {
