@@ -99,6 +99,9 @@ class UserListView: UIScrollView {
         var lastview : UIView =  profileimgview
         inypos = inypos + Int(lastview.frame.size.height) + 10
         
+//name label/////////////////////////////////
+        
+        
 //textview///////////////////////////////////////
         let textview = UITextView()
         textview.text = user.contents
