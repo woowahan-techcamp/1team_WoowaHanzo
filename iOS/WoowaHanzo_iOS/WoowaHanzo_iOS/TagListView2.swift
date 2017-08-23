@@ -55,7 +55,7 @@ class TagPageView2: UIScrollView
         label.clipsToBounds = true
         label.backgroundColor = backgroundColor
         label.text = text
-        label.font = UIFont(name: "NotoSans", size: 17.0)!
+        label.font = UIFont(name: "NotoSans", size: 16.0)!
         label.textColor = textColor
         label.sizeToFit()
         label.textAlignment = NSTextAlignment.center

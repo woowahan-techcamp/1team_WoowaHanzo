@@ -74,6 +74,9 @@ class UserListView: UIScrollView {
         cellview.frame = CGRect(x: 0, y: ypos + 10, width : Int(self.frame.width), height: 80)
         self.addSubview(cellview)
         
+        
+        
+//profile image//////////////////////////////
         let profileimgview = UIImageView()
         profileimgview.frame = CGRect(x:10, y:inypos, width: 60, height: 60)
         profileimgview.contentMode = UIViewContentMode.scaleAspectFill
@@ -82,6 +85,7 @@ class UserListView: UIScrollView {
         profileimgview.layer.cornerRadius = profileimgview.frame.width / 2
         
         //사진 나중에 업데이트해주어야 함.
+        
         //profimag!??
 //        if user != nil {
 //            Storage.storage().reference(withPath: "profileImages/" + user.profileImg!).downloadURL { (url, error) in
@@ -94,7 +98,7 @@ class UserListView: UIScrollView {
         var lastview : UIView =  profileimgview
         inypos = inypos + Int(lastview.frame.size.height) + 10
         
-        
+//textview///////////////////////////////////////
         let textview = UITextView()
         textview.text = user.contents
         textview.font = UIFont(name: "NotoSans", size: 16.0)!
@@ -111,22 +115,21 @@ class UserListView: UIScrollView {
         textview.isEditable = false
         cellview.addSubview(textview)
         lastview = textview
-        inypos = inypos + Int(lastview.frame.size.height) + 5
+        inypos = inypos + Int(lastview.frame.size.height) + 0
         
+//tagListview//////////////////////////////////////
         let tagListView = TagPageView2(frame: CGRect(x: 0, y: inypos, width: Int(cellview.frame.width), height: 70))
         for i in user.tags!{
             tagListView.addTag(text: "#"+i, target: self, backgroundColor: UIColor.white, textColor: color)
         }
         tagListView.frame.size.height = tagListView.contentSize.height
-        tagListView.layer.borderWidth = 0.5
-        tagListView.layer.borderColor = UIColor.blue.cgColor
         cellview.addSubview(tagListView)
         lastview = tagListView
-        inypos = inypos + Int(lastview.frame.size.height) + 5
+        inypos = inypos + Int(lastview.frame.size.height) + 0
 
-        
+//scrollview///////////////////////////////////////
         let scrollview = UIScrollView()
-        let imgsize = 120
+        let imgsize = 115
         scrollview.frame = CGRect(x: 0, y: inypos, width: Int(cellview.frame.width), height: imgsize)
         scrollview.showsHorizontalScrollIndicator = false
         let scrollcontainerView = UIView(frame: scrollview.frame)
@@ -140,12 +143,12 @@ class UserListView: UIScrollView {
                     imageview.contentMode = UIViewContentMode.scaleAspectFill
                     imageview.clipsToBounds = true
                     imageview.kf.setImage(with: url)
-                    imageview.frame = CGRect(x:10 + index * (imgsize + 10), y:0, width: imgsize, height: imgsize)
+                    imageview.frame = CGRect(x:10 + index * (imgsize + 13), y:0, width: imgsize, height: imgsize)
                     imageview.layer.cornerRadius = 3
                     
 
                     scrollview.addSubview(imageview)
-                    scrollview.contentSize = CGSize(width: max(Int(scrollview.frame.width + 1),Int(10 + user.imageArray!.count * (imgsize + 25))), height: imgsize)
+                    scrollview.contentSize = CGSize(width: max(Int(scrollview.frame.width + 1),Int(10 + user.imageArray!.count * (imgsize + 13))), height: imgsize)
                     //contentsize를 크게 줘야 bouncing이 항상 가능하다.
                     cellview.addSubview(scrollview)
                 }
@@ -158,13 +161,15 @@ class UserListView: UIScrollView {
         lastview = scrollview
         inypos = inypos + Int(lastview.frame.size.height) + 10
 
+//likebutton///////////////////////////////////////////////////////
         let likebutton = LikeButton()
-        //피드에 따라 기본 그림이 달라져야 한다. 나중에 설정해주기.
         likebutton.whenButtonTouched(postkey: user.key)
+        //피드에 따라 기본 그림이 달라져야 한다. 나중에 설정해주기.
         likebutton.frame = CGRect(x: 20, y: inypos, width: 30, height: 30)
         cellview.addSubview(likebutton)
         lastview = likebutton
         inypos = inypos + Int(lastview.frame.size.height) + 10
+        
         
         
         

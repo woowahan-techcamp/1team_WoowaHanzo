@@ -171,6 +171,12 @@ class FirebaseModel{
         //rankUserList를 Rankviewcontroller로 보내준다.
         //사진은 어떻게 할지는 있다가.
     }
+    func loadProfileimg(){
+        print("loadProfileimg called")
+        //self.ref = Database.database().reference().child("users")
+
+    }
+    
     
     func loadUsers2(){
         print("loadUsers2 called")
