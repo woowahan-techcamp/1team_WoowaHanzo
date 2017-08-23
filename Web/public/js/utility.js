@@ -123,7 +123,7 @@ function handleThumbnailNumber($curPost, imagenumber) {
 	} else {
 		thumbnail_cover.innerHTML = "+" + (imagenumber - 3);
 		console.log('imagenumber: ', imagenumber);
-		$(thumbnail_cover).on("mousedown touchstart", function(evt) {
+		$(thumbnail_cover).on("mousedown touchend", function(evt) {
 			evt.preventDefault();
 			console.log('thumbnail_cover mousedown...');
 			var thumbnail = evt.target.parentElement;
@@ -256,7 +256,7 @@ function getIdFromPostId(id) {
 function addTagListeners(curPost) {
 	var tags = curPost.querySelectorAll(".tagger");
 	for(var i = 0; i < tags.length; ++i) {
-		$(tags[i]).on("mousedown touchstart", function(evt) {
+		$(tags[i]).on("mousedown touchend", function(evt) {
 			evt.preventDefault();
 			var tagValue = evt.target.innerHTML.trim();
 			var queryKey = firebase.database().ref().child("tagQuery").push().key;
@@ -268,6 +268,15 @@ function addTagListeners(curPost) {
 				window.location.href = "./index.html?tagQuery=" + queryKey;
 			});
 		});
+	}
+}
+
+// if true landscape non jquery
+function imageDimensions(img) {
+	if(img.height > img.width) {
+		return false;
+	} else {
+		return true;
 	}
 }
 
@@ -300,6 +309,11 @@ function loadUserProfile(uid) {
 				profilePic.classList.add("loading");
 				profilePic.src = url;
 				profilePic.addEventListener("load", function(evt) {
+					if(!imageDimensions(evt.target)) {
+						evt.target.classList.add("circularLongImage");
+					} else {
+						evt.target.classList.remove("circularLongImage");
+					}
 
 					if(prevLoaded(this) && imagesAllLoaded(evt.target)) {
 						$(".buttons_holder").css("display", "block");
@@ -314,6 +328,7 @@ function loadUserProfile(uid) {
 			profilePic.classList.add("loading");
 			profilePic.src = pageObject.userProfileImage[this.uid];
 			profilePic.addEventListener("load", function(evt) {
+
 
 				if(prevLoaded(this) && imagesAllLoaded(evt.target)) {
 				 	fadeInPost(this);
@@ -396,7 +411,7 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 
 	// add functionality to like button
 	var like_button = curPost.querySelector(".like_btn");
-	$(like_button).on("mousedown touchstart", function(event) {
+	$(like_button).on("mousedown touchend", function(event) {
 		event.preventDefault();
 		var id = event.target.parentElement.parentElement.id;
 		var requestKey = firebase.database().ref().child("likeRequest").push().key;
@@ -471,7 +486,7 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 
           }.bind(this));
 
-					imageParent.on("mousedown touchstart", function(evt) {
+					imageParent.on("mousedown touchend", function(evt) {
 						evt.preventDefault();
 						var curImage = evt.target;
 
@@ -560,7 +575,7 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 		resizeThumbnails();
 	});
 
-	$("#galleryoverlay").on("mousedown touchstart", function(evt) {
+	$("#galleryoverlay").on("mousedown touchend", function(evt) {
 		evt.preventDefault();
 		$('#galleryoverlay').css('display', 'none');
 		$('#justblackbackground').css('display', 'none');
@@ -597,7 +612,7 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 	});
 
 
-	$("#actualimage").on("mousedown touchstart", function(evt) {
+	$("#actualimage").on("mousedown touchend", function(evt) {
 		evt.preventDefault();
 		evt.stopPropagation();
 		var mouseX = evt.clientX;
@@ -630,13 +645,13 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 	});
 
 
-	$("#navleft").on("mousedown touchstart", function(evt) {
+	$("#navleft").on("mousedown touchend", function(evt) {
 		evt.preventDefault();
 		evt.stopPropagation();
 		galleryLeft();
 	});
 
-	$("#navright").on("mousedown touchstart", function(evt) {
+	$("#navright").on("mousedown touchend", function(evt) {
 		evt.preventDefault();
 		evt.stopPropagation();
 		galleryRight();

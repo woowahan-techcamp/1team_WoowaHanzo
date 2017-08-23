@@ -283,6 +283,21 @@ div.img-divgo{
   position: absolute;
 }
 
+.circularLongImage {
+  -webkit-transform:translate(0%) !important;
+  -moz-tranform:translate(0%) !important;
+  -ms-transform: translate(0%) !important; /* IE 9 */
+  transform: translate(0%) !important;
+  -webkit-transform:translateY(-50%) !important;
+  -moz-tranform:translateY(-50%) !important;
+  -ms-transform: translateY(-50%) !important; /* IE 9 */
+  transform: translateY(-50%) !important;
+  margin-top: 50%;
+  margin-left: 0px !important;
+  max-height: none !important;
+  max-width: 100% !important;
+}
+
 .post .Name {
   font-size: 30px;
   font-weight: bold;
@@ -505,6 +520,7 @@ div.img-divgo{
 }
 
 .nav_user_img_box {
+  font-size: 0px;
   width: 37px;
   height: 37px;
   vertical-align: middle;
@@ -523,7 +539,6 @@ div.img-divgo{
   -ms-transform: translate(-50%); /* IE 9 */
   transform: translate(-50%);
   margin-left: 50%;
-
 }
 
 .nav_username {
