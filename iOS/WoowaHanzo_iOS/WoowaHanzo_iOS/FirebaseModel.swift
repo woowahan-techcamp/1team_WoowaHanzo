@@ -215,6 +215,8 @@ class FirebaseModel{
             print("")
             //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResult"), object: self, userInfo: ["key":key])
         }
+    
+    
     func loadProfileImageFromUsers(){
 
         self.ref = Database.database().reference()
@@ -225,12 +227,14 @@ class FirebaseModel{
             
             let profileImg = value?["profileImg"] as? String ?? ""
             print("did\(profileImg)")
-            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: self,userInfo: ["profileImageUrl":profileImg])
             // ...
         }) { (error) in
             
             print(error.localizedDescription)
         }
+        
 
     }
+    
 }

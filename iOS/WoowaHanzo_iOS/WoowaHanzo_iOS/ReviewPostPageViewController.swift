@@ -10,6 +10,7 @@ import UIKit
 import BSImagePicker
 import Photos
 import Firebase
+import Kingfisher
 
 class ReviewPostPageViewController: UIViewController {
     
@@ -95,6 +96,7 @@ class ReviewPostPageViewController: UIViewController {
                 NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.fitView), name: NSNotification.Name(rawValue: "fitview"), object: nil)
                 NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.escapecancel), name: NSNotification.Name(rawValue: "escapecancel"), object: nil)
                 NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.escapeOK), name: NSNotification.Name(rawValue: "escapeOK"), object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(loadPorfileImage(_ :)), name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: nil)
                 
                 
                 //view border setting
@@ -148,6 +150,12 @@ class ReviewPostPageViewController: UIViewController {
                 tap3.cancelsTouchesInView = false
                 myTagView.addGestureRecognizer(tap3)
             }
+        }
+    }
+    func loadPorfileImage(_ notification : Notification){
+        let profileImageUrl = notification.userInfo?["profileImageUrl"] as! String
+        Storage.storage().reference(withPath: "profileImages/" + profileImageUrl).downloadURL { (url, error) in
+            self.myImageView?.kf.setImage(with: url)
         }
     }
     
