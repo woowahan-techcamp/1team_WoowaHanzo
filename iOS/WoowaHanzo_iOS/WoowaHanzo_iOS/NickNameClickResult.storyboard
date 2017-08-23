@@ -12,8 +12,8 @@
         <!--Navigation Controller-->
         <scene sceneID="kez-Ly-1M4">
             <objects>
-                <navigationController id="lHI-iA-4v2" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3Ya-7j-bj3">
+                <navigationController storyboardIdentifier="NickNameClickResult" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lHI-iA-4v2" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3Ya-7j-bj3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="-1428" y="-15"/>
         </scene>
-        <!--View Controller-->
+        <!--Nick Name Click Result View Controller-->
         <scene sceneID="tLE-Q6-mTY">
             <objects>
-                <viewController id="EDy-vy-fid" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NickNameClickResultViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EDy-vy-fid" customClass="NickNameClickResultViewController" customModule="WoowaHanzo_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y6w-sr-eNv"/>
                         <viewControllerLayoutGuide type="bottom" id="ji4-vT-cFy"/>

@@ -36,6 +36,13 @@ class RankPageViewController: UIViewController {
     }
     func nickNameLabelTouched(_ notification:Notification){
         print("nickNameLabelTouched")
+        
+        
+        let storyboard = UIStoryboard(name: "NickNameClickResult", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "NickNameClickResultViewController")
+        //self.present(controller, animated: true, completion: nil)
+        //self.navigationController?.pushViewController(controller, animated: true)
+        self.show(controller, sender: self)
     }
 
     /*
