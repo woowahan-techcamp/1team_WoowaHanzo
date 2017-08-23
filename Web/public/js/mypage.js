@@ -83,6 +83,13 @@ function profileImageHandle(evt) {
     reader.onload = function (evt) {
       // 사진 프리뷰
       $(".mypage_user_image_box img").attr('src', evt.target.result);
+      $(".mypage_user_image_box img").on("load", function(evt) {
+        if(!imageDimensions(evt.target)) {
+          evt.target.classList.add("circularLongImage");
+        } else {
+          evt.target.classList.remove("circularLongImage");
+        }
+      });
 
       var fullPath = fileInput.value;
       if (fullPath) {

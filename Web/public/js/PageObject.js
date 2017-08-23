@@ -11,7 +11,7 @@ class PageObject {
     this.pastTime = undefined;
     this.futureTime = undefined;
 
-    this.initialPostLoads = 6;
+    this.initialPostLoads = 8;
 
     this.frontLoadStack = [];
     this.bottomLoadStack = [];
