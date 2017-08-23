@@ -37,8 +37,6 @@ class MyPageViewController: UIViewController {
         UINavigationBar.appearance().backgroundColor = UIColor.white
         if AuthModel.isLoginStatus(){
             self.navigationController?.navigationBar.topItem?.title = UserDefaults.standard.string(forKey: "userNickName")
-            
-            
         }
         else {
             self.navigationController?.navigationBar.topItem?.title = "마이페이지"
