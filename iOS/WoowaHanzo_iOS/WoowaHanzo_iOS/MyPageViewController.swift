@@ -8,10 +8,15 @@
 
 import UIKit
 import Firebase
-
+import Kingfisher
 
 class MyPageViewController: UIViewController {
     
+    var ref: DatabaseReference!
+
+    var postProfileImageName:String = ""
+    @IBOutlet weak var imageIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var myProfileImageView: UIImageView!
     var count  = 0
     @IBOutlet weak var myPageFeedContentsTextView: UITextView!
     @IBOutlet weak var myPageFeedTimeLabel: UILabel!
@@ -19,6 +24,16 @@ class MyPageViewController: UIViewController {
     @IBOutlet weak var myPageFeedProfileImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(loadPorfileImage(_ :)), name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: nil)
+        imageIndicator.startAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            
+            // your time-consuming code here
+            sleep(1) //Do NOT use sleep on the main thread in real code!!!
+            self.imageIndicator.stopAnimating()
+            
+        }
+        FirebaseModel().loadProfileImageFromUsers()
         UINavigationBar.appearance().backgroundColor = UIColor.white
         if AuthModel.isLoginStatus(){
             self.navigationController?.navigationBar.topItem?.title = UserDefaults.standard.string(forKey: "userNickName")
@@ -32,10 +47,18 @@ class MyPageViewController: UIViewController {
                 print(index.contents)
             }
         }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(imageViewTouched))
+        myProfileImageView.addGestureRecognizer(tap)
+        myProfileImageView.isUserInteractionEnabled = true
         
         
     }
-    
+    func loadPorfileImage(_ notification : Notification){
+        let profileImageUrl = notification.userInfo?["profileImageUrl"] as! String
+        Storage.storage().reference(withPath: "profileImages/" + profileImageUrl).downloadURL { (url, error) in
+            self.myProfileImageView?.kf.setImage(with: url)
+        }
+    }
     @IBAction func logout(_ sender: Any) {
         let firebaseAuth = Auth.auth()
         do {
@@ -48,6 +71,7 @@ class MyPageViewController: UIViewController {
         }
         
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         if !AuthModel.isLoginStatus(){
@@ -76,14 +100,13 @@ class MyPageViewController: UIViewController {
         }
         
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func imageViewTouched(){
+        print("touched")
     }
-    
-    
-    
-    
+
+
+
+
 }
 
 

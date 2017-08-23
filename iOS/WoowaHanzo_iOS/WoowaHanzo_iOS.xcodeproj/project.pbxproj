@@ -48,6 +48,7 @@
 		9894B76B1F457BAA00DAB38E /* NotoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9894B7671F457BAA00DAB38E /* NotoSans-Regular.ttf */; };
 		9894B76C1F457BAA00DAB38E /* NotoSansKR_Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 9894B7681F457BAA00DAB38E /* NotoSansKR_Regular.woff */; };
 		9894B76D1F457BAA00DAB38E /* NotoSansUI-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9894B7691F457BAA00DAB38E /* NotoSansUI-Regular.ttf */; };
+		98B73A4E1F4D77E900C3CCE0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 98B73A4D1F4D77E900C3CCE0 /* Localizable.strings */; };
 		98C5637B1F3955180017E68A /* MainPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C5637A1F3955180017E68A /* MainPageTableViewCell.swift */; };
 		98C563C21F39B69D0017E68A /* SearchPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98C563C11F39B69D0017E68A /* SearchPage.storyboard */; };
 		98C563C41F39B6AC0017E68A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C563C31F39B6AC0017E68A /* SearchViewController.swift */; };
@@ -138,6 +139,9 @@
 		9894B7671F457BAA00DAB38E /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Regular.ttf"; sourceTree = "<group>"; };
 		9894B7681F457BAA00DAB38E /* NotoSansKR_Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = NotoSansKR_Regular.woff; sourceTree = "<group>"; };
 		9894B7691F457BAA00DAB38E /* NotoSansUI-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansUI-Regular.ttf"; sourceTree = "<group>"; };
+		98B73A4A1F4D77E900C3CCE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		98B73A4B1F4D77E900C3CCE0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		98B73A4C1F4D77E900C3CCE0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		98C5637A1F3955180017E68A /* MainPageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageTableViewCell.swift; sourceTree = "<group>"; };
 		98C563C11F39B69D0017E68A /* SearchPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchPage.storyboard; sourceTree = "<group>"; };
 		98C563C31F39B6AC0017E68A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -244,14 +248,8 @@
 		9854BF571F331203008FA337 /* WoowaHanzo_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				98B73A4D1F4D77E900C3CCE0 /* Localizable.strings */,
 				9894B7651F457B9300DAB38E /* fonts */,
-				98ECA3AA1F3D87530069DA87 /* baemin.png */,
-				98FB4A271F4C174400BDE5B2 /* icons8-Message-50.png */,
-				98FB4A2B1F4C179900BDE5B2 /* icons8-Email-64.png */,
-				98FB4A2D1F4C184300BDE5B2 /* icons8-Edit Property-64.png */,
-				98FB4A231F4C16D800BDE5B2 /* icons8-Lock-50.png */,
-				98FB4A291F4C177000BDE5B2 /* icons8-Message-64.png */,
-				98FB4A251F4C16DD00BDE5B2 /* icons8-User-50.png */,
 				98C563C71F39BD720017E68A /* LoginPage */,
 				98C563C61F39B73D0017E68A /* firebase */,
 				98C563C01F39B6830017E68A /* SearchPage */,
@@ -267,6 +265,13 @@
 				9854BF641F331203008FA337 /* Info.plist */,
 				984397A11F3C34B800743B63 /* StringExtension.swift */,
 				98ECA4371F4557990069DA87 /* icon.xcassets */,
+				98ECA3AA1F3D87530069DA87 /* baemin.png */,
+				98FB4A271F4C174400BDE5B2 /* icons8-Message-50.png */,
+				98FB4A2B1F4C179900BDE5B2 /* icons8-Email-64.png */,
+				98FB4A2D1F4C184300BDE5B2 /* icons8-Edit Property-64.png */,
+				98FB4A231F4C16D800BDE5B2 /* icons8-Lock-50.png */,
+				98FB4A291F4C177000BDE5B2 /* icons8-Message-64.png */,
+				98FB4A251F4C16DD00BDE5B2 /* icons8-User-50.png */,
 			);
 			path = WoowaHanzo_iOS;
 			sourceTree = "<group>";
@@ -529,6 +534,7 @@
 				9894B76B1F457BAA00DAB38E /* NotoSans-Regular.ttf in Resources */,
 				9854BFAE1F340B4E008FA337 /* MainPage.storyboard in Resources */,
 				984397521F38389100743B63 /* profile.png in Resources */,
+				98B73A4E1F4D77E900C3CCE0 /* Localizable.strings in Resources */,
 				98FB4A2C1F4C179900BDE5B2 /* icons8-Email-64.png in Resources */,
 				9854BFAC1F340AFC008FA337 /* MyPage.storyboard in Resources */,
 				98ECA3AB1F3D87530069DA87 /* baemin.png in Resources */,
@@ -787,6 +793,17 @@
 				9854BF621F331203008FA337 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		98B73A4D1F4D77E900C3CCE0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				98B73A4A1F4D77E900C3CCE0 /* en */,
+				98B73A4B1F4D77E900C3CCE0 /* es */,
+				98B73A4C1F4D77E900C3CCE0 /* fr */,
+			);
+			name = Localizable.strings;
+			path = "../../../../../Downloads/YPImagePicker-master/Resources";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

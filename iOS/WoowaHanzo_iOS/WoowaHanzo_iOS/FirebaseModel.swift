@@ -154,7 +154,7 @@ class FirebaseModel{
     
     
     
-//For RankPage////////////////////////////////////
+    //For RankPage////////////////////////////////////
     func loadUsers(){
         print("loadUsers called")
         var rankUserList = [RankUser]()
@@ -189,7 +189,7 @@ class FirebaseModel{
         })
     }
     
-//For mainPage///////////////////////////////////
+    //For mainPage///////////////////////////////////
     func loadUsers2(){
         print("loadUsers2 called")
         User.users = [User]()
@@ -197,7 +197,7 @@ class FirebaseModel{
         //나중에 Likes가 확보되면  likes로 바꾸기.
         self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
-                    for child in result {
+                for child in result {
                     let user = User(snapshot: child)
                     
                     User.users.append(user)
@@ -207,31 +207,36 @@ class FirebaseModel{
         })
     }
     func likeRequest(postId:String){
-            ref = Database.database().reference()
-            let key = ref.child("likeRequest").childByAutoId().key
-            //print(key)
-            let post = ["postId": postId ,"result": ["count":0,"state":"default"],"uid": Auth.auth().currentUser?.uid] as [String : Any]
-            let childUpdates = ["/likeRequest/\(key)": post]
-            ref.updateChildValues(childUpdates)
-            print("")
-            //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResult"), object: self, userInfo: ["key":key])
-        }
+        ref = Database.database().reference()
+        let key = ref.child("likeRequest").childByAutoId().key
+        //print(key)
+        let post = ["postId": postId ,"result": ["count":0,"state":"default"],"uid": Auth.auth().currentUser?.uid] as [String : Any]
+        let childUpdates = ["/likeRequest/\(key)": post]
+        ref.updateChildValues(childUpdates)
+        print("")
+        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResult"), object: self, userInfo: ["key":key])
+    }
+    
+    
     func loadProfileImageFromUsers(){
-
-        self.ref = Database.database().reference()
-        let userID = Auth.auth().currentUser?.uid
-        ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? NSDictionary
+        
+        if AuthModel.isLoginStatus(){
+            self.ref = Database.database().reference()
+            let userID = Auth.auth().currentUser?.uid
+            ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                
+                let profileImg = value?["profileImg"] as? String ?? ""
+                print("did\(profileImg)")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: self,userInfo: ["profileImageUrl":profileImg])
+                // ...
+            }) { (error) in
+                
+                print(error.localizedDescription)
+            }
             
-            let profileImg = value?["profileImg"] as? String ?? ""
-            print("did\(profileImg)")
             
-            // ...
-        }) { (error) in
-            
-            print(error.localizedDescription)
         }
-
     }
 }
