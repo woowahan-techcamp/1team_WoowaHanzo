@@ -68,6 +68,15 @@ exports.getTagQuery = functions.database.ref("/tagQuery/{queryId}/tag")
 
   });
 
+exports.getUserQuery = functions.database.ref("/userQuery/{queryId}/uid")
+  .onCreate(event => {
+    var original = event.data.val();
+    var key = event.data.ref.parent.key;
+    return admin.database().ref("/users").once("value").then(snapshots => {
+
+    });
+  });
+
 exports.handlePostUpload = functions.database.ref("/posts/{postId}")
   .onCreate(event => {
     var key = event.data.key;
