@@ -128,8 +128,6 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
 
 
 
-
-
 ////MARK: TableView extension
 //extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
 //    func numberOfSections(in tableView: UITableView) -> Int {

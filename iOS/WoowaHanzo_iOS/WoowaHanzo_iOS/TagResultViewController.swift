@@ -8,9 +8,10 @@
 
 import UIKit
 import Firebase
+import NVActivityIndicatorView
 
-class TagResultViewController: UIViewController {
-
+class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
+    
     var ref: DatabaseReference!
     
     @IBOutlet weak var tagResultTableView: UITableView!
@@ -27,27 +28,30 @@ class TagResultViewController: UIViewController {
         tagResultTableView.delegate = self
         tagResultTableView.dataSource = self
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
+        let size = CGSize(width: 30, height: 30)
+        
+        DispatchQueue.main.async {
+            self.startAnimating(size, message: "Loading...", type: .ballTrianglePath)
+            
+        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+            self.stopAnimating()
+            
+        }
+
         tagResultTableView.reloadData()
         TagUser.tagUsers = [TagUser]()
-
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         tagResultTableView.reloadData()
         TagUser.tagUsers = [TagUser]()
-
+        
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-     */
+    
+   
     func getTagFeed(_ notification: Notification){
         
         TagUser.tagUsers = [TagUser]()
@@ -63,31 +67,49 @@ class TagResultViewController: UIViewController {
                     }
                 }
             }
-
+            
         }
         tagResultTableView.reloadData()
         
         
     }
-
-
+    func tap(_ sender:UIGestureRecognizer)
+    {
+        let label = (sender.view as! UILabel)
+        print("tap from \(label.text!)")
+    }
+    
 }
 extension TagResultViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return TagUser.tagUsers.count as? Int ?? 1
     }
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TagResultTableViewCell
         if TagUser.tagUsers.count > 0{
-        cell.tagResultNickNameLabel.text = " "
-        cell.tagResultTextView.text = " "
-        cell.tagResultNickNameLabel.text = TagUser.tagUsers[indexPath.row].nickName
-        cell.tagResultTextView.text =  TagUser.tagUsers[indexPath.row].contents
-        cell.tagResultTimeLabel.text =  String(describing: Date().postTimeDisplay(timestamp: TagUser.tagUsers[indexPath.row].postDate))
-        print(TagUser.tagUsers[indexPath.row].contents)
-        //tableView.reloadData()
-        return cell
+            cell.tagResultNickNameLabel.text = " "
+            cell.tagResultTextView.text = " "
+            cell.tagResultTagView.reset()
+            
+
+            cell.userid = indexPath.row
+            cell.tagResultNickNameLabel.text = TagUser.tagUsers[indexPath.row].nickName
+            cell.tagResultTextView.text =  TagUser.tagUsers[indexPath.row].contents
+            cell.tagResultTimeLabel.text =  String(describing: Date().postTimeDisplay(timestamp: TagUser.tagUsers[indexPath.row].postDate))
+            //print(TagUser.tagUsers[indexPath.row].tags)
+            //tableView.reloadData()
+            //print(TagUser.tagUsers[indexPath.row].imageArray)
+            if let tag = TagUser.tagUsers[indexPath.row].tags{
+                for index in tag{
+                    cell.tagResultTagView.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.gray)
+                }
+            }
+            DispatchQueue.main.async {
+                cell.tagResultFoodCollectionView.reloadData()
+            }
+            
+            return cell
         }
         return cell
     }
