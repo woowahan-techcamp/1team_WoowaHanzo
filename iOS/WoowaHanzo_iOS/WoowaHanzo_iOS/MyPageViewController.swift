@@ -8,10 +8,12 @@
 
 import UIKit
 import Firebase
+import Kingfisher
 
 
 class MyPageViewController: UIViewController {
     
+    @IBOutlet weak var myProfileImageView: UIImageView!
     var count  = 0
     @IBOutlet weak var myPageFeedContentsTextView: UITextView!
     @IBOutlet weak var myPageFeedTimeLabel: UILabel!
@@ -19,9 +21,12 @@ class MyPageViewController: UIViewController {
     @IBOutlet weak var myPageFeedProfileImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(loadPorfileImage(_ :)), name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: nil)
+        FirebaseModel().loadProfileImageFromUsers()
         UINavigationBar.appearance().backgroundColor = UIColor.white
         if AuthModel.isLoginStatus(){
             self.navigationController?.navigationBar.topItem?.title = UserDefaults.standard.string(forKey: "userNickName")
+            
         }
         else {
             self.navigationController?.navigationBar.topItem?.title = "마이페이지"
@@ -35,7 +40,12 @@ class MyPageViewController: UIViewController {
         
         
     }
-    
+    func loadPorfileImage(_ notification : Notification){
+        let profileImageUrl = notification.userInfo?["profileImageUrl"] as! String
+        Storage.storage().reference(withPath: "profileImages/" + profileImageUrl).downloadURL { (url, error) in
+            self.myProfileImageView?.kf.setImage(with: url)
+        }
+    }
     @IBAction func logout(_ sender: Any) {
         let firebaseAuth = Auth.auth()
         do {
@@ -48,6 +58,7 @@ class MyPageViewController: UIViewController {
         }
         
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         if !AuthModel.isLoginStatus(){

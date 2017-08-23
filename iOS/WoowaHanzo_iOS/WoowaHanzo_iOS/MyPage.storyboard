@@ -95,6 +95,7 @@
                         <outlet property="myPageFeedNickNameLabel" destination="caU-Td-Wdm" id="2yX-w5-EjZ"/>
                         <outlet property="myPageFeedProfileImageView" destination="yqM-iX-UI8" id="ZwX-jq-Ll8"/>
                         <outlet property="myPageFeedTimeLabel" destination="ubo-Hh-dj9" id="f2h-DS-Q73"/>
+                        <outlet property="myProfileImageView" destination="Jij-kB-Rlr" id="rcy-fl-8Kz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ak8-KO-GYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
