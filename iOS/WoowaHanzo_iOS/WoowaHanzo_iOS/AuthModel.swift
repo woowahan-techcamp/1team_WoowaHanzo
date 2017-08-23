@@ -66,7 +66,6 @@ class AuthModel{
             let childUpdates = ["/users/\(key)": post]
             UserDefaults.standard.set(nickName, forKey: "userNickName")
             ref.updateChildValues(childUpdates)
-
         }
     }
   

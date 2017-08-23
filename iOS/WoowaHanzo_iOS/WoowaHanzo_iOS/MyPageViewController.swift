@@ -11,11 +11,15 @@ import Firebase
 
 
 class MyPageViewController: UIViewController {
+    
+    @IBOutlet weak var myPageTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         UINavigationBar.appearance().backgroundColor = UIColor.white
         if AuthModel.isLoginStatus(){
             self.navigationController?.navigationBar.topItem?.title = UserDefaults.standard.string(forKey: "userNickName")
+            myPageTableView.delegate = self
+            myPageTableView.dataSource = self
         }
         else {
         self.navigationController?.navigationBar.topItem?.title = "마이페이지"
@@ -79,4 +83,14 @@ class MyPageViewController: UIViewController {
     }
     */
 
+}
+extension MyPageViewController: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return 0
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        return cell
+    }
 }
