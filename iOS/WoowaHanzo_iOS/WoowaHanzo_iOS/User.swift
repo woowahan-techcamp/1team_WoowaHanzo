@@ -13,6 +13,7 @@ class User {
     
     static var users = Array<User>()
     static var tagUsers = Array<User>()
+    static var myUsers = Array<User>()
     static var currentUserName : String = " "
     static var nickNameClickResult = Array<User>()
     static var currentLoginedUserNickName : String = ""

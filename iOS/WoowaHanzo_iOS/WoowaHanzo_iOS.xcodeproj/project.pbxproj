@@ -548,7 +548,6 @@
 				9894B76B1F457BAA00DAB38E /* NotoSans-Regular.ttf in Resources */,
 				9854BFAE1F340B4E008FA337 /* MainPage.storyboard in Resources */,
 				984397521F38389100743B63 /* profile.png in Resources */,
-				98B73A4E1F4D77E900C3CCE0 /* Localizable.strings in Resources */,
 				98FB4A2C1F4C179900BDE5B2 /* icons8-Email-64.png in Resources */,
 				9854BFAC1F340AFC008FA337 /* MyPage.storyboard in Resources */,
 				98ECA3AB1F3D87530069DA87 /* baemin.png in Resources */,
@@ -809,17 +808,6 @@
 				9854BF621F331203008FA337 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		98B73A4D1F4D77E900C3CCE0 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				98B73A4A1F4D77E900C3CCE0 /* en */,
-				98B73A4B1F4D77E900C3CCE0 /* es */,
-				98B73A4C1F4D77E900C3CCE0 /* fr */,
-			);
-			name = Localizable.strings;
-			path = "../../../../../Downloads/YPImagePicker-master/Resources";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

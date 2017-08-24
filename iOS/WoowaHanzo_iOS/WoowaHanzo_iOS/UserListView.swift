@@ -158,13 +158,14 @@ class UserListView: UIScrollView {
 
 //scrollview///////////////////////////////////////
         let scrollview = UIScrollView()
-        let imgsize = 115
+        let imgsize = 110
         scrollview.frame = CGRect(x: 10, y: inypos, width: Int(cellview.frame.width) - 20, height: imgsize)
         scrollview.showsHorizontalScrollIndicator = false
         let scrollcontainerView = UIView(frame: scrollview.frame)
         scrollview.addSubview(scrollcontainerView)
         
         if user.imageArray! != [] {
+            if user.imageArray!.count > 0 {
             for index in 0...user.imageArray!.count - 1{
                 let name : String = user.imageArray![index]
                 let imageview = UIImageView()
@@ -172,16 +173,17 @@ class UserListView: UIScrollView {
                     imageview.contentMode = UIViewContentMode.scaleAspectFill
                     imageview.clipsToBounds = true
                     imageview.kf.setImage(with: url)
-                    imageview.frame = CGRect(x:inxpos + index * (imgsize + 13), y:0, width: imgsize, height: imgsize)
+                    imageview.frame = CGRect(x:10 + index * (imgsize + 13), y:0, width: imgsize, height: imgsize)
                     imageview.layer.cornerRadius = 3
                     
 
                     scrollview.addSubview(imageview)
-                    scrollview.contentSize = CGSize(width: max(Int(scrollview.frame.width + 1),Int(inxpos + user.imageArray!.count * (imgsize + 13))), height: imgsize)
+                    scrollview.contentSize = CGSize(width: max(Int(scrollview.frame.width + 1),Int(10 + user.imageArray!.count * (imgsize + 13))), height: imgsize)
                     //contentsize를 크게 줘야 bouncing이 항상 가능하다.
                     cellview.addSubview(scrollview)
                 }
             }
+        }
         }
         else{
             scrollview.frame.size.height = 0
@@ -214,30 +216,11 @@ class UserListView: UIScrollView {
         timelabel.sizeToFit()
         timelabel.frame.origin = CGPoint(x: Int(cellview.frame.width - timelabel.frame.width) - inxpos, y: inypos + 5)
         cellview.addSubview(timelabel)
-        
         inypos = inypos + Int(lastview.frame.size.height) + 10 //lastview: likebutton
-
-        
-        
-        
-        
         
         cellview.frame.size.height = CGFloat(inypos)
-        ypos = ypos + Int(cellview.frame.size.height) + 7
-        self.contentSize = CGSize(width: Int(self.frame.width), height: yoffset + ypos)
-    }
-    func updateProfileImg(_ notification: Notification){
-        let profileimg = notification.userInfo?["profileimg"] as? String ?? nil
-        let cellview = notification.userInfo?["cellview"] as? UIView ?? nil
-        let imageview = notification.userInfo?["imgview"] as? UIImageView ?? nil
-        print(profileimg)
-        if cellview != nil && profileimg != nil && imageview != nil {
-            Storage.storage().reference(withPath: "profileImages/" + profileimg!).downloadURL { (url, error) in
-                imageview?.kf.setImage(with: url)
-                cellview?.addSubview(imageview!)
-                self.addSubview(cellview!)
-            }
-        }
+        ypos = ypos + Int(cellview.frame.size.height) + 7 // 다음 cellview의 위치를 지정해준다.
+        self.contentSize = CGSize(width: Int(self.frame.width), height: max(yoffset + ypos - 35, Int(self.frame.height + 1)))
     }
     func handleTap(sender: UITapGestureRecognizer) {
         if let a = (sender.view as? UILabel)?.text {

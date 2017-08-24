@@ -14,24 +14,30 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
     
     var ref: DatabaseReference!
     
-    @IBOutlet weak var tagResultTableView: UITableView!
     var tagName:String = ""
     var tagFeedArray = [String]()
+    var userListView : UserListView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(getTagFeed(_ :)), name: NSNotification.Name(rawValue: "sendResultViewController"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "tagusersdone"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
+
+        
+
         //print(tagName)
         self.navigationController?.navigationBar.tintColor = UIColor(red: 42/255, green: 193/255, blue: 188/255, alpha: 1)
         self.navigationController?.navigationBar.topItem?.title = "태그"
         //self.title = tagName
         self.navigationItem.title = tagName
-        tagResultTableView.delegate = self
-        tagResultTableView.dataSource = self
+        userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         let size = CGSize(width: 30, height: 30)
-        
         DispatchQueue.main.async {
             self.startAnimating(size, message: "Loading...", type: .ballTrianglePath)
             
@@ -40,20 +46,37 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
             self.stopAnimating()
             
         }
+    }
+    
+    func viewload(_ notification: Notification){
+        print(User.tagUsers)
+        userListView.removeFromSuperview()
+        userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        userListView.addUserList(users: User.tagUsers)
+        self.view.addSubview(userListView)
+        User.tagUsers = [User]()
+        
+    }
+    func updateProfileImg(_ notification: Notification){
+        let profileimg = notification.userInfo?["profileimg"] as? String ?? nil
+        let imageview = notification.userInfo?["imgview"] as? UIImageView ?? nil
+        let ranknamelabel = notification.userInfo?["ranklabel"] as? UILabel ?? nil
+        let rankname = notification.userInfo?["rankname"] as? String ?? ""
+        if profileimg != nil && imageview != nil {
+            Storage.storage().reference(withPath: "profileImages/" + profileimg!).downloadURL { (url, error) in
+                imageview?.kf.setImage(with: url)
+            }
+        }
+        if ranknamelabel != nil {
+            ranknamelabel?.text = rankname
+            ranknamelabel?.sizeToFit()
+        }
+    }
 
-        tagResultTableView.reloadData()
-        User.tagUsers = [User]()
-        
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        tagResultTableView.reloadData()
-        User.tagUsers = [User]()
-        
-    }
+    
     
    
     func getTagFeed(_ notification: Notification){
-        
         User.tagUsers = [User]()
         tagFeedArray = []
         if let notiArray = notification.userInfo?["tagResultArray"] {
@@ -63,14 +86,12 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
                     if User.users[j].key == tagFeedArray[i]{
                         let tagUser = User(key: tagFeedArray[i], nickName: User.users[j].nickName, contents: User.users[j].contents, tags: User.users[j].tags, imageArray: User.users[j].imageArray, postDate: User.users[j].postDate,uid:User.users[j].uid)
                         User.tagUsers.append(tagUser)
-                        print(User.users[j].contents)
                     }
                 }
             }
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagusersdone"), object: self)
             
         }
-        tagResultTableView.reloadData()
-        
         
     }
     func tap(_ sender:UIGestureRecognizer)
@@ -79,38 +100,4 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
         print("tap from \(label.text!)")
     }
     
-}
-extension TagResultViewController : UITableViewDelegate,UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        return User.tagUsers.count as? Int ?? 1
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TagResultTableViewCell
-        if User.tagUsers.count > 0{
-            cell.tagResultNickNameLabel.text = " "
-            cell.tagResultTextView.text = " "
-            cell.tagResultTagView.reset()
-            
-
-            cell.userid = indexPath.row
-            cell.tagResultNickNameLabel.text = User.tagUsers[indexPath.row].nickName
-            cell.tagResultTextView.text =  User.tagUsers[indexPath.row].contents
-            cell.tagResultTimeLabel.text =  String(describing: Date().postTimeDisplay(timestamp: User.tagUsers[indexPath.row].postDate))
-            //print(TagUser.tagUsers[indexPath.row].tags)
-            //tableView.reloadData()
-            //print(TagUser.tagUsers[indexPath.row].imageArray)
-            if let tag = User.tagUsers[indexPath.row].tags{
-                for index in tag{
-                    cell.tagResultTagView.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.gray)
-                }
-            }
-            DispatchQueue.main.async {
-                cell.tagResultFoodCollectionView.reloadData()
-            }
-            
-            return cell
-        }
-        return cell
-    }
 }
