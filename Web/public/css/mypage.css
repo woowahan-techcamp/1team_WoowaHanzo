@@ -70,6 +70,10 @@
   -webkit-border-radius: 10px;
 }
 
+.mypage_setting :hover {
+  cursor: pointer;
+}
+
 .fa-sign-out {
   font-size: 18px;
   color: #3498db;
