@@ -72,7 +72,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       var sayhi = firebase.database().ref("users/" + queryUid + "/sayhi");
       sayhi.on('value', function(snapshot) {
-        $(".mypage_user_sayhi").html('"' + snapshot.val() + '"');
+        var tmp = snapshot.val() ?'"' + snapshot.val() + '"' : "자기소개가 없습니다.";
+        $(".mypage_user_sayhi").html(tmp);
         $(".container_box").css("opacity", 1);
       });
 
