@@ -125,7 +125,7 @@ class RankListView: UIScrollView {
         cellview.addSubview(likenumlabel)
         
         let heartimgview = UIImageView()
-        heartimgview.image = #imageLiteral(resourceName: "emptyheart")
+        heartimgview.image = UIImage(named: "heart")
         heartimgview.sizeToFit()
         heartimgview.frame.origin = CGPoint(x:260, y:30)
         cellview.addSubview(heartimgview)
