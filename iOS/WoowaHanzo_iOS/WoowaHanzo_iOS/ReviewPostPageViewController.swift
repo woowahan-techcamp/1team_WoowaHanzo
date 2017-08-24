@@ -87,7 +87,7 @@ class ReviewPostPageViewController: UIViewController {
                 imageArray = [UIImage]()
                 imageAssets = [PHAsset]()
                 
-                userProfileImage.image = UIImage(named: "profile.png")
+                //userProfileImage.image = UIImage(named: "profile.png")
                 //userTearLabel.text = "치킨왕자"
                 userNickNameLabel.text = User.currentLoginedUserNickName
                 myTagView.removeFromSuperview()
