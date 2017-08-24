@@ -3,6 +3,9 @@ firebase.auth().onAuthStateChanged(user => {
   if(!user) {
     window.location.href = 'login.html';
   }
+  else {
+    $("#post").css("color", "#fff");
+  }
 });
 
 var tagEdited = false;
@@ -68,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   $(".post_submit").on("click", function(evt) {
     uploadPost();
+    $(".post_submit").off();
   });
 
   var imageInput = document.getElementById("image_input");
