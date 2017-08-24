@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
+import FaveButton
 
 class UserListView: UIScrollView {
     var numberOfRows = 0
