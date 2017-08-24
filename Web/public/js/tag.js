@@ -2,8 +2,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var tagList = [];
   var tagNameList = [];
   var tagTimeList = [];
+  var promises = [];
 
-  firebase.database().ref("tagCounter/").orderByChild("time").once("value").then(function(snapshots) {
+  promises.push(firebase.database().ref("tagCounter/").orderByChild("time").once("value").then(function(snapshots) {
     snapshots.forEach(function(child) {
       tagNameList.push(child.key);
       tagTimeList.push(getCurrentTime(child.val().time));
@@ -27,6 +28,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     var curPost = document.querySelector(".container_box");
     addTagListeners(curPost);
+  }));
+
+  Promise.all(promises).then(() => {
+    console.log('모든 태그들 다 불러짐..');
+    $(".tag_indicator").css("opacity", 0);
+    $(".tag_indicator").css("height", 0);
+    $(".tag_box").css("border", "1px solid #CCC");
   });
 
 });
