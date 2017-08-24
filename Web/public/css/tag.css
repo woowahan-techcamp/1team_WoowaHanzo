@@ -77,10 +77,10 @@ div .post {
   }
 
   .tag_box {
-    border: 0;
-    margin-left: 0;
-    margin-right: 0;
-    padding-top: 0;
+    border: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-top: 0 !important;
   }
 
   .tag_holder {
