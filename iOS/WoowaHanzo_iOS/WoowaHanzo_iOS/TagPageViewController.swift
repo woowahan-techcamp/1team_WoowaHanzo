@@ -73,6 +73,7 @@ class TagPageViewController: UIViewController {
             }
         }
     }
+    
     func getTagResult(_ notification: Notification){
         
         tagResultArray = []
