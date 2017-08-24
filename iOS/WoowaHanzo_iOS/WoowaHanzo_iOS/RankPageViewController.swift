@@ -14,7 +14,10 @@ class RankPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "rankusers"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouched(_ :)), name: NSNotification.Name(rawValue: "NickNameLableTouched"), object: nil)
         rankListView = RankListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         FirebaseModel().loadUsers()
@@ -31,7 +34,18 @@ class RankPageViewController: UIViewController {
         print("\(rankuserlist.count)개의 랭크 데이터가 존재합니다.")
         rankListView.addRankUserList(rankusers: rankuserlist)
     }
-
+    
+    func nickNameLabelTouched(_ notification:Notification){
+        
+        User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
+        
+        print("nickNameLabelTouched")
+        
+        let storyboard = UIStoryboard(name: "NickNameClickResult", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "NickNameClickResultViewController")
+        FirebaseModel().ReturnNickNameClickResult()
+        self.show(controller, sender: self)
+    }
 
     /*
     // MARK: - Navigation

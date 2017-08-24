@@ -32,6 +32,7 @@ class MyPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         NotificationCenter.default.addObserver(self, selector: #selector(loadUserInfo), name: NSNotification.Name(rawValue: "loadUserInfo"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadPorfileImage(_ :)), name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users3"), object: nil)
         myListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -45,8 +46,8 @@ class MyPageViewController: UIViewController {
         FirebaseModel().loadProfileImageFromUsers()
         UINavigationBar.appearance().backgroundColor = UIColor.white
         if AuthModel.isLoginStatus(){
-            self.navigationController?.navigationBar.topItem?.title = UserDefaults.standard.string(forKey: "userNickName")
-            nameLabel.text = UserDefaults.standard.string(forKey: "userNickName")
+            self.navigationController?.navigationBar.topItem?.title = User.currentLoginedUserNickName
+            nameLabel.text = User.currentLoginedUserNickName
             nameLabel.sizeToFit()
 
         }
@@ -75,7 +76,11 @@ class MyPageViewController: UIViewController {
         postnumLabel.sizeToFit()
         postnumLabel.frame.origin.x = self.view.frame.width / 2 - postnumLabel.frame.width / 2
     }
-    
+    func loadUserInfo(){
+        self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
+        print("loadUserInfo")
+
+    }
     func loadPorfileImage(_ notification : Notification){
         let profileImageUrl = notification.userInfo?["profileImageUrl"] as! String
         Storage.storage().reference(withPath: "profileImages/" + profileImageUrl).downloadURL { (url, error) in
@@ -97,6 +102,7 @@ class MyPageViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         if !AuthModel.isLoginStatus(){
             
             var alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
@@ -122,7 +128,10 @@ class MyPageViewController: UIViewController {
             FirebaseModel().loadUsers3(username: UserDefaults.standard.string(forKey: "userNickName")!)
             self.view.addSubview(myListView)
 
-        }
+            //로그인이 되었다면? 내 마이페이지를 보여줘야함.
+            self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
+            self.view.setNeedsDisplay()
+            }
         
     }
     func imageViewTouched(){

@@ -16,7 +16,7 @@ class LikeButton: UIButton {
     }
     func buttonTouched(){
         if let image = self.currentImage, image == #imageLiteral(resourceName: "emptyHeard") {
-            self.setImage(#imageLiteral(resourceName: "emptyheart"), for: .normal)
+            self.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
         } else {
             self.setImage(#imageLiteral(resourceName: "emptyHeard"), for: .normal)
             
