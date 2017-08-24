@@ -63,6 +63,8 @@ class FirebaseModel{
     
     func tagQuery(tagName:String){
         
+        
+        //태그쿼리 작성. key를 저장해서 노티로 보내준다.
         ref = Database.database().reference()
         let key = ref.child("tagQuery").childByAutoId().key
         //print(key)
@@ -70,7 +72,12 @@ class FirebaseModel{
         let childUpdates = ["/tagQuery/\(key)": post]
         ref.updateChildValues(childUpdates)
         print("send tag result")
+        
+        //태그쿼리의 key를 가지는 애를 가져와야함. TagPageViewController로 이어진다. 
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResult"), object: self, userInfo: ["key":key])
+        
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResultToMain"), object: self, userInfo: ["key":key])
         
     }
     
@@ -210,13 +217,10 @@ class FirebaseModel{
         self.ref = Database.database().reference().child("users").child(uid)
         self.ref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.value as? NSDictionary{
-                let profileimg = result["profileImg"] as? String ?? nil
-                let rankname = result["rankName"] as? String ?? nil
+                let profileimg = result["profileImg"] as? String ?? " "
+                let rankname = result["rankName"] as? String ?? " "
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "profileimg"), object: nil, userInfo: ["profileimg": profileimg, "imgview":imgview, "ranklabel":ranklabel, "rankname": rankname])
-                
-                
-                
-            }
+                }
         })
     }
     

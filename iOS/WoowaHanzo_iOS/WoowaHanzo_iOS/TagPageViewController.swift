@@ -79,9 +79,11 @@ class TagPageViewController: UIViewController {
         }
     }
     
+    
+    //MARK:firebase에서 보내는 노티(tagResult)를 받아 실행 될 함수
     func getTagResult(_ notification: Notification){
         
-        
+        //해당 태그가 있는 posts의 아이디를 담을 배열
         tagResultArray = []
         self.ref = Database.database().reference().child("tagQuery")
         let refHandle = ref.observe(DataEventType.value, with: { (snapshot) in
@@ -97,12 +99,13 @@ class TagPageViewController: UIViewController {
                 if (self.tagResultArray?.count ?? 0) > 1 {
                     print("send table view controller tag array")
                     print(self.tagResultArray)
+                    print("call getTagResult")
+                    
+                    //TagResultViewController로 노티를 보낸다. 
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sendResultViewController"), object: self, userInfo: ["tagResultArray": self.tagResultArray])
                 }
             }
             })
-        
-        
     }
     //    func tap(sender:UIGestureRecognizer)
     //    {

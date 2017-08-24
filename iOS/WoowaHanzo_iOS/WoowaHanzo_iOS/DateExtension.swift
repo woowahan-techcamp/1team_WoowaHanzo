@@ -3,20 +3,22 @@ import Foundation
 import UIKit
 
 extension Date {
+    
     func getDatelabel(timestamp: Int) -> String{
-        let myDate = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        let myDate = Date(timeIntervalSince1970: TimeInterval(timestamp/1000))
         let calendar = Calendar.current
         
         let year = calendar.component(.year, from: myDate)
         let month = calendar.component(.month, from: myDate)
         let day = calendar.component(.day, from: myDate)
         
-        let datelabel = "\(month) \(day)일, \(year)년"
+        let datelabel = "\(month)월 \(day)일, \(year)년"
         return datelabel
     }
+    
     func postTimeDisplay(timestamp: Int) -> String{
         var timeago = ""
-        var time = -timestamp
+        var time = -1*timestamp
         let now = Int(1000 * Date().timeIntervalSince1970)
         let diff = now - time
         if(diff > 24 * 3600000){
