@@ -36,6 +36,8 @@ class MyPageViewController: UIViewController {
          NotificationCenter.default.addObserver(self, selector: #selector(loadUserInfo), name: NSNotification.Name(rawValue: "loadUserInfo"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadPorfileImage(_ :)), name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users3"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
+
         myListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         myListView.ypos = 250
         myInfoView.frame = CGRect(x: 0, y: 5, width: self.view.frame.width, height: 250)
@@ -70,7 +72,7 @@ class MyPageViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     func viewload(_ notification: Notification){
-        self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
+        //self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
         nameLabel.text = User.currentLoginedUserNickName
         nameLabel.sizeToFit()
         print("\(User.myUsers.count)개의 랭크 데이터가 존재합니다.")
@@ -138,6 +140,23 @@ class MyPageViewController: UIViewController {
     func imageViewTouched(){
         print("touched")
     }
+    
+    func updateProfileImg(_ notification: Notification){
+        let profileimg = notification.userInfo?["profileimg"] as? String ?? nil
+        let imageview = notification.userInfo?["imgview"] as? UIImageView ?? nil
+        let ranknamelabel = notification.userInfo?["ranklabel"] as? UILabel ?? nil
+        let rankname = notification.userInfo?["rankname"] as? String ?? ""
+        if profileimg != nil && imageview != nil {
+            Storage.storage().reference(withPath: "profileImages/" + profileimg!).downloadURL { (url, error) in
+                imageview?.kf.setImage(with: url)
+            }
+        }
+        if ranknamelabel != nil {
+            ranknamelabel?.text = rankname
+            ranknamelabel?.sizeToFit()
+        }
+    }
+
 
 
 

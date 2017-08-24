@@ -22,6 +22,7 @@ class TagPageViewController: UIViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(getTagResult(_ :)), name: NSNotification.Name(rawValue: "tagResult"), object: nil)
+
         
         let color = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0)
         
