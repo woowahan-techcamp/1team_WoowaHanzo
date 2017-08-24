@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   console.log('랭킹페이지');
+  $("#ranking").css("color", "#fff");
 
   sortedUserList().then(function(userList) {
     var itemList = [];
