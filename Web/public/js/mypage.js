@@ -78,8 +78,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       var title = firebase.database().ref("users/" + queryUid + "/rankName");
       title.on('value', function(snapshot) {
-        $(".mypage_user_title_icon").html(getTitleIcon(snapshot.val()));
-        $(".mypage_user_title_text").html(snapshot.val());
+        $(".mypage_user_title").html(getTitleIcon(snapshot.val()) + snapshot.val());
       });
 
 
