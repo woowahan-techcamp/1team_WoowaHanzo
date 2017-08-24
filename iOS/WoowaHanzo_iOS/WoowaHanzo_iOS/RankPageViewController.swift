@@ -34,6 +34,7 @@ class RankPageViewController: UIViewController {
         print("\(rankuserlist.count)개의 랭크 데이터가 존재합니다.")
         rankListView.addRankUserList(rankusers: rankuserlist)
     }
+    
     func nickNameLabelTouched(_ notification:Notification){
         
         User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
@@ -42,7 +43,7 @@ class RankPageViewController: UIViewController {
         
         let storyboard = UIStoryboard(name: "NickNameClickResult", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "NickNameClickResultViewController")
-
+        FirebaseModel().ReturnNickNameClickResult()
         self.show(controller, sender: self)
     }
 

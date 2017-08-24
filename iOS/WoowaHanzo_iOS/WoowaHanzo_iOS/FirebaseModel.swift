@@ -100,6 +100,35 @@ class FirebaseModel{
         
         
     }
+    func ReturnNickNameClickResult(){
+        
+        self.ref = Database.database().reference().child("posts")
+        
+        self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let result = snapshot.children.allObjects as? [DataSnapshot]{
+                User.nickNameClickResult = [User]()
+                for child in result {
+                    
+                    if (child.childSnapshot(forPath: "author").value as! String == User.currentUserName)
+                    {
+                        var userKey = child.key as! String
+                        //print(child.childSnapshot(forPath: "author").value!)
+                        let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil, postDate : child.childSnapshot(forPath: "time").value as! Int, uid: child.childSnapshot(forPath: "uid").value as! String)
+                        User.nickNameClickResult.append(user)
+                        print(child.childSnapshot(forPath: "body").value as! String)
+                    
+                        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
+                    }
+                }
+                
+                
+                
+            }
+        })
+        
+        
+    }
+    
     //    func loadFeedTag(){
     //
     //        self.ref = Database.database().reference().child("posts")
@@ -175,7 +204,7 @@ class FirebaseModel{
         //rankUserList를 Rankviewcontroller로 보내준다.
         //사진은 어떻게 할지는 있다가.
     }
-//For mainPage/////////////////////////////////////
+    //For mainPage/////////////////////////////////////
     func loadProfileimg(uid: String, imgview: UIImageView, ranklabel: UILabel){
         print("loadProfileimg called")
         self.ref = Database.database().reference().child("users").child(uid)
@@ -184,7 +213,7 @@ class FirebaseModel{
                 let profileimg = result["profileImg"] as? String ?? nil
                 let rankname = result["rankName"] as? String ?? nil
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "profileimg"), object: nil, userInfo: ["profileimg": profileimg, "imgview":imgview, "ranklabel":ranklabel, "rankname": rankname])
-
+                
             }
         })
     }
