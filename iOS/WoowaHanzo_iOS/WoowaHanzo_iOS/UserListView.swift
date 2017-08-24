@@ -239,4 +239,11 @@ class UserListView: UIScrollView {
             }
         }
     }
+    func handleTap(sender: UITapGestureRecognizer) {
+        if let a = (sender.view as? UILabel)?.text {
+            print(a)
+        }
+        else { return }
+        
+    }
 }

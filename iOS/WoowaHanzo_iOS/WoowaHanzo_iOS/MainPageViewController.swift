@@ -121,6 +121,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         
     }
    
+    
     @IBAction func searchIconTouched(_ sender: Any) {
         
         if navigationItem.titleView != nil{

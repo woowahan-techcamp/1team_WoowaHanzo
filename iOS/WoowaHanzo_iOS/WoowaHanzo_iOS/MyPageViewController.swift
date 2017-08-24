@@ -55,7 +55,7 @@ class MyPageViewController: UIViewController {
         
     }
     func loadUserInfo(){
-        self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
+        self.navigationController?.navigationBar.topItem?.title = User.currentLoginedUserNickName
         print("loadUserInfo")
 
     }
@@ -106,7 +106,6 @@ class MyPageViewController: UIViewController {
             //로그인이 되었다면? 내 마이페이지를 보여줘야함.
             self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
             self.view.setNeedsDisplay()
-            
         }
         
     }
