@@ -74,10 +74,10 @@ class ReviewPostPageViewController: UIViewController {
             if shouldloadview{
                 //여기에 프로필 이미지
                 FirebaseModel().loadUserInfo()
-                print("응앙ㅇ\(User.currentLoginedUserNickName,User.currentLoginedUserTitle)")
+                print("응앙ㅇ\(User.currentLoginedUserNickName,User.currentLoginedUserRankName)")
                 FirebaseModel().loadProfileImageFromUsers()
-                print(User.currentLoginedUserNickName,User.currentLoginedUserTitle)
-                userTearLabel.text = User.currentLoginedUserTitle
+                print(User.currentLoginedUserNickName,User.currentLoginedUserRankName)
+                userTearLabel.text = User.currentLoginedUserRankName
                 shouldloadview = false
                 myCollectionView.dataSource = self
                 myCollectionView.delegate = self
@@ -166,7 +166,7 @@ class ReviewPostPageViewController: UIViewController {
     }
     func loadUserInformation(){
         self.userNickNameLabel.text = User.currentLoginedUserNickName
-        self.userTearLabel.text = User.currentLoginedUserTitle
+        self.userTearLabel.text = User.currentLoginedUserRankName
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -196,9 +196,9 @@ class ReviewPostPageViewController: UIViewController {
             
             if shouldloadview{
                 FirebaseModel().loadUserInfo()
-                print("응앙ㅇ\(User.currentLoginedUserNickName,User.currentLoginedUserTitle)")
+                print("응앙ㅇ\(User.currentLoginedUserNickName,User.currentLoginedUserRankName)")
                FirebaseModel().loadProfileImageFromUsers()
-                userTearLabel.text = User.currentLoginedUserTitle
+                userTearLabel.text = User.currentLoginedUserRankName
                 shouldloadview = false
                 myCollectionView.dataSource = self
                 myCollectionView.delegate = self

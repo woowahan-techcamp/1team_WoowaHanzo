@@ -35,7 +35,7 @@ class LoginViewController: UIViewController,NVActivityIndicatorViewable {
                 AuthModel.login(email: email, pw: pw, completion: { (success) in
                     if success{
                         
-                        print(User.currentLoginedUserNickName,User.currentLoginedUserTitle)
+                        print(User.currentLoginedUserNickName,User.currentLoginedUserRankName)
                         //여기에 해당 유저의 정보를 파베에서 불러오도록 하자.
                         self.stopAnimating()
                         self.dismiss(animated: true, completion: nil)

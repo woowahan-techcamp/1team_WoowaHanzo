@@ -14,6 +14,9 @@ class FirebaseModel{
     
     
     var ref: DatabaseReference!
+    var ref2: DatabaseReference!
+
+    
     
     func postReview(review: String, userID: String, tagArray:[String], timestamp: Int, images:[String],uid: String){
         ref = Database.database().reference()
@@ -48,6 +51,24 @@ class FirebaseModel{
                     }
                 })
             }
+        }
+    }
+    func postProfileImage(asset:PHAsset, name: String, uid:String){
+        ref2 = Database.database().reference()
+        let manager = PHImageManager.default()
+        let requestOptions = PHImageRequestOptions()
+        requestOptions.resizeMode = .exact
+        requestOptions.deliveryMode = .highQualityFormat;
+        DispatchQueue.global().async{
+            manager.requestImageData(for: asset, options: requestOptions, resultHandler: { (data, str, orientation, info) -> Void in
+                if let imagedata = data{
+                    let metadata = StorageMetadata()
+                    metadata.contentType = "image/jpeg"
+                    var ref = Storage.storage().reference(withPath: "profileImages/" + name).putData(imagedata, metadata:metadata)
+                    ref.resume()
+                    self.ref2.child("users/\(uid)/profileImg").setValue(name)
+                }
+            })
         }
     }
     func getAssetThumbnail(asset: PHAsset) -> UIImage {
@@ -267,27 +288,27 @@ class FirebaseModel{
     }
     
     
-    func loadProfileImageFromUsers(){
-        
-        if AuthModel.isLoginStatus(){
-            self.ref = Database.database().reference()
-            let userID = Auth.auth().currentUser?.uid
-            ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-                // Get user value
-                let value = snapshot.value as? NSDictionary
-                
-                let profileImg = value?["profileImg"] as? String ?? ""
-                print("did\(profileImg)")
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: self,userInfo: ["profileImageUrl":profileImg])
-                // ...
-            }) { (error) in
-                
-                print(error.localizedDescription)
-            }
-            
-            
-        }
-    }
+//    func loadProfileImageFromUsers(){
+//        
+//        if AuthModel.isLoginStatus(){
+//            self.ref = Database.database().reference()
+//            let userID = Auth.auth().currentUser?.uid
+//            ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+//                // Get user value
+//                let value = snapshot.value as? NSDictionary
+//                
+//                let profileImg = value?["profileImg"] as? String ?? ""
+//                print("did\(profileImg)")
+//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: self,userInfo: ["profileImageUrl":profileImg])
+//                // ...
+//            }) { (error) in
+//                
+//                print(error.localizedDescription)
+//            }
+//            
+//            
+//        }
+//    }
     func loadUserInfo()
     {
         if AuthModel.isLoginStatus(){
@@ -298,7 +319,10 @@ class FirebaseModel{
                 let value = snapshot.value as? NSDictionary
                 
                 User.currentLoginedUserNickName = value?["username"] as! String
-                User.currentLoginedUserTitle = value?["rankName"] as! String
+                User.currentLoginedUserRankName = value?["rankName"] as! String
+                User.currentLoginedUserLikes = value?["likes"] as! Int
+                User.currentLoginedUserSayHi = value?["sayhi"] as! String
+                self.downloadprofileimage(name: value?["profileImg"] as! String)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoadUserInfo"), object: self)
                 
                 
@@ -311,6 +335,10 @@ class FirebaseModel{
             
         }
     }
-    
+    func downloadprofileimage(name: String){
+        Storage.storage().reference(withPath: "profileImages/" + name).downloadURL { (url, error) in
+            User.imageview.kf.setImage(with: url)
+        }
+    }
 
 }

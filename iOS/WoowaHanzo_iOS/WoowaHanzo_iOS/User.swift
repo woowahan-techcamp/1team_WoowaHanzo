@@ -17,7 +17,13 @@ class User {
     static var currentUserName : String = " "
     static var nickNameClickResult = Array<User>()
     static var currentLoginedUserNickName : String = ""
-    static var currentLoginedUserTitle : String = ""
+    static var currentLoginedUserRankName : String = ""
+    static var currentLoginedUserLikes : Int = 0
+    static var currentLoginedUserSayHi : String = ""
+    static var currentLoginedUserUid : String = ""
+    static var imageview : UIImageView = UIImageView(image: UIImage(named:
+        "profile.png"))
+    
     
     let key : String
     let nickName : String

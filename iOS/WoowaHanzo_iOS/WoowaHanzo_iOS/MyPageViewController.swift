@@ -9,6 +9,9 @@
 import UIKit
 import Firebase
 import Kingfisher
+import BSImagePicker
+import Photos
+
 
 class MyPageViewController: UIViewController {
     
@@ -80,7 +83,10 @@ class MyPageViewController: UIViewController {
             self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
             nameLabel.text = User.currentLoginedUserNickName
             nameLabel.sizeToFit()
-            print("\(User.myUsers.count)개의 랭크 데이터가 존재합니다.")
+            sayhiLabel.text = User.currentLoginedUserSayHi
+            sayhiLabel.sizeToFit()
+        
+            print("\(User.myUsers.count)개의 피드 데이터가 존재합니다.")
             myListView.addUserList(users: User.myUsers)
             postnumLabel.text = "게시물 \(User.myUsers.count)"
             postnumLabel.sizeToFit()
@@ -99,11 +105,13 @@ class MyPageViewController: UIViewController {
         }
         
         func loadPorfileImage(_ notification : Notification){
-            let profileImageUrl = notification.userInfo?["profileImageUrl"] as! String
-            Storage.storage().reference(withPath: "profileImages/" + profileImageUrl).downloadURL { (url, error) in
-                self.myProfileImageView?.kf.setImage(with: url)
-                //completion handler 등으로 user에 저장해놓기
-            }
+            self.myProfileImageView.image = User.imageview.image
+//            let profileImageUrl = notification.userInfo?["profileImageUrl"] as! String
+//            Storage.storage().reference(withPath: "profileImages/" + profileImageUrl).downloadURL { (url, error) in
+//                self.myProfileImageView?.kf.setImage(with: url)
+//                //self.myProfileImageView.image = User.currentLoginedProfileImage
+//                //completion handler 등으로 user에 저장해놓기
+//            }
         }
         @IBAction func logout(_ sender: Any) {
             let firebaseAuth = Auth.auth()
@@ -158,15 +166,46 @@ class MyPageViewController: UIViewController {
                 
                 FirebaseModel().loadProfileImageFromUsers()
                 FirebaseModel().loadUserInfo()
-                FirebaseModel().loadUsers3(username: UserDefaults.standard.string(forKey: "userNickName")!)
+                FirebaseModel().loadUsers3(username: User.currentLoginedUserNickName)
                 self.view.addSubview(myListView)
             }
             
         }
         func imageViewTouched(){
+            ////여기에 피커.
+            let imagePickerController = BSImagePickerViewController()
+            imagePickerController.maxNumberOfSelections = 1
+            bs_presentImagePickerController(imagePickerController, animated: true,
+               select: { (asset: PHAsset) -> Void in
+                print("Selected")
+            }, deselect: { (asset: PHAsset) -> Void in
+                print("Deselected")
+            }, cancel: { (assets: [PHAsset]) -> Void in
+                print("Cancel")
+            }, finish: { (assets: [PHAsset]) -> Void in
+                //self.imageAssets = assets
+                //FirebaseModel().postImages(assets: assets)
+                let asset = assets[0]
+                let name = asset.value(forKey:"filename") as! String
+                let extlist = name.components(separatedBy: ".")
+                let ext = extlist[extlist.count - 1]
+                let image = FirebaseModel().getAssetThumbnail(asset: asset)
+                FirebaseModel().postProfileImage(asset: asset, name: ("\(Date().timeIntervalSince1970).\(ext)"), uid: (Auth.auth().currentUser?.uid)!)
+                
+                self.myProfileImageView.image = image // loadprofileimage랑 약간 겹치는 듯.
+                User.imageview.image = image
+                print("image changed")
+                print("image: \(image)")
+                
+                
+                
+            }, completion: nil)
+
+
             print("touched")
         }
-        
+    
+        //for feeds
         func updateProfileImg(_ notification: Notification){
             let profileimg = notification.userInfo?["profileimg"] as? String ?? nil
             let imageview = notification.userInfo?["imgview"] as? UIImageView ?? nil
