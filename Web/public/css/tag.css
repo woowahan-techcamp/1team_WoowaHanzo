@@ -7,6 +7,14 @@ div .post {
   opacity: 1;
 }
 
+.container_box{
+  margin-top: 0px;
+}
+
+.tag_box {
+  border: 0;
+}
+
 .tag_holder {
   padding: 7px 15px 7px 15px !important;
   border-radius: 12px !important;
@@ -20,6 +28,23 @@ div .post {
 .tag_count {
   font-size: 18px;
   color: #dfdfdf;
+}
+
+.tag_indicator {
+  /*outline: 1px solid red;*/
+  padding: 0 !important;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.loading-text {
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.spinner {
+  -webkit-transition: all .2s;
+  transition: all .2s;
 }
 
 /* width가 720미만 */
@@ -52,10 +77,10 @@ div .post {
   }
 
   .tag_box {
-    border: 0;
-    margin-left: 0;
-    margin-right: 0;
-    padding-top: 0;
+    border: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-top: 0 !important;
   }
 
   .tag_holder {
