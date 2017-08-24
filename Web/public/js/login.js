@@ -1,3 +1,10 @@
+// 로그인 되어있으면 mypage로 보냄
+firebase.auth().onAuthStateChanged(user => {
+  if(user) {
+    window.location.href = 'mypage.html';
+  }
+});
+
 document.addEventListener("DOMContentLoaded", function(event) {
   var signinBtn = $(".signin");
 
