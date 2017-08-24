@@ -12,19 +12,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var downloadUrl = storageRef.child("profileImages/" + item.val().profileImg).getDownloadURL();
 
       var uid = item.val().uid;
-      // console.log('itmem', item.val());
 
       promises.push(downloadUrl.then(function(url) {
         itemObject.userProfileImg = url;
         itemObject.uid = item.key;
-        // console.log(itemObject.uid);
         itemObject.titlePic = getTitleIcon(item.val().rankName);
         itemObject.titleText = item.val().rankName ? item.val().rankName : "평민";
         itemObject.username = item.val().username;
         itemObject.like = item.val().likes ? item.val().likes : 0;
 
         itemList.push(itemObject);
-        // console.log('itemObject', itemObject);
       }.bind(uid)));
 
     });
