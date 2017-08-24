@@ -157,7 +157,7 @@ class UserListView: UIScrollView {
 
 //scrollview///////////////////////////////////////
         let scrollview = UIScrollView()
-        let imgsize = 115
+        let imgsize = 110
         scrollview.frame = CGRect(x: 10, y: inypos, width: Int(cellview.frame.width) - 20, height: imgsize)
         scrollview.showsHorizontalScrollIndicator = false
         let scrollcontainerView = UIView(frame: scrollview.frame)
@@ -172,12 +172,12 @@ class UserListView: UIScrollView {
                     imageview.contentMode = UIViewContentMode.scaleAspectFill
                     imageview.clipsToBounds = true
                     imageview.kf.setImage(with: url)
-                    imageview.frame = CGRect(x:inxpos + index * (imgsize + 13), y:0, width: imgsize, height: imgsize)
+                    imageview.frame = CGRect(x:10 + index * (imgsize + 13), y:0, width: imgsize, height: imgsize)
                     imageview.layer.cornerRadius = 3
                     
 
                     scrollview.addSubview(imageview)
-                    scrollview.contentSize = CGSize(width: max(Int(scrollview.frame.width + 1),Int(inxpos + user.imageArray!.count * (imgsize + 13))), height: imgsize)
+                    scrollview.contentSize = CGSize(width: max(Int(scrollview.frame.width + 1),Int(10 + user.imageArray!.count * (imgsize + 13))), height: imgsize)
                     //contentsize를 크게 줘야 bouncing이 항상 가능하다.
                     cellview.addSubview(scrollview)
                 }
