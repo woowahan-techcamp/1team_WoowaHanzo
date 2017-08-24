@@ -11,37 +11,36 @@ document.addEventListener("DOMContentLoaded", function(event) {
   pageObject.postTemplate = template;
   var currentUserName = "";
 
+  var url = window.location.href;
+
   firebase.auth().onAuthStateChanged(user => {
-    if(user) {
-      var username = firebase.database().ref("users/" + user.uid + "/username");
-      username.on('value', function(snapshot) {
-        currentUserName = snapshot.val();
-        $(".mypage_username").html(currentUserName);
+    var queryUid;
+    var promises = [];
+    if(getParameterByName("userQuery", url)) {
+      var queryKey = getParameterByName("userQuery", url);
 
-        var postRef = firebase.database().ref("/posts");
-        postRef.orderByChild("time").on("child_added", function(snapshot) {
-          if(snapshot.val().author === currentUserName) {
-            loadPosts(snapshot, false);
-          }
+      $(".mypage_setting").css("display", "none");
 
+      promises.push(firebase.database().ref("/userQuery/" + queryKey).once("value", function(snapshot) {
+        queryUid = snapshot.val().uid;
+        var postIdList = snapshot.val().queryResult.slice(1,snapshot.val().length);
+        var promises = postIdList.map(function(key) {
+          return firebase.database().ref("/posts/").child(key).once("value");
         });
 
-      });
+        return Promise.all(promises).then(function(snapshots) {
+          snapshots.forEach(function(snapshot) {
+            loadPosts(snapshot, false);
+          });
+        });
+      }));
 
-      var sayhi = firebase.database().ref("users/" + user.uid + "/sayhi");
-      sayhi.on('value', function(snapshot) {
-        $(".mypage_user_sayhi").html(snapshot.val());
-        $(".container_box").css("opacity", 1);
-      });
+    } else if(user) {
 
-
+      queryUid = user.uid;
       $(".mypage_setting").on("click", function() {
-        // 톱니바퀴를 누르면 모달이 나오고
-        // 모달내에서 로그아웃, 푸시알림, 회원탈퇴 등의 항목을 보여준다
-        // 일단은 그냥 로그아웃으로 연결시킴
 
         firebase.auth().signOut().then(function() {
-          // Sign-out successful.
           alert("로그아웃 하셨습니다.");
         }, function(error) {
           // An error happened.
@@ -49,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       });
 
       $(".mypage_user_image_box img").on("click", function() {
-          $("#profile_image_input").trigger("click");
+        $("#profile_image_input").trigger("click");
       });
 
       $("#profile_image_input").on("change", function(evt) {
@@ -57,16 +56,42 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       });
 
+      var postRef = firebase.database().ref("/posts");
+      promises.push(
+        postRef.orderByChild("time").on("child_added", function(snapshot) {
+          if(snapshot.val().author === currentUserName) {
+            loadPosts(snapshot, false);
+          }
+
+        })
+      );
+
+    }
+
+    Promise.all(promises).then(function() {
+      var username = firebase.database().ref("users/" + queryUid + "/username");
+      username.on('value', function(snapshot) {
+        currentUserName = snapshot.val();
+        $(".mypage_username").html(currentUserName);
+
+      });
+
+      var sayhi = firebase.database().ref("users/" + queryUid + "/sayhi");
+      sayhi.on('value', function(snapshot) {
+        $(".mypage_user_sayhi").html(snapshot.val());
+        $(".container_box").css("opacity", 1);
+      });
+
       var curObject= {};
       var curPost = document.querySelector(".mypage_user_box");
       curObject.curPost = curPost;
 
-      curObject.uid = user.uid;
+      curObject.uid = queryUid;
       curObject.queryClass = "mypage_user_profilePic";
-      loadUserProfile.bind(curObject, user.uid)();
-
-    }
+      loadUserProfile.bind(curObject, queryUid)();
+    });
   });
+
 });
 
 

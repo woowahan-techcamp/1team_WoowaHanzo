@@ -122,7 +122,6 @@ function handleThumbnailNumber($curPost, imagenumber) {
 		thumbnail_cover.style.display = "none";
 	} else {
 		thumbnail_cover.innerHTML = "+" + (imagenumber - 3);
-		console.log('imagenumber: ', imagenumber);
 		$(thumbnail_cover).on("mousedown tap", function(evt) {
 			evt.preventDefault();
 			var thumbnail = evt.target.parentElement;
@@ -284,7 +283,7 @@ function addUserListener(curPost) {
 		update["/userQuery/" + queryKey + "/uid"] = id;
 		update["/userQuery/" + queryKey + "/queryResult"] = ["1"];
 		firebase.database().ref().update(update).then(evt => {
-
+			window.location.href = "./mypage.html?userQuery=" + queryKey;
 		});
 	});
 }

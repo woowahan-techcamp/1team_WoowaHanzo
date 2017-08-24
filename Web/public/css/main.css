@@ -386,6 +386,7 @@ div.img-divgo{
 
 .image_thumbnails td {
   border: solid 3px transparent;
+  border-bottom: none;
 
 }
 
