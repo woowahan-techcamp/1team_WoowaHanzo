@@ -6,37 +6,66 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var tagTimeList = [];
   var promises = [];
 
-  promises.push(firebase.database().ref("tagCounter/").orderByChild("time").once("value").then(function(snapshots) {
-    snapshots.forEach(function(child) {
-      tagNameList.push(child.key);
-      tagTimeList.push(getCurrentTime(child.val().time));
-    });
+  var source = document.getElementById("tag_template").innerHTML;
+  var template = Handlebars.compile(source);
 
-    tagNameList.reverse();
-    tagTimeList.reverse();
+  firebase.database().ref("tagCounter/").orderByChild("time").on("child_added", function(snapshot) {
+    handleTagSnapshot(snapshot, template);
 
-    tagList = new Array(tagNameList.length);
-
-    for(var i = 0; i < tagNameList.length; i++) {
-      var tmpObject = {};
-      tmpObject.tagTime = tagTimeList[i];
-      tmpObject.tagName = tagNameList[i];
-      tagList[i] = tmpObject;
-    }
-
-    var source = document.getElementById("tag_template").innerHTML;
-    var template = Handlebars.compile(source);
-    document.querySelector(".tags_holder").innerHTML += template(tagList);
-
-    var curPost = document.querySelector(".container_box");
-    addTagListeners(curPost);
-  }));
-
-  Promise.all(promises).then(() => {
-    console.log('모든 태그들 다 불러짐..');
-    $(".tag_indicator").css("opacity", 0);
-    $(".tag_indicator").css("height", 0);
-    $(".tag_box").css("border", "1px solid #CCC");
   });
 
+  firebase.database().ref("tagCounter/").orderByChild("time").on("child_changed", function(snapshot) {
+    handleTagSnapshot(snapshot, template);
+
+  });
+
+  setTimeout(function() {
+    $(".tag_indicator").css("opacity", 0);
+    $(".tag_indicator").css("height", 0);
+
+
+  }, 600);
+
 });
+
+var futureTime = undefined;
+var pastTime = undefined;
+
+function searchAndRemoveTag(container, value) {
+  var tags = container.querySelectorAll(".tagger");
+  for(var i = 0; i < tags.length; ++i) {
+    if(tags[i].innerHTML.trim() == value)
+      $(tags[i]).remove();
+  }
+}
+
+function handleTagSnapshot(snapshot, template) {
+  var tag = {};
+  tag.tagName = snapshot.key;
+  var time = -snapshot.val().time;
+
+  searchAndRemoveTag(document.querySelector(".tags_holder"), tag.tagName);
+
+  if(time > futureTime) {
+    $(".tags_holder").prepend(template(tag));
+    gradualShow($(".tagger").first());
+  } else {
+    $(".tags_holder").append(template(tag));
+    gradualShow($(".tagger").last());
+    $(".tag_box").css("border", "1px solid #CCC");
+  }
+
+  if(!futureTime || time > futureTime) {
+    futureTime = time;
+  }
+  if(!pastTime || time < pastTime) {
+    pastTime = time;
+  }
+  addTagListeners($(".tagger").last()[0]);
+}
+
+function gradualShow($tag) {
+  $tag.animate({
+    opacity: 1.0
+  }, 200);
+}

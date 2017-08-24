@@ -96,7 +96,7 @@ exports.handlePostUpload = functions.database.ref("/posts/{postId}")
       for(var i = 0; i < tagList.length; ++i) {
         promises.push(admin.database().ref("/tagCounter/" + tagList[i]).once("value").then(snapshot => {
           console.log(tagList[i]);
-          return admin.database().ref("/tagCounter/" + snapshot.key + "/time").set(Date.now());
+          return admin.database().ref("/tagCounter/" + snapshot.key + "/time").set(-Date.now());
         }));
       }
     }
