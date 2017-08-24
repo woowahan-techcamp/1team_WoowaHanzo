@@ -52,6 +52,7 @@ function getCurrentTime(time) {
 }
 
 function isScrolledIntoView(elem) {
+
     var $elem = $(elem);
     var $window = $(window);
 
@@ -121,10 +122,13 @@ function handleThumbnailNumber($curPost, imagenumber) {
 		thumbnail_cover.style.display = "none";
 	} else {
 		thumbnail_cover.innerHTML = "+" + (imagenumber - 3);
-		thumbnail_cover.addEventListener("click", function(evt) {
+		console.log('imagenumber: ', imagenumber);
+		$(thumbnail_cover).on("mousedown touchend", function(evt) {
+			evt.preventDefault();
+			console.log('thumbnail_cover mousedown...');
 			var thumbnail = evt.target.parentElement;
 			var image = thumbnail.querySelector("img");
-			image.click();
+			$(image).trigger("mousedown");
 		})
 	}
 
@@ -191,7 +195,7 @@ function fixExifOrientation($img) {
 
 
 function resizeThumbnails() {
-  $(".image_thumbnails td").each(function(index, elem) {"click touchstart"
+  $(".image_thumbnails td").each(function(index, elem) {
 		var thumbnailHolder = elem.parentElement;
 		var td = thumbnailHolder.querySelector("td");
     var bufferWidth = td.offsetWidth;
@@ -252,7 +256,8 @@ function getIdFromPostId(id) {
 function addTagListeners(curPost) {
 	var tags = curPost.querySelectorAll(".tagger");
 	for(var i = 0; i < tags.length; ++i) {
-		tags[i].addEventListener("click", function(evt) {
+		$(tags[i]).on("mousedown touchend", function(evt) {
+			evt.preventDefault();
 			var tagValue = evt.target.innerHTML.trim();
 			var queryKey = firebase.database().ref().child("tagQuery").push().key;
 
@@ -263,6 +268,15 @@ function addTagListeners(curPost) {
 				window.location.href = "./index.html?tagQuery=" + queryKey;
 			});
 		});
+	}
+}
+
+// if true landscape non jquery
+function imageDimensions(img) {
+	if(img.height > img.width) {
+		return false;
+	} else {
+		return true;
 	}
 }
 
@@ -295,6 +309,11 @@ function loadUserProfile(uid) {
 				profilePic.classList.add("loading");
 				profilePic.src = url;
 				profilePic.addEventListener("load", function(evt) {
+					if(!imageDimensions(evt.target)) {
+						evt.target.classList.add("circularLongImage");
+					} else {
+						evt.target.classList.remove("circularLongImage");
+					}
 
 					if(prevLoaded(this) && imagesAllLoaded(evt.target)) {
 						$(".buttons_holder").css("display", "block");
@@ -310,6 +329,7 @@ function loadUserProfile(uid) {
 			profilePic.src = pageObject.userProfileImage[this.uid];
 			profilePic.addEventListener("load", function(evt) {
 
+
 				if(prevLoaded(this) && imagesAllLoaded(evt.target)) {
 				 	fadeInPost(this);
 				}
@@ -321,7 +341,7 @@ function loadUserProfile(uid) {
 
 var count = 0;
 
-function loadActualPost(snapshot, likeObject) {
+function loadActualPost(snapshot, likeObject, fromScrollTop) {
   var storageRef = firebase.storage().ref();
 
   var buffer = snapshot.val();
@@ -349,15 +369,35 @@ function loadActualPost(snapshot, likeObject) {
 	// update current track of load time
 	if(pageObject.pastTime == undefined || pageObject.pastTime > buffer["checkTime"]) {
 		pageObject.pastTime = buffer["checkTime"];
-		if(!$("#post_" + buffer.id).length) {
+
+		if(!$("#post_" + buffer.id).length && pageObject.initialPostLoads > 0) {
+
 			$(".container_box").append(pageObject.postTemplate(buffer));
+			pageObject.initialPostLoads -= 1;
+		} else {
+			pageObject.bottomLoadStack.push(snapshot);
+			return;
 		}
 	}
 	if(pageObject.futureTime == undefined || pageObject.futureTime < buffer["checkTime"]) {
 		pageObject.futureTime = buffer["checkTime"];
+
 		if(!$("#post_" + buffer.id).length) {
-			$(".container_box").prepend(pageObject.postTemplate(buffer));
+			pageObject.frontLoadStack.push(snapshot);
+			return;
+			// $(".container_box").prepend(pageObject.postTemplate(buffer));
 		}
+	}
+
+	// prepend on scroll Top
+	if(fromScrollTop) {
+		$(".container_box").prepend(pageObject.postTemplate(buffer));
+	}
+
+	if(!$("#post_" + buffer.id).length) {
+
+		$(".container_box").append(pageObject.postTemplate(buffer));
+		pageObject.initialPostLoads -= 1;
 	}
 
   var $curPost = $("#post_" + buffer.id);
@@ -371,7 +411,8 @@ function loadActualPost(snapshot, likeObject) {
 
 	// add functionality to like button
 	var like_button = curPost.querySelector(".like_btn");
-	like_button.addEventListener("click", function(event) {
+	$(like_button).on("mousedown touchend", function(event) {
+		event.preventDefault();
 		var id = event.target.parentElement.parentElement.id;
 		var requestKey = firebase.database().ref().child("likeRequest").push().key;
 		var bufferObject = {};
@@ -445,7 +486,8 @@ function loadActualPost(snapshot, likeObject) {
 
           }.bind(this));
 
-					imageParent.on("click touchstart", function(evt) {
+					imageParent.on("mousedown touchend", function(evt) {
+						evt.preventDefault();
 						var curImage = evt.target;
 
 						showGallery(pageObject.imageUrls[this.id], this.i);
@@ -511,9 +553,9 @@ function loadActualPost(snapshot, likeObject) {
   resizeThumbnails();
 }
 
-function loadPosts(snapshot) {
+function loadPosts(snapshot, fromScrollTop) {
 	firebase.database().ref("/postLikes/" + snapshot.key).once("value").then((likeObject) => {
-		loadActualPost(snapshot, likeObject);
+		loadActualPost(snapshot, likeObject, fromScrollTop);
 	});
 }
 
@@ -533,7 +575,8 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 		resizeThumbnails();
 	});
 
-	$("#galleryoverlay").on("click touchstart", function(evt) {
+	$("#galleryoverlay").on("mousedown touchend", function(evt) {
+		evt.preventDefault();
 		$('#galleryoverlay').css('display', 'none');
 		$('#justblackbackground').css('display', 'none');
 		$('#actualimage').css('display', 'none');
@@ -569,16 +612,17 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 	});
 
 
-	$("#actualimage").on("click touchstart", function(evt) {
+	$("#actualimage").on("mousedown touchend", function(evt) {
+		evt.preventDefault();
 		evt.stopPropagation();
 		var mouseX = evt.clientX;
 		var actualimage = document.querySelector("#actualimage");
 		mouseX -= actualimage.getBoundingClientRect().left;
 		var width = actualimage.offsetWidth;
 		if(mouseX < width / 2) {
-			$("#navleft").click();
+			$("#navleft").trigger("mousedown");
 		} else {
-			$("#navright").click();
+			$("#navright").trigger("mousedown");
 		}
 	});
 
@@ -594,19 +638,21 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 
 	$(window).keydown(function(e) {
 		if(e.keyCode == 37) {
-			$('#navleft').click();
+			$('#navleft').trigger("mousedown");
 		} else if (e.keyCode == 39) {
-			$('#navright').click();
+			$('#navright').trigger("mousedown");
 		}
 	});
 
 
-	$("#navleft").on("click touchstart", function(evt) {
+	$("#navleft").on("mousedown touchend", function(evt) {
+		evt.preventDefault();
 		evt.stopPropagation();
 		galleryLeft();
 	});
 
-	$("#navright").on("click touchstart", function(evt) {
+	$("#navright").on("mousedown touchend", function(evt) {
+		evt.preventDefault();
 		evt.stopPropagation();
 		galleryRight();
 	});
