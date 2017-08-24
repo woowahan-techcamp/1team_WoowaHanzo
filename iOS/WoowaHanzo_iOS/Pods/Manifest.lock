@@ -3,7 +3,6 @@ PODS:
   - BSImagePicker (2.6.0):
     - BSGridCollectionViewLayout (~> 1.2.0)
     - UIImageViewModeScaleAspect (= 1.5)
-  - FaveButton (2.0.3)
   - Firebase/Auth (4.0.4):
     - Firebase/Core
     - FirebaseAuth (= 4.0.0)
@@ -61,7 +60,6 @@ PODS:
 
 DEPENDENCIES:
   - BSImagePicker (~> 2.4)
-  - FaveButton (~> 2.0.3)
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -73,7 +71,6 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   BSGridCollectionViewLayout: 8f12c8e1e08c47057f5a39a6828f4395f043d78f
   BSImagePicker: 7b740d0a9f23160bcdca01f179445583bd1c09b0
-  FaveButton: cfcbc5e73da159c4f916613da5687357b5bb4783
   Firebase: 1492bf04e1b73a7353b4fb2cf5a20bac9692f341
   FirebaseAnalytics: ad41720e3e67fc63fbe3d2948d3e26932a8de311
   FirebaseAuth: ebb6abcbabae00fc47446d690c19ce68d8484fde
@@ -89,6 +86,6 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
 
-PODFILE CHECKSUM: ae68320593e9ce75c766aa90e6735f008dcca5e2
+PODFILE CHECKSUM: e68bbc66c5a8b39d9f65fa5edd149e6aaab9b300
 
 COCOAPODS: 1.2.1
