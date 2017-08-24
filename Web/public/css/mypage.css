@@ -61,7 +61,7 @@
   width: 33px;
   height: 33px;
   line-height: 40px;
-  border: 1px solid #2ac1bc;
+  border: 1px solid #3498db;
   display: inline-block;
   display: flex;
   align-items: center;
@@ -72,7 +72,7 @@
 
 .fa-sign-out {
   font-size: 18px;
-  color: #2ac1bc;
+  color: #3498db;
   /*outline: 1px solid lightblue;*/
   margin: 0 auto;
 }
@@ -83,13 +83,8 @@
   margin-bottom: 10px;
 }
 
-.mypage_user_post_count {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.mypage_user_post_count .post_count {
-  font-weight: 200;
+.mypage_user_title {
+  font-size: 16px;
 }
 
 #profile_image_input {

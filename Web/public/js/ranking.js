@@ -17,19 +17,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       promises.push(downloadUrl.then(function(url) {
         itemObject.userProfileImg = url;
         itemObject.uid = item.key;
-        console.log(itemObject.uid);
-        if(item.val().rankName && item.val().rankName === "신선") {
-          itemObject.titlePic = '<i class="fa fa-trophy" aria-hidden="true" style="color: gold"></i>';
-        }
-        else if(item.val().rankName && item.val().rankName === "왕족") {
-          itemObject.titlePic = '<i class="fa fa-trophy" aria-hidden="true" style="color: silver"></i>';
-        }
-        else if(item.val().rankName && item.val().rankName === "양반") {
-          itemObject.titlePic = '<i class="fa fa-trophy"  aria-hidden="true" style="color: Sienna"></i>';
-        }
-        else {
-          itemObject.titlePic = '<i class="fa fa-trophy" aria-hidden="true"></i>';
-        }
+        // console.log(itemObject.uid);
+        itemObject.titlePic = getTitleIcon(item.val().rankName);
         itemObject.titleText = item.val().rankName ? item.val().rankName : "평민";
         itemObject.username = item.val().username;
         itemObject.like = item.val().likes ? item.val().likes : 0;

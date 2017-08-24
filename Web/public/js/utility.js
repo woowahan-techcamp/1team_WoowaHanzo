@@ -324,7 +324,7 @@ function loadUserProfile(uid) {
 			var curPost = this.curPost;
 			var title = curPost.querySelector(".Title");
 			if(title) {
-				title.innerHTML = snapshot.val().rankName;
+				title.innerHTML = getTitleIcon(snapshot.val().rankName) + snapshot.val().rankName;
 			}
 		} else {
 			var curPost = this.curPost;
@@ -702,6 +702,17 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 	});
 });
 
-function setActualTitle(element) {
-	
+function getTitleIcon(titleText) {
+	if(titleText === "신선") {
+		return '<i class="fa fa-trophy" aria-hidden="true" style="color: gold; margin-right: 7px;"></i>'
+	}
+	else if(titleText === "왕족") {
+		return '<i class="fa fa-trophy" aria-hidden="true" style="color: silver; margin-right: 7px;"></i>'
+	}
+	else if(titleText === "양반") {
+		return '<i class="fa fa-trophy" aria-hidden="true" style="color: Sienna; margin-right: 7px;"></i>'
+	}
+	else {
+		return '<i class="fa fa-trophy" aria-hidden="true" style="margin-right: 7px;"></i>'
+	}
 }
