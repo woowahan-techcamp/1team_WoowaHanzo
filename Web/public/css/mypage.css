@@ -61,7 +61,7 @@
   width: 33px;
   height: 33px;
   line-height: 40px;
-  border: 1px solid #2ac1bc;
+  border: 1px solid #3498db;
   display: inline-block;
   display: flex;
   align-items: center;
@@ -72,7 +72,7 @@
 
 .fa-sign-out {
   font-size: 18px;
-  color: #2ac1bc;
+  color: #3498db;
   /*outline: 1px solid lightblue;*/
   margin: 0 auto;
 }
