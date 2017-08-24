@@ -261,6 +261,10 @@ input:focus {
   position: relative;
 }
 
+.post-header:hover {
+  cursor: pointer;
+}
+
 div.img-divgo{
   width: 80px;
   height: 80px;
@@ -386,6 +390,7 @@ div.img-divgo{
 
 .image_thumbnails td {
   border: solid 3px transparent;
+  border-bottom: none;
 
 }
 
