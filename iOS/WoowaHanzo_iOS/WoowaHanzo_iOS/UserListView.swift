@@ -52,6 +52,7 @@ class UserListView: UIScrollView {
     func addUserList(users: [User]?){
         
         if let list = users {
+            print(users)
             if list.count > 0 {
                 for index in 0...list.count-1{
                     self.addUser(user: list[index], index: index)
@@ -163,24 +164,25 @@ class UserListView: UIScrollView {
         scrollview.showsHorizontalScrollIndicator = false
         let scrollcontainerView = UIView(frame: scrollview.frame)
         scrollview.addSubview(scrollcontainerView)
-        
-        if user.imageArray! != [] {
-            if user.imageArray!.count > 0 {
-                for index in 0...user.imageArray!.count - 1{
-                    let name : String = user.imageArray![index]
-                    let imageview = UIImageView()
-                    Storage.storage().reference(withPath: "images/" + name).downloadURL { (url, error) in
-                        imageview.contentMode = UIViewContentMode.scaleAspectFill
-                        imageview.clipsToBounds = true
-                        imageview.kf.setImage(with: url)
-                        imageview.frame = CGRect(x:10 + index * (imgsize + 13), y:0, width: imgsize, height: imgsize)
-                        imageview.layer.cornerRadius = 3
-                        
-                        
-                        scrollview.addSubview(imageview)
-                        scrollview.contentSize = CGSize(width: max(Int(scrollview.frame.width + 1),Int(10 + user.imageArray!.count * (imgsize + 13))), height: imgsize)
-                        //contentsize를 크게 줘야 bouncing이 항상 가능하다.
-                        cellview.addSubview(scrollview)
+        if let usersImageArray = user.imageArray{
+            if user.imageArray! != [] {
+                if user.imageArray!.count > 0 {
+                    for index in 0...user.imageArray!.count - 1{
+                        let name : String = user.imageArray![index]
+                        let imageview = UIImageView()
+                        Storage.storage().reference(withPath: "images/" + name).downloadURL { (url, error) in
+                            imageview.contentMode = UIViewContentMode.scaleAspectFill
+                            imageview.clipsToBounds = true
+                            imageview.kf.setImage(with: url)
+                            imageview.frame = CGRect(x:10 + index * (imgsize + 13), y:0, width: imgsize, height: imgsize)
+                            imageview.layer.cornerRadius = 3
+                            
+                            
+                            scrollview.addSubview(imageview)
+                            scrollview.contentSize = CGSize(width: max(Int(scrollview.frame.width + 1),Int(10 + user.imageArray!.count * (imgsize + 13))), height: imgsize)
+                            //contentsize를 크게 줘야 bouncing이 항상 가능하다.
+                            cellview.addSubview(scrollview)
+                        }
                     }
                 }
             }

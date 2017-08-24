@@ -28,7 +28,7 @@ class User {
     var imageArray : [String]?
     var postDate : Int
     var uid : String
-    init(key: String,nickName :String, contents :  String, tags : [String]?,imageArray: [String]?,postDate:Int, uid: String) {
+    init(key: String,nickName : String, contents : String, tags : [String]?,imageArray: [String]?,postDate:Int, uid: String) {
         self.nickName = nickName
         self.contents = contents
         self.key = key
