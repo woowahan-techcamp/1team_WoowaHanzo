@@ -123,7 +123,7 @@ function handleThumbnailNumber($curPost, imagenumber) {
 	} else {
 		thumbnail_cover.innerHTML = "+" + (imagenumber - 3);
 		console.log('imagenumber: ', imagenumber);
-		$(thumbnail_cover).on("mousedown touchend", function(evt) {
+		$(thumbnail_cover).on("mousedown tap", function(evt) {
 			evt.preventDefault();
 			var thumbnail = evt.target.parentElement;
 			var image = thumbnail.querySelector("img");
@@ -252,22 +252,41 @@ function getIdFromPostId(id) {
 	return id.substring(5, id.length);
 }
 
+function getUIDFromPostHeader(id) {
+	return id.substring(5, id.length);
+}
+
 function addTagListeners(curPost) {
 	var tags = curPost.querySelectorAll(".tagger");
 	for(var i = 0; i < tags.length; ++i) {
-		$(tags[i]).on("mousedown touchend", function(evt) {
+		$(tags[i]).on("mousedown tap", function(evt) {
 			evt.preventDefault();
 			var tagValue = evt.target.innerHTML.trim();
 			var queryKey = firebase.database().ref().child("tagQuery").push().key;
 
 			var update = {};
 			update["/tagQuery/" + queryKey + '/tag'] = tagValue;
-			update["/tagQuery/" + queryKey + '/queryResult'] = [1];
+			update["/tagQuery/" + queryKey + '/queryResult'] = ["1"];
 			firebase.database().ref().update(update).then(evt => {
 				window.location.href = "./index.html?tagQuery=" + queryKey;
 			});
 		});
 	}
+}
+
+function addUserListener(curPost) {
+	var user = curPost.querySelector(".post-header");
+	var id = getUIDFromPostHeader($(user).attr("id"));
+	$(user).on("mousedown tap", evt => {
+		evt.preventDefault();
+		var queryKey = firebase.database().ref().child("userQuery").push().key;
+		var update = {};
+		update["/userQuery/" + queryKey + "/uid"] = id;
+		update["/userQuery/" + queryKey + "/queryResult"] = ["1"];
+		firebase.database().ref().update(update).then(evt => {
+
+		});
+	});
 }
 
 // if true landscape non jquery
@@ -410,7 +429,7 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 
 	// add functionality to like button
 	var like_button = curPost.querySelector(".like_btn");
-	$(like_button).on("mousedown touchend", function(event) {
+	$(like_button).on("mousedown tap", function(event) {
 		event.preventDefault();
 		var id = event.target.parentElement.parentElement.id;
 		var requestKey = firebase.database().ref().child("likeRequest").push().key;
@@ -485,7 +504,7 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 
           }.bind(this));
 
-					imageParent.on("mousedown touchend", function(evt) {
+					imageParent.on("mousedown tap", function(evt) {
 						evt.preventDefault();
 						var curImage = evt.target;
 
@@ -548,6 +567,7 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
   }
 
 	addTagListeners(curPost);
+	addUserListener(curPost);
 
   resizeThumbnails();
 }
@@ -574,7 +594,7 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 		resizeThumbnails();
 	});
 
-	$("#galleryoverlay").on("mousedown touchend", function(evt) {
+	$("#galleryoverlay").on("mousedown tap", function(evt) {
 		evt.preventDefault();
 		$('#galleryoverlay').css('display', 'none');
 		$('#justblackbackground').css('display', 'none');
@@ -611,7 +631,7 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 	});
 
 
-	$("#actualimage").on("mousedown touchend", function(evt) {
+	$("#actualimage").on("mousedown tap", function(evt) {
 		evt.preventDefault();
 		evt.stopPropagation();
 		var mouseX = evt.clientX;
@@ -644,13 +664,13 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 	});
 
 
-	$("#navleft").on("mousedown touchend", function(evt) {
+	$("#navleft").on("mousedown tap", function(evt) {
 		evt.preventDefault();
 		evt.stopPropagation();
 		galleryLeft();
 	});
 
-	$("#navright").on("mousedown touchend", function(evt) {
+	$("#navright").on("mousedown tap", function(evt) {
 		evt.preventDefault();
 		evt.stopPropagation();
 		galleryRight();

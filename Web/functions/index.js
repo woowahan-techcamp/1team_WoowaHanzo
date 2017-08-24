@@ -80,7 +80,7 @@ exports.getUserQuery = functions.database.ref("/userQuery/{queryId}/uid")
           ret.push(item.key);
         }
       });
-      return event.data.ref.parent.child("queryResult").set("ret");
+      return event.data.ref.parent.child("queryResult").set(ret);
     });
   });
 

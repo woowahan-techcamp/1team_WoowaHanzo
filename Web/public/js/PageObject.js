@@ -29,11 +29,6 @@ class PageObject {
       for(var i = 0; i < postIds.length; ++i) {
         var curId = postIds[i];
         var postElem = document.querySelector("#post_" + curId);
-        // if(isScrolledIntoView(postElem) && this.postState[curId] != true) {
-        //   this.postState[curId] = true;
-        // } else if(!isScrolledIntoView(postElem)) {
-        //   this.postState[curId] = false;
-        // }
       }
     }.bind(this));
 
@@ -58,7 +53,7 @@ class PageObject {
         while(this.bottomLoadStack.length && i > 0) {
           var snapshot = this.bottomLoadStack[0];
           this.bottomLoadStack.splice(0, 1);
-          this.initialPostLoads = i;
+          // this.initialPostLoads = i;
           console.log("loading");
           loadPosts(snapshot);
           i -= 1;
@@ -72,6 +67,12 @@ class PageObject {
 
     $(document).on("recurseUpdateEvent", function(evt) {
       this.updatePostTime.bind(this)();
+      if(!this.frontLoadStack.length && this.initialPostLoads > 0 && this.initialPostLoads < 8) {
+
+        if(document.querySelector(".loading-indicator-box")) {
+          document.querySelector(".loading-indicator-box").style.display = "none";
+        }
+      }
     }.bind(this));
 
   }
