@@ -452,11 +452,16 @@ div.img-divgo{
   font-size: 1.8em;
   line-height: 100%;
   vertical-align: middle;
+  color: #70b6e5;
   padding: 10px 15px;
 }
 
+.like_btn:hover {
+  color: #70b6e5;
+}
+
 .clicked_like_btn {
-  color: #3498db;
+  color: #70b6e5;
 }
 
 .like_btn:hover {
