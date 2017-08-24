@@ -50,9 +50,13 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         
     }
     func showTagResultPageFromMain(_ notification: Notification){
-        
         let tagName = notification.userInfo?["tagName"] as! String
         print(tagName)
+        ////
+        let storyboard = UIStoryboard(name: "TagPage", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "tagResultMain") as! TagResultViewController
+        controller.tagName = tagName
+        self.show(controller, sender: self)
         
     }
     func nickNameLabelTouchedOnMainpage(_ notification:Notification){
@@ -120,10 +124,11 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         }
 
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self)
-        NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        NotificationCenter.default.removeObserver(self)
+//        NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
+//    }
     
     //스크롤하면 키보드가 사라진다.
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
