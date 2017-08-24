@@ -214,6 +214,8 @@ class FirebaseModel{
                 let rankname = result["rankName"] as? String ?? nil
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "profileimg"), object: nil, userInfo: ["profileimg": profileimg, "imgview":imgview, "ranklabel":ranklabel, "rankname": rankname])
                 
+                
+                
             }
         })
     }
@@ -298,6 +300,8 @@ class FirebaseModel{
                 User.currentLoginedUserNickName = value?["username"] as! String
                 User.currentLoginedUserTitle = value?["rankName"] as! String
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoadUserInfo"), object: self)
+                
+                
                 // ...
             }) { (error) in
                 
