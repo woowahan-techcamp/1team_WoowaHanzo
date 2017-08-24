@@ -57,7 +57,6 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     }
     func nickNameLabelTouchedOnMainpage(_ notification:Notification){
         User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
-        
         print("nickNameLabelTouched")
         
         let storyboard = UIStoryboard(name: "NickNameClickResult", bundle: nil)
@@ -123,6 +122,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     }
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
     }
     
     //스크롤하면 키보드가 사라진다.
