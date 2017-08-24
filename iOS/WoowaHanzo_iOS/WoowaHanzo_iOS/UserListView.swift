@@ -215,17 +215,11 @@ class UserListView: UIScrollView {
         timelabel.sizeToFit()
         timelabel.frame.origin = CGPoint(x: Int(cellview.frame.width - timelabel.frame.width) - inxpos, y: inypos + 5)
         cellview.addSubview(timelabel)
-        
         inypos = inypos + Int(lastview.frame.size.height) + 10 //lastview: likebutton
-
-        
-        
-        
-        
         
         cellview.frame.size.height = CGFloat(inypos)
-        ypos = ypos + Int(cellview.frame.size.height) + 7
-        self.contentSize = CGSize(width: Int(self.frame.width), height: max(yoffset + ypos, Int(self.frame.height + 1)))
+        ypos = ypos + Int(cellview.frame.size.height) + 7 // 다음 cellview의 위치를 지정해준다.
+        self.contentSize = CGSize(width: Int(self.frame.width), height: max(yoffset + ypos - 35, Int(self.frame.height + 1)))
     }
     func updateProfileImg(_ notification: Notification){
         let profileimg = notification.userInfo?["profileimg"] as? String ?? nil
