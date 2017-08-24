@@ -47,6 +47,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var source = document.getElementById("ranking_template").innerHTML;
       var template = Handlebars.compile(source);
       document.querySelector(".ranking_box").innerHTML += template(itemList);
+
+      console.log('랭킹 다 불러짐..');
+      $(".ranking_indicator").css("opacity", 0);
+      $(".ranking_indicator").css("height", 0);
     });
   });
 

@@ -6,6 +6,24 @@ ul, li {
 .container_box {
   /*padding-left: 15px;*/
   padding-right: 15px;
+  margin-top: 0;
+}
+
+.ranking_indicator {
+  /*outline: 1px solid red;*/
+  padding: 0 !important;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.loading-text {
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.spinner {
+  -webkit-transition: all .2s;
+  transition: all .2s;
 }
 
 .ranking_item {
