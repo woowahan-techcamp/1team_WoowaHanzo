@@ -288,6 +288,24 @@ function addUserListener(curPost) {
 	});
 }
 
+function addLikeButtonToggle(like_button) {
+	$(like_button).on("mouseover", function(evt) {
+		$(evt.target).removeClass("fa-heart-o");
+		$(evt.target).addClass("fa-heart");
+	});
+	$(like_button).on("mouseout", function(evt) {
+		$(evt.target).removeClass("fa-heart");
+		$(evt.target).addClass("fa-heart-o");
+	});
+}
+
+function removeLikeButtonToggle(like_button) {
+	$(like_button).off("mouseover");
+	$(like_button).off("mouseout");
+}
+
+
+
 // if true landscape non jquery
 function imageDimensions(img) {
 	if(img.height > img.width) {
@@ -430,6 +448,7 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 	var like_button = curPost.querySelector(".like_btn");
 	$(like_button).on("mousedown tap", function(event) {
 		event.preventDefault();
+
 		var id = event.target.parentElement.parentElement.id;
 		var requestKey = firebase.database().ref().child("likeRequest").push().key;
 		var bufferObject = {};
@@ -452,9 +471,13 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 				}
 
 				if(snapshot.val().state == "true") {
-					$(this.target).parent().children(".like_btn").addClass("clicked_like_btn");
+					$(this.target).parent().children(".like_btn").addClass("fa-heart");
+					$(this.target).parent().children(".like_btn").removeClass("fa-heart-o");
+					removeLikeButtonToggle(this.target);
 				} else {
-					$(this.target).parent().children(".like_btn").removeClass("clicked_like_btn");
+					$(this.target).parent().children(".like_btn").removeClass("fa-heart");
+					$(this.target).parent().children(".like_btn").addClass("fa-heart=o");
+					addLikeButtonToggle(this.target);
 				}
 				firebase.database().ref("/likeRequest/" + this.requestKey).off("value");
 				firebase.database().ref("/likeRequest/" + this.requestKey).remove();
@@ -465,7 +488,9 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 
 	if(firebase.auth().currentUser) {
 		if(likeObject.val() && likeObject.val().userList.indexOf(firebase.auth().currentUser.uid) >= 0) {
-			like_button.classList.add("clicked_like_btn");
+			like_button.classList.add("fa-heart");
+			like_button.classList.remove("fa-heart-o");
+			removeLikeButtonToggle(like_button);
 		}
 	}
 
@@ -567,6 +592,7 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 
 	addTagListeners(curPost);
 	addUserListener(curPost);
+	addLikeButtonToggle(like_button);
 
   resizeThumbnails();
 }
