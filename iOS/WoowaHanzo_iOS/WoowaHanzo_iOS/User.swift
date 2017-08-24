@@ -15,6 +15,8 @@ class User {
     static var tagUsers = Array<User>()
     static var currentUserName : String = " "
     static var nickNameClickResult = Array<User>()
+    static var currentLoginedUserNickName : String = ""
+    static var currentLoginedUserTitle : String = ""
     
     let key : String
     let nickName : String

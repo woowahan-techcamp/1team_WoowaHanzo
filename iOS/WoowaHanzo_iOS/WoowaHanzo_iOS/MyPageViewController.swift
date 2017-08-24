@@ -24,6 +24,7 @@ class MyPageViewController: UIViewController {
     @IBOutlet weak var myPageFeedProfileImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+         NotificationCenter.default.addObserver(self, selector: #selector(loadUserInfo), name: NSNotification.Name(rawValue: "loadUserInfo"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadPorfileImage(_ :)), name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: nil)
         imageIndicator.startAnimating()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
@@ -36,7 +37,7 @@ class MyPageViewController: UIViewController {
         FirebaseModel().loadProfileImageFromUsers()
         UINavigationBar.appearance().backgroundColor = UIColor.white
         if AuthModel.isLoginStatus(){
-            self.navigationController?.navigationBar.topItem?.title = UserDefaults.standard.string(forKey: "userNickName")
+            self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
         }
         else {
             self.navigationController?.navigationBar.topItem?.title = "마이페이지"
@@ -52,6 +53,11 @@ class MyPageViewController: UIViewController {
         myProfileImageView.isUserInteractionEnabled = true
         
         
+    }
+    func loadUserInfo(){
+        self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
+        print("loadUserInfo")
+
     }
     func loadPorfileImage(_ notification : Notification){
         let profileImageUrl = notification.userInfo?["profileImageUrl"] as! String
@@ -74,6 +80,7 @@ class MyPageViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         if !AuthModel.isLoginStatus(){
             
             var alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
@@ -97,6 +104,9 @@ class MyPageViewController: UIViewController {
         }
         else{
             //로그인이 되었다면? 내 마이페이지를 보여줘야함.
+            self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
+            self.view.setNeedsDisplay()
+            
         }
         
     }

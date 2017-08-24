@@ -116,7 +116,7 @@ class FirebaseModel{
                         let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil, postDate : child.childSnapshot(forPath: "time").value as! Int, uid: child.childSnapshot(forPath: "uid").value as! String)
                         User.nickNameClickResult.append(user)
                         print(child.childSnapshot(forPath: "body").value as! String)
-                    
+                        
                         //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
                     }
                 }
@@ -268,4 +268,27 @@ class FirebaseModel{
             
         }
     }
+    func loadUserInfo()
+    {
+        if AuthModel.isLoginStatus(){
+            self.ref = Database.database().reference()
+            let userID = Auth.auth().currentUser?.uid
+            ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                
+                User.currentLoginedUserNickName = value?["username"] as! String
+                User.currentLoginedUserTitle = value?["rankName"] as! String
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoadUserInfo"), object: self)
+                // ...
+            }) { (error) in
+                
+                print(error.localizedDescription)
+            }
+            
+            
+        }
+    }
+    
+
 }

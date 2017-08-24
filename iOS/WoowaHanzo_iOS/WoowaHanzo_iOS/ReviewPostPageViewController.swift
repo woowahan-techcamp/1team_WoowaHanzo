@@ -73,7 +73,11 @@ class ReviewPostPageViewController: UIViewController {
             
             if shouldloadview{
                 //여기에 프로필 이미지
+                FirebaseModel().loadUserInfo()
+                print("응앙ㅇ\(User.currentLoginedUserNickName,User.currentLoginedUserTitle)")
                 FirebaseModel().loadProfileImageFromUsers()
+                print(User.currentLoginedUserNickName,User.currentLoginedUserTitle)
+                userTearLabel.text = User.currentLoginedUserTitle
                 shouldloadview = false
                 myCollectionView.dataSource = self
                 myCollectionView.delegate = self
@@ -84,8 +88,8 @@ class ReviewPostPageViewController: UIViewController {
                 imageAssets = [PHAsset]()
                 
                 userProfileImage.image = UIImage(named: "profile.png")
-                userTearLabel.text = "치킨왕자"
-                userNickNameLabel.text = UserDefaults.standard.string(forKey: "userNickName")
+                //userTearLabel.text = "치킨왕자"
+                userNickNameLabel.text = User.currentLoginedUserNickName
                 myTagView.removeFromSuperview()
                 myTagView = TagView( position: CGPoint( x: 0, y: 380 ), size: CGSize( width: 320, height: 50 ) )
                 myTextView.delegate = self as UITextViewDelegate
@@ -97,6 +101,8 @@ class ReviewPostPageViewController: UIViewController {
                 NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.escapecancel), name: NSNotification.Name(rawValue: "escapecancel"), object: nil)
                 NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.escapeOK), name: NSNotification.Name(rawValue: "escapeOK"), object: nil)
                 NotificationCenter.default.addObserver(self, selector: #selector(loadPorfileImage(_ :)), name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(loadUserInformation), name: NSNotification.Name(rawValue: "LoadUserInfo"), object: nil)
+                
                 
                 
                 //view border setting
@@ -158,6 +164,10 @@ class ReviewPostPageViewController: UIViewController {
             self.myImageView?.kf.setImage(with: url)
         }
     }
+    func loadUserInformation(){
+        self.userNickNameLabel.text = User.currentLoginedUserNickName
+        self.userTearLabel.text = User.currentLoginedUserTitle
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         if !AuthModel.isLoginStatus(){
@@ -185,7 +195,10 @@ class ReviewPostPageViewController: UIViewController {
             //로그인이 되었다면? 내 마이페이지를 보여줘야함.
             
             if shouldloadview{
+                FirebaseModel().loadUserInfo()
+                print("응앙ㅇ\(User.currentLoginedUserNickName,User.currentLoginedUserTitle)")
                FirebaseModel().loadProfileImageFromUsers()
+                userTearLabel.text = User.currentLoginedUserTitle
                 shouldloadview = false
                 myCollectionView.dataSource = self
                 myCollectionView.delegate = self
@@ -196,9 +209,9 @@ class ReviewPostPageViewController: UIViewController {
                 imageAssets = [PHAsset]()
                 
                 
-                userProfileImage.image = UIImage(named: "profile.png")
-                userTearLabel.text = "치킨왕자"
-                userNickNameLabel.text = UserDefaults.standard.string(forKey: "userNickName")
+                //userProfileImage.image = UIImage(named: "profile.png")
+                //userTearLabel.text = "치킨왕자"
+                userNickNameLabel.text = User.currentLoginedUserNickName
                 
                 myTagView.removeFromSuperview()
                 myTagView = TagView( position: CGPoint( x: 0, y: 380 ), size: CGSize( width: 320, height: 50 ) )
@@ -388,7 +401,7 @@ class ReviewPostPageViewController: UIViewController {
         if myTextView.textColor != UIColor.lightGray{
             //DispatchQueue.global().sync{
             if let user = Auth.auth().currentUser{
-                FirebaseModel().postReview(review: myTextView.text, userID: UserDefaults.standard.string(forKey: "userNickName")!, tagArray: myTagView.getTags(withPrefix: false), timestamp: Int(-1000 * Date().timeIntervalSince1970),images:self.imageNameArray, uid: user.uid)
+                FirebaseModel().postReview(review: myTextView.text, userID: User.currentLoginedUserNickName, tagArray: myTagView.getTags(withPrefix: false), timestamp: Int(-1000 * Date().timeIntervalSince1970),images:self.imageNameArray, uid: user.uid)
                 FirebaseModel().postImages(assets: self.imageAssets, names: self.imageNameArray)
                 //print(myTagView.getTags(withPrefix: true))
                 print(self.imageNameArray)
