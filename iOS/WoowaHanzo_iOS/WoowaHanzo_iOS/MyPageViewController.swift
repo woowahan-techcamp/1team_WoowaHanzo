@@ -158,7 +158,7 @@ class MyPageViewController: UIViewController {
                 
                 FirebaseModel().loadProfileImageFromUsers()
                 FirebaseModel().loadUserInfo()
-                FirebaseModel().loadUsers3(username: UserDefaults.standard.string(forKey: "userNickName")!)
+                FirebaseModel().loadUsers3(username: User.currentLoginedUserNickName)
                 self.view.addSubview(myListView)
             }
             

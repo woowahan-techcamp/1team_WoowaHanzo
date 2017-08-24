@@ -44,7 +44,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="488"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="zoP-3i-oeZ" id="r1N-Ib-I4E">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="488"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="487.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="748" image="baemin.png" translatesAutoresizingMaskIntoConstraints="NO" id="Cx9-sr-l7K">
@@ -102,7 +102,7 @@
                                                             </view>
                                                             <cells>
                                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="l17-2Y-Awl" customClass="FoodImageCollectionViewCell" customModule="WoowaHanzo_iOS" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="3" width="141" height="121"/>
+                                                                    <rect key="frame" x="0.0" y="2.5" width="141" height="121"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                         <rect key="frame" x="0.0" y="0.0" width="141" height="121"/>
@@ -243,7 +243,7 @@
                 <navigationController storyboardIdentifier="MainPageNavigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PW2-AP-TL9" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="홈" image="Group 3" id="fNJ-fU-46m"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gZp-ft-tvX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="gZp-ft-tvX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

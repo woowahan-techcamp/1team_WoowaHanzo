@@ -35,6 +35,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users2"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "showTagResultPageFromMain"), object: nil)
     
         searchBar.alpha = 0
         searchBar.searchBarStyle = UISearchBarStyle.minimal
@@ -46,6 +47,12 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         
         
+        
+    }
+    func showTagResultPageFromMain(_ notification: Notification){
+        
+        let tagName = notification.userInfo?["tagName"] as! String
+        print(tagName)
         
     }
     func nickNameLabelTouchedOnMainpage(_ notification:Notification){

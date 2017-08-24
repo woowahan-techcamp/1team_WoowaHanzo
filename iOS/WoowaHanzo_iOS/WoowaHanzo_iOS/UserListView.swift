@@ -222,9 +222,12 @@ class UserListView: UIScrollView {
         ypos = ypos + Int(cellview.frame.size.height) + 7 // 다음 cellview의 위치를 지정해준다.
         self.contentSize = CGSize(width: Int(self.frame.width), height: max(yoffset + ypos - 35, Int(self.frame.height + 1)))
     }
+    
+    
     func handleTap(sender: UITapGestureRecognizer) {
         if let a = (sender.view as? UILabel)?.text {
-            print(a)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showTagResultPageFromMain"), object: self,userInfo:["tagName":a])
+            
         }
         else { return }
         
