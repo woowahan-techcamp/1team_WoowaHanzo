@@ -21,6 +21,7 @@ class MyPageViewController: UIViewController {
     
     @IBOutlet weak var myInfoView: UIView!
     
+    @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var sayhiLabel: UILabel!
     @IBOutlet weak var postnumLabel: UILabel!
@@ -47,8 +48,7 @@ class MyPageViewController: UIViewController {
         UINavigationBar.appearance().backgroundColor = UIColor.white
         if AuthModel.isLoginStatus(){
             self.navigationController?.navigationBar.topItem?.title = User.currentLoginedUserNickName
-            nameLabel.text = User.currentLoginedUserNickName
-            nameLabel.sizeToFit()
+            
 
         }
         else {
@@ -70,6 +70,9 @@ class MyPageViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     func viewload(_ notification: Notification){
+        self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
+        nameLabel.text = User.currentLoginedUserNickName
+        nameLabel.sizeToFit()
         print("\(User.myUsers.count)개의 랭크 데이터가 존재합니다.")
         myListView.addUserList(users: User.myUsers)
         postnumLabel.text = "게시물 \(User.myUsers.count)"
@@ -125,12 +128,10 @@ class MyPageViewController: UIViewController {
             present(alert, animated: true, completion: nil)
         }
         else{
+            //로그인이 되었다면? 내 마이페이지를 보여줘야함.
             FirebaseModel().loadUsers3(username: UserDefaults.standard.string(forKey: "userNickName")!)
             self.view.addSubview(myListView)
-
-            //로그인이 되었다면? 내 마이페이지를 보여줘야함.
-            self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
-            self.view.setNeedsDisplay()
+            
             }
         
     }

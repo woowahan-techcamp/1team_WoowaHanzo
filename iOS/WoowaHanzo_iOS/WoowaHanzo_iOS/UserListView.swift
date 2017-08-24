@@ -221,17 +221,4 @@ class UserListView: UIScrollView {
         ypos = ypos + Int(cellview.frame.size.height) + 7 // 다음 cellview의 위치를 지정해준다.
         self.contentSize = CGSize(width: Int(self.frame.width), height: max(yoffset + ypos - 35, Int(self.frame.height + 1)))
     }
-    func updateProfileImg(_ notification: Notification){
-        let profileimg = notification.userInfo?["profileimg"] as? String ?? nil
-        let cellview = notification.userInfo?["cellview"] as? UIView ?? nil
-        let imageview = notification.userInfo?["imgview"] as? UIImageView ?? nil
-        print(profileimg)
-        if cellview != nil && profileimg != nil && imageview != nil {
-            Storage.storage().reference(withPath: "profileImages/" + profileimg!).downloadURL { (url, error) in
-                imageview?.kf.setImage(with: url)
-                cellview?.addSubview(imageview!)
-                self.addSubview(cellview!)
-            }
-        }
-    }
 }

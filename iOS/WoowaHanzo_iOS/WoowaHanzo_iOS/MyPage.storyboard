@@ -61,7 +61,9 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WkQ-cf-XYx">
                                 <rect key="frame" x="332" y="7" width="62" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="로그아웃"/>
+                                <state key="normal" title="로그아웃">
+                                    <color key="titleColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="logout:" destination="b3j-f2-qdQ" eventType="touchUpInside" id="cSF-gy-WFp"/>
                                 </connections>
@@ -70,6 +72,7 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="logoutButton" destination="WkQ-cf-XYx" id="3VG-Be-CCh"/>
                         <outlet property="myInfoView" destination="Z0t-zT-Nya" id="Q1M-V2-c2L"/>
                         <outlet property="myProfileImageView" destination="Jij-kB-Rlr" id="rcy-fl-8Kz"/>
                         <outlet property="nameLabel" destination="Gnu-aS-mmv" id="UFT-Us-RLk"/>
@@ -87,7 +90,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qGC-fM-8ex" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="마이페이지" image="Combined Shape" id="fwj-VK-IXq"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4f4-qT-Qb9">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4f4-qT-Qb9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
