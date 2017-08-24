@@ -19,8 +19,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if(getParameterByName("userQuery", url)) {
       var queryKey = getParameterByName("userQuery", url);
 
-      $(".mypage_setting").css("display", "none");
-
       promises.push(firebase.database().ref("/userQuery/" + queryKey).once("value", function(snapshot) {
         queryUid = snapshot.val().uid;
         var postIdList = snapshot.val().queryResult.slice(1,snapshot.val().length);
@@ -81,6 +79,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         $(".mypage_user_sayhi").html(snapshot.val());
         $(".container_box").css("opacity", 1);
       });
+
+      if(queryUid != user.uid) {
+        $(".mypage_setting").css("display", "none");
+      }
+
 
       var curObject= {};
       var curPost = document.querySelector(".mypage_user_box");

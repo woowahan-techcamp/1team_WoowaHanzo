@@ -11,19 +11,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var itemObject = new Object();
       var downloadUrl = storageRef.child("profileImages/" + item.val().profileImg).getDownloadURL();
 
+      var uid = item.val().uid;
+      // console.log('itmem', item.val());
+
       promises.push(downloadUrl.then(function(url) {
         itemObject.userProfileImg = url;
+        itemObject.uid = item.key;
+        console.log(itemObject.uid);
         if(item.val().rankName && item.val().rankName === "신선") {
           itemObject.titlePic = '<i class="fa fa-trophy" aria-hidden="true" style="color: gold"></i>';
         }
         else if(item.val().rankName && item.val().rankName === "왕족") {
-          itemObject.titlePic = '<i class="fa fa-rocket" aria-hidden="true" style="color: silver"></i>';
+          itemObject.titlePic = '<i class="fa fa-trophy" aria-hidden="true" style="color: silver"></i>';
         }
         else if(item.val().rankName && item.val().rankName === "양반") {
-          itemObject.titlePic = '<i class="fa fa-font-awesome" aria-hidden="true" style="color: Sienna"></i>';
+          itemObject.titlePic = '<i class="fa fa-trophy"  aria-hidden="true" style="color: Sienna"></i>';
         }
         else {
-          itemObject.titlePic = '<i class="fa fa-circle" aria-hidden="true"></i>';
+          itemObject.titlePic = '<i class="fa fa-trophy" aria-hidden="true"></i>';
         }
         itemObject.titleText = item.val().rankName ? item.val().rankName : "평민";
         itemObject.username = item.val().username;
@@ -31,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         itemList.push(itemObject);
         // console.log('itemObject', itemObject);
-      }));
+      }.bind(uid)));
 
     });
 

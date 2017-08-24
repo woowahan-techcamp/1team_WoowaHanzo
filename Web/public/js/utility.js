@@ -674,5 +674,8 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 		evt.stopPropagation();
 		galleryRight();
 	});
-
 });
+
+function setActualTitle(element) {
+	
+}
