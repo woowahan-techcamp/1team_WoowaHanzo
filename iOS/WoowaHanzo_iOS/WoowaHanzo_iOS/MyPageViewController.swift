@@ -22,9 +22,17 @@ class MyPageViewController: UIViewController {
     @IBOutlet weak var myPageFeedTimeLabel: UILabel!
     @IBOutlet weak var myPageFeedNickNameLabel: UILabel!
     @IBOutlet weak var myPageFeedProfileImageView: UIImageView!
+    
+    var myListView : UserListView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(loadPorfileImage(_ :)), name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users3"), object: nil)
+        myListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        myListView.ypos = 100
+        
+        
         imageIndicator.startAnimating()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             
@@ -53,6 +61,14 @@ class MyPageViewController: UIViewController {
         
         
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    func viewload(_ notification: Notification){
+        print("\(User.myUsers.count)개의 랭크 데이터가 존재합니다.")
+        myListView.addUserList(users: User.myUsers)
+    }
+    
     func loadPorfileImage(_ notification : Notification){
         let profileImageUrl = notification.userInfo?["profileImageUrl"] as! String
         Storage.storage().reference(withPath: "profileImages/" + profileImageUrl).downloadURL { (url, error) in
@@ -96,7 +112,9 @@ class MyPageViewController: UIViewController {
             present(alert, animated: true, completion: nil)
         }
         else{
-            //로그인이 되었다면? 내 마이페이지를 보여줘야함.
+            FirebaseModel().loadUsers3(username: UserDefaults.standard.string(forKey: "userNickName")!)
+            self.view.addSubview(myListView)
+
         }
         
     }

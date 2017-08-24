@@ -13,6 +13,7 @@ class User {
     
     static var users = Array<User>()
     static var tagUsers = Array<User>()
+    static var myUsers = Array<User>()
     
     let key : String
     let nickName : String

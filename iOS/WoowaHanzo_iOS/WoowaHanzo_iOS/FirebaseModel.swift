@@ -206,6 +206,24 @@ class FirebaseModel{
             }
         })
     }
+    //For my Page ////////////////////////////////
+    func loadUsers3(username: String){
+        print("loadUser3 called")
+        User.myUsers = [User]()
+        self.ref = Database.database().reference().child("posts")
+        self.ref.queryOrdered(byChild: "author").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let result = snapshot.children.allObjects as? [DataSnapshot]{
+                let sort = result.sorted(by:{ $1.childSnapshot(forPath: "time").value as! Int > $0.childSnapshot(forPath: "time").value as! Int})
+                for child in sort {
+                    let user = User(snapshot: child)
+                    
+                    User.myUsers.append(user)
+                }
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "users3"), object: self)
+            }
+        })
+    }
+    
     func likeRequest(postId:String){
         ref = Database.database().reference()
         let key = ref.child("likeRequest").childByAutoId().key

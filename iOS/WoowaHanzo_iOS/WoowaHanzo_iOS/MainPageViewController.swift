@@ -103,6 +103,9 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         }
 
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     //스크롤하면 키보드가 사라진다.
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
