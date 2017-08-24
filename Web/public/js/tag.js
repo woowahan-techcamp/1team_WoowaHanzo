@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
+  $("#tag").css("color", "#fff");
+
   var tagList = [];
   var tagNameList = [];
   var tagTimeList = [];
