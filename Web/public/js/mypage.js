@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   var url = window.location.href;
 
+
   firebase.auth().onAuthStateChanged(user => {
     var queryUid;
     var promises = [];
@@ -34,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }));
 
     } else if(user) {
-
       queryUid = user.uid;
       $(".mypage_setting").on("click", function() {
 
@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       $("#profile_image_input").on("change", function(evt) {
         profileImageHandle(this);
-
       });
 
       var postRef = firebase.database().ref("/posts");
@@ -60,10 +59,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
           if(snapshot.val().author === currentUserName) {
             loadPosts(snapshot, false);
           }
-
         })
       );
-
     }
 
     Promise.all(promises).then(function() {
@@ -71,14 +68,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
       username.on('value', function(snapshot) {
         currentUserName = snapshot.val();
         $(".mypage_username").html(currentUserName);
-
       });
 
       var sayhi = firebase.database().ref("users/" + queryUid + "/sayhi");
       sayhi.on('value', function(snapshot) {
-        $(".mypage_user_sayhi").html(snapshot.val());
+        $(".mypage_user_sayhi").html('"' + snapshot.val() + '"');
         $(".container_box").css("opacity", 1);
       });
+
+      var title = firebase.database().ref("users/" + queryUid + "/rankName");
+      title.on('value', function(snapshot) {
+        $(".mypage_user_title_icon").html(getTitleIcon(snapshot.val()));
+        $(".mypage_user_title_text").html(snapshot.val());
+      });
+
 
       if(queryUid != user.uid) {
         $(".mypage_setting").css("display", "none");

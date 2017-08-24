@@ -676,6 +676,17 @@ document.addEventListener("DOMContentLoaded", function(evt) {
 	});
 });
 
-function setActualTitle(element) {
-	
+function getTitleIcon(titleText) {
+	if(titleText === "신선") {
+		return '<i class="fa fa-trophy" aria-hidden="true" style="color: gold"></i>'
+	}
+	else if(titleText === "왕족") {
+		return '<i class="fa fa-trophy" aria-hidden="true" style="color: silver"></i>'
+	}
+	else if(titleText === "양반") {
+		return '<i class="fa fa-trophy" aria-hidden="true" style="color: Sienna"></i>'
+	}
+	else {
+		return '<i class="fa fa-trophy" aria-hidden="true"></i>'
+	}
 }

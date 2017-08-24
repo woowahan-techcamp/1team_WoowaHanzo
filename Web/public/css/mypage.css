@@ -83,13 +83,8 @@
   margin-bottom: 10px;
 }
 
-.mypage_user_post_count {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.mypage_user_post_count .post_count {
-  font-weight: 200;
+.mypage_user_title {
+  font-size: 16px;
 }
 
 #profile_image_input {
