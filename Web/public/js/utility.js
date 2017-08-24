@@ -257,6 +257,7 @@ function addTagListeners(curPost) {
 	var tags = curPost.querySelectorAll(".tagger");
 	for(var i = 0; i < tags.length; ++i) {
 		$(tags[i]).on("mousedown touchend", function(evt) {
+			console.log('clicked...');
 			evt.preventDefault();
 			var tagValue = evt.target.innerHTML.trim();
 			var queryKey = firebase.database().ref().child("tagQuery").push().key;

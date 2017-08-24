@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/fonts.css" type="text/css" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"  />
     <link href="css/post.css" rel="stylesheet" type="text/css" />
     <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/loading_indicator.css">
     <link href="css/tag.css" rel="stylesheet" type="text/css" />
 
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
@@ -26,6 +28,7 @@
     </script>
 
     <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/PageObject.js"></script>
     <script src="js/utility.js"></script>
@@ -75,6 +78,19 @@
       </div>
     </nav>
 
+    <div class="loading-indicator-holder">
+      <div class="loading-indicator-box tag_indicator">
+        <div class="loading-text">로딩 중입니다.</div>
+        <div class="spinner">
+          <div class="rect1"></div>
+          <div class="rect2"></div>
+          <div class="rect3"></div>
+          <div class="rect4"></div>
+          <div class="rect5"></div>
+        </div>
+      </div>
+    </div>
+
     <div class="container_box">
       <div class="post tag_box">
         <div class="tags_holder" id="tagholder">
@@ -83,5 +99,13 @@
         </div>
       </div>
     </div>
+
+    <script id="tag_template" type="tag_template">
+      {{#each this}}
+      <span class="tagger tag_holder">
+        <span class="tag_name">#{{this.tagName}}</span>
+      </span>
+      {{/each}}
+    </script>
   </body>
 </html>
