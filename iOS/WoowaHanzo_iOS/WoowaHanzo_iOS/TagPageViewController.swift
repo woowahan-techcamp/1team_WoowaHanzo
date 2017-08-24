@@ -22,7 +22,7 @@ class TagPageViewController: UIViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(getTagResult(_ :)), name: NSNotification.Name(rawValue: "tagResult"), object: nil)
-        
+        self.title = "태그"
         let color = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0)
         
         tagListView = TagPageView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -108,11 +108,11 @@ class TagPageViewController: UIViewController {
     //        print("long press from \(label.text!)")
     //    }
     
-    @IBAction func tagButtonTouched(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "SearchPage", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "searchView")
-        self.show(controller, sender: self)
-    }
+   // @IBAction func tagButtonTouched(_ sender: Any) {
+//        let storyboard = UIStoryboard(name: "SearchPage", bundle: nil)
+//        let controller = storyboard.instantiateViewController(withIdentifier: "searchView")
+//        self.show(controller, sender: self)
+   // }
     /*
      // MARK: - Navigation
      

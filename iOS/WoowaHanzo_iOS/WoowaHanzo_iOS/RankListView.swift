@@ -94,7 +94,7 @@ class RankListView: UIScrollView {
         
         
         let namelabel = NickNameLabel()
-        namelabel.whenLabelTouched()
+        namelabel.whenLabelTouchedOnRankPage()
         namelabel.text = rankuser.nickName
         namelabel.textAlignment = NSTextAlignment.center
         namelabel.font = UIFont(name: "NotoSans", size: 17.0)!

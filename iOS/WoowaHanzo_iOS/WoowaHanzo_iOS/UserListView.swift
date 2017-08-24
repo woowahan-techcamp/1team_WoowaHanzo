@@ -110,7 +110,8 @@ class UserListView: UIScrollView {
         cellview.addSubview(profileimgview)
 
         ///namelabel
-        let namelabel = UILabel()
+        let namelabel = NickNameLabel()
+        namelabel.whenLabelTouchedOnMainPage()
         namelabel.text = user.nickName
         namelabel.font = UIFont(name: "NotoSans-Bold", size: 17.0)!
         namelabel.sizeToFit()

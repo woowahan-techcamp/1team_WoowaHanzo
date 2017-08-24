@@ -32,6 +32,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users2"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
     
@@ -46,6 +47,16 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         
         
         
+    }
+    func nickNameLabelTouchedOnMainpage(_ notification:Notification){
+        User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
+        
+        print("nickNameLabelTouched")
+        
+        let storyboard = UIStoryboard(name: "NickNameClickResult", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "NickNameClickResultViewController")
+        FirebaseModel().ReturnNickNameClickResult()
+        self.show(controller, sender: self)
     }
     //나중에 completion handler 로 바꿔보자.
     func updateProfileImg(_ notification: Notification){
