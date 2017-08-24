@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Create a storage reference from our storage service
   var storageRef = storage.ref();
 
-  $(".nav_signin_btn").on("mousedown touchend", function(evt) {
+  $(".nav_signin_btn").on("mousedown tap", function(evt) {
     evt.preventDefault();
     if(firebase.auth().currentUser !== null) {
       firebase.auth().signOut().then(function() {
@@ -16,17 +16,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
   });
 
-  $("#post").on("mousedown touchend", function(evt) {
+  $("#post").on("mousedown tap", function(evt) {
     evt.preventDefault();
     window.location.href = "post.html";
   });
 
-  $("#ranking").on("mousedown touchend", function(evt) {
+  $("#ranking").on("mousedown tap", function(evt) {
     evt.preventDefault();
     window.location.href = "ranking.html";
   });
 
-  $("#tag").on("mousedown touchend", function(evt) {
+  $("#tag").on("mousedown tap", function(evt) {
     evt.preventDefault();
     window.location.href = "tag.html";
   });
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var currentUsername = firebase.database().ref("users/" + user.uid + "/username");
       currentUsername.on('value', function(snapshot) {
         $(".nav_username").html(snapshot.val());
-        $(".nav_user_info").on("mousedown touchend", function(evt) {
+        $(".nav_user_info").on("mousedown tap", function(evt) {
           evt.preventDefault();
           window.location.href = 'mypage.html';
         });
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       $(".nav_signin_btn").css("display", "block");
       $(".nav_user_info").css("display", "none");
       $(".nav_signin_btn").html("로그인");
-      $(".nav_signin_btn").on("mousedown touchend", function(evt) {
+      $(".nav_signin_btn").on("mousedown tap", function(evt) {
         evt.preventDefault();
         window.location.href = "./login.html";
       });

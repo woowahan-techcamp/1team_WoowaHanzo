@@ -385,7 +385,7 @@ div.img-divgo{
 }
 
 .image_thumbnails td {
-  border: solid 1px #777;
+  border: solid 3px transparent;
 
 }
 
@@ -615,8 +615,8 @@ div.img-divgo{
   }
 
   .like_btn {
-    font-size: 1.0em;
-    padding: 6px 8px;
+    font-size: 1.5em;
+    padding: 8px 10px;
   }
 
   .like_number {
@@ -624,8 +624,8 @@ div.img-divgo{
   }
 
   .post_time {
-    margin-top: 5px;
-    font-size: 0.9em;
+    margin-top: 10px;
+    font-size: 0.8em;
   }
 
   .image_thumbnails {
@@ -719,7 +719,7 @@ div.img-divgo{
   }
 
   .image_thumbnails td {
-    padding: 6px;
+    padding: 0px;
   }
 
   .post {
