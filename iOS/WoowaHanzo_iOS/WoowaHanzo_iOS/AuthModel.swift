@@ -23,7 +23,12 @@ class AuthModel{
     static func login(email:String,pw:String, completion: @escaping (Bool)->()){
         Auth.auth().signIn(withEmail: email, password: pw) { (user, error) in
             if user != nil{
+                DispatchQueue.global().sync {
+                    FirebaseModel().loadUserInfo()
+                }
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadUserInfo"), object: self)
                 completion(true)
+                
             }
             else{
                 completion(false)
@@ -39,11 +44,8 @@ class AuthModel{
                 completion(false)
             }
        }
-        
-    
     }
-
-    func logout(){
+    static func logout(){
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
@@ -51,8 +53,38 @@ class AuthModel{
             print ("Error signing out: %@", signOutError)
         }
     }
+    static func isValidpassword(pw:String)-> Bool{
+        if pw.characters.count >= 6{
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    //MARK: 회원가입시 firebase의 유저에 현재 유저 정보 저장
+    static func saveUser(email:String,profileImg:String?,UserSayText: String?,nickName:String){
+        if let user = Auth.auth().currentUser{
+            var ref: DatabaseReference!
+            ref = Database.database().reference()
+            let key = ref.child("users").child(user.uid).key
+            let post = ["email":email,"profileImg": "profile.png","sayhi": UserSayText, "username":nickName,"likes":0, "rankName" :"평민"] as [String : Any]
+            let childUpdates = ["/users/\(key)": post]
+            UserDefaults.standard.set(nickName, forKey: "userNickName")
+            ref.updateChildValues(childUpdates)
+        }
+    }
     
     
+    //MARK:유저의 uid를 리턴해주는 함수
+    func returnUsersUid()->String{
+        if AuthModel.isLoginStatus(){
+            return (Auth.auth().currentUser?.uid)!
+        }
+        else{
+            return " "
+        }
+    }
     
     
 }

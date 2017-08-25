@@ -13,13 +13,18 @@ import Firebase
 
 class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
+    var ref: DatabaseReference!
+    var tagResultArray : [String]?
+
     var firebaseModel = FirebaseModel()
     var searchBar = UISearchBar()
     let cellSpacingHeight: CGFloat = 15
-    
+  
     @IBOutlet weak var dummyTextView: UITextView!
     @IBOutlet weak var dummyTagView: TagListView!
     var foodArray = [UIImage]()
+    
+    var userListView : UserListView!
     
     
 
@@ -29,35 +34,128 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
     
     override func viewDidLoad() {
-        
-        
-    
         super.viewDidLoad()
-       
-        mainpageTableView.keyboardDismissMode = .onDrag
-        //firebase에서 loadFeed하는것에 옵저버를 걸어준다.
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableData), name: NSNotification.Name(rawValue: "reload"), object: nil)
         
-
-        mainpageTableView.delegate = self
-        mainpageTableView.dataSource = self
-
+        NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users2"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLikeButton), name: NSNotification.Name(rawValue: "likestatus"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLikeLabel), name: NSNotification.Name(rawValue: "likenum"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "showTagResultPageFromMain"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "tagResultToMain"), object: nil)
         searchBar.alpha = 0
         searchBar.searchBarStyle = UISearchBarStyle.minimal
-        mainpageTableView.reloadData()
-       
-        mainpageTableView.estimatedRowHeight = UITableViewAutomaticDimension
-        //mainpageTableView.rowHeight = 488
+        let titleAttributes = [
+            NSFontAttributeName: UIFont(name:"NotoSans-Bold", size: 19.0)!
+        ]
+        self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
+        
+       // userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+     
+    }
+    func getTagResultPageFromMain( _ notification:Notification){
+        tagResultArray = []
+        self.ref = Database.database().reference().child("tagQuery")
+        let refHandle = ref.observe(DataEventType.value, with: { (snapshot) in
+            if snapshot.hasChildren(){
+                let postDict = snapshot.value as! [String : Any]
+                if let result = snapshot.childSnapshot(forPath: notification.userInfo?["key"] as! String).childSnapshot(forPath: "queryResult").value {
+                    self.tagResultArray = []
+                    //print(result as? [String])//print(self.tagResultArray)
+                    self.tagResultArray = result as? [String]
+                    //print(self.tagResultArray)
+                    
+                }
+                if (self.tagResultArray?.count ?? 0) > 1 {
+                    print("send table view controller tag array")
+                    print(self.tagResultArray)
+                    print("call getTagResult")
+                    
+                    //TagResultViewController로 노티를 보낸다.
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sendResultViewController"), object: self, userInfo: ["tagResultArray": self.tagResultArray])
+                }
+            }
+        })
+    }
+    func showTagResultPageFromMain(_ notification: Notification){
+        let tagName = notification.userInfo?["tagName"] as! String
+        FirebaseModel().tagQuery(tagName: tagName)
+        print(tagName)
+        ////
+        let storyboard = UIStoryboard(name: "TagPage", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "tagResultMain")  as! TagResultViewController
+        controller.tagName = tagName
+        self.show(controller, sender: self)
+    }
+    func nickNameLabelTouchedOnMainpage(_ notification:Notification){
+        User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
+        print("nickNameLabelTouched")
+        
+        let storyboard = UIStoryboard(name: "NickNameClickResult", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "NickNameClickResultViewController")
+        FirebaseModel().ReturnNickNameClickResult()
+        self.show(controller, sender: self)
+    }
+    
+    //나중에 completion handler 로 바꿔보자.
+    func updateProfileImg(_ notification: Notification){
+        let profileimg = notification.userInfo?["profileimg"] as? String ?? nil
+        let imageview = notification.userInfo?["imgview"] as? UIImageView ?? nil
+        let ranknamelabel = notification.userInfo?["ranklabel"] as? UILabel ?? nil
+        let rankname = notification.userInfo?["rankname"] as? String ?? ""
+        if profileimg != nil && imageview != nil {
+            Storage.storage().reference(withPath: "profileImages/" + profileimg!).downloadURL { (url, error) in
+                imageview?.kf.setImage(with: url)
+            }
+        }
+        if ranknamelabel != nil {
+            ranknamelabel?.text = rankname
+            ranknamelabel?.sizeToFit()
+        }
+    }
+    func updateLikeButton(_ notification: Notification){
+        let check = notification.userInfo?["doeslike"] as? Bool ?? false
+        let button  = notification.userInfo?["button"] as? LikeButton ?? nil
+        if check {
+            button?.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
+        }
+        else{
+            button?.setImage(#imageLiteral(resourceName: "emptyHeard"), for: .normal)
+            
+        }
+    }
+    func updateLikeLabel(_ notification: Notification){
+        let label = notification.userInfo?["label"] as? UILabel ?? nil
+        let numstring = notification.userInfo?["num"] as? String ?? ""
+        let button = notification.userInfo?["button"] as? LikeButton ?? nil
+        if numstring == "0"{
+            label?.text = ""
+            button?.num = 0
+        }
+        else{
+            label?.text = numstring
+            button?.num = Int(numstring)!
+            label?.sizeToFit()
+        }
     }
     
   
    
-    func reloadTableData(){
-        mainpageTableView.reloadData()
-    
-
+    func viewload(_ notification: Notification){
+        //let userlist = notification.userInfo?["users"] as? [User] ?? [User]()
+        //print("\(userlist.count)개의 피드 데이터가 존재합니다.")
+        userListView.addUserList(users: User.users)
+        
     }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users2"), object: nil)
+         userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        FirebaseModel().loadUsers2()
+        self.view.addSubview(userListView)
         
         let size = CGSize(width: 30, height: 30)
 
@@ -81,8 +179,14 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
             self.stopAnimating()
             
         }
-        
 
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "showTagResultPageFromMain"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "tagResultToMain"), object: nil)
+        
     }
     
     //스크롤하면 키보드가 사라진다.
@@ -91,6 +195,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         
     }
    
+    
     @IBAction func searchIconTouched(_ sender: Any) {
         
         if navigationItem.titleView != nil{
@@ -129,106 +234,4 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     }
     
 }
-
-//MARK: TableView extension
-extension MainPageViewController : UITableViewDelegate,UITableViewDataSource{
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return User.users.count
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-       
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as!MainPageTableViewCell
-        cell.contentsTextView.text = User.users[indexPath.section].contents
-        cell.contentsTextView.sizeToFit()
-        cell.nickNameButton.setTitle(User.users[indexPath.section].nickName, for: .normal)
-        
-        cell.tagListView.reset()
-        cell.userid = indexPath.section
-        if let tag = User.users[indexPath.section].tagsArray{
-            for index in tag{
-                cell.tagListView.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.gray)
-            }
-        }
-        cell.tagListView.sizeToFit()
-        cell.timeLabel.text = Date().postTimeDisplay(postDate: User.users[indexPath.section].postDate)
-        DispatchQueue.main.async {
-            cell.FoodImageCollectionView.reloadData()
-
-        }
-        cell.userid = indexPath.section
-        //print(User.users[indexPath.section].imageArray)
-//                   if let imageArray = User.users[indexPath.section].imageArray{
-//                for index in imageArray{
-//                    let ref = Storage.storage().reference(withPath: imageArray[indexPath.row]).downloadURL { (url, error) in
-//                        //print(imageArray)
-//                        if url != nil{
-//                            let data = try? Data(contentsOf: url!)
-//                            self.foodArray.append(UIImage(data: data!)!)
-//                        }
-//                        
-//                        
-//                    }
-//                }
-//                    DispatchQueue.global().async {
-//                        cell.imageArr = self.foodArray
-//
-//                    }
-//            }
-        
-        
-        
-        return cell
-    }
-    
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat{
-//        
-//        return UITableViewAutomaticDimension
-//    }
-    
-   
-    //padding between cell
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return cellSpacingHeight
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
-        
-//        let myCell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MainPageTableViewCell
-//        let heightForCell = myCell.contentsTextView.frame.height + myCell.tagListView.frame.height +  myCell.FoodImageCollectionView.frame.height
-//        //let h = myCell.contentsTextView.contentSize.height + myCell.tagListView.contentSize.height + myCell.FoodImageCollectionView.contentSize.height
-//        //print()
-//        let height = myCell.contentsTextViewConstraint.constant + myCell.tagListView.bounds.height + myCell.FoodImageCollectionView.bounds.height
-//
-//        return height
-        var height: CGFloat = 0.0
-        self.dummyTextView.text = User.users[indexPath.section].contents
-       
-       // let fixedWidth = self.dummyUserTextView?.frame.size.width
-
-        self.dummyTextView.sizeToFit()
-        //print(dummyTextView?.frame.size.height)
-        if let tag = User.users[indexPath.section].tagsArray{
-            for index in tag{
-                self.dummyTagView?.addTag("#"+index, target: self, tapAction: "tap:", longPressAction: "longPress:",backgroundColor: UIColor.white,textColor: UIColor.gray)
-            }
-        }
-        
-        self.dummyTagView?.sizeToFit()
-        print("dd\(dummyTagView.frame.size.height)")
-//        if let imageArray = User.users[indexPath.row].imageArray{
-//            height += 120
-//        }
-        height += dummyTextView.frame.size.height + dummyTagView.frame.size.height + 200
-        return height
-    }
-   
-   
-}
-
 

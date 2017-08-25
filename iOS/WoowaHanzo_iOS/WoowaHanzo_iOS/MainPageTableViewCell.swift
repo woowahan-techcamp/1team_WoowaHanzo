@@ -13,6 +13,8 @@ import FTImageViewer
 
 class MainPageTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var textViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var tagArrayHeight: NSLayoutConstraint!
     @IBOutlet weak var contentsTextViewConstraint: NSLayoutConstraint!
     var userid : Int = 0
     //@IBOutlet weak var reviewView: UIView!
@@ -44,6 +46,7 @@ class MainPageTableViewCell: UITableViewCell {
     
     @IBAction func likeButtonTouched(_ sender: Any) {
         
+        //FirebaseModel().likeRequest()
         if let image = likeButton.currentImage, image == #imageLiteral(resourceName: "emptyHeard") {
             likeButton.setImage(#imageLiteral(resourceName: "emptyheart"), for: .normal)
         } else {
@@ -68,13 +71,14 @@ extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDe
   
         if let imageArray = User.users[userid].imageArray{
             //print(User.users[userid])
-                print("A")
-                let ref = Storage.storage().reference(withPath: imageArray[indexPath.row]).downloadURL { (url, error) in
+                //print("A")
+                let ref = Storage.storage().reference(withPath: "images/" + imageArray[indexPath.row]).downloadURL { (url, error) in
                     cell.foodImageView.kf.setImage(with: url)
+                    //cell.foodImageView.layer.cornerRadius = 3.0
                     //print(url)
             }
         }
-        print(imageArr)
+       // print(imageArr)
 //        cell.foodImageView.image = imageArr[indexPath.item]
 //
         return cell
@@ -83,7 +87,6 @@ extension MainPageTableViewCell : UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         
     }
-    
 }
 
 
