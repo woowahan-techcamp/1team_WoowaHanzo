@@ -92,7 +92,6 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
         let label = notification.userInfo?["label"] as? UILabel ?? nil
         let numstring = notification.userInfo?["num"] as? String ?? ""
         let button = notification.userInfo?["button"] as? LikeButton ?? nil
-        print(numstring + "adsf")
         if numstring == "0"{
             label?.text = ""
             button?.num = 0

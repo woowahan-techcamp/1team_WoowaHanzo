@@ -46,7 +46,7 @@ class MyPageViewController: UIViewController {
         
         
 //        myListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-//        myListView.ypos = 250
+//        myListView.ypos = 313
 //        myInfoView.frame = CGRect(x: 0, y: 5, width: self.view.frame.width, height: 250)
 //        myListView.addSubview(myInfoView)
 //        
@@ -55,6 +55,8 @@ class MyPageViewController: UIViewController {
 //        
 //        FirebaseModel().loadProfileImageFromUsers()
 //        FirebaseModel().loadUserInfo()
+//        FirebaseModel().loadUsers3(username: User.currentLoginedUserNickName)
+        
         UINavigationBar.appearance().backgroundColor = UIColor.white
         if AuthModel.isLoginStatus(){
             print("logined")
@@ -121,8 +123,8 @@ class MyPageViewController: UIViewController {
 
     
         
-        override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(true)
+        override func viewDidAppear(_ animated: Bool) {
+            super.viewDidAppear(true)
             
             
             if !AuthModel.isLoginStatus(){
@@ -160,8 +162,13 @@ class MyPageViewController: UIViewController {
                 
                 FirebaseModel().loadProfileImageFromUsers()
                 FirebaseModel().loadUserInfo()
-                FirebaseModel().loadUsers3(username: User.currentLoginedUserNickName)
+                FirebaseModel().loadUsers3(username: User.currentLoginedUserNickName, callback: () -> Void)
+                FirebaseModel().loadUsers3(username: User.currentLoginedUserNickName, callback: {
+                    print(User.myUsers, "asdfasdfasdfasdf")
+                })
                 self.view.addSubview(myListView)
+                
+                print("logined")
             }
             
         }
@@ -230,7 +237,6 @@ class MyPageViewController: UIViewController {
         let label = notification.userInfo?["label"] as? UILabel ?? nil
         let numstring = notification.userInfo?["num"] as? String ?? ""
         let button = notification.userInfo?["button"] as? LikeButton ?? nil
-        print(numstring + "adsf")
         if numstring == "0"{
             label?.text = ""
             button?.num = 0
