@@ -121,7 +121,7 @@ class RankListView: UIScrollView {
         likenumlabel.textAlignment = NSTextAlignment.center
         likenumlabel.font = UIFont(name: "NotoSansUI", size: 17.0)!
         likenumlabel.sizeToFit()
-        likenumlabel.frame.origin = CGPoint(x:260-likenumlabel.frame.width, y : 30)
+        likenumlabel.frame.origin = CGPoint(x:255-likenumlabel.frame.width, y : 26)
         cellview.addSubview(likenumlabel)
         
         let heartimgview = UIImageView()

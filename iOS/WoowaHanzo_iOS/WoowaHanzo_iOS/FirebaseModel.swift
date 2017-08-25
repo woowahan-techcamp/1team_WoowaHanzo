@@ -292,27 +292,27 @@ class FirebaseModel{
     }
     
     
-//    func loadProfileImageFromUsers(){
-//        
-//        if AuthModel.isLoginStatus(){
-//            self.ref = Database.database().reference()
-//            let userID = Auth.auth().currentUser?.uid
-//            ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-//                // Get user value
-//                let value = snapshot.value as? NSDictionary
-//                
-//                let profileImg = value?["profileImg"] as? String ?? ""
-//                print("did\(profileImg)")
-//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: self,userInfo: ["profileImageUrl":profileImg])
-//                // ...
-//            }) { (error) in
-//                
-//                print(error.localizedDescription)
-//            }
-//            
-//            
-//        }
-//    }
+    func loadProfileImageFromUsers(){
+        
+        if AuthModel.isLoginStatus(){
+            self.ref = Database.database().reference()
+            let userID = Auth.auth().currentUser?.uid
+            ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                
+                let profileImg = value?["profileImg"] as? String ?? ""
+                print("did\(profileImg)")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: self,userInfo: ["profileImageUrl":profileImg])
+                // ...
+            }) { (error) in
+                
+                print(error.localizedDescription)
+            }
+            
+            
+        }
+    }
     func loadUserInfo()
     {
         if AuthModel.isLoginStatus(){
