@@ -62,17 +62,21 @@ class AuthModel{
         }
     }
     
+    //MARK: 회원가입시 firebase의 유저에 현재 유저 정보 저장
     static func saveUser(email:String,profileImg:String?,UserSayText: String?,nickName:String){
         if let user = Auth.auth().currentUser{
             var ref: DatabaseReference!
             ref = Database.database().reference()
             let key = ref.child("users").child(user.uid).key
-            let post = ["email":email,"profileImg": "4aMeLLBXrqdvMsyYU6gShXRZYPq2.jpeg","sayhi": UserSayText, "username":nickName,"likes":0, "rankName" :"평민"] as [String : Any]
+            let post = ["email":email,"profileImg": "profile.png","sayhi": UserSayText, "username":nickName,"likes":0, "rankName" :"평민"] as [String : Any]
             let childUpdates = ["/users/\(key)": post]
             UserDefaults.standard.set(nickName, forKey: "userNickName")
             ref.updateChildValues(childUpdates)
         }
     }
+    
+    
+    //MARK:유저의 uid를 리턴해주는 함수
     func returnUsersUid()->String{
         if AuthModel.isLoginStatus(){
             return (Auth.auth().currentUser?.uid)!
