@@ -237,6 +237,22 @@ class FirebaseModel{
         print("")
         //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResult"), object: self, userInfo: ["key":key])
     }
+    func setFirstImage(postkey: String, uid: String, button: LikeButton) {
+        var check = false
+        self.ref = Database.database().reference().child("postLikes").child(postkey)
+        self.ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let result = snapshot.value as? NSDictionary{
+                let userList = result["userList"] as? [String] ?? [String]()
+                print(userList)
+                print(uid)
+                if userList.contains(uid){
+                    check = true
+                    print(check)
+                }
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "likestatus"), object: nil, userInfo: ["doeslike": check, "button":button])
+            }
+        })
+    }
     
     
     func loadProfileImageFromUsers(){

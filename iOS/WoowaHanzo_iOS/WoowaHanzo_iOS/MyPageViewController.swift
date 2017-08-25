@@ -44,16 +44,16 @@ class MyPageViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
         
         
-        //myListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        //myListView.ypos = 250
-        //myInfoView.frame = CGRect(x: 0, y: 5, width: self.view.frame.width, height: 250)
-        //myListView.addSubview(myInfoView)
-        
-        //myProfileImageView.layer.cornerRadius = myProfileImageView.frame.width / 2
-        //myProfileImageView.clipsToBounds = true
-        
-        //FirebaseModel().loadProfileImageFromUsers()
-        //FirebaseModel().loadUserInfo()
+//        myListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+//        myListView.ypos = 250
+//        myInfoView.frame = CGRect(x: 0, y: 5, width: self.view.frame.width, height: 250)
+//        myListView.addSubview(myInfoView)
+//        
+//        myProfileImageView.layer.cornerRadius = myProfileImageView.frame.width / 2
+//        myProfileImageView.clipsToBounds = true
+//        
+//        FirebaseModel().loadProfileImageFromUsers()
+//        FirebaseModel().loadUserInfo()
         UINavigationBar.appearance().backgroundColor = UIColor.white
         if AuthModel.isLoginStatus(){
             print("logined")

@@ -38,6 +38,8 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users2"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLikeButton), name: NSNotification.Name(rawValue: "likestatus"), object: nil)
+
         
         
         
@@ -114,6 +116,17 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         if ranknamelabel != nil {
             ranknamelabel?.text = rankname
             ranknamelabel?.sizeToFit()
+        }
+    }
+    func updateLikeButton(_ notification: Notification){
+        let check = notification.userInfo?["doeslike"] as? Bool ?? false
+        let button  = notification.userInfo?["button"] as? LikeButton ?? nil
+        if check {
+            button?.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
+        }
+        else{
+            button?.setImage(#imageLiteral(resourceName: "emptyHeard"), for: .normal)
+            
         }
     }
     

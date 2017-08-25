@@ -205,9 +205,18 @@ class UserListView: UIScrollView {
             let likebutton = LikeButton()
             likebutton.whenButtonTouched(postkey: user.key)
             //피드에 따라 기본 그림이 달라져야 한다. 나중에 설정해주기.
+            FirebaseModel().setFirstImage(postkey:user.key, uid:AuthModel().returnUsersUid(), button: likebutton)
+            
+            
             likebutton.frame = CGRect(x: 20, y: inypos, width: 30, height: 30)
             cellview.addSubview(likebutton)
             lastview = likebutton
+            
+            //likenumlabel/////////////////////////////////////////////////////
+            let likenumLabel = UILabel()
+            likenumLabel.text = ""
+            likenumLabel.sizeToFit()
+            likenumLabel.frame.origin = CGPoint(x: 55, y:inypos)
             
             //timelabel////////////////////////////////////////////////////////
             let timelabel = UILabel()

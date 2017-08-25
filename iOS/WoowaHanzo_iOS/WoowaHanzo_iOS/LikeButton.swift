@@ -25,5 +25,6 @@ class LikeButton: UIButton {
         print("\(postkey) - pressed")
     //postkey에 맞는 likerequest function 보내주어야 함.
     }
+    
 
 }
