@@ -53,16 +53,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
       });
 
       var likesToName = {};
+      var likesToIcon = {};
       for(var i = 0; i < itemList.length; ++i) {
         var item = itemList[i];
         if(!item.titleBlank) {
           likesToName[item.likes] = item.titleText;
+          likesToIcon[item.likes] = item.titlePic;
         }
       }
       for(var i = 0; i < itemList.length; ++i) {
         var item = itemList[i];
         if(item.titleBlank) {
           item.titleText = likesToName[item.likes];
+          item.titlePic = likesToIcon[item.likes];
         }
       }
 

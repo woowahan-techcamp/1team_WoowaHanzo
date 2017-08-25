@@ -330,7 +330,7 @@ function loadUserProfile(uid) {
 			var curPost = this.curPost;
 			var title = curPost.querySelector(".Title");
 			if(title) {
-				title.innerHTML = "오랑캐";
+				title.innerHTML = getTitleIcon("평민") + "평민";
 			}
 
 		}
