@@ -477,7 +477,7 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 						removeLikeButtonToggle(this.target);
 					} else {
 						$(this.target).parent().children(".like_btn").removeClass("fa-heart");
-						$(this.target).parent().children(".like_btn").addClass("fa-heart=o");
+						$(this.target).parent().children(".like_btn").addClass("fa-heart-o");
 						addLikeButtonToggle(this.target);
 					}
 					firebase.database().ref("/likeRequest/" + this.requestKey).off("value");

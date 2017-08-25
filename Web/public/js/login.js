@@ -1,7 +1,7 @@
-// 로그인 되어있으면 mypage로 보냄
+// 로그인 되어있으면 index.html
 firebase.auth().onAuthStateChanged(user => {
   if(user) {
-    window.location.href = 'mypage.html';
+    window.location.href = './index.html';
   }
 });
 
