@@ -36,6 +36,7 @@ class MyPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadUserInfo), name: NSNotification.Name(rawValue: "LoadUserInfo"), object: nil)
         //observer 쌓이는 것 해결 필요
         NotificationCenter.default.addObserver(self, selector: #selector(loadPorfileImage(_ :)), name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: nil)
@@ -221,8 +222,17 @@ class MyPageViewController: UIViewController {
                 ranknamelabel?.sizeToFit()
             }
         }
+    func nickNameLabelTouchedOnMainpage(_ notification:Notification){
+        User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
         
-        
+//        print("nickNameLabelTouched")
+//        
+//        let storyboard = UIStoryboard(name: "NickNameClickResult", bundle: nil)
+//        let controller = storyboard.instantiateViewController(withIdentifier: "NickNameClickResultViewController")
+//        FirebaseModel().ReturnNickNameClickResult()
+//        self.show(controller, sender: self)
+    }
+    
         
         
         

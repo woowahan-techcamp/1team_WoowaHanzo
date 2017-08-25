@@ -35,7 +35,7 @@
         <!--Tag Result View Controller-->
         <scene sceneID="lAZ-JZ-abY">
             <objects>
-                <viewController id="vnp-xP-8Rx" customClass="TagResultViewController" customModule="WoowaHanzo_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tagResultMain" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vnp-xP-8Rx" customClass="TagResultViewController" customModule="WoowaHanzo_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fES-4W-rnn"/>
                         <viewControllerLayoutGuide type="bottom" id="XdR-4F-5R2"/>
@@ -57,7 +57,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eCX-wh-bBL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1144.8" y="540.17991004497753"/>
+            <point key="canvasLocation" x="897" y="530"/>
         </scene>
         <!--태그-->
         <scene sceneID="peg-Q4-fw8">

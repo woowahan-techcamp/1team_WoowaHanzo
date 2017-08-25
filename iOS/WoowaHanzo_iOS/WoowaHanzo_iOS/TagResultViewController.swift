@@ -14,7 +14,7 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
     
     var ref: DatabaseReference!
     
-    var tagName:String = ""
+    var tagName:String = " "
     var tagFeedArray = [String]()
     var userListView : UserListView!
 
@@ -23,18 +23,16 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
         NotificationCenter.default.addObserver(self, selector: #selector(getTagFeed(_ :)), name: NSNotification.Name(rawValue: "sendResultViewController"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "tagusersdone"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
-
-        
-
         //print(tagName)
         self.navigationController?.navigationBar.tintColor = UIColor(red: 42/255, green: 193/255, blue: 188/255, alpha: 1)
-        self.navigationController?.navigationBar.topItem?.title = "태그"
-        //self.title = tagName
+        //self.navigationController?.navigationBar.topItem?.title = "태그"
+        self.title = tagName
         self.navigationItem.title = tagName
         userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
 
 
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         let size = CGSize(width: 30, height: 30)
@@ -46,15 +44,20 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
             self.stopAnimating()
             
         }
+        
     }
     
     func viewload(_ notification: Notification){
-        print(User.tagUsers)
+        print("viewload")
+        //print(User.tagUsers.count)
         userListView.removeFromSuperview()
         userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        print(User.tagUsers.count)
         userListView.addUserList(users: User.tagUsers)
+        //print(User.tagUsers.count)
         self.view.addSubview(userListView)
         User.tagUsers = [User]()
+        print("aaaa")
         
     }
     func updateProfileImg(_ notification: Notification){
@@ -76,19 +79,24 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
     
     
    
+    //MAKR:posts id를 담은 배열(userinfo로 전달해줌.)에서 해당 피드들을 불러와 싱글톤인 User.tagUsers에 저장.
     func getTagFeed(_ notification: Notification){
         User.tagUsers = [User]()
         tagFeedArray = []
-        if let notiArray = notification.userInfo?["tagResultArray"] {
+        if let notiArray = notification.userInfo?["tagResultArray"]{
             tagFeedArray = notiArray as! [String]
             for i in 1..<tagFeedArray.count{
                 for j in 0..<User.users.count{
                     if User.users[j].key == tagFeedArray[i]{
                         let tagUser = User(key: tagFeedArray[i], nickName: User.users[j].nickName, contents: User.users[j].contents, tags: User.users[j].tags, imageArray: User.users[j].imageArray, postDate: User.users[j].postDate,uid:User.users[j].uid)
+                        //print(User.users[j].tags)
                         User.tagUsers.append(tagUser)
+                        //print(User.tagUsers.count)
+                        print("append", User.users[j].contents)
                     }
                 }
             }
+            
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagusersdone"), object: self)
             
         }

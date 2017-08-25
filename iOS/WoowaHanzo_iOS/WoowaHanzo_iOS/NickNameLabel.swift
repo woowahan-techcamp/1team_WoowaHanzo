@@ -12,6 +12,7 @@ class NickNameLabel: UILabel {
         self.addGestureRecognizer(tap)
         self.isUserInteractionEnabled = true
     }
+    
     func nickNameTouchedOnRankPage(){
         print("NickNameLabel class")
        NotificationCenter.default.post(name:
@@ -19,8 +20,10 @@ class NickNameLabel: UILabel {
         }
     func nickNameTouchedOnMainpage()
     {
+        print(self.text)
     NotificationCenter.default.post(name:
     NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil, userInfo: ["NickNameLabel":self.text])
+        
     }
 
     

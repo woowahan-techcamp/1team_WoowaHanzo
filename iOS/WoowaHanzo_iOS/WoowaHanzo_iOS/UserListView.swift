@@ -26,7 +26,7 @@ class UserListView: UIScrollView {
     {
         super.init(frame: frame)
         self.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
-
+        
         numberOfRows = Int(frame.height / rowHeight)
         containerView = UIView(frame: self.frame)
         containerView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
@@ -38,7 +38,7 @@ class UserListView: UIScrollView {
         numberOfRows = Int(self.frame.height / rowHeight)
         containerView = UIView(frame: self.frame)
         containerView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
-
+        
         self.addSubview(containerView)
         self.showsVerticalScrollIndicator = false
         self.isScrollEnabled = true
@@ -52,10 +52,11 @@ class UserListView: UIScrollView {
     func addUserList(users: [User]?){
         
         if let list = users {
+            print(users)
             if list.count > 0 {
-            for index in 0...list.count-1{
-                self.addUser(user: list[index], index: index)
-            }
+                for index in 0...list.count-1{
+                    self.addUser(user: list[index], index: index)
+                }
             }
         }
         
@@ -88,7 +89,7 @@ class UserListView: UIScrollView {
         
         
         
-//profile image, rank name label, name label //////////////////////////////
+        //profile image, rank name label, name label //////////////////////////////
         let profileimgview = UIImageView()
         profileimgview.frame = CGRect(x:inxpos, y:inypos + 20, width: 40, height: 40)
         profileimgview.contentMode = UIViewContentMode.scaleAspectFill
@@ -108,7 +109,7 @@ class UserListView: UIScrollView {
         //completion handler를 써도 된다.
         //img download 하고 notification을 통해 설정해준다. 아래의 updateprofileimg가 호출됨.
         cellview.addSubview(profileimgview)
-
+        
         ///namelabel
         let namelabel = NickNameLabel()
         namelabel.whenLabelTouchedOnMainPage()
@@ -117,12 +118,12 @@ class UserListView: UIScrollView {
         namelabel.sizeToFit()
         namelabel.frame.origin = CGPoint(x: 70, y: inypos + 17)
         cellview.addSubview(namelabel)
-
+        
         var lastview : UIView =  profileimgview
         inypos = Int(lastview.frame.origin.y) + Int(lastview.frame.size.height) + 10
         
         
-//textview///////////////////////////////////////
+        //textview///////////////////////////////////////
         let textview = UITextView()
         textview.text = user.contents
         textview.font = UIFont(name: "NotoSans", size: 16.0)!
@@ -140,13 +141,13 @@ class UserListView: UIScrollView {
         lastview = textview
         inypos = Int(lastview.frame.origin.y) + Int(lastview.frame.size.height) + 0
         
-//tagListview//////////////////////////////////////
+        //tagListview//////////////////////////////////////
         let tagListView = TagPageView2(frame: CGRect(x: inxpos - 10, y: inypos, width: Int(cellview.frame.width), height: 70)) // taglistview2 파일에 있다.
         for i in user.tags!{
             tagListView.addTag(text: "#"+i, target: self, backgroundColor: UIColor.white, textColor: color)
         }
         if user.tags!.count > 0 {
-        tagListView.frame.size.height = max(tagListView.contentSize.height, 40)
+            tagListView.frame.size.height = max(tagListView.contentSize.height, 40)
         }
         else{
             tagListView.frame.size.height = 0
@@ -155,35 +156,36 @@ class UserListView: UIScrollView {
         lastview = tagListView
         inypos = inypos + Int(lastview.frame.size.height) + 0
         
-
-//scrollview///////////////////////////////////////
+        
+        //scrollview///////////////////////////////////////
         let scrollview = UIScrollView()
         let imgsize = 110
         scrollview.frame = CGRect(x: 10, y: inypos, width: Int(cellview.frame.width) - 20, height: imgsize)
         scrollview.showsHorizontalScrollIndicator = false
         let scrollcontainerView = UIView(frame: scrollview.frame)
         scrollview.addSubview(scrollcontainerView)
-        
-        if user.imageArray! != [] {
-            if user.imageArray!.count > 0 {
-            for index in 0...user.imageArray!.count - 1{
-                let name : String = user.imageArray![index]
-                let imageview = UIImageView()
-                Storage.storage().reference(withPath: "images/" + name).downloadURL { (url, error) in
-                    imageview.contentMode = UIViewContentMode.scaleAspectFill
-                    imageview.clipsToBounds = true
-                    imageview.kf.setImage(with: url)
-                    imageview.frame = CGRect(x:10 + index * (imgsize + 13), y:0, width: imgsize, height: imgsize)
-                    imageview.layer.cornerRadius = 3
-                    
-
-                    scrollview.addSubview(imageview)
-                    scrollview.contentSize = CGSize(width: max(Int(scrollview.frame.width + 1),Int(10 + user.imageArray!.count * (imgsize + 13))), height: imgsize)
-                    //contentsize를 크게 줘야 bouncing이 항상 가능하다.
-                    cellview.addSubview(scrollview)
+        if let usersImageArray = user.imageArray{
+            if user.imageArray! != [] {
+                if user.imageArray!.count > 0 {
+                    for index in 0...user.imageArray!.count - 1{
+                        let name : String = user.imageArray![index]
+                        let imageview = UIImageView()
+                        Storage.storage().reference(withPath: "images/" + name).downloadURL { (url, error) in
+                            imageview.contentMode = UIViewContentMode.scaleAspectFill
+                            imageview.clipsToBounds = true
+                            imageview.kf.setImage(with: url)
+                            imageview.frame = CGRect(x:10 + index * (imgsize + 13), y:0, width: imgsize, height: imgsize)
+                            imageview.layer.cornerRadius = 3
+                            
+                            
+                            scrollview.addSubview(imageview)
+                            scrollview.contentSize = CGSize(width: max(Int(scrollview.frame.width + 1),Int(10 + user.imageArray!.count * (imgsize + 13))), height: imgsize)
+                            //contentsize를 크게 줘야 bouncing이 항상 가능하다.
+                            cellview.addSubview(scrollview)
+                        }
+                    }
                 }
             }
-        }
         }
         else{
             scrollview.frame.size.height = 0
@@ -191,24 +193,24 @@ class UserListView: UIScrollView {
         cellview.addSubview(scrollview)
         lastview = scrollview
         inypos = inypos + Int(lastview.frame.size.height) + 10
-//horizontal bar///////////////////////////////////////////////////
+        //horizontal bar///////////////////////////////////////////////////
         let horizontalbar = UIView()
         horizontalbar.frame = CGRect(x:20, y: inypos, width: Int(cellview.frame.width) - inxpos * 2, height: 1)
         horizontalbar.backgroundColor = UIColor(red:240/255, green:240/255,blue:240/255, alpha: 1.0)
         cellview.addSubview(horizontalbar)
         lastview = horizontalbar
         inypos = inypos + Int(lastview.frame.size.height) + 8
-
-
-//likebutton///////////////////////////////////////////////////////
+        
+        
+        //likebutton///////////////////////////////////////////////////////
         let likebutton = LikeButton()
         likebutton.whenButtonTouched(postkey: user.key)
         //피드에 따라 기본 그림이 달라져야 한다. 나중에 설정해주기.
         likebutton.frame = CGRect(x: 20, y: inypos, width: 30, height: 30)
         cellview.addSubview(likebutton)
         lastview = likebutton
-
-//timelabel////////////////////////////////////////////////////////
+        
+        //timelabel////////////////////////////////////////////////////////
         let timelabel = UILabel()
         timelabel.text = String(describing: Date().postTimeDisplay(timestamp: user.postDate))
         timelabel.font = UIFont(name:"NotoSansUI", size: 14.0)
@@ -222,9 +224,12 @@ class UserListView: UIScrollView {
         ypos = ypos + Int(cellview.frame.size.height) + 7 // 다음 cellview의 위치를 지정해준다.
         self.contentSize = CGSize(width: Int(self.frame.width), height: max(yoffset + ypos - 35, Int(self.frame.height + 1)))
     }
+    
+    
     func handleTap(sender: UITapGestureRecognizer) {
         if let a = (sender.view as? UILabel)?.text {
-            print(a)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showTagResultPageFromMain"), object: self,userInfo:["tagName":a])
+            
         }
         else { return }
         

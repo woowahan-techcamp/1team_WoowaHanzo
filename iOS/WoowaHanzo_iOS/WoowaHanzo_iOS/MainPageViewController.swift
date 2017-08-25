@@ -13,6 +13,9 @@ import Firebase
 
 class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
+    var ref: DatabaseReference!
+    var tagResultArray : [String]?
+
     var firebaseModel = FirebaseModel()
     var searchBar = UISearchBar()
     let cellSpacingHeight: CGFloat = 15
@@ -35,6 +38,12 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users2"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
+        
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(showTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "showTagResultPageFromMain"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "tagResultToMain"), object: nil)
+        
     
         searchBar.alpha = 0
         searchBar.searchBarStyle = UISearchBarStyle.minimal
@@ -48,9 +57,42 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         
         
     }
+    func getTagResultPageFromMain( _ notification:Notification){
+        tagResultArray = []
+        self.ref = Database.database().reference().child("tagQuery")
+        let refHandle = ref.observe(DataEventType.value, with: { (snapshot) in
+            if snapshot.hasChildren(){
+                let postDict = snapshot.value as! [String : Any]
+                if let result = snapshot.childSnapshot(forPath: notification.userInfo?["key"] as! String).childSnapshot(forPath: "queryResult").value {
+                    self.tagResultArray = []
+                    //print(result as? [String])//print(self.tagResultArray)
+                    self.tagResultArray = result as? [String]
+                    //print(self.tagResultArray)
+                    
+                }
+                if (self.tagResultArray?.count ?? 0) > 1 {
+                    print("send table view controller tag array")
+                    print(self.tagResultArray)
+                    print("call getTagResult")
+                    
+                    //TagResultViewController로 노티를 보낸다.
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sendResultViewController"), object: self, userInfo: ["tagResultArray": self.tagResultArray])
+                }
+            }
+        })
+    }
+    func showTagResultPageFromMain(_ notification: Notification){
+        let tagName = notification.userInfo?["tagName"] as! String
+        FirebaseModel().tagQuery(tagName: tagName)
+        print(tagName)
+        ////
+        let storyboard = UIStoryboard(name: "TagPage", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "tagResultMain")  as! TagResultViewController
+        controller.tagName = tagName
+        self.show(controller, sender: self)
+    }
     func nickNameLabelTouchedOnMainpage(_ notification:Notification){
         User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
-        
         print("nickNameLabelTouched")
         
         let storyboard = UIStoryboard(name: "NickNameClickResult", bundle: nil)
@@ -116,6 +158,10 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     }
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "showTagResultPageFromMain"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "tagResultToMain"), object: nil)
+        
     }
     
     //스크롤하면 키보드가 사라진다.
