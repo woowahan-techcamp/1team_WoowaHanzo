@@ -79,7 +79,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       var title = firebase.database().ref("users/" + queryUid + "/rankName");
       title.on('value', function(snapshot) {
-        $(".mypage_user_title").html(getTitleIcon(snapshot.val()) + snapshot.val());
+        if(snapshot.val()) {
+          $(".mypage_user_title").html(getTitleIcon(snapshot.val()) + snapshot.val());
+        }
+        else {
+          $(".mypage_user_title").html(getTitleIcon(snapshot.val()) + "평민");
+        }
       });
 
 

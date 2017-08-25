@@ -1,15 +1,20 @@
 // 로그인 되어있으면 mypage로 보냄
-firebase.auth().onAuthStateChanged(user => {
-  if(user) {
-    window.location.href = 'mypage.html';
-  }
-});
+// firebase.auth().onAuthStateChanged(user => {
+//
+// });
 
 document.addEventListener("DOMContentLoaded", function(event) {
   var emailFlag = false;
   var usernameFlag = false;
   var passwordFlag = false;
   var password2Flag = false;
+
+  // var user = firebase.auth().currentUser;
+  // if (user) {
+  //
+  //   window.location.href = "./index.html";
+  // }
+  // console.log(user);
 
   $("#email").on("keyup keydown blur update input", function() {
     if($("#email").val()!=="" && !isEmail($("#email").val())) {
@@ -82,18 +87,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword)
     .then(function() {
+      console.log(userEmail, userPassword);
+
       // firebase DB에 사용자의 한 마다(userSayhi)를 넣어줘야 함
-      firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
-        username: userName,
-        email: userEmail,
-        sayhi: userSayhi,
-        likes: 0
+      firebase.auth().signInWithEmailAndPassword(userEmail, userPassword).then(function() {
+        firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
+          username: userName,
+          email: userEmail,
+          sayhi: userSayhi,
+          likes: 0
+        })
+        .then(function() {
+          console.log('user created.....');
+          window.location.href="./index.html"
+        })
+        .catch(function(error) {})
       })
-      .then(function() {
-        console.log('user created.....');
-        window.location.href="index.html"
-      })
-      .catch(function(error) {})
     })
     .catch(function(error) {
       // Handle Errors here.
