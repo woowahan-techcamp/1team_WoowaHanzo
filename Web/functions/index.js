@@ -89,7 +89,7 @@ exports.handlePostUpload = functions.database.ref("/posts/{postId}")
     var key = event.data.key;
     var original = event.data.val();
     var promises = [];
-    promises.push(admin.database().ref("/postLikes/" + key + "/userList").set([1]));
+    promises.push(admin.database().ref("/postLikes/" + key + "/userList").set(["1"]));
     promises.push(admin.database().ref("/postLikes/" + key + "/likes").set(0));
     if(event.data.val().tags) {
       var tagList = event.data.val().tags;
@@ -116,7 +116,7 @@ exports.handleLikeRequest = functions.database.ref("/likeRequest/{likeId}")
       var update = {};
       var userList = snapshot.val().userList.slice();
       if(!userList || userList.length == 0) {
-        userList = [1];
+        userList = ["1"];
       }
 
       // inside userList
@@ -177,10 +177,8 @@ exports.handleLikeRequest = functions.database.ref("/likeRequest/{likeId}")
             rankName = "왕족";
           } else if (i < 50) {
             rankName = "양반";
-          } else if (i < 100) {
+          } else {//(i < 100) {
             rankName = "평민";
-          } else {
-            rankName = "오랑캐";
           }
           promises.push(admin.database().ref("/users/" + userList[i].key + "/rankName").set(rankName));
         }

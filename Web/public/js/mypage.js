@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   var url = window.location.href;
 
-
   firebase.auth().onAuthStateChanged(user => {
     var queryUid;
     var promises = [];
@@ -99,6 +98,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 });
 
+function changeProfileRelatedImages(src) {
+  $(".profilePic").attr("src", src);
+  $(".nav_user_img").attr("src", src);
+}
+
 
 var file = "";
 
@@ -119,7 +123,10 @@ function profileImageHandle(evt) {
         } else {
           evt.target.classList.remove("circularLongImage");
         }
+        changeProfileRelatedImages($(evt.target).attr("src"));
       });
+
+
 
       var fullPath = fileInput.value;
       if (fullPath) {
