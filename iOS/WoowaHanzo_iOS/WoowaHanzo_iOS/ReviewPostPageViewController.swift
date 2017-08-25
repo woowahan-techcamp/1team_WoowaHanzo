@@ -429,17 +429,14 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
                     
                 }
                 
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
                     self.stopAnimating()
-                    
-                }
-                DispatchQueue.main.async {
-                    sleep(2)
                     let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
                     let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
                     self.present(controller, animated: false, completion: nil)
-
+                    
                 }
+                
 //                let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
 //                let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
 //                self.present(controller, animated: false, completion: nil)
