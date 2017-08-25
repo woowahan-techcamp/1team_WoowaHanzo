@@ -67,7 +67,7 @@
                         <barButtonItem key="rightBarButtonItem" image="settings" id="4un-xC-j7I">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="z0q-ih-dW8" kind="show" id="Wdc-WY-l0x"/>
+                                <segue destination="DAw-Yr-Hj0" kind="show" id="bTx-R4-sbf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -84,50 +84,37 @@
             </objects>
             <point key="canvasLocation" x="-662.31884057971024" y="972.554347826087"/>
         </scene>
-        <!--Table View Controller-->
-        <scene sceneID="J2M-Ty-TeH">
+        <!--Settings View Controller-->
+        <scene sceneID="alC-5N-FQG">
             <objects>
-                <tableViewController id="z0q-ih-dW8" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="BHD-bQ-EbH">
+                <viewController id="DAw-Yr-Hj0" customClass="SettingsViewController" customModule="WoowaHanzo_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uvG-wf-9l1"/>
+                        <viewControllerLayoutGuide type="bottom" id="4Iy-Oe-aKu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SKs-lx-tRH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <sections>
-                            <tableViewSection headerTitle="계정" id="fyJ-Fm-hkQ">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KaW-m3-nbA">
-                                        <rect key="frame" x="0.0" y="55.333333333333336" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KaW-m3-nbA" id="qtw-ec-H5z">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dg7-GA-jY3">
-                                                    <rect key="frame" x="8" y="7" width="81" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <state key="normal" title="로그아웃">
-                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="logout:" destination="b3j-f2-qdQ" eventType="touchUpInside" id="6Uy-M7-Bm4"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="z0q-ih-dW8" id="6fp-9K-QM7"/>
-                            <outlet property="delegate" destination="z0q-ih-dW8" id="wfL-Hg-Zp2"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aRI-x3-wBV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dg7-GA-jY3">
+                                <rect key="frame" x="93" y="161" width="81" height="261"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="로그아웃">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="logout:" destination="b3j-f2-qdQ" eventType="touchUpInside" id="6Uy-M7-Bm4"/>
+                                    <action selector="logoutButtonTouched:" destination="DAw-Yr-Hj0" eventType="touchUpInside" id="uk1-ge-eft"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yMk-2D-JxF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="215.94202898550725" y="987.22826086956525"/>
+            <point key="canvasLocation" x="180" y="973"/>
         </scene>
         <!--마이페이지-->
         <scene sceneID="1Sy-18-WRZ">
