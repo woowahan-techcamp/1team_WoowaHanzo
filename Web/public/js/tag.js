@@ -61,7 +61,23 @@ function handleTagSnapshot(snapshot, template) {
   if(!pastTime || time < pastTime) {
     pastTime = time;
   }
-  addTagListeners($(".tagger").last()[0]);
+  addTagListener($(".tagger").last());
+}
+
+function addTagListener($tag) {
+
+		$tag.on("mousedown tap", function(evt) {
+			evt.preventDefault();
+			var tagValue = evt.target.innerHTML.trim();
+			var queryKey = firebase.database().ref().child("tagQuery").push().key;
+
+			var update = {};
+			update["/tagQuery/" + queryKey + '/tag'] = tagValue;
+			update["/tagQuery/" + queryKey + '/queryResult'] = ["1"];
+			firebase.database().ref().update(update).then(evt => {
+				window.location.href = "./index.html?tagQuery=" + queryKey;
+			});
+		});
 }
 
 function gradualShow($tag) {
