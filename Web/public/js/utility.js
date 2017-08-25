@@ -288,6 +288,44 @@ function addUserListener(curPost) {
 	});
 }
 
+function imageDownloadHandler() {
+	var storageRef = firebase.storage().ref();
+	var filename = this.filename;
+	var downloadUrl = storageRef.child('images/' + filename).getDownloadURL();
+	downloadUrl.then(function(url) {
+		pageObject.imageUrls[this.id][this.i] = url;
+
+		var imageParent = this.$curPost.children("table").children("tbody").children("tr");
+
+		imageParent = imageParent.children("td").get(this.i);
+		imageParent = $(imageParent).children("div").children("img");
+		imageParent.addClass("loading");
+
+		imageParent.attr("src", url);
+
+		imageParent.on("load", function(evt) {
+			var curImage = evt.target;
+			var allLoaded = imagesAllLoaded(curImage);
+
+			if(prevLoaded(this.$curPost) && allLoaded) {
+				fadeInPost(this.$curPost);
+			}
+
+		}.bind(this));
+
+		imageParent.on("mousedown tap", function(evt) {
+			evt.preventDefault();
+			var curImage = evt.target;
+
+			showGallery(pageObject.imageUrls[this.id], this.i);
+		}.bind(this));
+
+	}.bind(this)).catch(function(err) {
+		console.log("File load unsuccessful");
+		imageDownloadHandler.bind(this)();
+	}.bind(this));
+}
+
 function addLikeButtonToggle(like_button) {
 	$(like_button).on("mouseover", function(evt) {
 		$(evt.target).removeClass("fa-heart-o");
@@ -508,41 +546,11 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 			$curObject.id = buffer.id;
       $curObject.i = i;
       var filename = buffer.images[i];
+			$curObject.filename = filename;
       if(i < buffer.images.length) {
         if(!filename) continue;
-        var downloadUrl = storageRef.child('images/' + filename).getDownloadURL();
-				downloadUrl.then(function(url) {
-          pageObject.imageUrls[this.id][this.i] = url;
 
-          var imageParent = this.$curPost.children("table").children("tbody").children("tr");
-
-          imageParent = imageParent.children("td").get(this.i);
-          imageParent = $(imageParent).children("div").children("img");
-          imageParent.addClass("loading");
-
-          imageParent.attr("src", url);
-
-          imageParent.on("load", function(evt) {
-            var curImage = evt.target;
-            var allLoaded = imagesAllLoaded(curImage);
-
-            if(prevLoaded(this.$curPost) && allLoaded) {
-              fadeInPost(this.$curPost);
-            }
-
-          }.bind(this));
-
-					imageParent.on("mousedown tap", function(evt) {
-						evt.preventDefault();
-						var curImage = evt.target;
-
-						showGallery(pageObject.imageUrls[this.id], this.i);
-					}.bind(this));
-
-        }.bind($curObject)).catch(function(err) {
-          console.log(err);
-          console.log("File load unsuccessful");
-        });
+				imageDownloadHandler.bind($curObject)();
 
       } else if(i >= buffer.images.length) {
         var imageParent = $curPost.children("table").children("tbody").children("tr");
