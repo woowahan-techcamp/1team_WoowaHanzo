@@ -33,6 +33,9 @@ extension Date {
         else{
             timeago = "\((diff) / 1000)초 전"
         }
+        if timeago == "0초 전"{
+            timeago = "방금 전"
+        }
         return timeago
     }
 
