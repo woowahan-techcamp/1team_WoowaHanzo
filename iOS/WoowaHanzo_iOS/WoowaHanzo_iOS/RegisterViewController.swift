@@ -70,7 +70,7 @@ class RegisterViewController: UIViewController,NVActivityIndicatorViewable {
                     else{
                         self.stopAnimating()
                         self.emailCheckLabel.isHidden = false
-                        self.emailCheckLabel.text = "이미 존재하는 이메일입니다."
+                        //self.emailCheckLabel.text = "이미 존재하는 이메일입니다."
                         
                         
                     }

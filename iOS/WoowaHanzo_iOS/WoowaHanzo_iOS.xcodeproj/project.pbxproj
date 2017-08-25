@@ -47,7 +47,7 @@
 		9894B76B1F457BAA00DAB38E /* NotoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9894B7671F457BAA00DAB38E /* NotoSans-Regular.ttf */; };
 		9894B76C1F457BAA00DAB38E /* NotoSansKR_Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 9894B7681F457BAA00DAB38E /* NotoSansKR_Regular.woff */; };
 		9894B76D1F457BAA00DAB38E /* NotoSansUI-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9894B7691F457BAA00DAB38E /* NotoSansUI-Regular.ttf */; };
-		98B73A4E1F4D77E900C3CCE0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 98B73A4D1F4D77E900C3CCE0 /* Localizable.strings */; };
+		98985D671F4FB13400380C97 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98985D661F4FB13400380C97 /* SettingsViewController.swift */; };
 		98B73A501F4D9E0300C3CCE0 /* NickNameLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B73A4F1F4D9E0300C3CCE0 /* NickNameLabel.swift */; };
 		98B73A531F4DA14000C3CCE0 /* NickNameClickResult.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98B73A521F4DA14000C3CCE0 /* NickNameClickResult.storyboard */; };
 		98B73A551F4DA14E00C3CCE0 /* NickNameClickResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B73A541F4DA14E00C3CCE0 /* NickNameClickResultViewController.swift */; };
@@ -140,9 +140,7 @@
 		9894B7671F457BAA00DAB38E /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Regular.ttf"; sourceTree = "<group>"; };
 		9894B7681F457BAA00DAB38E /* NotoSansKR_Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = NotoSansKR_Regular.woff; sourceTree = "<group>"; };
 		9894B7691F457BAA00DAB38E /* NotoSansUI-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansUI-Regular.ttf"; sourceTree = "<group>"; };
-		98B73A4A1F4D77E900C3CCE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		98B73A4B1F4D77E900C3CCE0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		98B73A4C1F4D77E900C3CCE0 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		98985D661F4FB13400380C97 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		98B73A4F1F4D9E0300C3CCE0 /* NickNameLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NickNameLabel.swift; sourceTree = "<group>"; };
 		98B73A521F4DA14000C3CCE0 /* NickNameClickResult.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NickNameClickResult.storyboard; sourceTree = "<group>"; };
 		98B73A541F4DA14E00C3CCE0 /* NickNameClickResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NickNameClickResultViewController.swift; sourceTree = "<group>"; };
@@ -253,7 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				98B73A511F4DA11E00C3CCE0 /* NickNameClickResult */,
-				98B73A4D1F4D77E900C3CCE0 /* Localizable.strings */,
 				9894B7651F457B9300DAB38E /* fonts */,
 				98C563C71F39BD720017E68A /* LoginPage */,
 				98C563C61F39B73D0017E68A /* firebase */,
@@ -357,6 +354,7 @@
 			children = (
 				9854BFAB1F340AFC008FA337 /* MyPage.storyboard */,
 				9854BF9E1F340806008FA337 /* MyPageViewController.swift */,
+				98985D661F4FB13400380C97 /* SettingsViewController.swift */,
 			);
 			name = MyPage;
 			sourceTree = "<group>";
@@ -748,6 +746,7 @@
 				9843975D1F39704A00743B63 /* FirebaseModel.swift in Sources */,
 				984397A01F3C14A000743B63 /* TagView.swift in Sources */,
 				98C563C41F39B6AC0017E68A /* SearchViewController.swift in Sources */,
+				98985D671F4FB13400380C97 /* SettingsViewController.swift in Sources */,
 				9854BF981F3407CF008FA337 /* ReviewPostPageViewController.swift in Sources */,
 				9894B7611F441F2E00DAB38E /* MyCollectionCell.swift in Sources */,
 				9854BF9D1F3407FC008FA337 /* RankPageViewController.swift in Sources */,

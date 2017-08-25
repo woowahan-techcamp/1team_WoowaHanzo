@@ -55,7 +55,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             DispatchQueue.main.asyncAfter(deadline: time) {
                 alert.addAction(cancel)
                 alert.addAction(ok)
-                self.present(alert, animated: true, completion: nil)
+                //self.present(alert, animated: true, completion: nil)
             }
             
         }

@@ -42,6 +42,7 @@ class ReviewPostPageViewController: UIViewController {
     var savedkeyboardSize = CGRect()
     var shouldloadview = true
     var selectedIndex = -1
+    var ProfileImage = UIImage()
     
     
     override func viewDidLoad() {
@@ -73,9 +74,10 @@ class ReviewPostPageViewController: UIViewController {
             
             if shouldloadview{
                 //여기에 프로필 이미지
+                FirebaseModel().loadProfileImageFromUsers()
                 FirebaseModel().loadUserInfo()
                 print("응앙ㅇ\(User.currentLoginedUserNickName,User.currentLoginedUserTitle)")
-                FirebaseModel().loadProfileImageFromUsers()
+                
                 print(User.currentLoginedUserNickName,User.currentLoginedUserTitle)
                 userTearLabel.text = User.currentLoginedUserTitle
                 shouldloadview = false
@@ -162,6 +164,12 @@ class ReviewPostPageViewController: UIViewController {
         let profileImageUrl = notification.userInfo?["profileImageUrl"] as! String
         Storage.storage().reference(withPath: "profileImages/" + profileImageUrl).downloadURL { (url, error) in
             self.myImageView?.kf.setImage(with: url)
+            KingfisherManager.shared.retrieveImage(with: url!, options: nil, progressBlock: nil, completionHandler: { image, error, cacheType, imageURL in
+                if let image = image{
+                    User.currentUserProfileImage = image
+                    self.myImageView?.kf.setImage(with: url)
+                }
+            })
         }
     }
     func loadUserInformation(){
@@ -195,9 +203,10 @@ class ReviewPostPageViewController: UIViewController {
             //로그인이 되었다면? 내 마이페이지를 보여줘야함.
             
             if shouldloadview{
+                FirebaseModel().loadProfileImageFromUsers()
                 FirebaseModel().loadUserInfo()
                 print("응앙ㅇ\(User.currentLoginedUserNickName,User.currentLoginedUserTitle)")
-               FirebaseModel().loadProfileImageFromUsers()
+               
                 userTearLabel.text = User.currentLoginedUserTitle
                 shouldloadview = false
                 myCollectionView.dataSource = self
