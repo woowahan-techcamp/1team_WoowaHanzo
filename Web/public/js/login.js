@@ -1,3 +1,10 @@
+// 로그인 되어있으면 index.html
+firebase.auth().onAuthStateChanged(user => {
+  if(user) {
+    window.location.href = './index.html';
+  }
+});
+
 document.addEventListener("DOMContentLoaded", function(event) {
   var signinBtn = $(".signin");
 

@@ -449,41 +449,46 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 	$(like_button).on("mousedown tap", function(event) {
 		event.preventDefault();
 
-		var id = event.target.parentElement.parentElement.id;
-		var requestKey = firebase.database().ref().child("likeRequest").push().key;
-		var bufferObject = {};
-		bufferObject.requestKey = requestKey;
-		bufferObject.target = event.target;
-		var update = {};
-		update["/likeRequest/" + requestKey + "/postId"] = getIdFromPostId(id);
-		update["/likeRequest/" + requestKey + "/uid"] = firebase.auth().currentUser.uid;
-		update["/likeRequest/" + requestKey + "/result/count"] = 0;
-		update["/likeRequest/" + requestKey + "/result/state"] = "default";
-		firebase.database().ref().update(update).then(function(evt) {
-			firebase.database().ref("/likeRequest/" + this.requestKey + "/result").on("value", function(snapshot) {
-				if(!snapshot.val()) return;
-				if(snapshot.val().state == "default") return;
-				console.log(snapshot.val());
-				if(snapshot.val().count > 0) {
-					$(this.target).parent().children(".like_number").html(snapshot.val().count + "명");
-				} else {
-					$(this.target).parent().children(".like_number").html("");
-				}
+		if(firebase.auth().currentUser) {
+			var id = event.target.parentElement.parentElement.id;
+			var requestKey = firebase.database().ref().child("likeRequest").push().key;
+			var bufferObject = {};
+			bufferObject.requestKey = requestKey;
+			bufferObject.target = event.target;
+			var update = {};
+			update["/likeRequest/" + requestKey + "/postId"] = getIdFromPostId(id);
+			update["/likeRequest/" + requestKey + "/uid"] = firebase.auth().currentUser.uid;
+			update["/likeRequest/" + requestKey + "/result/count"] = 0;
+			update["/likeRequest/" + requestKey + "/result/state"] = "default";
+			firebase.database().ref().update(update).then(function(evt) {
+				firebase.database().ref("/likeRequest/" + this.requestKey + "/result").on("value", function(snapshot) {
+					if(!snapshot.val()) return;
+					if(snapshot.val().state == "default") return;
+					console.log(snapshot.val());
+					if(snapshot.val().count > 0) {
+						$(this.target).parent().children(".like_number").html(snapshot.val().count + "명");
+					} else {
+						$(this.target).parent().children(".like_number").html("");
+					}
 
-				if(snapshot.val().state == "true") {
-					$(this.target).parent().children(".like_btn").addClass("fa-heart");
-					$(this.target).parent().children(".like_btn").removeClass("fa-heart-o");
-					removeLikeButtonToggle(this.target);
-				} else {
-					$(this.target).parent().children(".like_btn").removeClass("fa-heart");
-					$(this.target).parent().children(".like_btn").addClass("fa-heart=o");
-					addLikeButtonToggle(this.target);
-				}
-				firebase.database().ref("/likeRequest/" + this.requestKey).off("value");
-				firebase.database().ref("/likeRequest/" + this.requestKey).remove();
-			}.bind(this));
+					if(snapshot.val().state == "true") {
+						$(this.target).parent().children(".like_btn").addClass("fa-heart");
+						$(this.target).parent().children(".like_btn").removeClass("fa-heart-o");
+						removeLikeButtonToggle(this.target);
+					} else {
+						$(this.target).parent().children(".like_btn").removeClass("fa-heart");
+						$(this.target).parent().children(".like_btn").addClass("fa-heart-o");
+						addLikeButtonToggle(this.target);
+					}
+					firebase.database().ref("/likeRequest/" + this.requestKey).off("value");
+					firebase.database().ref("/likeRequest/" + this.requestKey).remove();
+				}.bind(this));
 
-		}.bind(bufferObject));
+			}.bind(bufferObject));
+		}
+		else {
+			window.location.href = "login.html";
+		}
 	});
 
 	if(firebase.auth().currentUser) {
@@ -493,7 +498,6 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 			removeLikeButtonToggle(like_button);
 		}
 	}
-
 
   if(buffer.images) {
     // only three images are loaded at a time

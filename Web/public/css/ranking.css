@@ -32,6 +32,7 @@ ul, li {
   line-height: 80px;
   min-width: 350px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .ranking_num {
@@ -92,11 +93,17 @@ ul, li {
 }
 
 .ranking_like_info {
+  color: #888;
   padding-right: 20px;
   text-align: right;
   display: inline-block;
   vertical-align: middle;
   float: right;
+}
+
+.ranking_like_icon {
+  color: #70b6e5;
+  margin-left: 3px;
 }
 
 /*width가 400 미만이 되면..*/
