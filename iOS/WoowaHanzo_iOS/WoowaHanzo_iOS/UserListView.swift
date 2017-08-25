@@ -186,50 +186,85 @@ class UserListView: UIScrollView {
                     }
                 }
             }
+            else{
+                scrollview.frame.size.height = 0
+            }
+            cellview.addSubview(scrollview)
+            lastview = scrollview
+            inypos = inypos + Int(lastview.frame.size.height) + 10
+            //horizontal bar///////////////////////////////////////////////////
+            let horizontalbar = UIView()
+            horizontalbar.frame = CGRect(x:20, y: inypos, width: Int(cellview.frame.width) - inxpos * 2, height: 1)
+            horizontalbar.backgroundColor = UIColor(red:240/255, green:240/255,blue:240/255, alpha: 1.0)
+            cellview.addSubview(horizontalbar)
+            lastview = horizontalbar
+            inypos = inypos + Int(lastview.frame.size.height) + 8
+            
+            
+            //likebutton///////////////////////////////////////////////////////
+            let likebutton = LikeButton()
+            likebutton.whenButtonTouched(postkey: user.key)
+            //피드에 따라 기본 그림이 달라져야 한다. 나중에 설정해주기.
+            likebutton.frame = CGRect(x: 20, y: inypos, width: 30, height: 30)
+            cellview.addSubview(likebutton)
+            lastview = likebutton
+            
+            //timelabel////////////////////////////////////////////////////////
+            let timelabel = UILabel()
+            timelabel.text = String(describing: Date().postTimeDisplay(timestamp: user.postDate))
+            timelabel.font = UIFont(name:"NotoSansUI", size: 14.0)
+            timelabel.textColor = UIColor.lightGray
+            timelabel.sizeToFit()
+            timelabel.frame.origin = CGPoint(x: Int(cellview.frame.width - timelabel.frame.width) - inxpos, y: inypos + 5)
+            cellview.addSubview(timelabel)
+            inypos = inypos + Int(lastview.frame.size.height) + 10 //lastview: likebutton
+            
+            cellview.frame.size.height = CGFloat(inypos)
+            ypos = ypos + Int(cellview.frame.size.height) + 7 // 다음 cellview의 위치를 지정해준다.
+            self.contentSize = CGSize(width: Int(self.frame.width), height: max(yoffset + ypos - 35, Int(self.frame.height + 1)))
         }
-        else{
-            scrollview.frame.size.height = 0
-        }
-        cellview.addSubview(scrollview)
-        lastview = scrollview
-        inypos = inypos + Int(lastview.frame.size.height) + 10
-        //horizontal bar///////////////////////////////////////////////////
-        let horizontalbar = UIView()
-        horizontalbar.frame = CGRect(x:20, y: inypos, width: Int(cellview.frame.width) - inxpos * 2, height: 1)
-        horizontalbar.backgroundColor = UIColor(red:240/255, green:240/255,blue:240/255, alpha: 1.0)
-        cellview.addSubview(horizontalbar)
-        lastview = horizontalbar
-        inypos = inypos + Int(lastview.frame.size.height) + 8
-        
-        
-        //likebutton///////////////////////////////////////////////////////
-        let likebutton = LikeButton()
-        likebutton.whenButtonTouched(postkey: user.key)
-        //피드에 따라 기본 그림이 달라져야 한다. 나중에 설정해주기.
-        likebutton.frame = CGRect(x: 20, y: inypos, width: 30, height: 30)
-        cellview.addSubview(likebutton)
-        lastview = likebutton
-        
-        //timelabel////////////////////////////////////////////////////////
-        let timelabel = UILabel()
-        timelabel.text = String(describing: Date().postTimeDisplay(timestamp: user.postDate))
-        timelabel.font = UIFont(name:"NotoSansUI", size: 14.0)
-        timelabel.textColor = UIColor.lightGray
-        timelabel.sizeToFit()
-        timelabel.frame.origin = CGPoint(x: Int(cellview.frame.width - timelabel.frame.width) - inxpos, y: inypos + 5)
-        cellview.addSubview(timelabel)
-        inypos = inypos + Int(lastview.frame.size.height) + 10 //lastview: likebutton
-        
-        cellview.frame.size.height = CGFloat(inypos)
-        ypos = ypos + Int(cellview.frame.size.height) + 7 // 다음 cellview의 위치를 지정해준다.
-        self.contentSize = CGSize(width: Int(self.frame.width), height: max(yoffset + ypos - 35, Int(self.frame.height + 1)))
+//        else{
+//            scrollview.frame.size.height = 0
+//        }
+//        cellview.addSubview(scrollview)
+//        lastview = scrollview
+//        inypos = inypos + Int(lastview.frame.size.height) + 10
+//        //horizontal bar///////////////////////////////////////////////////
+//        let horizontalbar = UIView()
+//        horizontalbar.frame = CGRect(x:20, y: inypos, width: Int(cellview.frame.width) - inxpos * 2, height: 1)
+//        horizontalbar.backgroundColor = UIColor(red:240/255, green:240/255,blue:240/255, alpha: 1.0)
+//        cellview.addSubview(horizontalbar)
+//        lastview = horizontalbar
+//        inypos = inypos + Int(lastview.frame.size.height) + 8
+//        
+//        
+//        //likebutton///////////////////////////////////////////////////////
+//        let likebutton = LikeButton()
+//        likebutton.whenButtonTouched(postkey: user.key)
+//        //피드에 따라 기본 그림이 달라져야 한다. 나중에 설정해주기.
+//        likebutton.frame = CGRect(x: 20, y: inypos, width: 30, height: 30)
+//        cellview.addSubview(likebutton)
+//        lastview = likebutton
+//        
+//        //timelabel////////////////////////////////////////////////////////
+//        let timelabel = UILabel()
+//        timelabel.text = String(describing: Date().postTimeDisplay(timestamp: user.postDate))
+//        timelabel.font = UIFont(name:"NotoSansUI", size: 14.0)
+//        timelabel.textColor = UIColor.lightGray
+//        timelabel.sizeToFit()
+//        timelabel.frame.origin = CGPoint(x: Int(cellview.frame.width - timelabel.frame.width) - inxpos, y: inypos + 5)
+//        cellview.addSubview(timelabel)
+//        inypos = inypos + Int(lastview.frame.size.height) + 10 //lastview: likebutton
+//        
+//        cellview.frame.size.height = CGFloat(inypos)
+//        ypos = ypos + Int(cellview.frame.size.height) + 7 // 다음 cellview의 위치를 지정해준다.
+//        self.contentSize = CGSize(width: Int(self.frame.width), height: max(yoffset + ypos - 35, Int(self.frame.height + 1)))
     }
     
     
     func handleTap(sender: UITapGestureRecognizer) {
         if let a = (sender.view as? UILabel)?.text {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showTagResultPageFromMain"), object: self,userInfo:["tagName":a])
-            
         }
         else { return }
         

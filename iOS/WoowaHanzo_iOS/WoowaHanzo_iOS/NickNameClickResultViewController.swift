@@ -17,8 +17,7 @@ class NickNameClickResultViewController: UIViewController {
         print(User.currentUserName)
         self.navigationController?.navigationBar.tintColor = UIColor(red: 42/255, green: 193/255, blue: 188/255, alpha: 1)
         self.title = "\(User.currentUserName)"
-        //User.nickNameClickResult배열에 해당 닉네임 유저 글 시간순으로 들어가있음. 
- 
+        //User.nickNameClickResult배열에 해당 닉네임 유저 글 시간순으로 들어가있음.
     }
     
 

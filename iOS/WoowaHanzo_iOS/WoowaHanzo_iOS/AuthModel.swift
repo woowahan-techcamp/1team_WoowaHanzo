@@ -67,7 +67,7 @@ class AuthModel{
             var ref: DatabaseReference!
             ref = Database.database().reference()
             let key = ref.child("users").child(user.uid).key
-            let post = ["email":email,"profileImg": "4aMeLLBXrqdvMsyYU6gShXRZYPq2.jpeg","sayhi": UserSayText, "username":nickName,"likes":0, "rankName" :"평민"] as [String : Any]
+            let post = ["email":email,"profileImg": "profile.png","sayhi": UserSayText, "username":nickName,"likes":0, "rankName" :"평민"] as [String : Any]
             let childUpdates = ["/users/\(key)": post]
             UserDefaults.standard.set(nickName, forKey: "userNickName")
             ref.updateChildValues(childUpdates)
