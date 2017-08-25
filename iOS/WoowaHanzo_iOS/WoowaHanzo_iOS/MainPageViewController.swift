@@ -39,6 +39,8 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users2"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateLikeButton), name: NSNotification.Name(rawValue: "likestatus"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLikeLabel), name: NSNotification.Name(rawValue: "likenum"), object: nil)
+
 
         
         
@@ -102,6 +104,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         FirebaseModel().ReturnNickNameClickResult()
         self.show(controller, sender: self)
     }
+    
     //나중에 completion handler 로 바꿔보자.
     func updateProfileImg(_ notification: Notification){
         let profileimg = notification.userInfo?["profileimg"] as? String ?? nil
@@ -127,6 +130,21 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         else{
             button?.setImage(#imageLiteral(resourceName: "emptyHeard"), for: .normal)
             
+        }
+    }
+    func updateLikeLabel(_ notification: Notification){
+        let label = notification.userInfo?["label"] as? UILabel ?? nil
+        let numstring = notification.userInfo?["num"] as? String ?? ""
+        let button = notification.userInfo?["button"] as? LikeButton ?? nil
+        print(numstring + "adsf")
+        if numstring == "0"{
+            label?.text = ""
+            button?.num = 0
+        }
+        else{
+            label?.text = numstring
+            button?.num = Int(numstring)!
+            label?.sizeToFit()
         }
     }
     

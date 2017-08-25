@@ -201,10 +201,21 @@ class UserListView: UIScrollView {
             inypos = inypos + Int(lastview.frame.size.height) + 8
             
             
-            //likebutton///////////////////////////////////////////////////////
+            
+            
+            //likenumlabel and likebutton ////////////////////////////////////////////////////
+            let likenumLabel = UILabel()
             let likebutton = LikeButton()
-            likebutton.whenButtonTouched(postkey: user.key)
-            //피드에 따라 기본 그림이 달라져야 한다. 나중에 설정해주기.
+
+            likenumLabel.text = ""
+            likenumLabel.font = UIFont(name:"NotoSansUI", size: 14.0)
+            likenumLabel.frame.origin = CGPoint(x: 53, y:inypos + 4)
+            cellview.addSubview(likenumLabel)
+
+            FirebaseModel().setNum(postkey:user.key, label: likenumLabel, button: likebutton)
+            
+            //likebutton///////////////////////////////////////////////////////
+            likebutton.whenButtonTouched(postkey: user.key, label:likenumLabel)
             FirebaseModel().setFirstImage(postkey:user.key, uid:AuthModel().returnUsersUid(), button: likebutton)
             
             
@@ -212,11 +223,7 @@ class UserListView: UIScrollView {
             cellview.addSubview(likebutton)
             lastview = likebutton
             
-            //likenumlabel/////////////////////////////////////////////////////
-            let likenumLabel = UILabel()
-            likenumLabel.text = ""
-            likenumLabel.sizeToFit()
-            likenumLabel.frame.origin = CGPoint(x: 55, y:inypos)
+            
             
             //timelabel////////////////////////////////////////////////////////
             let timelabel = UILabel()

@@ -243,13 +243,20 @@ class FirebaseModel{
         self.ref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.value as? NSDictionary{
                 let userList = result["userList"] as? [String] ?? [String]()
-                print(userList)
-                print(uid)
                 if userList.contains(uid){
                     check = true
-                    print(check)
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "likestatus"), object: nil, userInfo: ["doeslike": check, "button":button])
+            }
+        })
+    }
+    func setNum(postkey:String, label: UILabel, button: LikeButton){
+        self.ref = Database.database().reference().child("postLikes").child(postkey)
+        self.ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let result = snapshot.value as? NSDictionary{
+                let num = result["likes"] as? Int ?? 0
+                print(num)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "likenum"), object: nil, userInfo: ["label": label, "button":button, "num":"\(num)"])
             }
         })
     }
@@ -298,8 +305,6 @@ class FirebaseModel{
                 
                 print(error.localizedDescription)
             }
-            
-            
         }
     }
     func downloadprofileimage(name: String){
