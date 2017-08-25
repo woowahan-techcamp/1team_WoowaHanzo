@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-  console.log('랭킹페이지');
   $("#ranking").css("color", "#fff");
 
   sortedUserList().then(function(userList) {
@@ -12,40 +11,37 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       var downloadUrl = storageRef.child("profileImages/" + item.val().profileImg).getDownloadURL();
 
-      var uid = item.val().uid;
-
+      // var uid = item.val().uid;
       promises.push(downloadUrl.then(function(url) {
         itemObject.userProfileImg = url;
-        itemObject.uid = item.key;
-        itemObject.titlePic = getTitleIcon(item.val().rankName);
-        itemObject.titleText = item.val().rankName ? item.val().rankName : "평민";
-        itemObject.username = item.val().username;
-        itemObject.like = item.val().likes ? item.val().likes : 0;
+        itemObject.uid = this.key;
+        itemObject.titlePic = getTitleIcon(this.val().rankName);
+        itemObject.titleText = this.val().rankName ? this.val().rankName : "평민";
+        itemObject.username = this.val().username;
+        itemObject.like = this.val().likes ? this.val().likes : 0;
 
         itemList.push(itemObject);
-      }.bind(uid)).catch(function(err) {
+      }.bind(item)).catch(function(err) {
 
         itemObject.userProfileImg = "./pictures/profile.png";
-        itemObject.uid = item.key;
-        itemObject.titlePic = getTitleIcon(item.val().rankName);
-        if(item.val().rankName) {
-          itemObject.titleText = item.val().rankName;
+        itemObject.uid = this.key;
+        itemObject.titlePic = getTitleIcon(this.val().rankName);
+        if(this.val().rankName) {
+          itemObject.titleText = this.val().rankName;
         } else {
           itemObject.titleText = "평민";
           itemObject.titleBlank = true;
         }
-        itemObject.username = item.val().username;
-        itemObject.like = item.val().likes ? item.val().likes : 0;
+        itemObject.username = this.val().username;
+        itemObject.like = this.val().likes ? this.val().likes : 0;
 
         itemList.push(itemObject);
-      }));
+      }.bind(item)));
 
 
     });
 
     Promise.all(promises).then(() => {
-      // console.log(itemList);
-
       itemList.sort(function (a, b) {
         if (a.like > b.like) return -1;
         if (a.like < b.like) return 1;
@@ -73,7 +69,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var template = Handlebars.compile(source);
       document.querySelector(".ranking_box").innerHTML += template(itemList);
 
-      console.log('랭킹 다 불러짐..');
       $(".ranking_indicator").css("opacity", 0);
       $(".ranking_indicator").css("height", 0);
 
@@ -95,9 +90,7 @@ function sortedUserList() {
       userList.push(child);
     });
     userList.reverse();
-    userList.forEach(function(child) {
-      // console.log(child.val().username);
-    });
+
     return userList;
   });
 }
@@ -105,9 +98,13 @@ function sortedUserList() {
 function addUserListener(item) {
 	$(".ranking_box").delegate(item, "mousedown tap", function(evt){
     evt.preventDefault();
-    // console.log('evt', $(evt.target).parent());
-    var target = $(evt.target).parent()
 
+    if(!$(evt.target).hasClass("ranking_item")) {
+      $(evt.target).parent().trigger("mousedown");
+      return;
+    }
+    
+    var target = $(evt.target)
     var id = getUIDFromPostHeader(target.attr("id"));
 
 		var queryKey = firebase.database().ref().child("userQuery").push().key;

@@ -44,7 +44,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         });
       });
 
-      $(".mypage_user_image_box img").on("click", function() {
+      $(".mypage_user_image_box").on("click", function() {
+        console.log("Clicked");
         $("#profile_image_input").trigger("click");
       });
 
