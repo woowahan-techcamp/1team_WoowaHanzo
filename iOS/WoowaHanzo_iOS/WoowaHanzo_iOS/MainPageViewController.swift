@@ -87,8 +87,8 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         print(tagName)
         ////
         let storyboard = UIStoryboard(name: "TagPage", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "tagResultMain") 
-        //controller.tagName = tagName
+        let controller = storyboard.instantiateViewController(withIdentifier: "tagResultMain")  as! TagResultViewController
+        controller.tagName = tagName
         self.show(controller, sender: self)
     }
     func nickNameLabelTouchedOnMainpage(_ notification:Notification){

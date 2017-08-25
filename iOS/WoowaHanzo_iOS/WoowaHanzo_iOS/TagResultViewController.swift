@@ -26,7 +26,7 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
         //print(tagName)
         self.navigationController?.navigationBar.tintColor = UIColor(red: 42/255, green: 193/255, blue: 188/255, alpha: 1)
         //self.navigationController?.navigationBar.topItem?.title = "태그"
-        //self.title = tagName
+        self.title = tagName
         self.navigationItem.title = tagName
         userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
 
