@@ -210,7 +210,7 @@ class FirebaseModel{
         })
     }
     //For my Page ////////////////////////////////
-    func loadUsers3(username: String, callback: @escaping () -> Void){
+    func loadUsers3(username: String){
         print("loadUser3 called")
         User.myUsers = [User]()
         self.ref = Database.database().reference().child("posts")
@@ -225,8 +225,7 @@ class FirebaseModel{
                     
                     User.myUsers.append(user)
                 }
-                callback()
-//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "users3"), object: self)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "users3"), object: self)
             }
             
         })

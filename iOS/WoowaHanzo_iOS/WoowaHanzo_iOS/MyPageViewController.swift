@@ -11,9 +11,11 @@ import Firebase
 import Kingfisher
 import BSImagePicker
 import Photos
+import NVActivityIndicatorView
 
 
-class MyPageViewController: UIViewController {
+
+class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
     
     var ref: DatabaseReference!
     
@@ -129,6 +131,8 @@ class MyPageViewController: UIViewController {
             
             if !AuthModel.isLoginStatus(){
                 
+                
+                //
                 var alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
                 var cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
                     //                let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
@@ -150,8 +154,19 @@ class MyPageViewController: UIViewController {
             }
             else{
                 //로그인이 되었다면? 내 마이페이지를 보여줘야함.
+                
+                
+                let size = CGSize(width: 30, height: 30)
+                
+                DispatchQueue.main.async {
+                    self.startAnimating(size, message: "Loading...", type: .ballTrianglePath)
+                }
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.7) {
+                    self.stopAnimating()
+                }
+                
                 self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
-                self.view.setNeedsDisplay()
+                //self.view.setNeedsDisplay()
                 myListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
                 myListView.ypos = 313
                 myInfoView.frame = CGRect(x: 0, y: 68, width: self.view.frame.width, height: 250)
@@ -162,13 +177,10 @@ class MyPageViewController: UIViewController {
                 
                 FirebaseModel().loadProfileImageFromUsers()
                 FirebaseModel().loadUserInfo()
-                FirebaseModel().loadUsers3(username: User.currentLoginedUserNickName, callback: () -> Void)
-                FirebaseModel().loadUsers3(username: User.currentLoginedUserNickName, callback: {
-                    print(User.myUsers, "asdfasdfasdfasdf")
-                })
+
+                FirebaseModel().loadUsers3(username: User.currentLoginedUserNickName)
                 self.view.addSubview(myListView)
                 
-                print("logined")
             }
             
         }
