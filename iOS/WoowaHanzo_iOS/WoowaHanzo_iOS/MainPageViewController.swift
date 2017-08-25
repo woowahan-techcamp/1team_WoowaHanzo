@@ -41,15 +41,8 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateLikeButton), name: NSNotification.Name(rawValue: "likestatus"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateLikeLabel), name: NSNotification.Name(rawValue: "likenum"), object: nil)
-
-
-        
-        
-        
         NotificationCenter.default.addObserver(self, selector: #selector(showTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "showTagResultPageFromMain"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(getTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "tagResultToMain"), object: nil)
-        
-    
         searchBar.alpha = 0
         searchBar.searchBarStyle = UISearchBarStyle.minimal
         let titleAttributes = [
@@ -58,9 +51,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
         
        // userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        
-        
-        
+     
     }
     func getTagResultPageFromMain( _ notification:Notification){
         tagResultArray = []

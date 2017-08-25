@@ -11,8 +11,10 @@ import BSImagePicker
 import Photos
 import Firebase
 import Kingfisher
+import NVActivityIndicatorView
 
-class ReviewPostPageViewController: UIViewController {
+
+class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable {
     
     
     var ref: DatabaseReference!
@@ -288,6 +290,7 @@ class ReviewPostPageViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        
         if myTextView.textColor != UIColor.lightGray {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "escape"), object: nil)
             //print("noticalled")
@@ -398,6 +401,7 @@ class ReviewPostPageViewController: UIViewController {
         self.shouldloadview = true
     }
     
+    
     @IBAction func postButtonTouched(_ sender: Any) {
         
         let formatter = DateFormatter()
@@ -415,9 +419,30 @@ class ReviewPostPageViewController: UIViewController {
                 //print(myTagView.getTags(withPrefix: true))
                 print(self.imageNameArray)
                 print("sent post")
-                let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
-                self.present(controller, animated: false, completion: nil)
+                
+                
+                let size = CGSize(width: 30, height: 30)
+                
+                DispatchQueue.main.async {
+                    self.startAnimating(size, message: "Loading...", type: .ballTrianglePath)
+                    
+                    
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+                    self.stopAnimating()
+                    
+                }
+                DispatchQueue.main.async {
+                    sleep(2)
+                    let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
+                    let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
+                    self.present(controller, animated: false, completion: nil)
+
+                }
+//                let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
+//                let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
+//                self.present(controller, animated: false, completion: nil)
         }
             //self.tabBarController?.selectedIndex = 0
             
@@ -558,4 +583,5 @@ extension ReviewPostPageViewController: UICollectionViewDelegate, UICollectionVi
             print("delete")
         }
     }
+    
 }
