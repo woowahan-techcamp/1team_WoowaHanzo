@@ -100,6 +100,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         FirebaseModel().ReturnNickNameClickResult()
         self.show(controller, sender: self)
     }
+    
     //나중에 completion handler 로 바꿔보자.
     func updateProfileImg(_ notification: Notification){
         let profileimg = notification.userInfo?["profileimg"] as? String ?? nil

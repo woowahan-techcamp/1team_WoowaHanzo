@@ -21,7 +21,7 @@ class MyPageViewController: UIViewController {
     
     @IBOutlet weak var myInfoView: UIView!
     
-    @IBOutlet weak var logoutButton: UIButton!
+    //@IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var sayhiLabel: UILabel!
     @IBOutlet weak var postnumLabel: UILabel!
@@ -86,7 +86,7 @@ class MyPageViewController: UIViewController {
             postnumLabel.text = "게시물 \(User.myUsers.count)"
             postnumLabel.sizeToFit()
             postnumLabel.frame.origin.x = self.view.frame.width / 2 - postnumLabel.frame.width / 2
-            logoutButton.tintColor = UIColor.blue
+            //logoutButton.tintColor = UIColor.blue
             
         }
         
@@ -106,19 +106,19 @@ class MyPageViewController: UIViewController {
                 //completion handler 등으로 user에 저장해놓기
             }
         }
-        @IBAction func logout(_ sender: Any) {
-            let firebaseAuth = Auth.auth()
-            do {
-                try firebaseAuth.signOut()
-                let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
-                self.present(controller, animated: false, completion: nil)
-            } catch let signOutError as NSError {
-                print ("Error signing out: %@", signOutError)
-            }
-            
-        }
-        
+//        @IBAction func logout(_ sender: Any) {
+//            let firebaseAuth = Auth.auth()
+//            do {
+//                try firebaseAuth.signOut()
+//                let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
+//                let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
+//                self.present(controller, animated: false, completion: nil)
+//            } catch let signOutError as NSError {
+//                print ("Error signing out: %@", signOutError)
+//            }
+//            
+//        }
+    
         
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(true)
