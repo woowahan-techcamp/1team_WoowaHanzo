@@ -23,6 +23,8 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
         NotificationCenter.default.addObserver(self, selector: #selector(getTagFeed(_ :)), name: NSNotification.Name(rawValue: "sendResultViewController"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "tagusersdone"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLikeButton), name: NSNotification.Name(rawValue: "likestatus"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLikeLabel), name: NSNotification.Name(rawValue: "likenum"), object: nil)
         //print(tagName)
         self.navigationController?.navigationBar.tintColor = UIColor(red: 42/255, green: 193/255, blue: 188/255, alpha: 1)
         //self.navigationController?.navigationBar.topItem?.title = "태그"
@@ -73,6 +75,32 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
         if ranknamelabel != nil {
             ranknamelabel?.text = rankname
             ranknamelabel?.sizeToFit()
+        }
+    }
+    func updateLikeButton(_ notification: Notification){
+        let check = notification.userInfo?["doeslike"] as? Bool ?? false
+        let button  = notification.userInfo?["button"] as? LikeButton ?? nil
+        if check {
+            button?.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
+        }
+        else{
+            button?.setImage(#imageLiteral(resourceName: "emptyHeard"), for: .normal)
+            
+        }
+    }
+    func updateLikeLabel(_ notification: Notification){
+        let label = notification.userInfo?["label"] as? UILabel ?? nil
+        let numstring = notification.userInfo?["num"] as? String ?? ""
+        let button = notification.userInfo?["button"] as? LikeButton ?? nil
+        print(numstring + "adsf")
+        if numstring == "0"{
+            label?.text = ""
+            button?.num = 0
+        }
+        else{
+            label?.text = numstring
+            button?.num = Int(numstring)!
+            label?.sizeToFit()
         }
     }
 

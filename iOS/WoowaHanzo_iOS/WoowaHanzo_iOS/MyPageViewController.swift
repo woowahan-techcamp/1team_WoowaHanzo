@@ -41,6 +41,8 @@ class MyPageViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(loadPorfileImage(_ :)), name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users3"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLikeButton), name: NSNotification.Name(rawValue: "likestatus"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLikeLabel), name: NSNotification.Name(rawValue: "likenum"), object: nil)
         
         
 //        myListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -83,8 +85,12 @@ class MyPageViewController: UIViewController {
             self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
             nameLabel.text = User.currentLoginedUserNickName
             nameLabel.sizeToFit()
+            nameLabel.frame.origin.x = self.view.frame.width / 2 - nameLabel.frame.width / 2
+
             sayhiLabel.text = User.currentLoginedUserSayHi
             sayhiLabel.sizeToFit()
+            sayhiLabel.frame.origin.x = self.view.frame.width / 2 - sayhiLabel.frame.width / 2
+
         
             print("\(User.myUsers.count)개의 피드 데이터가 존재합니다.")
             myListView.addUserList(users: User.myUsers)
@@ -209,6 +215,33 @@ class MyPageViewController: UIViewController {
                 ranknamelabel?.sizeToFit()
             }
         }
+    func updateLikeButton(_ notification: Notification){
+        let check = notification.userInfo?["doeslike"] as? Bool ?? false
+        let button  = notification.userInfo?["button"] as? LikeButton ?? nil
+        if check {
+            button?.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
+        }
+        else{
+            button?.setImage(#imageLiteral(resourceName: "emptyHeard"), for: .normal)
+            
+        }
+    }
+    func updateLikeLabel(_ notification: Notification){
+        let label = notification.userInfo?["label"] as? UILabel ?? nil
+        let numstring = notification.userInfo?["num"] as? String ?? ""
+        let button = notification.userInfo?["button"] as? LikeButton ?? nil
+        print(numstring + "adsf")
+        if numstring == "0"{
+            label?.text = ""
+            button?.num = 0
+        }
+        else{
+            label?.text = numstring
+            button?.num = Int(numstring)!
+            label?.sizeToFit()
+        }
+    }
+
     func nickNameLabelTouchedOnMainpage(_ notification:Notification){
         User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
         

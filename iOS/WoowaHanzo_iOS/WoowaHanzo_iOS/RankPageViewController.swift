@@ -15,8 +15,9 @@ class RankPageViewController: UIViewController {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "rankusers"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouched(_ :)), name: NSNotification.Name(rawValue: "NickNameLableTouched"), object: nil)
-        rankListView = RankListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         
+        rankListView = RankListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+
         
     }
     override func viewWillAppear(_ animated: Bool) {
