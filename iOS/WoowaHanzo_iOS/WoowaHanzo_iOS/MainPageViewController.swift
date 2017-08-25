@@ -37,7 +37,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users2"), object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users2"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateLikeButton), name: NSNotification.Name(rawValue: "likestatus"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateLikeLabel), name: NSNotification.Name(rawValue: "likenum"), object: nil)
@@ -57,7 +57,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         ]
         self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
         
-        userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+       // userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         
         
         
@@ -161,6 +161,9 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
     override func viewWillAppear(_ animated: Bool) {
         
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users2"), object: nil)
+         userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         FirebaseModel().loadUsers2()
         self.view.addSubview(userListView)
         
