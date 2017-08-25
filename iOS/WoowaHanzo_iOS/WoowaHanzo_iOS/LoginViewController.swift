@@ -18,12 +18,11 @@ class LoginViewController: UIViewController,NVActivityIndicatorViewable {
     @IBOutlet weak var loginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         emailValidationLabel.isHidden = true
     }
 
     
-    //MARK:DDDD
+    //MARK:로그인 버튼 눌렀을 때
     @IBAction func loginButtonTouched(_ sender: Any) {
         self.view.endEditing(true)
         let size = CGSize(width: 30, height: 30)
@@ -53,6 +52,7 @@ class LoginViewController: UIViewController,NVActivityIndicatorViewable {
 
     }
    
+    //MAKR:키보드 바깥의 공간을 누르면 키보드가 사라진다.
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)
     }

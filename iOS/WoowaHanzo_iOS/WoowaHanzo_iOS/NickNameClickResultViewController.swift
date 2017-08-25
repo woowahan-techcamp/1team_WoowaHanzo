@@ -11,6 +11,8 @@ import Firebase
 
 class NickNameClickResultViewController: UIViewController {
 
+    
+    //MARK:닉네임 클릭시 오는 ViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         print("we are NickNameClickResultViewController")

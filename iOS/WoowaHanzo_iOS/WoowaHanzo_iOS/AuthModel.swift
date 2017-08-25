@@ -62,6 +62,7 @@ class AuthModel{
         }
     }
     
+    //MARK: 회원가입시 firebase의 유저에 현재 유저 정보 저장
     static func saveUser(email:String,profileImg:String?,UserSayText: String?,nickName:String){
         if let user = Auth.auth().currentUser{
             var ref: DatabaseReference!
@@ -73,6 +74,9 @@ class AuthModel{
             ref.updateChildValues(childUpdates)
         }
     }
+    
+    
+    //MARK:유저의 uid를 리턴해주는 함수
     func returnUsersUid()->String{
         if AuthModel.isLoginStatus(){
             return (Auth.auth().currentUser?.uid)!
