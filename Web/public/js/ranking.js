@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     userList.forEach(function(item) {
       var itemObject = new Object();
+
       var downloadUrl = storageRef.child("profileImages/" + item.val().profileImg).getDownloadURL();
 
       var uid = item.val().uid;
@@ -22,7 +23,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
         itemObject.like = item.val().likes ? item.val().likes : 0;
 
         itemList.push(itemObject);
-      }.bind(uid)));
+      }.bind(uid)).catch(function(err) {
+
+        itemObject.userProfileImg = "./pictures/profile.png";
+        itemObject.uid = item.key;
+        itemObject.titlePic = getTitleIcon(item.val().rankName);
+        if(item.val().rankName) {
+          itemObject.titleText = item.val().rankName;
+        } else {
+          itemObject.titleText = "평민";
+          itemObject.titleBlank = true;
+        }
+        itemObject.username = item.val().username;
+        itemObject.like = item.val().likes ? item.val().likes : 0;
+
+        itemList.push(itemObject);
+      }));
+
 
     });
 
@@ -34,6 +51,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
         if (a.like < b.like) return 1;
         return 0;
       });
+
+      var likesToName = {};
+      for(var i = 0; i < itemList.length; ++i) {
+        var item = itemList[i];
+        if(!item.titleBlank) {
+          likesToName[item.likes] = item.titleText;
+        }
+      }
+      for(var i = 0; i < itemList.length; ++i) {
+        var item = itemList[i];
+        if(item.titleBlank) {
+          item.titleText = likesToName[item.likes];
+        }
+      }
 
       var source = document.getElementById("ranking_template").innerHTML;
       var template = Handlebars.compile(source);
