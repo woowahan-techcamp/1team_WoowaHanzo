@@ -66,24 +66,27 @@ class RegisterViewController: UIViewController,NVActivityIndicatorViewable {
                         self.stopAnimating()
                         self.dismiss(animated: true, completion: nil)
                         AuthModel.saveUser(email: email, profileImg: nil, UserSayText: self.userSayTextView.text, nickName: self.nickNameTextField.text!)
-                        
                     }
                     else{
                         self.stopAnimating()
                         self.emailCheckLabel.isHidden = false
                         self.emailCheckLabel.text = "이미 존재하는 이메일입니다."
-                       
+                        
                         
                     }
                 })
                 
             }
         }
-
-}
+        
+    }
+    
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    
+    
     func subscribeToKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         
@@ -91,6 +94,7 @@ class RegisterViewController: UIViewController,NVActivityIndicatorViewable {
         //위에서 정의한 keyboardWillShow,keyboardWillHide를 selector로 지정한다.
         
     }
+    
     //키보드 노티에 관한 것을 구독 취소 해주는 함수 -> 꼭 해줘야한다.
     func unsubscribeFromKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
@@ -112,6 +116,7 @@ class RegisterViewController: UIViewController,NVActivityIndicatorViewable {
             view.frame.origin.y = view.frame.origin.y + 20
         }
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
@@ -122,8 +127,6 @@ class RegisterViewController: UIViewController,NVActivityIndicatorViewable {
         
         //키보드 노티 구독.
         subscribeToKeyboardNotifications()
-        
-        
     }
     
     
