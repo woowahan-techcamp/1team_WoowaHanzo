@@ -20,16 +20,12 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     var searchBar = UISearchBar()
     let cellSpacingHeight: CGFloat = 15
   
-    @IBOutlet weak var dummyTextView: UITextView!
-    @IBOutlet weak var dummyTagView: TagListView!
+   
     var foodArray = [UIImage]()
     
     var userListView : UserListView!
     
-    
 
-
-    @IBOutlet weak var mainpageTableView: UITableView!
     @IBOutlet weak var searchIconButton: UIBarButtonItem!
     
     
@@ -124,6 +120,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
             
         }
     }
+    
     func updateLikeLabel(_ notification: Notification){
         let label = notification.userInfo?["label"] as? UILabel ?? nil
         let numstring = notification.userInfo?["num"] as? String ?? ""
@@ -165,14 +162,14 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         }
 
         
-        dummyTextView.isScrollEnabled = false
+      
         searchIconButton.tintColor = UIColor.black
         
         
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
             NVActivityIndicatorPresenter.sharedInstance.setMessage("Authenticating...")
-            self.mainpageTableView.reloadData()
+            
         }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
@@ -229,9 +226,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
     
     
-    @IBAction func showGalleryImageViewer(_ sender: Any) {
-        
-    }
+    
     
 }
 

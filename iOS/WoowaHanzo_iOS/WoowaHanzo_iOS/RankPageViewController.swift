@@ -40,7 +40,7 @@ class RankPageViewController: UIViewController {
         
         User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
         
-        print("nickNameLabelTouched")
+        //print("nickNameLabelTouched")
         
         let storyboard = UIStoryboard(name: "NickNameClickResult", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "NickNameClickResultViewController")
@@ -48,14 +48,6 @@ class RankPageViewController: UIViewController {
         self.show(controller, sender: self)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

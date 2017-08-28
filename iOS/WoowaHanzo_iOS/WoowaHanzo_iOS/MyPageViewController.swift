@@ -45,19 +45,7 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateLikeButton), name: NSNotification.Name(rawValue: "likestatus"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateLikeLabel), name: NSNotification.Name(rawValue: "likenum"), object: nil)
-        
-        
-//        myListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-//        myListView.ypos = 313
-//        myInfoView.frame = CGRect(x: 0, y: 5, width: self.view.frame.width, height: 250)
-//        myListView.addSubview(myInfoView)
-//        
-//        myProfileImageView.layer.cornerRadius = myProfileImageView.frame.width / 2
-//        myProfileImageView.clipsToBounds = true
-//        
-//        FirebaseModel().loadProfileImageFromUsers()
-//        FirebaseModel().loadUserInfo()
-//        FirebaseModel().loadUsers3(username: User.currentLoginedUserNickName)
+    
         
         UINavigationBar.appearance().backgroundColor = UIColor.white
         if AuthModel.isLoginStatus(){
@@ -80,10 +68,7 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
         
         
     }
-//    func loadUserInfo(){
-//        self.navigationController?.navigationBar.topItem?.title = User.currentLoginedUserNickName
-//        print("loadUserInfo")
-//    }
+
     
         func viewload(){
             self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName

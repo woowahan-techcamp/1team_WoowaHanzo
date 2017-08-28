@@ -16,8 +16,7 @@ class FirebaseModel{
     var ref: DatabaseReference!
     var ref2: DatabaseReference!
 
-    
-    
+
     func postReview(review: String, userID: String, tagArray:[String], timestamp: Int, images:[String],uid: String){
         ref = Database.database().reference()
         let key = ref.child("posts").childByAutoId().key
@@ -31,8 +30,10 @@ class FirebaseModel{
         ref.updateChildValues(childUpdates)
     }
     
+    
+    
     func postImages(assets:[PHAsset], names:[String]){
-        print("posting: \(assets.count) \(names.count)")
+        //print("posting: \(assets.count) \(names.count)")
         for i in 0..<assets.count{
             let asset = assets[i]
             let manager = PHImageManager.default()
@@ -53,6 +54,8 @@ class FirebaseModel{
             }
         }
     }
+    
+    //프로필 이미지 수정할 때
     func postProfileImage(asset:PHAsset, name: String, uid:String){
         ref2 = Database.database().reference()
         let manager = PHImageManager.default()
@@ -71,6 +74,9 @@ class FirebaseModel{
             })
         }
     }
+    
+    
+    //썸네일 리턴 함수. 리뷰 포스트 뷰에서 사용
     func getAssetThumbnail(asset: PHAsset) -> UIImage {
         let manager = PHImageManager.default()
         let option = PHImageRequestOptions()
@@ -82,8 +88,9 @@ class FirebaseModel{
         return thumbnail
     }
     
+    
+    //
     func tagQuery(tagName:String){
-        
         
         //태그쿼리 작성. key를 저장해서 노티로 보내준다.
         ref = Database.database().reference()
@@ -92,12 +99,9 @@ class FirebaseModel{
         let post = ["queryResult": "1" ,"tag": tagName] as [String : String]
         let childUpdates = ["/tagQuery/\(key)": post]
         ref.updateChildValues(childUpdates)
-        print("send tag result")
         
         //태그쿼리의 key를 가지는 애를 가져와야함. TagPageViewController로 이어진다. 
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResult"), object: self, userInfo: ["key":key])
-        
-        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResultToMain"), object: self, userInfo: ["key":key])
         
     }
@@ -143,7 +147,7 @@ class FirebaseModel{
                         //print(child.childSnapshot(forPath: "author").value!)
                         let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil, postDate : child.childSnapshot(forPath: "time").value as! Int, uid: child.childSnapshot(forPath: "uid").value as! String)
                         User.nickNameClickResult.append(user)
-                        print(child.childSnapshot(forPath: "body").value as! String)
+                        //print(child.childSnapshot(forPath: "body").value as! String)
                         
                         //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
                     }
@@ -209,6 +213,8 @@ class FirebaseModel{
             }
         })
     }
+    
+    
     //For my Page ////////////////////////////////
     func loadUsers3(username: String){
         print("loadUser3 called")
@@ -216,10 +222,10 @@ class FirebaseModel{
         self.ref = Database.database().reference().child("posts")
         self.ref.queryOrdered(byChild: "author").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
-                print(1231231231239999)
-                print(result, "result")
+                //print(1231231231239999)
+                //print(result, "result")
                 let sort = result.sorted(by:{ $1.childSnapshot(forPath: "time").value as! Int > $0.childSnapshot(forPath: "time").value as! Int})
-                print(sort)
+                //print(sort)
                 for child in sort {
                     let user = User(snapshot: child)
                     
@@ -241,6 +247,8 @@ class FirebaseModel{
         print("")
         //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResult"), object: self, userInfo: ["key":key])
     }
+    
+    
     func setFirstImage(postkey: String, uid: String, button: LikeButton) {
         var check = false
         self.ref = Database.database().reference().child("postLikes").child(postkey)
@@ -254,12 +262,13 @@ class FirebaseModel{
             }
         })
     }
+    
     func setNum(postkey:String, label: UILabel, button: LikeButton){
         self.ref = Database.database().reference().child("postLikes").child(postkey)
         self.ref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.value as? NSDictionary{
                 let num = result["likes"] as? Int ?? 0
-                print(num)
+                //print(num)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "likenum"), object: nil, userInfo: ["label": label, "button":button, "num":"\(num)"])
             }
         })
@@ -287,6 +296,8 @@ class FirebaseModel{
             
         }
     }
+    
+    
     func loadUserInfo()
     {
         if AuthModel.isLoginStatus(){
@@ -311,6 +322,8 @@ class FirebaseModel{
             }
         }
     }
+    
+    
     func downloadprofileimage(name: String){
         Storage.storage().reference(withPath: "profileImages/" + name).downloadURL { (url, error) in
             User.imageview.kf.setImage(with: url)

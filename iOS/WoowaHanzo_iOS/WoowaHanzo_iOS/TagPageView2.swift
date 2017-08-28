@@ -1,99 +1,105 @@
 //
-//  ListView.swift
+//  TagListView2.swift
+//  WoowaHanzo_iOS
 //
-//
-//  Created by Oskar Zhang on 7/13/15.
-//  Copyright (c) 2015 Oskar Zhang. All rights reserved.
+//  Created by woowabrothers on 2017. 8. 22..
+//  Copyright © 2017년 woowabrothers_dain. All rights reserved.
 //
 
 import Foundation
 import UIKit
-class TagListView:UIScrollView
+
+class TagPageView2: UIScrollView
 {
     var numberOfRows = 0
     var currentRow = 0
     var tags = [UILabel]()
+    var containerView:UIView!
     
-    var hashtagsOffset:UIEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-    var rowHeight:CGFloat = 30 //height of rows
-    var tagHorizontalPadding:CGFloat = 1.0 // padding between tags horizontally
-    var tagVerticalPadding:CGFloat = 1.0 // padding between tags vertically
-    var tagCombinedMargin:CGFloat = 10.0 // margin of left and right combined, text in tags are by default centered.
+    var hashtagsOffset:UIEdgeInsets = UIEdgeInsets(top: 2, left: 10, bottom: 0, right: 0)
+    var rowHeight:CGFloat = 22 //height of rows
+    var tagHorizontalPadding:CGFloat = 3.0 // padding between tags horizontally
+    var tagVerticalPadding:CGFloat = 3.0 // padding between tags vertically
+    var tagCombinedMargin:CGFloat = 0 // margin of left and right combined, text in tags are by default centered.
     override init(frame:CGRect)
     {
         super.init(frame: frame)
         numberOfRows = Int(frame.height / rowHeight)
+        containerView = UIView(frame: self.frame)
+        self.addSubview(containerView)
         self.showsVerticalScrollIndicator = false
-        self.isScrollEnabled = true
+        self.isScrollEnabled = false
+    }
+    
+    override func awakeFromNib() {
+        numberOfRows = Int(self.frame.height / rowHeight)
+        containerView = UIView(frame: self.frame)
+        self.addSubview(containerView)
+        self.showsVerticalScrollIndicator = false
+        self.isScrollEnabled = false
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layoutTagsFromIndex(index: 0)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    func addTag(_ text:String,target:AnyObject,tapAction:Selector?,longPressAction:Selector?,backgroundColor:UIColor,textColor:UIColor)
+    func addTag(text:String, target:AnyObject, backgroundColor:UIColor,textColor:UIColor)
     {
         //instantiate label
         //you can customize your label here! but make sure everything fit. Default row height is 30.
         let label = UILabel()
-        label.layer.cornerRadius = 5
         label.clipsToBounds = true
-        label.textColor = UIColor.white
         label.backgroundColor = backgroundColor
         label.text = text
-        label.textColor = textColor
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont(name: "NotoSans-Bold", size: 16.0)!
+        label.textColor = UIColor.black
         label.sizeToFit()
         label.textAlignment = NSTextAlignment.center
+        //label.layer.cornerRadius = 10
+        //label.layer.borderColor = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0).cgColor
+        //label.layer.borderWidth = 1.5
+        let tapGesture = UITapGestureRecognizer(target: target, action: #selector(UserListView.handleTap))
+        label.addGestureRecognizer(tapGesture)
+        label.isUserInteractionEnabled = true
         self.tags.append(label)
-        label.layer.shouldRasterize = true
-        label.layer.rasterizationScale = UIScreen.main.scale
-        //process actions
-        if tapAction != nil
-        {
-            let tap = UITapGestureRecognizer(target: target, action: tapAction)
-            label.isUserInteractionEnabled = true
-            label.addGestureRecognizer(tap)
-        }
-        
-        if longPressAction != nil
-        {
-            let longPress = UILongPressGestureRecognizer(target: target, action: longPressAction)
-            label.addGestureRecognizer(longPress)
-        }
         
         //calculate frame
-        label.frame = CGRect(x: label.frame.origin.x,y: label.frame.origin.y , width: label.frame.width + tagCombinedMargin, height: rowHeight - tagVerticalPadding)
+        label.frame = CGRect(x: label.frame.origin.x, y: label.frame.origin.y , width: label.frame.width + tagCombinedMargin, height: rowHeight - tagVerticalPadding)
         if self.tags.count == 0
         {
             label.frame = CGRect(x: hashtagsOffset.left, y: hashtagsOffset.top, width: label.frame.width, height: label.frame.height)
             self.addSubview(label)
-            
         }
         else
         {
-            label.frame = self.generateFrameAtIndex(tags.count-1, rowNumber: &currentRow)
+            label.frame = self.generateFrameAtIndex(index: tags.count-1, rowNumber: &currentRow)
             self.addSubview(label)
         }
     }
     
     
     
-    fileprivate func isOutofBounds(_ newPoint:CGPoint,labelFrame:CGRect)
+    private func isOutofBounds(newPoint:CGPoint,labelFrame:CGRect)
     {
         let bottomYLimit = newPoint.y + labelFrame.height
         if bottomYLimit > self.contentSize.height
         {
+            self.containerView.frame = CGRect(x: self.containerView.frame.origin.x, y: self.containerView.frame.origin.y, width: self.containerView.frame.width, height: self.containerView.frame.height + rowHeight - tagVerticalPadding)
             self.contentSize = CGSize(width: self.contentSize.width, height: self.contentSize.height + rowHeight - tagVerticalPadding)
         }
     }
     
     func getNextPosition() -> CGPoint
     {
-        return getPositionForIndex(tags.count-1, rowNumber: self.currentRow)
+        return getPositionForIndex(index: tags.count-1, rowNumber: self.currentRow)
     }
     
-    func getPositionForIndex(_ index:Int,rowNumber:Int) -> CGPoint
+    func getPositionForIndex(index:Int,rowNumber:Int) -> CGPoint
     {
         if index == 0
         {
@@ -116,18 +122,18 @@ class TagListView:UIScrollView
         numberOfRows = 0
     }
     
-    func removeTagWithName(_ name:String)
+    func removeTagWithName(name:String)
     {
         for (index,tag) in tags.enumerated()
         {
             if tag.text! == name
             {
-                removeTagWithIndex(index)
+                removeTagWithIndex(index: index)
             }
         }
     }
     
-    func removeTagWithIndex(_ index:Int)
+    func removeTagWithIndex(index:Int)
     {
         if index > tags.count - 1
         {
@@ -136,15 +142,15 @@ class TagListView:UIScrollView
         }
         tags[index].removeFromSuperview()
         tags.remove(at: index)
-        layoutTagsFromIndex(index)
+        layoutTagsFromIndex(index: index)
     }
     
-    fileprivate func getRowNumber(_ index:Int) -> Int
+    private func getRowNumber(index:Int) -> Int
     {
         return Int((tags[index].frame.origin.y - hashtagsOffset.top)/rowHeight)
     }
     
-    fileprivate func layoutTagsFromIndex(_ index:Int,animated:Bool = true)
+    private func layoutTagsFromIndex(index:Int,animated:Bool = true)
     {
         if tags.count == 0
         {
@@ -152,28 +158,28 @@ class TagListView:UIScrollView
         }
         let animation:()->() =
         {
-            var rowNumber = self.getRowNumber(index)
+            var rowNumber = self.getRowNumber(index: index)
             for i in index...self.tags.count - 1
             {
-                self.tags[i].frame = self.generateFrameAtIndex(i, rowNumber: &rowNumber)
+                self.tags[i].frame = self.generateFrameAtIndex(index: i, rowNumber: &rowNumber)
             }
         }
         UIView.animate(withDuration: 0.3, animations: animation)
     }
     
-    fileprivate func generateFrameAtIndex(_ index:Int,rowNumber: inout Int) -> CGRect
+    private func generateFrameAtIndex(index:Int, rowNumber: inout Int) -> CGRect
     {
-        var newPoint = self.getPositionForIndex(index, rowNumber: rowNumber)
+        var newPoint = self.getPositionForIndex(index: index, rowNumber: rowNumber)
         if (newPoint.x + self.tags[index].frame.width) >= self.frame.width
         {
             rowNumber += 1
             newPoint = CGPoint(x: self.hashtagsOffset.left, y: CGFloat(rowNumber) * rowHeight + self.hashtagsOffset.top)
         }
-        self.isOutofBounds(newPoint,labelFrame: self.tags[index].frame)
+        self.isOutofBounds(newPoint: newPoint,labelFrame: self.tags[index].frame)
         return CGRect(x: newPoint.x, y: newPoint.y, width: self.tags[index].frame.width, height: self.tags[index].frame.height)
     }
     
-    func removeMultipleTagsWithIndices(_ indexSet:Set<Int>)
+    func removeMultipleTagsWithIndices(indexSet:Set<Int>)
     {
         let sortedArray = Array(indexSet).sorted()
         for index in sortedArray
@@ -186,8 +192,7 @@ class TagListView:UIScrollView
             tags[index].removeFromSuperview()
             tags.remove(at: index)
         }
-        layoutTagsFromIndex(sortedArray.first!)
+        layoutTagsFromIndex(index: sortedArray.first!)
     }
     
 }
-

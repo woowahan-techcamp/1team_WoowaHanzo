@@ -34,7 +34,7 @@ class LoginViewController: UIViewController,NVActivityIndicatorViewable {
                 AuthModel.login(email: email, pw: pw, completion: { (success) in
                     if success{
                         
-                        print(User.currentLoginedUserNickName,User.currentLoginedUserRankName)
+                        //print(User.currentLoginedUserNickName,User.currentLoginedUserRankName)
                         //여기에 해당 유저의 정보를 파베에서 불러오도록 하자.
                         self.stopAnimating()
                         self.dismiss(animated: true, completion: nil)
@@ -56,6 +56,7 @@ class LoginViewController: UIViewController,NVActivityIndicatorViewable {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)
     }
+    
     
     @IBAction func loginCancelButtonTouched(_ sender: Any) {
         dismiss(animated: true, completion: nil)

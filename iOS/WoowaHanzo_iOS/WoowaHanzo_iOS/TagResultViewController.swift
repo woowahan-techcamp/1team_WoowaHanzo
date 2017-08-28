@@ -47,7 +47,7 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
     }
     
     func viewload(_ notification: Notification){
-        print("viewload")
+        //print("viewload")
         //print(User.tagUsers.count)
         userListView.removeFromSuperview()
         userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -56,7 +56,6 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
         //print(User.tagUsers.count)
         self.view.addSubview(userListView)
         User.tagUsers = [User]()
-        print("aaaa")
         
     }
     func updateProfileImg(_ notification: Notification){
@@ -116,7 +115,7 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
                         //print(User.users[j].tags)
                         User.tagUsers.append(tagUser)
                         //print(User.tagUsers.count)
-                        print("append", User.users[j].contents)
+                        //print("append", User.users[j].contents)
                     }
                 }
             }
@@ -127,7 +126,7 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
     }
     func tap(_ sender:UIGestureRecognizer){
         let label = (sender.view as! UILabel)
-        print("tap from \(label.text!)")
+        //print("tap from \(label.text!)")
     }
     
 }
