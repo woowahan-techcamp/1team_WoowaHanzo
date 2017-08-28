@@ -59,6 +59,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
   $(".tagger_input").trigger("input");
 
   $(".tagger_input").last().on("keyup keydown", function(evt) {
+    var re = /[~!@\#$%^&*\()\-=+']/gi;  //특수문자 _만 허용
+    var temp=$(this).val();
+
+    if(re.test(temp)){ // 특수문자가 포함되면 삭제
+      $(this).val(temp.replace(re,""));
+    }
+
     $(this).val($(this).val().substr(0, $(this).attr('maxlength')));
     taggerKeyup(evt);
   });
