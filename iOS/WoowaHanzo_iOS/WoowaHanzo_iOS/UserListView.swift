@@ -11,9 +11,6 @@ import UIKit
 import Firebase
 
 class UserListView: UIScrollView {
-    var numberOfRows = 0
-    var currentRow = 0
-    var tags = [UILabel]()
     var containerView:UIView!
     var rowHeight : CGFloat = 100
     var xoffset = 0
@@ -27,7 +24,6 @@ class UserListView: UIScrollView {
         super.init(frame: frame)
         self.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
         
-        numberOfRows = Int(frame.height / rowHeight)
         containerView = UIView(frame: self.frame)
         containerView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
         self.addSubview(containerView)
@@ -35,7 +31,6 @@ class UserListView: UIScrollView {
         self.isScrollEnabled = true
     }
     override func awakeFromNib() {
-        numberOfRows = Int(self.frame.height / rowHeight)
         containerView = UIView(frame: self.frame)
         containerView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
         
@@ -52,7 +47,6 @@ class UserListView: UIScrollView {
     func addUserList(users: [User]?){
         
         if let list = users {
-            print(users)
             if list.count > 0 {
                 for index in 0...list.count-1{
                     self.addUser(user: list[index], index: index)
@@ -63,17 +57,6 @@ class UserListView: UIScrollView {
     }
     
     func addUser(user: User, index: Int){
-        
-        //height를 최종적으로 결정해주어도 괜찮다.
-        
-        //addsubview는 한번만 해주면된다.
-        
-        
-        
-        
-        //image는 어떻게 할지 나중에. ! 미리 다운받아놓을 수 있도록...
-        
-        
         var inypos = 10
         var inxpos = 20
         

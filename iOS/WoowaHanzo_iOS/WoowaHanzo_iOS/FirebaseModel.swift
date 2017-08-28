@@ -163,8 +163,7 @@ class FirebaseModel{
 
     
     //For RankPage////////////////////////////////////
-    func loadUsers(){
-        print("loadUsers called")
+    func loadRanks(){
         var rankUserList = [RankUser]()
         self.ref = Database.database().reference().child("users")
         //나중에 Likes가 확보되면  likes로 바꾸기.
@@ -197,8 +196,7 @@ class FirebaseModel{
     }
     
     //For mainPage///////////////////////////////////
-    func loadUsers2(){
-        print("loadUsers2 called")
+    func loadMainFeed(){
         User.users = [User]()
         self.ref = Database.database().reference().child("posts")
         //나중에 Likes가 확보되면  likes로 바꾸기.
@@ -216,8 +214,7 @@ class FirebaseModel{
     
     
     //For my Page ////////////////////////////////
-    func loadUsers3(username: String){
-        print("loadUser3 called")
+    func loadPersonalFeed(username: String){
         User.myUsers = [User]()
         self.ref = Database.database().reference().child("posts")
         self.ref.queryOrdered(byChild: "author").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { (snapshot) in
