@@ -2,25 +2,28 @@
   /*outline: 1px solid blue;*/
   text-align: center;
   padding: 20px 0;
+  padding-top: 60px;
+  padding-bottom: 40px;
 }
 
 .loading-text {
-  font-family: Jua;
-  font-size: 1.3em;
+  font-family: Jua, Helvetica;
+  font-size: 1.5em;
 }
 
 .spinner {
-  width: 50px;
-  height: 40px;
+  width: 68px;
+  height: 54px;
   text-align: center;
-  font-size: 10px;
+  font-size: 16px;
   margin: 10px auto 0;
 }
 
 .spinner > div {
   background-color: #70b6e5;
   height: 100%;
-  width: 6px;
+  width: 8px;
+
   display: inline-block;
 
   -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
