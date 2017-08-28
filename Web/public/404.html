@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page not found</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="css/fonts.css" type="text/css" />
+    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"  />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/post.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/loading_indicator.css">
+
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAot_xscB-brcQ1A3V3g0Ka-DEhKr_HlP8",
+        authDomain: "woowaproject.firebaseapp.com",
+        databaseURL: "https://woowaproject.firebaseio.com",
+        projectId: "woowaproject",
+        storageBucket: "woowaproject.appspot.com",
+        messagingSenderId: "609034471288"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/exif.js"></script>
+    <script src="js/autogrow.js"></script>
+    <script src="js/autosize.js"></script>
+    <script src="js/utility.js"></script>
+    <script src="js/PageObject.js"></script>
+    <script src="js/main.js" ></script>
+    <script src="js/404.js"></script>
+
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" data-toggle="tab" onclick="document.location.href = 'index.html'">먹소리</a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a data-toggle="tab" id="post">글쓰기</a></li>
+            <li><a data-toggle="tab" id="ranking">랭킹</a></li>
+            <li><a data-toggle="tab" id="tag">태그</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right right_side">
+            <li>
+              <button class="btn btn-success nav_signin_btn navbar-btn">로그인</button>
+            </li>
+            <li>
+              <div class="nav_user_info">
+                <div class="nav_user_img_box"><img class="nav_user_img" style="" src="pictures/profile.png"></div>
+                <div class="nav_username"></div>
+              </div>
+            </li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right right_side_icon">
+            <li>
+              <button class="btn btn-success nav_signin_btn navbar-btn">로그인</button>
+            </li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div class="container_box">
+      <div class="404_text">이 페이지를 표시할 수 없습니다.</div>
+    </div>
+
+  </body>
+</html>
