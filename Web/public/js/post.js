@@ -59,11 +59,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
   $(".tagger_input").trigger("input");
 
   $(".tagger_input").last().on("keyup keydown", function(evt) {
-    var re = /[~!@\#$%^&*\()\-=+']/gi;  //특수문자 _만 허용
-    var temp=$(this).val();
+    var re = /^[ㄱ-ㅎ가-힣a-zA-Z0-9_]+$/;  //특수문자 _만 허용
 
-    if(re.test(temp)){ // 특수문자가 포함되면 삭제
-      $(this).val(temp.replace(re,""));
+    if(!re.test(evt.target.value)) {
+      // $(this).val($(this).val().slice(0, -1));
+      $(this).val($(this).val().replace(/[^ㄱ-ㅎ가-힣a-zA-Z0-9_]/g, ""));
     }
 
     $(this).val($(this).val().substr(0, $(this).attr('maxlength')));
