@@ -22,9 +22,11 @@ class LikeButton: UIButton {
         if let image = self.currentImage, image == #imageLiteral(resourceName: "emptyHeard") {
             self.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
             self.label.text = "\(num + 1)"
+            num = num + 1
         } else {
             self.setImage(#imageLiteral(resourceName: "emptyHeard"), for: .normal)
             self.label.text = "\(num - 1)"
+            num = num - 1
         }
     FirebaseModel().likeRequest(postId: postkey)
         print("\(postkey) - pressed")

@@ -453,6 +453,9 @@ extension ReviewPostPageViewController: UITextViewDelegate{
         if newLength > 500 {
             return false
         }
+        if textView.frame.height > 1000 {
+            return false
+        }
         
         let currentText = textView.text as NSString?
         let updatedText = currentText?.replacingCharacters(in: range, with: text)

@@ -353,6 +353,9 @@ class TagView: UIView, UITextFieldDelegate
         if newString == ""{
             return false
         }
+        if newString.characters.count > 21 {
+            return false
+        }
         if TagFilter().isValid(newString){
             Timer.scheduledTimer( timeInterval: 0.05, target: self, selector: #selector( onTimerTextField ), userInfo: _tagFields[ textField.tag ]!, repeats: false )
            
