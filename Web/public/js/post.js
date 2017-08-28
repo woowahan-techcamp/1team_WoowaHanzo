@@ -37,6 +37,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $(".buttons_holder").css("opacity", 1);
   });
 
+  $("textarea").on("keyup keydown", function(evt) {
+    var textLength = evt.target.value.length;
+    $(".post_count").html(textLength);
+    if(textLength > 500) {
+      $(this).val($(this).val().substr(0, 500));
+    }
+  });
+
   autosize($("textarea"));
 
   $(".textbox").focus();
