@@ -13,11 +13,10 @@ import NVActivityIndicatorView
 class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
     
     var ref: DatabaseReference!
-    
     var tagName:String = " "
     var tagFeedArray = [String]()
     var userListView : UserListView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(getTagFeed(_ :)), name: NSNotification.Name(rawValue: "sendResultViewController"), object: nil)
@@ -31,15 +30,13 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
         self.title = tagName
         self.navigationItem.title = tagName
         userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-
-
+        
+        
     }
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         let size = CGSize(width: 30, height: 30)
         DispatchQueue.main.async {
-            self.startAnimating(size, message: "Loading...", type: .ballTrianglePath)
+            self.startAnimating(size, message: "\(self.tagName)", type: .ballTrianglePath)
             
         }
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
@@ -103,10 +100,10 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
             label?.sizeToFit()
         }
     }
-
     
     
-   
+    
+    
     //MAKR:posts id를 담은 배열(userinfo로 전달해줌.)에서 해당 피드들을 불러와 싱글톤인 User.tagUsers에 저장.
     func getTagFeed(_ notification: Notification){
         User.tagUsers = [User]()
@@ -128,10 +125,8 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagusersdone"), object: self)
             
         }
-        
     }
-    func tap(_ sender:UIGestureRecognizer)
-    {
+    func tap(_ sender:UIGestureRecognizer){
         let label = (sender.view as! UILabel)
         print("tap from \(label.text!)")
     }
