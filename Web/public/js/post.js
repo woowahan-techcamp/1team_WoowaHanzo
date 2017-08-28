@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         curObject.uid = user.uid;
       	curObject.queryClass = "profilePic";
       	loadUserProfile.bind(curObject, user.uid)();
-
       });
     }
   });
@@ -44,18 +43,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   $(".tags_holder").append('<span class="tagger tag_holder">' +
                 '<span class="starting_sharp">#</span>' +
-                '<input type="text" class="tagger_input" placeholder="" spellcheck="false" />' +
+                '<input type="text" class="tagger_input" placeholder="" spellcheck="false" maxlength="20"/>' +
               '</span>');
 
   $(".tagger_input").val("태그");
   $(".tagger_input").autoGrowInput({minWidth:1,comfortZone:3});
   $(".tagger_input").trigger("input");
-  $(".tagger_input").last().on("keyup", function(evt) {
-    taggerKeyup(evt);
-  });
 
-  $(".tagger_input").last().on("keydown", function(evt) {
-    taggerKeyDown(evt);
+  $(".tagger_input").last().on("keyup keydown", function(evt) {
+    $(this).val($(this).val().substr(0, $(this).attr('maxlength')));
+    taggerKeyup(evt);
   });
 
   $(".tagger_input").last().on("focus", function(evt){
@@ -86,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $(imageInput).click();
   });
 
-});
+});// end event: DOMContentLoaded
 
 var keyCodes = [13, 32];
 
@@ -108,8 +105,6 @@ function taggerKeyup(evt) {
     }
   }
 
-
-
   if(buffer.length == 0) {
     $curElem.last().val(buffer);
   }
@@ -124,7 +119,7 @@ function taggerKeyup(evt) {
       //$(".tagger_input").last().prop("readonly", true);
       $(".tags_holder").append('<span class="tagger tag_holder">' +
                     '<span class="starting_sharp">#</span>' +
-                    '<input type="text" class="tagger_input" placeholder="" spellcheck="false" />' +
+                    '<input type="text" class="tagger_input" placeholder="" spellcheck="false" maxlength="20"/>' +
                   '</span>');
       $(".tagger_input").last().autoGrowInput({minWidth:1,comfortZone:3});
       $(".tagger_input").last().trigger("update");
