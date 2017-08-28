@@ -62,6 +62,16 @@ div.post {
   display: block;
 }
 
+.post .textbox {
+  margin-top: 0;
+}
+
+.post_count_box {
+  float: right;
+  font-size: 12px;
+  color: #777;
+}
+
 .post .tagger {
   line-height: normal;
 }
