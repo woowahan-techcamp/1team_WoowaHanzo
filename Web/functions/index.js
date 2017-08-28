@@ -186,5 +186,36 @@ exports.handleLikeRequest = functions.database.ref("/likeRequest/{likeId}")
       });
     });
 
+  });
 
+exports.handleDeleteRequest = functions.database.ref("/deleteRequest/{deleteId}")
+  .onCreate(event => {
+    var key = event.data.key;
+    var promises = [];
+    return admin.database().ref("/posts").orderByChild("time").once("value").then(snapshots => {
+      var curPost;
+      snapshots.forEach(function(child) {
+        if(child.key == key) {
+          curPost = child;
+        }
+      });
+      var tags = curPost.val().tags;
+      var tagsFound = {};
+      for(var i = 0; i < tags.length; ++i) {
+        tagsFound[tags[i]] = false;
+      }
+      snapshots.forEach(function(child) {
+        if(child.key == key) {
+          continue;
+        } else {
+          for(var i = 0; i < tags.length; ++i) {
+            if(child.val().tags.indexOf(tags[i]) >= 0) {
+              tagsFound[tags[i]] = true;
+            }
+          }
+        }
+      });
+      
+
+    });
   });

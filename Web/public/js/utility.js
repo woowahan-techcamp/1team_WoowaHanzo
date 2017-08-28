@@ -343,7 +343,16 @@ function removeLikeButtonToggle(like_button) {
 	$(like_button).off("mouseout");
 }
 
-
+function getLikeButtonNumber($like_number) {
+	var text = $like_number.html().trim();
+	var count = 0;
+	if(text == "") {
+		count = 0;
+	} else {
+		count = parseInt(text.substring(0, text.length - 1));
+	}
+	return count;
+}
 
 // if true landscape non jquery
 function imageDimensions(img) {
@@ -483,6 +492,9 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 	curObject.queryClass = "profilePic";
 	loadUserProfile.bind(curObject, buffer.uid)();
 
+
+	// preprocess likeRequestStack to handle stacks of requests
+	pageObject.likeRequestStack[snapshot.key] = [];
 	// add functionality to like button
 	var like_button = curPost.querySelector(".like_btn");
 	$(like_button).on("mousedown tap", function(event) {
@@ -495,6 +507,29 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 			bufferObject.requestKey = requestKey;
 			bufferObject.target = event.target;
 			var update = {};
+
+			var curCount = getLikeButtonNumber($(event.target).parent().children(".like_number"));
+			// empty heart
+			if(!$(event.target).hasClass("clicked")) {
+				// increase count
+				console.log(event.target.classList);
+				$(event.target).parent().children(".like_btn").addClass("clicked");
+				$(event.target).parent().children(".like_btn").addClass("fa-heart");
+				$(event.target).parent().children(".like_btn").removeClass("fa-heart-o");
+				removeLikeButtonToggle(event.target);
+				$(event.target).parent().children(".like_number").html((curCount + 1) + "명");
+			} else {
+				// decrease count
+				$(event.target).parent().children(".like_btn").removeClass("clicked");
+				$(event.target).parent().children(".like_btn").removeClass("fa-heart");
+				$(event.target).parent().children(".like_btn").addClass("fa-heart-o");
+				addLikeButtonToggle(event.target);
+				if(curCount - 1 == 0) {
+					$(event.target).parent().children(".like_number").html("");
+				} else {
+					$(event.target).parent().children(".like_number").html((curCount - 1) + "명");
+				}
+			}
 			update["/likeRequest/" + requestKey + "/postId"] = getIdFromPostId(id);
 			update["/likeRequest/" + requestKey + "/uid"] = firebase.auth().currentUser.uid;
 			update["/likeRequest/" + requestKey + "/result/count"] = 0;
@@ -503,22 +538,21 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 				firebase.database().ref("/likeRequest/" + this.requestKey + "/result").on("value", function(snapshot) {
 					if(!snapshot.val()) return;
 					if(snapshot.val().state == "default") return;
-					console.log(snapshot.val());
 					if(snapshot.val().count > 0) {
 						$(this.target).parent().children(".like_number").html(snapshot.val().count + "명");
 					} else {
 						$(this.target).parent().children(".like_number").html("");
 					}
 
-					if(snapshot.val().state == "true") {
-						$(this.target).parent().children(".like_btn").addClass("fa-heart");
-						$(this.target).parent().children(".like_btn").removeClass("fa-heart-o");
-						removeLikeButtonToggle(this.target);
-					} else {
-						$(this.target).parent().children(".like_btn").removeClass("fa-heart");
-						$(this.target).parent().children(".like_btn").addClass("fa-heart-o");
-						addLikeButtonToggle(this.target);
-					}
+					// if(snapshot.val().state == "true") {
+					// 	$(this.target).parent().children(".like_btn").addClass("fa-heart");
+					// 	$(this.target).parent().children(".like_btn").removeClass("fa-heart-o");
+					// 	removeLikeButtonToggle(this.target);
+					// } else {
+					// 	$(this.target).parent().children(".like_btn").removeClass("fa-heart");
+					// 	$(this.target).parent().children(".like_btn").addClass("fa-heart-o");
+					// 	addLikeButtonToggle(this.target);
+					// }
 					firebase.database().ref("/likeRequest/" + this.requestKey).off("value");
 					firebase.database().ref("/likeRequest/" + this.requestKey).remove();
 				}.bind(this));
@@ -533,8 +567,11 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 	if(firebase.auth().currentUser) {
 		if(likeObject.val() && likeObject.val().userList.indexOf(firebase.auth().currentUser.uid) >= 0) {
 			like_button.classList.add("fa-heart");
+			like_button.classList.add("clicked");
 			like_button.classList.remove("fa-heart-o");
 			removeLikeButtonToggle(like_button);
+		} else {
+			addLikeButtonToggle(like_button);
 		}
 	}
 
@@ -607,10 +644,8 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 
 	addTagListeners(curPost);
 	addUserListener(curPost);
-	addLikeButtonToggle(like_button);
 
-
-}
+} // end of loadActualPost
 
 function loadPosts(snapshot, fromScrollTop) {
 	firebase.database().ref("/postLikes/" + snapshot.key).once("value").then((likeObject) => {

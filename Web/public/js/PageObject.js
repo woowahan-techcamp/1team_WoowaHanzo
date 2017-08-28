@@ -13,6 +13,7 @@ class PageObject {
 
     this.initialPostLoads = 8;
 
+    this.likeRequestStack = {};
     this.frontLoadStack = [];
     this.bottomLoadStack = [];
     this.bottomSeen = false;
