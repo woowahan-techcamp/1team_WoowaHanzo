@@ -26,6 +26,7 @@ class AuthModel{
             if user != nil{
                 DispatchQueue.global().sync {
                     FirebaseModel().loadUserInfo()
+                    FirebaseModel().loadProfileImageFromUsers()
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadUserInfo"), object: self)
                 completion(true)

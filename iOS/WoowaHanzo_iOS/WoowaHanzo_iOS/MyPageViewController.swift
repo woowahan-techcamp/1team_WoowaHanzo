@@ -80,12 +80,13 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
             sayhiLabel.sizeToFit()
             sayhiLabel.frame.origin.x = self.view.frame.width / 2 - sayhiLabel.frame.width / 2
 
-        
-            print("\(User.myUsers.count)개의 피드 데이터가 존재합니다.")
-            myListView.addUserList(users: User.myUsers)
-            postnumLabel.text = "게시물 \(User.myUsers.count)"
-            postnumLabel.sizeToFit()
-            postnumLabel.frame.origin.x = self.view.frame.width / 2 - postnumLabel.frame.width / 2
+            if AuthModel.isLoginStatus(), User.myUsers.count > 0 {
+                print("\(User.myUsers.count)개의 피드 데이터가 존재합니다.")
+                myListView.addUserList(users: User.myUsers)
+                postnumLabel.text = "게시물 \(User.myUsers.count)"
+                postnumLabel.sizeToFit()
+                postnumLabel.frame.origin.x = self.view.frame.width / 2 - postnumLabel.frame.width / 2
+            }
             
         }
         
@@ -99,13 +100,13 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
         }
         
         func loadPorfileImage(_ notification : Notification){
-            self.myProfileImageView.image = User.imageview.image
-//            let profileImageUrl = notification.userInfo?["profileImageUrl"] as! String
-//            Storage.storage().reference(withPath: "profileImages/" + profileImageUrl).downloadURL { (url, error) in
-//                self.myProfileImageView?.kf.setImage(with: url)
-//                //self.myProfileImageView.image = User.currentLoginedProfileImage
-//                //completion handler 등으로 user에 저장해놓기
-//            }
+           // self.myProfileImageView.image = User.imageview.image
+            let profileImageUrl = notification.userInfo?["profileImageUrl"] as! String
+            Storage.storage().reference(withPath: "profileImages/" + profileImageUrl).downloadURL { (url, error) in
+                self.myProfileImageView?.kf.setImage(with: url)
+                //self.myProfileImageView.image = User.currentLoginedProfileImage
+                //completion handler 등으로 user에 저장해놓기
+            }
         }
 
     
@@ -116,8 +117,6 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
             
             if !AuthModel.isLoginStatus(){
                 
-                
-                //
                 let alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
                 let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
                     self.tabBarController?.selectedIndex = 0
@@ -246,9 +245,6 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
         User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
     }
     
-        
-        
-        
 }
 
 

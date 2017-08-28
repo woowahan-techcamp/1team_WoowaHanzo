@@ -20,6 +20,7 @@ self.navigationController?.navigationBar.tintColor = UIColor(red: 42/255, green:
     @IBAction func logoutButtonTouched(_ sender: Any) {
         let firebaseAuth = Auth.auth()
         do {
+            User.myUsers = Array<User>()
             try firebaseAuth.signOut()
             let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")

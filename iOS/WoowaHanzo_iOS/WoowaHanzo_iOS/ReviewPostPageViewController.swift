@@ -49,7 +49,7 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         if !AuthModel.isLoginStatus(){
             //로그인이 되어있지 않은 상태
             let alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
@@ -73,6 +73,9 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
         }
         else{
             //로그인이 되었다면? 내 마이페이지를 보여줘야함. - did
+            FirebaseModel().loadProfileImageFromUsers()
+            FirebaseModel().loadUserInfo()
+            loadUserInformation()
             
             if shouldloadview{
                 //여기에 프로필 이미지
@@ -81,7 +84,7 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
                 print("응앙ㅇ\(User.currentLoginedUserNickName,User.currentLoginedUserTitle)")
                 
                 print(User.currentLoginedUserNickName,User.currentLoginedUserTitle)
-                userTearLabel.text = User.currentLoginedUserTitle
+                userTearLabel.text = User.currentLoginedUserRankName
                 shouldloadview = false
                 myCollectionView.dataSource = self
                 myCollectionView.delegate = self
@@ -166,11 +169,13 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
         }
     }
     func loadUserInformation(){
+        print("loadUserInformation")
         self.userNickNameLabel.text = User.currentLoginedUserNickName
         self.userTearLabel.text = User.currentLoginedUserRankName
     }
     
     override func viewWillAppear(_ animated: Bool) {
+
         if !AuthModel.isLoginStatus(){
             
             let alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
@@ -194,12 +199,17 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
         else{
             //로그인이 되었다면? 내 마이페이지를 보여줘야함.
             
+            FirebaseModel().loadProfileImageFromUsers()
+            FirebaseModel().loadUserInfo()
+            loadUserInformation()
+            print(User.currentLoginedUserNickName, User.currentLoginedUserRankName,1234)
+            
             if shouldloadview{
                 FirebaseModel().loadProfileImageFromUsers()
                 FirebaseModel().loadUserInfo()
                 print("응앙ㅇ\(User.currentLoginedUserNickName,User.currentLoginedUserTitle)")
                 
-                userTearLabel.text = User.currentLoginedUserTitle
+                userTearLabel.text = User.currentLoginedUserRankName
                 shouldloadview = false
                 myCollectionView.dataSource = self
                 myCollectionView.delegate = self
@@ -213,7 +223,7 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
                 //userProfileImage.image = UIImage(named: "profile.png")
                 //userTearLabel.text = "치킨왕자"
                 userNickNameLabel.text = User.currentLoginedUserNickName
-                
+                print(User.currentLoginedUserNickName, User.currentLoginedUserTitle,1234)
                 myTagView.removeFromSuperview()
                 myTagView = TagView( position: CGPoint( x: 0, y: 380 ), size: CGSize( width: 320, height: 50 ) )
                 myTextView.delegate = self as UITextViewDelegate
@@ -289,8 +299,6 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
                 //keyboardSize.height
                 keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView._scrollView.contentSize.height - 200 - keyboardSize.height), (CGFloat)(0))
                 self.myContentView.frame.origin.y += keyboardmove
-                
-                
             }
         }
         else{

@@ -55,6 +55,8 @@ class RegisterViewController: UIViewController,NVActivityIndicatorViewable {
     
     @IBAction func registerButtonTouched(_ sender: Any) {
         
+        
+        self.view.endEditing(true)
         let size = CGSize(width: 30, height: 30)
         
         self.startAnimating(size, message: "먹소리의 회원이 되는 중...", type: .ballTrianglePath)

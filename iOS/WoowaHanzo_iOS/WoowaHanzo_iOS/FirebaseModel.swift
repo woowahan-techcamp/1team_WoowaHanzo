@@ -263,12 +263,13 @@ class FirebaseModel{
     func loadUserInfo()
     {
         if AuthModel.isLoginStatus(){
+           
+            print("loadUserInfo")
             self.ref = Database.database().reference()
             let userID = Auth.auth().currentUser?.uid
             ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
                 // Get user value
                 let value = snapshot.value as? NSDictionary
-                
                 User.currentLoginedUserNickName = value?["username"] as! String
                 User.currentLoginedUserRankName = value?["rankName"] as! String
                 User.currentLoginedUserLikes = value?["likes"] as! Int

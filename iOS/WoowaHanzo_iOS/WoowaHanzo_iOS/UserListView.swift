@@ -126,19 +126,22 @@ class UserListView: UIScrollView {
         
         //tagListview//////////////////////////////////////
         let tagListView = TagPageView2(frame: CGRect(x: inxpos - 10, y: inypos, width: Int(cellview.frame.width), height: 70)) // taglistview2 파일에 있다.
-        for i in user.tags!{
-            tagListView.addTag(text: "#"+i, target: self, backgroundColor: UIColor.white, textColor: color)
+        if let tags = user.tags{
+            for i in tags{
+                tagListView.addTag(text: "#"+i, target: self, backgroundColor: UIColor.white, textColor: color)
+            }
+            if tags.count > 0 {
+                tagListView.frame.size.height = max(tagListView.contentSize.height, 40)
+            }
+            else{
+                tagListView.frame.size.height = 0
+            }
+            cellview.addSubview(tagListView)
+            lastview = tagListView
+            inypos = inypos + Int(lastview.frame.size.height) + 0
+            
+            
         }
-        if user.tags!.count > 0 {
-            tagListView.frame.size.height = max(tagListView.contentSize.height, 40)
-        }
-        else{
-            tagListView.frame.size.height = 0
-        }
-        cellview.addSubview(tagListView)
-        lastview = tagListView
-        inypos = inypos + Int(lastview.frame.size.height) + 0
-        
         
         //scrollview///////////////////////////////////////
         let scrollview = UIScrollView()
@@ -148,6 +151,7 @@ class UserListView: UIScrollView {
         let scrollcontainerView = UIView(frame: scrollview.frame)
         scrollview.addSubview(scrollcontainerView)
         if let usersImageArray = user.imageArray{
+            print(user.imageArray)
             if user.imageArray! != [] {
                 if user.imageArray!.count > 0 {
                     for index in 0...user.imageArray!.count - 1{
@@ -189,12 +193,12 @@ class UserListView: UIScrollView {
             //likenumlabel and likebutton ////////////////////////////////////////////////////
             let likenumLabel = UILabel()
             let likebutton = LikeButton()
-
+            
             likenumLabel.text = ""
             likenumLabel.font = UIFont(name:"NotoSansUI", size: 14.0)
             likenumLabel.frame.origin = CGPoint(x: 53, y:inypos + 4)
             cellview.addSubview(likenumLabel)
-
+            
             FirebaseModel().setNum(postkey:user.key, label: likenumLabel, button: likebutton)
             
             //likebutton///////////////////////////////////////////////////////
@@ -222,7 +226,7 @@ class UserListView: UIScrollView {
             ypos = ypos + Int(cellview.frame.size.height) + 7 // 다음 cellview의 위치를 지정해준다.
             self.contentSize = CGSize(width: Int(self.frame.width), height: max(yoffset + ypos - 35, Int(self.frame.height + 1)))
         }
-
+        
     }
     
     func handleTap(sender: UITapGestureRecognizer) {
