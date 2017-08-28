@@ -82,6 +82,7 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
 
         
             print("\(User.myUsers.count)개의 피드 데이터가 존재합니다.")
+            print(User.myUsers.count)
             myListView.addUserList(users: User.myUsers)
             postnumLabel.text = "게시물 \(User.myUsers.count)"
             postnumLabel.sizeToFit()
