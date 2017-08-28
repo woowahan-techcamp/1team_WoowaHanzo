@@ -118,16 +118,11 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
                 
                 
                 //
-                var alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
-                var cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
-                    //                let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
-                    //                let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
-                    //                self.present(controller, animated: false, completion: nil)
-                    //self.navigationController?.pushViewController(controller, animated: true)
-                    //self.show(controller, sender: self)
+                let alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
+                let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
                     self.tabBarController?.selectedIndex = 0
                 })
-                var ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
+                let ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
                     let storyboard = UIStoryboard(name: "Auth", bundle: nil)
                     let controller = storyboard.instantiateViewController(withIdentifier: "loginNavigation")
                     self.show(controller, sender: self)
@@ -219,6 +214,8 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
                 ranknamelabel?.sizeToFit()
             }
         }
+    
+    
     func updateLikeButton(_ notification: Notification){
         let check = notification.userInfo?["doeslike"] as? Bool ?? false
         let button  = notification.userInfo?["button"] as? LikeButton ?? nil
@@ -247,13 +244,6 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
 
     func nickNameLabelTouchedOnMainpage(_ notification:Notification){
         User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
-        
-//        print("nickNameLabelTouched")
-//        
-//        let storyboard = UIStoryboard(name: "NickNameClickResult", bundle: nil)
-//        let controller = storyboard.instantiateViewController(withIdentifier: "NickNameClickResultViewController")
-//        FirebaseModel().ReturnNickNameClickResult()
-//        self.show(controller, sender: self)
     }
     
         

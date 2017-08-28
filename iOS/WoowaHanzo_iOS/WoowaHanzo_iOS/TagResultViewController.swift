@@ -47,13 +47,11 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
     }
     
     func viewload(_ notification: Notification){
-        //print("viewload")
-        //print(User.tagUsers.count)
+       
         userListView.removeFromSuperview()
         userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         print(User.tagUsers.count)
         userListView.addUserList(users: User.tagUsers)
-        //print(User.tagUsers.count)
         self.view.addSubview(userListView)
         User.tagUsers = [User]()
         
@@ -112,10 +110,9 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
                 for j in 0..<User.users.count{
                     if User.users[j].key == tagFeedArray[i]{
                         let tagUser = User(key: tagFeedArray[i], nickName: User.users[j].nickName, contents: User.users[j].contents, tags: User.users[j].tags, imageArray: User.users[j].imageArray, postDate: User.users[j].postDate,uid:User.users[j].uid)
-                        //print(User.users[j].tags)
+                        
                         User.tagUsers.append(tagUser)
-                        //print(User.tagUsers.count)
-                        //print("append", User.users[j].contents)
+                        
                     }
                 }
             }

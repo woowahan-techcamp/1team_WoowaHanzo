@@ -224,6 +224,7 @@ class UserListView: UIScrollView {
         }
 
     }
+    
     func handleTap(sender: UITapGestureRecognizer) {
         if let a = (sender.view as? UILabel)?.text {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showTagResultPageFromMain"), object: self,userInfo:["tagName":a])

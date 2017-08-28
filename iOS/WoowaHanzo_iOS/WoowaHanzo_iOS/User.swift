@@ -9,6 +9,8 @@
 import Foundation
 import Firebase
 
+
+//Feed
 class User {
     
     static var users = Array<User>()

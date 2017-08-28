@@ -60,9 +60,7 @@ class TagPageView2: UIScrollView
         label.textColor = UIColor.black
         label.sizeToFit()
         label.textAlignment = NSTextAlignment.center
-        //label.layer.cornerRadius = 10
-        //label.layer.borderColor = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0).cgColor
-        //label.layer.borderWidth = 1.5
+        
         let tapGesture = UITapGestureRecognizer(target: target, action: #selector(UserListView.handleTap))
         label.addGestureRecognizer(tapGesture)
         label.isUserInteractionEnabled = true

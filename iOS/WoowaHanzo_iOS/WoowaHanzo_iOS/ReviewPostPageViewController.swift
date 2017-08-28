@@ -109,20 +109,11 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
                 
                 
                 
-                //view border setting
-                //myView.layer.borderColor = UIColor.gray.cgColor
-                //myView.layer.borderWidth = 0.5
-                //myView.layer.cornerRadius = 10.0
-                //textview border setting
-                //myTextView.layer.borderColor = UIColor(red: CGFloat(112.0/255.0), green: CGFloat(182.0/255.0), blue: CGFloat(229.0/255.0), alpha: CGFloat(1.0)).cgColor
+                
                 myTextView.layer.borderColor = UIColor.lightGray.cgColor
                 myTextView.layer.borderWidth = 0.5
                 myTextView.layer.cornerRadius = 3.0
-                //textview line spacing
-                //let style = NSMutableParagraphStyle()
-                //style.lineSpacing = 50
-                //let attributes = [NSParagraphStyleAttributeName : style]
-                //myTextView.attributedText = NSAttributedString(string: myTextView.text, attributes: attributes)
+                
                 //setting placeholder
                 myTextView.text = placeholder
                 myTextView.textColor = UIColor.lightGray
@@ -193,8 +184,7 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
             var ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
                 let storyboard = UIStoryboard(name: "Auth", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "loginNavigation")
-                //self.present(controller, animated: true, completion: nil)
-                //self.navigationController?.pushViewController(controller, animated: true)
+                
                 self.show(controller, sender: self)
             })
             alert.addAction(cancel)
@@ -208,7 +198,7 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
                 FirebaseModel().loadProfileImageFromUsers()
                 FirebaseModel().loadUserInfo()
                 print("응앙ㅇ\(User.currentLoginedUserNickName,User.currentLoginedUserTitle)")
-               
+                
                 userTearLabel.text = User.currentLoginedUserTitle
                 shouldloadview = false
                 myCollectionView.dataSource = self
@@ -233,21 +223,10 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
                 NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillShow), name: NSNotification.Name(rawValue: "keyboard"), object: nil)
                 NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.fitView), name: NSNotification.Name(rawValue: "fitview"), object: nil)
                 
-                //view border setting
-                //myView.layer.borderColor = UIColor.gray.cgColor
-                //myView.layer.borderWidth = 0.5
-                //myView.layer.cornerRadius = 10.0
-                //textview border setting
-                //myTextView.layer.borderColor = UIColor(red: CGFloat(112.0/255.0), green: CGFloat(182.0/255.0), blue: CGFloat(229.0/255.0), alpha: CGFloat(1.0)).cgColor
                 myTextView.layer.borderColor = UIColor.lightGray.cgColor
                 myTextView.layer.borderWidth = 0.5
                 myTextView.layer.cornerRadius = 3.0
-                //textview line spacing
-                //let style = NSMutableParagraphStyle()
-                //style.lineSpacing = 50
-                //let attributes = [NSParagraphStyleAttributeName : style]
-                //myTextView.attributedText = NSAttributedString(string: myTextView.text, attributes: attributes)
-                //setting placeholder
+                
                 myTextView.text = placeholder
                 myTextView.textColor = UIColor.lightGray
                 
@@ -309,15 +288,13 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
             if self.view.frame.origin.y == 0{
                 //keyboardSize.height
                 keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView._scrollView.contentSize.height - 200 - keyboardSize.height), (CGFloat)(0))
-                //self.view.frame.origin.y += keyboardmove
                 self.myContentView.frame.origin.y += keyboardmove
-                //self.myContentView.frame.origin.y += keyboardmove
+                
                 
             }
         }
         else{
-            //self.view.frame.origin.y -= keyboardmove
-            //self.myContentView.frame.origin.y -= keyboardmove
+            
             self.myContentView.frame.origin.y -= keyboardmove
             
             keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView._scrollView.contentSize.height - 200 - savedkeyboardSize.height), (CGFloat)(0))
@@ -331,13 +308,11 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
     
     func keyboardWillHide(notification: NSNotification) {
         if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
-            //if self.view.frame.origin.y != 0{
-            //self.view.frame.origin.y -= keyboardmove
+            
             self.myContentView.frame.origin.y -= keyboardmove
             self.myContentView.frame.origin.y = 0
-            //self.myContentView.frame.origin.y -= keyboardmove
             
-            //}
+            
         }
     }
     func fitView(){
@@ -370,8 +345,6 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
         frame5.size.height = myCollectionView.frame.origin.y + myCollectionView.frame.height + 200
         myView.frame = frame5
         
-        //considering imageview height
-        //myButton.frame.origin.y = myView.frame.origin.y + myView.frame.height + 17
         print("myViewincreased: \(myView.frame.size.height)")
         //왜 바뀐대로 적용안되는지 모르겠다.
         
@@ -380,17 +353,12 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
         self.myScrollView.contentSize = contentSize2
         self.myContentView.frame.size.height = myView.frame.size.height + 80
         
-        //let contentSize2 = self.myView.sizeThatFits(self.myView.bounds.size)
-        //var frame3 = self.myView.frame
-        //frame3.size.height = contentSize2.height
-        //myView.frame = frame3
-        //myScrollView.contentSize = CGSize(width: Int(self.view.frame.width), height: Int(contentSize2.height))
+        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "keyboard"), object: nil)
         
     }
-    //Calls this function when the tap is recognized.
     func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+     
         view.endEditing(true)
     }
     
@@ -407,16 +375,13 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let postDate = formatter.string(from: Date())
-        //if user insert same text as placeholder, it will not send post.
-        //지금은 그냥 놔두지만 나중에 user가 placeholder와 똑같은 글을 쓸때도 send가되게 바꿔야 함.
         
         //글자가 회색이면 안보내게 하자.
         if myTextView.textColor != UIColor.lightGray{
-            //DispatchQueue.global().sync{
+            
             if let user = Auth.auth().currentUser{
                 FirebaseModel().postReview(review: myTextView.text, userID: User.currentLoginedUserNickName, tagArray: myTagView.getTags(withPrefix: false), timestamp: Int(-1000 * Date().timeIntervalSince1970),images:self.imageNameArray, uid: user.uid)
                 FirebaseModel().postImages(assets: self.imageAssets, names: self.imageNameArray)
-                //print(myTagView.getTags(withPrefix: true))
                 print(self.imageNameArray)
                 print("sent post")
                 
@@ -437,14 +402,8 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
                     
                 }
                 
-//                let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
-//                let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
-//                self.present(controller, animated: false, completion: nil)
-        }
-            //self.tabBarController?.selectedIndex = 0
-            
-            //다른 탭 누르면: 나가시겠습니까 알러트.
-            
+                
+            }
             
         }
         else{
@@ -463,8 +422,7 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
         }, cancel: { (assets: [PHAsset]) -> Void in
             print("Cancel")
         }, finish: { (assets: [PHAsset]) -> Void in
-            //self.imageAssets = assets
-            //FirebaseModel().postImages(assets: assets)
+            
             self.shouldloadview = false
             for asset in assets{
                 let name = asset.value(forKey:"filename") as! String
@@ -483,24 +441,7 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
             }
         }, completion: nil)
     }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+  
 }
 /////////////////////textview_delegate/////////////////////////
 extension ReviewPostPageViewController: UITextViewDelegate{
@@ -515,9 +456,7 @@ extension ReviewPostPageViewController: UITextViewDelegate{
         
         let currentText = textView.text as NSString?
         let updatedText = currentText?.replacingCharacters(in: range, with: text)
-        
-        // If updated text view will be empty, add the placeholder
-        // and set the cursor to the beginning of the text view
+      
         if updatedText!.isEmpty {
             
             textView.text = placeholder
@@ -527,10 +466,7 @@ extension ReviewPostPageViewController: UITextViewDelegate{
             
             return false
         }
-            // Else if the text view's placeholder is showing and the
-            // length of the replacement string is greater than 0, clear
-            // the text view and set its color to black to prepare for
-            // the user's entry
+            
         else if textView.textColor == UIColor.lightGray && !text.isEmpty {
             textView.text = nil
             textView.textColor = UIColor.black

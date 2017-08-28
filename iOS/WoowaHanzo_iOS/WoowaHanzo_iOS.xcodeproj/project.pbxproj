@@ -237,6 +237,7 @@
 				9843974E1F38357300743B63 /* TagPage */,
 				9854BF8A1F34022D008FA337 /* ReviewPostPage */,
 				9854BF8D1F340454008FA337 /* RankPage */,
+				98DE5BDF1F53D8B200278ECC /* resources */,
 				9854BF901F3404A3008FA337 /* MyPage */,
 				9854BF581F331203008FA337 /* AppDelegate.swift */,
 				9854BF611F331203008FA337 /* LaunchScreen.storyboard */,
@@ -244,13 +245,6 @@
 				9854BF641F331203008FA337 /* Info.plist */,
 				984397A11F3C34B800743B63 /* StringExtension.swift */,
 				98ECA4371F4557990069DA87 /* icon.xcassets */,
-				98ECA3AA1F3D87530069DA87 /* baemin.png */,
-				98FB4A271F4C174400BDE5B2 /* icons8-Message-50.png */,
-				98FB4A2B1F4C179900BDE5B2 /* icons8-Email-64.png */,
-				98FB4A2D1F4C184300BDE5B2 /* icons8-Edit Property-64.png */,
-				98FB4A231F4C16D800BDE5B2 /* icons8-Lock-50.png */,
-				98FB4A291F4C177000BDE5B2 /* icons8-Message-64.png */,
-				98FB4A251F4C16DD00BDE5B2 /* icons8-User-50.png */,
 			);
 			path = WoowaHanzo_iOS;
 			sourceTree = "<group>";
@@ -298,7 +292,6 @@
 		9854BF8A1F34022D008FA337 /* ReviewPostPage */ = {
 			isa = PBXGroup;
 			children = (
-				984397511F38389100743B63 /* profile.png */,
 				9854BFA71F340ADE008FA337 /* ReivewPostPage.storyboard */,
 				9854BF971F3407CF008FA337 /* ReviewPostPageViewController.swift */,
 				984397631F3ACD3200743B63 /* TagFilter.swift */,
@@ -368,6 +361,21 @@
 				98C563CE1F39C3840017E68A /* RegisterViewController.swift */,
 			);
 			name = LoginPage;
+			sourceTree = "<group>";
+		};
+		98DE5BDF1F53D8B200278ECC /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				984397511F38389100743B63 /* profile.png */,
+				98ECA3AA1F3D87530069DA87 /* baemin.png */,
+				98FB4A271F4C174400BDE5B2 /* icons8-Message-50.png */,
+				98FB4A2B1F4C179900BDE5B2 /* icons8-Email-64.png */,
+				98FB4A2D1F4C184300BDE5B2 /* icons8-Edit Property-64.png */,
+				98FB4A231F4C16D800BDE5B2 /* icons8-Lock-50.png */,
+				98FB4A291F4C177000BDE5B2 /* icons8-Message-64.png */,
+				98FB4A251F4C16DD00BDE5B2 /* icons8-User-50.png */,
+			);
+			name = resources;
 			sourceTree = "<group>";
 		};
 		E800EC62239692DC5E6FD99A /* Frameworks */ = {

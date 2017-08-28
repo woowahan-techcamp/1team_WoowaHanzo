@@ -153,18 +153,7 @@ class RankListView: UIScrollView {
         label.isUserInteractionEnabled = true
         self.tags.append(label)
         
-        //calculate frame
-//        label.frame = CGRect(x: label.frame.origin.x, y: label.frame.origin.y , width: label.frame.width + tagCombinedMargin, height: rowHeight - tagVerticalPadding)
-//        if self.tags.count == 0
-//        {
-//            label.frame = CGRect(x: hashtagsOffset.left, y: hashtagsOffset.top, width: label.frame.width, height: label.frame.height)
-//            self.addSubview(label)
-//        }
-//        else
-//        {
-//            label.frame = self.generateFrameAtIndex(index: tags.count-1, rowNumber: &currentRow)
-//            self.addSubview(label)
-//        }
+
     }
 
     

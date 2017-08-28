@@ -9,6 +9,7 @@
 import UIKit
 
 class LikeButton: UIButton {
+    
     var postkey : String = ""
     var label : UILabel = UILabel()
     var num : Int = 0

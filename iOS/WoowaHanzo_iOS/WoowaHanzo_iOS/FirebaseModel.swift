@@ -105,33 +105,7 @@ class FirebaseModel{
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResultToMain"), object: self, userInfo: ["key":key])
         
     }
-    
-    func loadFeed(){
-        
-        self.ref = Database.database().reference().child("posts")
-        
-        self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let result = snapshot.children.allObjects as? [DataSnapshot]{
-                User.users = [User]()
-                for child in result {
-                    //print(child)
-                    var userKey = child.key as! String
-                    //print(child.childSnapshot(forPath: "author").value!)
-                    let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil, postDate : child.childSnapshot(forPath: "time").value as! Int, uid: child.childSnapshot(forPath: "uid").value as! String)
-                    User.users.append(user)
-                    
-                    
-                    
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
-                }
-                
-                
-                
-            }
-        })
-        
-        
-    }
+
     func ReturnNickNameClickResult(){
         
         self.ref = Database.database().reference().child("posts")
@@ -182,6 +156,8 @@ class FirebaseModel{
         //rankUserList를 Rankviewcontroller로 보내준다.
         //사진은 어떻게 할지는 있다가.
     }
+    
+    
     //For mainPage/////////////////////////////////////
     func loadProfileimg(uid: String, imgview: UIImageView, ranklabel: UILabel){
         print("loadProfileimg called")
@@ -199,12 +175,10 @@ class FirebaseModel{
     func loadMainFeed(){
         User.users = [User]()
         self.ref = Database.database().reference().child("posts")
-        //나중에 Likes가 확보되면  likes로 바꾸기.
         self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
                 for child in result {
                     let user = User(snapshot: child)
-                    
                     User.users.append(user)
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "users2"), object: self)
@@ -219,13 +193,9 @@ class FirebaseModel{
         self.ref = Database.database().reference().child("posts")
         self.ref.queryOrdered(byChild: "author").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
-                //print(1231231231239999)
-                //print(result, "result")
                 let sort = result.sorted(by:{ $1.childSnapshot(forPath: "time").value as! Int > $0.childSnapshot(forPath: "time").value as! Int})
-                //print(sort)
                 for child in sort {
                     let user = User(snapshot: child)
-                    
                     User.myUsers.append(user)
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "users3"), object: self)
@@ -242,10 +212,10 @@ class FirebaseModel{
         let childUpdates = ["/likeRequest/\(key)": post]
         ref.updateChildValues(childUpdates)
         print("")
-        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResult"), object: self, userInfo: ["key":key])
+        
     }
     
-    
+    //좋아요 버튼 초기 상태. 눌려있는지 아닌지.
     func setFirstImage(postkey: String, uid: String, button: LikeButton) {
         var check = false
         self.ref = Database.database().reference().child("postLikes").child(postkey)
@@ -260,6 +230,7 @@ class FirebaseModel{
         })
     }
     
+    //좋아요 숫자.
     func setNum(postkey:String, label: UILabel, button: LikeButton){
         self.ref = Database.database().reference().child("postLikes").child(postkey)
         self.ref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -272,6 +243,7 @@ class FirebaseModel{
     }
     
     
+    
     func loadProfileImageFromUsers(){
         
         if AuthModel.isLoginStatus(){
@@ -280,7 +252,6 @@ class FirebaseModel{
             ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
                 // Get user value
                 let value = snapshot.value as? NSDictionary
-                
                 let profileImg = value?["profileImg"] as? String ?? ""
                 print("did\(profileImg)")
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: self,userInfo: ["profileImageUrl":profileImg])

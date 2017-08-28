@@ -22,7 +22,6 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
   
    
     var foodArray = [UIImage]()
-    
     var userListView : UserListView!
     
 
@@ -47,7 +46,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         ]
         self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
         
-       // userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+       
      
     }
     func getTagResultPageFromMain( _ notification:Notification){
@@ -58,15 +57,11 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
                 let postDict = snapshot.value as! [String : Any]
                 if let result = snapshot.childSnapshot(forPath: notification.userInfo?["key"] as! String).childSnapshot(forPath: "queryResult").value {
                     self.tagResultArray = []
-                    //print(result as? [String])//print(self.tagResultArray)
                     self.tagResultArray = result as? [String]
-                    //print(self.tagResultArray)
                     
                 }
                 if (self.tagResultArray?.count ?? 0) > 1 {
-                    print("send table view controller tag array")
-                    print(self.tagResultArray)
-                    print("call getTagResult")
+
                     
                     //TagResultViewController로 노티를 보낸다.
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sendResultViewController"), object: self, userInfo: ["tagResultArray": self.tagResultArray])
@@ -77,7 +72,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     func showTagResultPageFromMain(_ notification: Notification){
         let tagName = notification.userInfo?["tagName"] as! String
         FirebaseModel().tagQuery(tagName: tagName)
-        print(tagName)
+        
         ////
         let storyboard = UIStoryboard(name: "TagPage", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "tagResultMain")  as! TagResultViewController
@@ -86,7 +81,6 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     }
     func nickNameLabelTouchedOnMainpage(_ notification:Notification){
         User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
-        print("nickNameLabelTouched")
         
         let storyboard = UIStoryboard(name: "NickNameClickResult", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "NickNameClickResultViewController")
@@ -140,8 +134,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
   
    
     func viewload(_ notification: Notification){
-        //let userlist = notification.userInfo?["users"] as? [User] ?? [User]()
-        //print("\(userlist.count)개의 피드 데이터가 존재합니다.")
+        
         userListView.addUserList(users: User.users)
         
     }
@@ -152,21 +145,20 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         
         NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users2"), object: nil)
          userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        FirebaseModel().loadMainFeed()
+        //FirebaseModel().loadMainFeed()
         self.view.addSubview(userListView)
         
         let size = CGSize(width: 30, height: 30)
 
         DispatchQueue.main.async {
             self.startAnimating(size, message: "Loading...", type: .ballTrianglePath)
-            self.firebaseModel.loadFeed()
+            //self.firebaseModel.loadFeed()
+            FirebaseModel().loadMainFeed()
         }
 
         
       
         searchIconButton.tintColor = UIColor.black
-        
-        
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
             NVActivityIndicatorPresenter.sharedInstance.setMessage("Authenticating...")
@@ -222,12 +214,8 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     func tap(_ sender:UIGestureRecognizer)
     {
         let label = (sender.view as! UILabel)
-        print("tap from \(label.text!)")
+        //print("tap from \(label.text!)")
     }
-    
-    
-    
-    
-    
+ 
 }
 

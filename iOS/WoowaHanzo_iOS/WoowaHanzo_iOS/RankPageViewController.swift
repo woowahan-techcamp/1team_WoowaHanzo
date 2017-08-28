@@ -39,8 +39,7 @@ class RankPageViewController: UIViewController {
     func nickNameLabelTouched(_ notification:Notification){
         
         User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
-        
-        //print("nickNameLabelTouched")
+       
         
         let storyboard = UIStoryboard(name: "NickNameClickResult", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "NickNameClickResultViewController")
