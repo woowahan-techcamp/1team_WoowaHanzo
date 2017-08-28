@@ -299,6 +299,8 @@ div.img-divgo{
   margin-top: 50%;
   margin-left: 0px !important;
   max-height: none !important;
+  min-height: inherit !important;
+  min-width: 100% !important;
   max-width: 100% !important;
 }
 
@@ -384,6 +386,7 @@ div.img-divgo{
 
 .image_thumbnails {
   table-layout: fixed;
+  overflow: hidden;
   margin-top: 10px;
   width: 100%;
 }
@@ -396,7 +399,7 @@ div.img-divgo{
 
 .image_thumbnails .single_thumbnail {
   overflow: hidden;
-  background-color: #AAA;
+  background-color: #fafafa;
   width: 100%;
   height: 100%;
 
@@ -417,7 +420,7 @@ div.img-divgo{
   opacity: 0.6;
   z-index: 3;
   color: #FFF;
-  font-family: 'Jua';
+  font-family: 'Jua', Helvetica;
 
   text-align: center;
   line-height: 100%;
@@ -469,7 +472,7 @@ div.img-divgo{
 }
 
 .like_number {
-  font-family: Jua;
+  font-family: Jua, Helvetica;
   line-height: 100%;
 
   vertical-align: middle;
@@ -477,7 +480,7 @@ div.img-divgo{
 
 .post_time {
   display: inline;
-  font-family: Jua;
+  font-family: Jua, Helvetica;
   font-size: 1.1em;
   float: right;
   vertical-align: middle;

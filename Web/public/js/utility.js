@@ -304,6 +304,7 @@ function imageDownloadHandler() {
 		imageParent.attr("src", url);
 
 		imageParent.on("load", function(evt) {
+
 			var curImage = evt.target;
 			var allLoaded = imagesAllLoaded(curImage);
 
@@ -570,6 +571,8 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 
     }
 
+		resizeThumbnails();
+
     $curPost.on("postLoaded", function(evt) {
       var currentPost = evt.target;
       var anyImage = currentPost.querySelector(".loading");
@@ -606,7 +609,7 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 	addUserListener(curPost);
 	addLikeButtonToggle(like_button);
 
-  resizeThumbnails();
+
 }
 
 function loadPosts(snapshot, fromScrollTop) {
