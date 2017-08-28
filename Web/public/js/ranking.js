@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       var downloadUrl = storageRef.child("profileImages/" + item.val().profileImg).getDownloadURL();
 
-      // var uid = item.val().uid;
       promises.push(downloadUrl.then(function(url) {
         itemObject.userProfileImg = url;
+        // console.log('????');
         itemObject.uid = this.key;
         itemObject.titlePic = getTitleIcon(this.val().rankName);
         itemObject.titleText = this.val().rankName ? this.val().rankName : "평민";
@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         itemList.push(itemObject);
       }.bind(item)).catch(function(err) {
-
         itemObject.userProfileImg = "./pictures/profile.png";
         itemObject.uid = this.key;
         itemObject.titlePic = getTitleIcon(this.val().rankName);
@@ -37,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         itemList.push(itemObject);
       }.bind(item)));
-
 
     });
 
@@ -74,6 +72,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       var rankingArea = document.querySelectorAll(".ranking_item");
       addUserListener(rankingArea);
+
+      var pics = document.querySelectorAll(".ranking_profile_pic");
+
+      pics.forEach(function(item) {
+        item.addEventListener("load", function(evt) {
+          if(!imageDimensions(evt.target)) {
+            evt.target.classList.add("circularLongImage");
+          } else {
+            evt.target.classList.remove("circularLongImage");
+          }
+        });
+      });
+
     });
   });
 
@@ -103,7 +114,7 @@ function addUserListener(item) {
       $(evt.target).parent().trigger("mousedown");
       return;
     }
-    
+
     var target = $(evt.target)
     var id = getUIDFromPostHeader(target.attr("id"));
 
