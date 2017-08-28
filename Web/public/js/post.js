@@ -62,7 +62,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var re = /^[ㄱ-ㅎ가-힣a-zA-Z0-9_]+$/;  //특수문자 _만 허용
 
     if(!re.test(evt.target.value)) {
-      $(this).val($(this).val().slice(0, -1));
+      // $(this).val($(this).val().slice(0, -1));
+      $(this).val($(this).val().replace(/[^ㄱ-ㅎ가-힣a-zA-Z0-9_]/g, ""));
     }
 
     $(this).val($(this).val().substr(0, $(this).attr('maxlength')));
