@@ -114,13 +114,11 @@ class FirebaseModel{
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
                 User.nickNameClickResult = [User]()
                 for child in result {
-                    
-                    if (child.childSnapshot(forPath: "author").value as! String == User.currentUserName)
-                    {
+                    if (child.childSnapshot(forPath: "author").value as! String == User.currentUserName){
                         var userKey = child.key as! String
                         //print(child.childSnapshot(forPath: "author").value!)
                         let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil, postDate : child.childSnapshot(forPath: "time").value as! Int, uid: child.childSnapshot(forPath: "uid").value as! String)
-                        User.nickNameClickResult.append(user)
+                            User.nickNameClickResult.append(user)
                         //print(child.childSnapshot(forPath: "body").value as! String)
                         
                         //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
@@ -212,7 +210,6 @@ class FirebaseModel{
         let childUpdates = ["/likeRequest/\(key)": post]
         ref.updateChildValues(childUpdates)
         print("")
-        
     }
     
     //좋아요 버튼 초기 상태. 눌려있는지 아닌지.
@@ -241,9 +238,6 @@ class FirebaseModel{
             }
         })
     }
-    
-    
-    
     func loadProfileImageFromUsers(){
         
         if AuthModel.isLoginStatus(){

@@ -110,6 +110,7 @@ class RegisterViewController: UIViewController,NVActivityIndicatorViewable {
         }
         
     }
+    
     //키보드가 사라질 때 수행되는 함수
     func keyboardWillHide(_ notification:Notification){
         if (userSayTextView?.isFirstResponder)!{

@@ -52,15 +52,15 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
         
         if !AuthModel.isLoginStatus(){
             //로그인이 되어있지 않은 상태
-            var alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
-            var cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
+            let alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
                 let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
                 self.present(controller, animated: false, completion: nil)
                 //self.navigationController?.pushViewController(controller, animated: true)
                 //self.show(controller, sender: self)
             })
-            var ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
                 let storyboard = UIStoryboard(name: "Auth", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "loginNavigation")
                 //self.present(controller, animated: true, completion: nil)
@@ -173,15 +173,15 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
     override func viewWillAppear(_ animated: Bool) {
         if !AuthModel.isLoginStatus(){
             
-            var alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
-            var cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
+            let alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
                 let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
                 self.present(controller, animated: false, completion: nil)
                 //self.navigationController?.pushViewController(controller, animated: true)
                 //self.show(controller, sender: self)
             })
-            var ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
                 let storyboard = UIStoryboard(name: "Auth", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "loginNavigation")
                 

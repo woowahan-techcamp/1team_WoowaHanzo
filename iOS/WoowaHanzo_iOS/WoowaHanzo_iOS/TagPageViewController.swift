@@ -65,7 +65,6 @@ class TagPageViewController: UIViewController {
             performSegue(withIdentifier: "ShowTagResult", sender: self)
         }
         else { return }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -73,7 +72,6 @@ class TagPageViewController: UIViewController {
         if segue.identifier == "ShowTagResult" {
             if let viewController = segue.destination as? TagResultViewController {
                 viewController.tagName = tagName
-                
             }
         }
     }
@@ -92,8 +90,8 @@ class TagPageViewController: UIViewController {
                     //print(result as? [String])//print(self.tagResultArray)
                     self.tagResultArray = result as? [String]
                     //print(self.tagResultArray)
-                    
                 }
+                
                 if (self.tagResultArray?.count ?? 0) > 1 {
                     //TagResultViewController로 노티를 보낸다.
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sendResultViewController"), object: self, userInfo: ["tagResultArray": self.tagResultArray])

@@ -41,7 +41,6 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
         }
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
             self.stopAnimating()
-            
         }
         
     }

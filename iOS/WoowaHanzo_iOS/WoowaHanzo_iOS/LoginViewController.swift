@@ -43,10 +43,8 @@ class LoginViewController: UIViewController,NVActivityIndicatorViewable {
                     else{
                         self.stopAnimating()
                         self.emailValidationLabel.isHidden = false
-
                     }
                 })
-                
             }
         }
 
