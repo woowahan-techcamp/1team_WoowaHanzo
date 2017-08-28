@@ -37,7 +37,7 @@
 		98895BED1F4BB543000D1E15 /* RankModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98895BEC1F4BB543000D1E15 /* RankModel.swift */; };
 		98895BF11F4BC2E3000D1E15 /* RankListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98895BF01F4BC2E3000D1E15 /* RankListView.swift */; };
 		98895BF31F4C1589000D1E15 /* UserListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98895BF21F4C1589000D1E15 /* UserListView.swift */; };
-		98895BF51F4C1E7A000D1E15 /* TagListView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98895BF41F4C1E7A000D1E15 /* TagListView2.swift */; };
+		98895BF51F4C1E7A000D1E15 /* TagPageView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98895BF41F4C1E7A000D1E15 /* TagPageView2.swift */; };
 		98895BF71F4D0E0D000D1E15 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98895BF61F4D0E0D000D1E15 /* LikeButton.swift */; };
 		988C70F41F4AD56E0044FEE0 /* TagResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C70F31F4AD56E0044FEE0 /* TagResultTableViewCell.swift */; };
 		988C713E1F4BF2BD0044FEE0 /* TagResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988C713D1F4BF2BD0044FEE0 /* TagResultViewController.swift */; };
@@ -130,7 +130,7 @@
 		98895BEC1F4BB543000D1E15 /* RankModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankModel.swift; sourceTree = "<group>"; };
 		98895BF01F4BC2E3000D1E15 /* RankListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankListView.swift; sourceTree = "<group>"; };
 		98895BF21F4C1589000D1E15 /* UserListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListView.swift; sourceTree = "<group>"; };
-		98895BF41F4C1E7A000D1E15 /* TagListView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListView2.swift; sourceTree = "<group>"; };
+		98895BF41F4C1E7A000D1E15 /* TagPageView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagPageView2.swift; sourceTree = "<group>"; };
 		98895BF61F4D0E0D000D1E15 /* LikeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		988C70F31F4AD56E0044FEE0 /* TagResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagResultTableViewCell.swift; sourceTree = "<group>"; };
 		988C713D1F4BF2BD0044FEE0 /* TagResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagResultViewController.swift; sourceTree = "<group>"; };
@@ -317,7 +317,7 @@
 				98ECA3B01F4180A00069DA87 /* CounterViewer.swift */,
 				98ECA42C1F440E570069DA87 /* DateExtension.swift */,
 				98895BF21F4C1589000D1E15 /* UserListView.swift */,
-				98895BF41F4C1E7A000D1E15 /* TagListView2.swift */,
+				98895BF41F4C1E7A000D1E15 /* TagPageView2.swift */,
 				98895BF61F4D0E0D000D1E15 /* LikeButton.swift */,
 			);
 			name = MainPage;
@@ -742,7 +742,7 @@
 				98C563CF1F39C3840017E68A /* RegisterViewController.swift in Sources */,
 				986C8B5F1F3AD59400FC42ED /* TagListView.swift in Sources */,
 				98895BEB1F4AEDDD000D1E15 /* TabBarControllerViewController.swift in Sources */,
-				98895BF51F4C1E7A000D1E15 /* TagListView2.swift in Sources */,
+				98895BF51F4C1E7A000D1E15 /* TagPageView2.swift in Sources */,
 				9843975D1F39704A00743B63 /* FirebaseModel.swift in Sources */,
 				984397A01F3C14A000743B63 /* TagView.swift in Sources */,
 				98C563C41F39B6AC0017E68A /* SearchViewController.swift in Sources */,

@@ -21,7 +21,7 @@ class RankPageViewController: UIViewController {
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        FirebaseModel().loadUsers()
+        FirebaseModel().loadRanks()
         self.view.addSubview(rankListView)
     }
 

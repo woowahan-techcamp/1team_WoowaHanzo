@@ -178,7 +178,7 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
                 FirebaseModel().loadProfileImageFromUsers()
                 FirebaseModel().loadUserInfo()
 
-                FirebaseModel().loadUsers3(username: User.currentLoginedUserNickName)
+                FirebaseModel().loadPersonalFeed(username: User.currentLoginedUserNickName)
                 self.view.addSubview(myListView)
                 
             }
