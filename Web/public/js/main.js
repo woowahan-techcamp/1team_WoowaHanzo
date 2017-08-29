@@ -37,9 +37,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
       //signin버튼 display none
       $(".nav_signin_btn").css("display", "none");
 
-      var currentUsername = firebase.database().ref("users/" + user.uid + "/username");
+      var currentUsername = firebase.database().ref("users/" + user.uid);
       currentUsername.on('value', function(snapshot) {
-        $(".nav_username").html(snapshot.val());
+        $(".nav_username").html(snapshot.val().username);
         $(".nav_user_info").on("mousedown tap", function(evt) {
           evt.preventDefault();
           window.location.href = 'mypage.html';

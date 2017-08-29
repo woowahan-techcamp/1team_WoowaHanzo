@@ -90,7 +90,7 @@ class PageObject {
 
   likeNumberRequest() {
     $(document).trigger("likeNumberRequestEvent");
-    setTimeout(this.likeNumberRequest.bind(this), 5000);
+    setTimeout(this.likeNumberRequest.bind(this), 60000);
   }
 
   updatePostTime() {
@@ -112,7 +112,14 @@ class PageObject {
       var curId = postIds[i];
       var postElem = document.querySelector("#post_" + curId);
       if(postElem) {
-        console.log(curId);
+        firebase.database().ref("/postLikes/" + curId + "/likes").once("value", function(snapshot) {
+          if(snapshot.val() == 0) {
+            this.querySelector(".like_number").innerHTML = "";
+          } else {
+            this.querySelector(".like_number").innerHTML = snapshot.val() + "명";
+          }
+
+        }.bind(postElem));
       }
     }
   }
