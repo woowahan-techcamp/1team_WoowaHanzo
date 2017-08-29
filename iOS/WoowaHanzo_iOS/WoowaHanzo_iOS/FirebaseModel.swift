@@ -157,7 +157,7 @@ class FirebaseModel{
     
     //For mainPage/////////////////////////////////////
     func loadProfileimg(uid: String, imgview: UIImageView, ranklabel: UILabel){
-        print("loadProfileimg called")
+        //print("loadProfileimg called")
         self.ref = Database.database().reference().child("users").child(uid)
         self.ref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.value as? NSDictionary{
@@ -196,7 +196,6 @@ class FirebaseModel{
                     User.myUsers.append(user)
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "users3"), object: self)
-                
             }
             
         })
@@ -254,9 +253,31 @@ class FirebaseModel{
                 
                 print(error.localizedDescription)
             }
-            
-            
         }
+    }
+    
+    func loadOtherUserInfo(username:String){
+        self.ref = Database.database().reference().child("users")
+        
+//        self.ref.queryOrdered(byChild: "username").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { (snapshot) in
+//            if let result = snapshot.value as? NSDictionary{
+//                User.currentUserSayHi = result["sayhi"] as! String
+//                User.currentUserProfileImageUrl = result["profileImg"] as! String
+//            }
+//            print(User.currentUserSayHi,User.currentUserProfileImageUrl,"firebase call")
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue : "LoadUserInfo3"), object: nil)
+//        })
+        self.ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let result = snapshot.children.allObjects as? [DataSnapshot]{
+                for child in result {
+                    if (child.childSnapshot(forPath: "username").value as! String == username){
+                        User.currentUserSayHi = child.childSnapshot(forPath: "sayhi").value as! String
+                        User.currentUserProfileImageUrl = child.childSnapshot(forPath: "profileImg").value as? String ?? " "
+                    }
+                }
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue : "LoadUserInfo3"), object: nil)
+            }
+        })
     }
     
     

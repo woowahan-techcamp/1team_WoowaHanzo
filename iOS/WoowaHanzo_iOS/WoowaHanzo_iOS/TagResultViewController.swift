@@ -19,6 +19,7 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(getTagFeed(_ :)), name: NSNotification.Name(rawValue: "sendResultViewController"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "tagusersdone"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
@@ -49,7 +50,7 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
        
         userListView.removeFromSuperview()
         userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        print(User.tagUsers.count)
+        //print(User.tagUsers.count)
         userListView.addUserList(users: User.tagUsers)
         self.view.addSubview(userListView)
         User.tagUsers = [User]()
@@ -62,7 +63,12 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
         let rankname = notification.userInfo?["rankname"] as? String ?? ""
         if profileimg != nil && imageview != nil {
             Storage.storage().reference(withPath: "profileImages/" + profileimg!).downloadURL { (url, error) in
-                imageview?.kf.setImage(with: url)
+                if error != nil{
+                    imageview?.image = UIImage(named: "profile.png")
+                }
+                else{
+                    imageview?.kf.setImage(with: url)
+                }
             }
         }
         if ranknamelabel != nil {
@@ -109,7 +115,6 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
                 for j in 0..<User.users.count{
                     if User.users[j].key == tagFeedArray[i]{
                         let tagUser = User(key: tagFeedArray[i], nickName: User.users[j].nickName, contents: User.users[j].contents, tags: User.users[j].tags, imageArray: User.users[j].imageArray, postDate: User.users[j].postDate,uid:User.users[j].uid)
-                        
                         User.tagUsers.append(tagUser)
                         
                     }
@@ -119,6 +124,14 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagusersdone"), object: self)
             
         }
+    }
+    func nickNameLabelTouchedOnMainpage(_ notification:Notification){
+        User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
+        
+        let storyboard = UIStoryboard(name: "NickNameClickResult", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "NickNameClickResultViewController")
+        //FirebaseModel().ReturnNickNameClickResult()
+        self.show(controller, sender: self)
     }
     func tap(_ sender:UIGestureRecognizer){
         let label = (sender.view as! UILabel)

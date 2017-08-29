@@ -29,7 +29,8 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
     var myInfoView: MyInfoView = MyInfoView(frame: CGRect(x: 0, y: 68, width: 0, height: 0))
     var myListView : UserListView!
     func registerObservers(){
-        NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(showTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "showTagResultPageFromMain"), object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadUserInfo), name: NSNotification.Name(rawValue: "LoadUserInfo2"), object: nil)
         //observer 쌓이는 것 해결 필요
         NotificationCenter.default.addObserver(self, selector: #selector(loadPorfileImage(_ :)), name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: nil)
@@ -271,7 +272,17 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
     func nickNameLabelTouchedOnMainpage(_ notification:Notification){
         User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
     }
-    
+    func showTagResultPageFromMain(_ notification: Notification){
+        let tagName = notification.userInfo?["tagName"] as! String
+        FirebaseModel().tagQuery(tagName: tagName)
+        
+        ////
+        let storyboard = UIStoryboard(name: "TagPage", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "tagResultMain")  as! TagResultViewController
+        controller.tagName = tagName
+        self.show(controller, sender: self)
+    }
+
 }
 
 
