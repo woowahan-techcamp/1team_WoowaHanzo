@@ -538,21 +538,12 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 				firebase.database().ref("/likeRequest/" + this.requestKey + "/result").on("value", function(snapshot) {
 					if(!snapshot.val()) return;
 					if(snapshot.val().state == "default") return;
-					if(snapshot.val().count > 0) {
-						$(this.target).parent().children(".like_number").html(snapshot.val().count + "명");
-					} else {
-						$(this.target).parent().children(".like_number").html("");
-					}
-
-					// if(snapshot.val().state == "true") {
-					// 	$(this.target).parent().children(".like_btn").addClass("fa-heart");
-					// 	$(this.target).parent().children(".like_btn").removeClass("fa-heart-o");
-					// 	removeLikeButtonToggle(this.target);
+					// if(snapshot.val().count > 0) {
+					// 	$(this.target).parent().children(".like_number").html(snapshot.val().count + "명");
 					// } else {
-					// 	$(this.target).parent().children(".like_btn").removeClass("fa-heart");
-					// 	$(this.target).parent().children(".like_btn").addClass("fa-heart-o");
-					// 	addLikeButtonToggle(this.target);
+					// 	$(this.target).parent().children(".like_number").html("");
 					// }
+
 					firebase.database().ref("/likeRequest/" + this.requestKey).off("value");
 					firebase.database().ref("/likeRequest/" + this.requestKey).remove();
 				}.bind(this));

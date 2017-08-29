@@ -21,6 +21,7 @@ class PageObject {
     this.init();
 
     this.timerUpdate();
+    this.likeNumberRequest();
 
   }
 
@@ -76,11 +77,20 @@ class PageObject {
       }
     }.bind(this));
 
+    $(document).on("likeNumberRequestEvent", function(evt) {
+      this.updateLikeNumber.bind(this)();
+    }.bind(this));
+
   }
 
   timerUpdate() {
     $(document).trigger('recurseUpdateEvent');
     setTimeout(this.timerUpdate.bind(this), 5000);
+  }
+
+  likeNumberRequest() {
+    $(document).trigger("likeNumberRequestEvent");
+    setTimeout(this.likeNumberRequest.bind(this), 5000);
   }
 
   updatePostTime() {
@@ -94,6 +104,17 @@ class PageObject {
         time.innerHTML = getCurrentTime(this.postTimes[curId]);
       }
   	}
+  }
+
+  updateLikeNumber() {
+    var postIds = Object.keys(this.postTimes);
+    for(var i = 0; i < postIds.length; ++i) {
+      var curId = postIds[i];
+      var postElem = document.querySelector("#post_" + curId);
+      if(postElem) {
+        console.log(curId);
+      }
+    }
   }
 
 }

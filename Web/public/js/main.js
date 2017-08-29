@@ -75,3 +75,4 @@ var pageObject = new PageObject();
 // listings of all custom events
 var recurseUpdateEvent = jQuery.Event();
 var postLoaded = jQuery.Event();
+var likeNumberRequestEvent = jQuery.Event();

@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   if(tagQuery) {
     console.log();
-    database.ref("/tagQuery/" + tagQuery + "/queryResult").once("value", function(snapshot) {
+    database.ref("/tagQuery/" + tagQuery + "/queryResult").on("value", function(snapshot) {
       console.log(snapshot.val());
       var postIdList = snapshot.val().slice(1,snapshot.val().length);
       console.log(postIdList);
@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       Promise.all(promises).then(function(snapshots) {
         console.log(snapshots);
         snapshots.forEach(function(snapshot) {
-          console.log(snapshot.key+": "+snapshot.val());
           loadPosts(snapshot, false);
         });
       });
