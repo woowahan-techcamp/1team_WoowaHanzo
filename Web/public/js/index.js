@@ -29,9 +29,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
         console.log(snapshots);
         snapshots.forEach(function(snapshot) {
           loadPosts(snapshot, false);
-        });
-      });
 
+        });
+      }
+
+      else {
+        window.location.href = "./404.html";
+      }
     });
 
   } else {

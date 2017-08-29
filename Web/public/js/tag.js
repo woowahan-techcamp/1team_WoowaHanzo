@@ -11,18 +11,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   firebase.database().ref("tagCounter/").orderByChild("time").on("child_added", function(snapshot) {
     handleTagSnapshot(snapshot, template);
-
   });
 
   firebase.database().ref("tagCounter/").orderByChild("time").on("child_changed", function(snapshot) {
     handleTagSnapshot(snapshot, template);
-
   });
 
   setTimeout(function() {
     $(".tag_indicator").css("opacity", 0);
     $(".tag_indicator").css("height", 0);
-
 
   }, 600);
 

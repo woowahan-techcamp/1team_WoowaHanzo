@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>654853775402-kihju5msd0uodnqcvnrq83v7n726e9v0.apps.googleusercontent.com</string>
+	<string>609034471288-3iuff8s79p5moram0iflaherts1b8n5u.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.654853775402-kihju5msd0uodnqcvnrq83v7n726e9v0</string>
+	<string>com.googleusercontent.apps.609034471288-3iuff8s79p5moram0iflaherts1b8n5u</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBxaOCXOq4I8BPWnPjH7QxBC4V1BUkCdhc</string>
+	<string>AIzaSyBUYRTOQ_1U0XRk8Sp5wlsQekrf6zoKHMc</string>
 	<key>GCM_SENDER_ID</key>
-	<string>654853775402</string>
+	<string>609034471288</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.mainpage.ios</string>
+	<string>com.muksori.ios</string>
 	<key>PROJECT_ID</key>
-	<string>mainpage-6b4c4</string>
+	<string>woowaproject</string>
 	<key>STORAGE_BUCKET</key>
-	<string>mainpage-6b4c4.appspot.com</string>
+	<string>woowaproject.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:654853775402:ios:c86685b994b0b60d</string>
+	<string>1:609034471288:ios:7cf54a583b4278da</string>
 	<key>DATABASE_URL</key>
-	<string>https://mainpage-6b4c4.firebaseio.com</string>
+	<string>https://woowaproject.firebaseio.com</string>
 </dict>
 </plist>

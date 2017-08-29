@@ -9,9 +9,18 @@
 import UIKit
 import BSImagePicker
 import Photos
+import Firebase
+import Kingfisher
+import NVActivityIndicatorView
 
-class ReviewPostPageViewController: UIViewController {
 
+class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable {
+    
+    
+    var ref: DatabaseReference!
+    @IBOutlet weak var userProfileImage: UIImageView!
+    @IBOutlet weak var userTearLabel: UILabel!
+    @IBOutlet weak var userNickNameLabel: UILabel!
     @IBOutlet weak var myView: UIView!
     @IBOutlet weak var myTextView: UITextView!
     @IBOutlet weak var myImageView: UIImageView!
@@ -34,88 +43,263 @@ class ReviewPostPageViewController: UIViewController {
     var keyboardmove = CGFloat(0)
     var savedkeyboardSize = CGRect()
     var shouldloadview = true
+    var selectedIndex = -1
+    var ProfileImage = UIImage()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if !AuthModel.isLoginStatus(){
+            //로그인이 되어있지 않은 상태
+            var alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
+            var cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
+                let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
+                self.present(controller, animated: false, completion: nil)
+                //self.navigationController?.pushViewController(controller, animated: true)
+                //self.show(controller, sender: self)
+            })
+            var ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
+                let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "loginNavigation")
+                //self.present(controller, animated: true, completion: nil)
+                //self.navigationController?.pushViewController(controller, animated: true)
+                self.show(controller, sender: self)
+            })
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
+        }
+        else{
+            //로그인이 되었다면? 내 마이페이지를 보여줘야함. - did
+            
+            if shouldloadview{
+                //여기에 프로필 이미지
+                FirebaseModel().loadProfileImageFromUsers()
+                FirebaseModel().loadUserInfo()
+                print("응앙ㅇ\(User.currentLoginedUserNickName,User.currentLoginedUserTitle)")
+                
+                print(User.currentLoginedUserNickName,User.currentLoginedUserTitle)
+                userTearLabel.text = User.currentLoginedUserTitle
+                shouldloadview = false
+                myCollectionView.dataSource = self
+                myCollectionView.delegate = self
+                myCollectionView.allowsSelection = true
+                
+                imageNameArray = [String]()
+                imageArray = [UIImage]()
+                imageAssets = [PHAsset]()
+                
+                //userProfileImage.image = UIImage(named: "profile.png")
+                //userTearLabel.text = "치킨왕자"
+                userNickNameLabel.text = User.currentLoginedUserNickName
+                myTagView.removeFromSuperview()
+                myTagView = TagView( position: CGPoint( x: 0, y: 380 ), size: CGSize( width: 320, height: 50 ) )
+                myTextView.delegate = self as UITextViewDelegate
+                //keyboard notification
+                NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillShow), name: NSNotification.Name(rawValue: "keyboard"), object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.fitView), name: NSNotification.Name(rawValue: "fitview"), object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.escapecancel), name: NSNotification.Name(rawValue: "escapecancel"), object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.escapeOK), name: NSNotification.Name(rawValue: "escapeOK"), object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(loadPorfileImage(_ :)), name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(loadUserInformation), name: NSNotification.Name(rawValue: "LoadUserInfo"), object: nil)
+                
+                
+                
+                //view border setting
+                //myView.layer.borderColor = UIColor.gray.cgColor
+                //myView.layer.borderWidth = 0.5
+                //myView.layer.cornerRadius = 10.0
+                //textview border setting
+                //myTextView.layer.borderColor = UIColor(red: CGFloat(112.0/255.0), green: CGFloat(182.0/255.0), blue: CGFloat(229.0/255.0), alpha: CGFloat(1.0)).cgColor
+                myTextView.layer.borderColor = UIColor.lightGray.cgColor
+                myTextView.layer.borderWidth = 0.5
+                myTextView.layer.cornerRadius = 3.0
+                //textview line spacing
+                //let style = NSMutableParagraphStyle()
+                //style.lineSpacing = 50
+                //let attributes = [NSParagraphStyleAttributeName : style]
+                //myTextView.attributedText = NSAttributedString(string: myTextView.text, attributes: attributes)
+                //setting placeholder
+                myTextView.text = placeholder
+                myTextView.textColor = UIColor.lightGray
+                
+                //determine whether it is editting tags or not
+                myTextView.becomeFirstResponder()
+                myTextView.selectedTextRange = myTextView.textRange(from: myTextView.beginningOfDocument, to: myTextView.beginningOfDocument)
+                
+                //imageview border setting
+                myImageView.layer.cornerRadius = myImageView.frame.width / 2
+                myImageView.layer.masksToBounds = true
+                
+                myCollectionView.removeFromSuperview()
+                myView.addSubview(myCollectionView)
+                DispatchQueue.main.async{
+                    self.myCollectionView.reloadData()
+                }
+                self.myView.addSubview( myTagView )
+                myContentView.addSubview(myView)
+                myScrollView.addSubview(myContentView)
+                myScrollView.contentSize.height = 1500
+                myContentView.frame.size.height = 3000
+                
+                fitView()
+                //keyboard
+                let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
+                //tap.cancelsTouchesInView = false
+                view.addGestureRecognizer(tap)
+                //myView.addGestureRecognizer(tap)
+                let tap2: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
+                tap2.cancelsTouchesInView = false
+                myCollectionView.addGestureRecognizer(tap2)
+                
+                let tap3: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
+                tap3.cancelsTouchesInView = false
+                myTagView.addGestureRecognizer(tap3)
+            }
+        }
+    }
+    func loadPorfileImage(_ notification : Notification){
+        let profileImageUrl = notification.userInfo?["profileImageUrl"] as! String
+        Storage.storage().reference(withPath: "profileImages/" + profileImageUrl).downloadURL { (url, error) in
+            self.myImageView?.kf.setImage(with: url)
+            KingfisherManager.shared.retrieveImage(with: url!, options: nil, progressBlock: nil, completionHandler: { image, error, cacheType, imageURL in
+                if let image = image{
+                    User.currentUserProfileImage = image
+                    self.myImageView?.kf.setImage(with: url)
+                }
+            })
+        }
+    }
+    func loadUserInformation(){
+        self.userNickNameLabel.text = User.currentLoginedUserNickName
+        self.userTearLabel.text = User.currentLoginedUserRankName
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if shouldloadview{
-            shouldloadview = true
-        myCollectionView.dataSource = self
-        myCollectionView.delegate = self
-        myCollectionView.allowsSelection = true
-        myTagView.removeFromSuperview()
-        myTagView = TagView( position: CGPoint( x: 0, y: 380 ), size: CGSize( width: 320, height: 50 ) )
-        myTextView.delegate = self as UITextViewDelegate
-        //keyboard notification
-        NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillShow), name: NSNotification.Name(rawValue: "keyboard"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.fitView), name: NSNotification.Name(rawValue: "fitview"), object: nil)
-        
-        //view border setting
-        //myView.layer.borderColor = UIColor.gray.cgColor
-        //myView.layer.borderWidth = 0.5
-        //myView.layer.cornerRadius = 10.0
-        //textview border setting
-        //myTextView.layer.borderColor = UIColor(red: CGFloat(112.0/255.0), green: CGFloat(182.0/255.0), blue: CGFloat(229.0/255.0), alpha: CGFloat(1.0)).cgColor
-        myTextView.layer.borderColor = UIColor.lightGray.cgColor
-        myTextView.layer.borderWidth = 0.5
-        myTextView.layer.cornerRadius = 3.0
-        //textview line spacing
-        //let style = NSMutableParagraphStyle()
-        //style.lineSpacing = 50
-        //let attributes = [NSParagraphStyleAttributeName : style]
-        //myTextView.attributedText = NSAttributedString(string: myTextView.text, attributes: attributes)
-        //setting placeholder
-        myTextView.text = placeholder
-        myTextView.textColor = UIColor.lightGray
-        
-        //determine whether it is editting tags or not
-        myTextView.becomeFirstResponder()
-        myTextView.selectedTextRange = myTextView.textRange(from: myTextView.beginningOfDocument, to: myTextView.beginningOfDocument)
-        
-        //imageview border setting
-        myImageView.layer.cornerRadius = myImageView.frame.width / 2
-        myImageView.layer.masksToBounds = true
-        
-        self.myView.addSubview( myTagView )
-        myContentView.addSubview(myView)
-        myScrollView.addSubview(myContentView)
-        myScrollView.contentSize.height = 1500
-        myContentView.frame.size.height = 3000
-        
-        fitView()
-        //keyboard
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
-        //tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-        //myView.addGestureRecognizer(tap)
-        let tap2: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
-        tap2.cancelsTouchesInView = false
-        myCollectionView.addGestureRecognizer(tap2)
-        
-        let tap3: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
-        tap3.cancelsTouchesInView = false
-        myTagView.addGestureRecognizer(tap3)
+        if !AuthModel.isLoginStatus(){
+            
+            var alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
+            var cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
+                let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
+                self.present(controller, animated: false, completion: nil)
+                //self.navigationController?.pushViewController(controller, animated: true)
+                //self.show(controller, sender: self)
+            })
+            var ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
+                let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "loginNavigation")
+                //self.present(controller, animated: true, completion: nil)
+                //self.navigationController?.pushViewController(controller, animated: true)
+                self.show(controller, sender: self)
+            })
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
         }
+        else{
+            //로그인이 되었다면? 내 마이페이지를 보여줘야함.
+            
+            if shouldloadview{
+                FirebaseModel().loadProfileImageFromUsers()
+                FirebaseModel().loadUserInfo()
+                print("응앙ㅇ\(User.currentLoginedUserNickName,User.currentLoginedUserTitle)")
+               
+                userTearLabel.text = User.currentLoginedUserTitle
+                shouldloadview = false
+                myCollectionView.dataSource = self
+                myCollectionView.delegate = self
+                myCollectionView.allowsSelection = true
+                
+                imageNameArray = [String]()
+                imageArray = [UIImage]()
+                imageAssets = [PHAsset]()
+                
+                
+                //userProfileImage.image = UIImage(named: "profile.png")
+                //userTearLabel.text = "치킨왕자"
+                userNickNameLabel.text = User.currentLoginedUserNickName
+                
+                myTagView.removeFromSuperview()
+                myTagView = TagView( position: CGPoint( x: 0, y: 380 ), size: CGSize( width: 320, height: 50 ) )
+                myTextView.delegate = self as UITextViewDelegate
+                //keyboard notification
+                NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.keyboardWillShow), name: NSNotification.Name(rawValue: "keyboard"), object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.fitView), name: NSNotification.Name(rawValue: "fitview"), object: nil)
+                
+                //view border setting
+                //myView.layer.borderColor = UIColor.gray.cgColor
+                //myView.layer.borderWidth = 0.5
+                //myView.layer.cornerRadius = 10.0
+                //textview border setting
+                //myTextView.layer.borderColor = UIColor(red: CGFloat(112.0/255.0), green: CGFloat(182.0/255.0), blue: CGFloat(229.0/255.0), alpha: CGFloat(1.0)).cgColor
+                myTextView.layer.borderColor = UIColor.lightGray.cgColor
+                myTextView.layer.borderWidth = 0.5
+                myTextView.layer.cornerRadius = 3.0
+                //textview line spacing
+                //let style = NSMutableParagraphStyle()
+                //style.lineSpacing = 50
+                //let attributes = [NSParagraphStyleAttributeName : style]
+                //myTextView.attributedText = NSAttributedString(string: myTextView.text, attributes: attributes)
+                //setting placeholder
+                myTextView.text = placeholder
+                myTextView.textColor = UIColor.lightGray
+                
+                //determine whether it is editting tags or not
+                myTextView.becomeFirstResponder()
+                myTextView.selectedTextRange = myTextView.textRange(from: myTextView.beginningOfDocument, to: myTextView.beginningOfDocument)
+                
+                //imageview border setting
+                myImageView.layer.cornerRadius = myImageView.frame.width / 2
+                myImageView.layer.masksToBounds = true
+                
+                myCollectionView.removeFromSuperview()
+                myView.addSubview(myCollectionView)
+                DispatchQueue.main.async{
+                    self.myCollectionView.reloadData()
+                }
+                self.myView.addSubview( myTagView )
+                myContentView.addSubview(myView)
+                myScrollView.addSubview(myContentView)
+                myScrollView.contentSize.height = 1500
+                myContentView.frame.size.height = 3000
+                
+                fitView()
+                //keyboard
+                let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
+                //tap.cancelsTouchesInView = false
+                view.addGestureRecognizer(tap)
+                //myView.addGestureRecognizer(tap)
+                let tap2: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
+                tap2.cancelsTouchesInView = false
+                myCollectionView.addGestureRecognizer(tap2)
+                
+                let tap3: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReviewPostPageViewController.dismissKeyboard))
+                tap3.cancelsTouchesInView = false
+                myTagView.addGestureRecognizer(tap3)
+            }
+        }
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        let alert = UIAlertController(title: "글 작성이 완료되지 않았습니다.", message: "글 작성을 취소하시겠습니까?", preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
-            self.shouldloadview = false
-            self.tabBarController?.selectedIndex = 2
-        })
-        let ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
-            self.shouldloadview = true
-        })
-        alert.addAction(cancel)
-        alert.addAction(ok)
-        present(alert, animated: true, completion: nil)
-
+        
+        if myTextView.textColor != UIColor.lightGray {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "escape"), object: nil)
+            //print("noticalled")
+        }
+        else{
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "escapefalse"), object: nil)
+            //print("noticalled")
+        }
+        
     }
     
     //게시를 누르지 않고 다른 탭을 누르는 경우 알림을 띄우도록
@@ -210,6 +394,14 @@ class ReviewPostPageViewController: UIViewController {
         view.endEditing(true)
     }
     
+    func escapecancel(){
+        self.shouldloadview = false
+    }
+    func escapeOK(){
+        self.shouldloadview = true
+    }
+    
+    
     @IBAction func postButtonTouched(_ sender: Any) {
         
         let formatter = DateFormatter()
@@ -221,17 +413,34 @@ class ReviewPostPageViewController: UIViewController {
         //글자가 회색이면 안보내게 하자.
         if myTextView.textColor != UIColor.lightGray{
             //DispatchQueue.global().sync{
-            FirebaseModel().postReview(review: myTextView.text, userID: "kim", tagArray: myTagView.getTags(withPrefix: false), timestamp: Int(-1.0 * Date().timeIntervalSince1970),images:self.imageNameArray, postDate: postDate)
-            FirebaseModel().postImages(assets: self.imageAssets, names: self.imageNameArray)
-            //print(myTagView.getTags(withPrefix: true))
-            print(self.imageNameArray)
-            print("sent post")
-            
-            let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
-            self.present(controller, animated: false, completion: nil)
-            
-            
+            if let user = Auth.auth().currentUser{
+                FirebaseModel().postReview(review: myTextView.text, userID: User.currentLoginedUserNickName, tagArray: myTagView.getTags(withPrefix: false), timestamp: Int(-1000 * Date().timeIntervalSince1970),images:self.imageNameArray, uid: user.uid)
+                FirebaseModel().postImages(assets: self.imageAssets, names: self.imageNameArray)
+                //print(myTagView.getTags(withPrefix: true))
+                print(self.imageNameArray)
+                print("sent post")
+                
+                
+                let size = CGSize(width: 30, height: 30)
+                
+                DispatchQueue.main.async {
+                    self.startAnimating(size, message: "Loading...", type: .ballTrianglePath)
+                    
+                    
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+                    self.stopAnimating()
+                    let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
+                    let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
+                    self.present(controller, animated: false, completion: nil)
+                    
+                }
+                
+//                let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
+//                let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
+//                self.present(controller, animated: false, completion: nil)
+        }
             //self.tabBarController?.selectedIndex = 0
             
             //다른 탭 누르면: 나가시겠습니까 알러트.
@@ -247,8 +456,8 @@ class ReviewPostPageViewController: UIViewController {
     @IBAction func addButtonTouched(_ sender: Any) {
         let imagePickerController = BSImagePickerViewController()
         bs_presentImagePickerController(imagePickerController, animated: true,
-        select: { (asset: PHAsset) -> Void in
-            print("Selected")
+                                        select: { (asset: PHAsset) -> Void in
+                                            print("Selected")
         }, deselect: { (asset: PHAsset) -> Void in
             print("Deselected")
         }, cancel: { (assets: [PHAsset]) -> Void in
@@ -256,11 +465,17 @@ class ReviewPostPageViewController: UIViewController {
         }, finish: { (assets: [PHAsset]) -> Void in
             //self.imageAssets = assets
             //FirebaseModel().postImages(assets: assets)
+            self.shouldloadview = false
             for asset in assets{
+                let name = asset.value(forKey:"filename") as! String
+                let extlist = name.components(separatedBy: ".")
+                let ext = extlist[extlist.count - 1]
+                
                 self.imageAssets.append(asset)
                 let image = FirebaseModel().getAssetThumbnail(asset: asset)
                 self.imageArray.append(image)
-                self.imageNameArray.append("images/\(Date().timeIntervalSince1970)")
+                self.imageNameArray.append("\(Date().timeIntervalSince1970).\(ext)")
+                print("\(Date().timeIntervalSince1970).\(ext)")
             }
             print("done \(self.imageArray)")
             DispatchQueue.main.async{
@@ -275,22 +490,22 @@ class ReviewPostPageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 /////////////////////textview_delegate/////////////////////////
 extension ReviewPostPageViewController: UITextViewDelegate{
     
-        //setting placeholder to appear only when textview is empty
+    //setting placeholder to appear only when textview is empty
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         //글자수 제한.
         let newLength = textView.text.characters.count + text.characters.count - range.length
@@ -350,6 +565,8 @@ extension ReviewPostPageViewController: UICollectionViewDelegate, UICollectionVi
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reuseidentifier", for: indexPath as IndexPath) as! MyCollectionCell
         cell.imageView.image = imageArray[indexPath.row - 1]
+        cell.imageView.contentMode = UIViewContentMode.scaleAspectFill
+        cell.imageView.clipsToBounds = true
         cell.layer.cornerRadius = 3.0
         return cell
     }
@@ -363,4 +580,5 @@ extension ReviewPostPageViewController: UICollectionViewDelegate, UICollectionVi
             print("delete")
         }
     }
+    
 }

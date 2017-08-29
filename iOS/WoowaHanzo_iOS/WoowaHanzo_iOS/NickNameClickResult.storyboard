@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="kez-Ly-1M4">
+            <objects>
+                <navigationController storyboardIdentifier="NickNameClickResult" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lHI-iA-4v2" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3Ya-7j-bj3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="EDy-vy-fid" kind="relationship" relationship="rootViewController" id="y2r-KA-UGi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hfj-aR-3mb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1428" y="-15"/>
+        </scene>
+        <!--Nick Name Click Result View Controller-->
+        <scene sceneID="tLE-Q6-mTY">
+            <objects>
+                <viewController storyboardIdentifier="NickNameClickResultViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EDy-vy-fid" customClass="NickNameClickResultViewController" customModule="WoowaHanzo_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y6w-sr-eNv"/>
+                        <viewControllerLayoutGuide type="bottom" id="ji4-vT-cFy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ziv-FA-8Vo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="n2I-fJ-SfF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="of6-Vj-GQm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-426" y="-16"/>
+        </scene>
+    </scenes>
+</document>
