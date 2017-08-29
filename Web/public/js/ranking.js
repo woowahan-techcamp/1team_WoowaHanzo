@@ -70,6 +70,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
       $(".ranking_indicator").css("opacity", 0);
       $(".ranking_indicator").css("height", 0);
 
+      $(".ranking_indicator").on("transitionend", function() {
+        $(".ranking_indicator").css("display", "none");
+      });
+
       var rankingArea = document.querySelectorAll(".ranking_item");
       addUserListener(rankingArea);
 

@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var queryKey = getParameterByName("userQuery", url);
 
       promises.push(firebase.database().ref("/userQuery/" + queryKey).once("value", function(snapshot) {
-
         if(snapshot.val()) {
           queryUid = snapshot.val().uid;
           var postIdList = snapshot.val().queryResult.slice(1,snapshot.val().length);
@@ -98,7 +97,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       if(queryUid != user.uid) {
         $(".mypage_setting").css("display", "none");
       }
-
 
       var curObject= {};
       var curPost = document.querySelector(".mypage_user_box");
