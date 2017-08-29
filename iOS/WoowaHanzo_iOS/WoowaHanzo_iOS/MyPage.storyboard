@@ -28,43 +28,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z0t-zT-Nya">
-                                <rect key="frame" x="0.0" y="106" width="414" height="234"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jij-kB-Rlr">
-                                        <rect key="frame" x="147" y="37" width="120" height="120"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gnu-aS-mmv">
-                                        <rect key="frame" x="147" y="167" width="120" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbZ-AG-NyY">
-                                        <rect key="frame" x="186" y="188" width="42" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FBL-dm-h5P">
-                                        <rect key="frame" x="162" y="213" width="90" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="마이페이지" id="ya3-kS-ber">
-                        <barButtonItem key="rightBarButtonItem" image="settings" id="4un-xC-j7I">
+                        <barButtonItem key="rightBarButtonItem" image="settings-3" id="4un-xC-j7I">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="DAw-Yr-Hj0" kind="show" id="bTx-R4-sbf"/>
@@ -72,13 +40,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="myInfoView" destination="Z0t-zT-Nya" id="Q1M-V2-c2L"/>
-                        <outlet property="myProfileImageView" destination="Jij-kB-Rlr" id="rcy-fl-8Kz"/>
-                        <outlet property="nameLabel" destination="Gnu-aS-mmv" id="UFT-Us-RLk"/>
-                        <outlet property="postnumLabel" destination="FBL-dm-h5P" id="XSY-0i-uCd"/>
-                        <outlet property="sayhiLabel" destination="kbZ-AG-NyY" id="FqU-fE-ZAG"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ak8-KO-GYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -122,7 +83,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qGC-fM-8ex" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="마이페이지" image="Combined Shape" id="fwj-VK-IXq"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4f4-qT-Qb9">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4f4-qT-Qb9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -138,7 +99,6 @@
     </scenes>
     <resources>
         <image name="Combined Shape" width="20" height="19"/>
-        <image name="profile.png" width="264" height="264"/>
-        <image name="settings" width="24" height="24"/>
+        <image name="settings-3" width="16" height="16"/>
     </resources>
 </document>

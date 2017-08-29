@@ -61,7 +61,6 @@ class UserListView: UIScrollView {
         var inypos = 10
         var inxpos = 20
         
-        
         let cellview = UIView()
         cellview.layer.borderColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1.0).cgColor
         cellview.layer.borderWidth = 1

@@ -61,7 +61,7 @@ class FirebaseModel{
         let manager = PHImageManager.default()
         let requestOptions = PHImageRequestOptions()
         requestOptions.resizeMode = .exact
-        requestOptions.deliveryMode = .fastFormat;
+        requestOptions.deliveryMode = .highQualityFormat;
         DispatchQueue.global().async{
             manager.requestImageData(for: asset, options: requestOptions, resultHandler: { (data, str, orientation, info) -> Void in
                 if let imagedata = data{

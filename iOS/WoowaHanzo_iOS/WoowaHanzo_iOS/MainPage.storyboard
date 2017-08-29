@@ -29,18 +29,8 @@
                         </subviews>
                         <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="먹소리" id="FR9-AM-KRn">
-                        <barButtonItem key="rightBarButtonItem" image="searchIcon" id="o0t-RJ-QLX">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="searchIconTouched:" destination="klR-Hm-AeJ" id="cRO-fA-VoO"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="먹소리" id="FR9-AM-KRn"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="searchIconButton" destination="o0t-RJ-QLX" id="1SZ-a2-sUb"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nMu-8B-LCH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="D8t-Up-py9">
@@ -73,6 +63,5 @@
     </scenes>
     <resources>
         <image name="Group 3" width="22" height="22"/>
-        <image name="searchIcon" width="20" height="20"/>
     </resources>
 </document>

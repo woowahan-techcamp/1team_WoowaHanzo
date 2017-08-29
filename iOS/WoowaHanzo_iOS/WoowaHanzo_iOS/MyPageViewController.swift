@@ -24,15 +24,9 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
     
     
     
-    @IBOutlet weak var myInfoView: UIView!
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var sayhiLabel: UILabel!
-    @IBOutlet weak var postnumLabel: UILabel!
-    @IBOutlet weak var myProfileImageView: UIImageView!
     var count  = 0
     
-    
+    var myInfoView: MyInfoView = MyInfoView(frame: CGRect(x: 0, y: 68, width: 0, height: 0))
     var myListView : UserListView!
     func registerObservers(){
         NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
@@ -44,11 +38,15 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
         NotificationCenter.default.addObserver(self, selector: #selector(updateLikeButton), name: NSNotification.Name(rawValue: "likestatus"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateLikeLabel), name: NSNotification.Name(rawValue: "likenum"), object: nil)
     }
-    override func viewWillAppear(_ animated: Bool) {
-        registerObservers()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        registerObservers()
+//        myListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+//    }
+    
+    
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
+        myListView.removeFromSuperview()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,23 +71,25 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
                 print(index.contents)
             }
         }
-        let tap = UITapGestureRecognizer(target: self, action: #selector(imageViewTouched))
-        myProfileImageView.addGestureRecognizer(tap)
-        myProfileImageView.isUserInteractionEnabled = true
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(imageViewTouched))
+//        myInfoView.profileImageView.addGestureRecognizer(tap)
+//        myInfoView.profileImageView.isUserInteractionEnabled = true
         
         
     }
 
     func viewload(){
         self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
-        nameLabel.text = User.currentLoginedUserNickName
-        nameLabel.sizeToFit()
-        nameLabel.frame.origin.x = self.view.frame.width / 2 - nameLabel.frame.width / 2
+        myInfoView.nickNameLabel.text = User.currentLoginedUserNickName
+        myInfoView.nickNameLabel.sizeToFit()
+        myInfoView.nickNameLabel.frame.origin.x = self.view.frame.width / 2 - myInfoView.nickNameLabel.frame.width / 2
         
-        sayhiLabel.text = User.currentLoginedUserSayHi
-        sayhiLabel.sizeToFit()
-        sayhiLabel.frame.origin.x = self.view.frame.width / 2 - sayhiLabel.frame.width / 2
-        
+        myInfoView.sayHiLabel.text = User.currentLoginedUserSayHi
+        myInfoView.sayHiLabel.sizeToFit()
+        myInfoView.sayHiLabel.frame.origin.x = self.view.frame.width / 2 - myInfoView.sayHiLabel.frame.width / 2
+        let tap = UITapGestureRecognizer(target: self, action: #selector(imageViewTouched))
+        myInfoView.profileImageView.addGestureRecognizer(tap)
+        myInfoView.profileImageView.isUserInteractionEnabled = true
         //지금 viewload가 두번 호출?
         FirebaseModel().loadPersonalFeed(username: User.currentLoginedUserNickName)
         
@@ -98,9 +98,9 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
         if AuthModel.isLoginStatus(), User.myUsers.count > 0 {
             print("\(User.myUsers.count)개의 피드 데이터가 존재합니다.")
             myListView.addUserList(users: User.myUsers)
-            postnumLabel.text = "게시물 \(User.myUsers.count)"
-            postnumLabel.sizeToFit()
-            postnumLabel.frame.origin.x = self.view.frame.width / 2 - postnumLabel.frame.width / 2
+             myInfoView.postNumLabel.text = "게시물 \(User.myUsers.count)"
+            myInfoView.postNumLabel.sizeToFit()
+             myInfoView.postNumLabel.frame.origin.x = self.view.frame.width / 2 -  myInfoView.postNumLabel.frame.width / 2
         }
     }
     func loadUserInfo(){
@@ -114,7 +114,7 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
         // self.myProfileImageView.image = User.imageview.image
         let profileImageUrl = notification.userInfo?["profileImageUrl"] as! String
         Storage.storage().reference(withPath: "profileImages/" + profileImageUrl).downloadURL { (url, error) in
-            self.myProfileImageView?.kf.setImage(with: url)
+            self.myInfoView.profileImageView.kf.setImage(with: url)
             //self.myProfileImageView.image = User.currentLoginedProfileImage
             //completion handler 등으로 user에 저장해놓기
         }
@@ -143,8 +143,12 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
         }
         else{
             //로그인이 되었다면? 내 마이페이지를 보여줘야함.
+            print("a1")
+            registerObservers()
+            print("a2")
+            myListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
             
-            
+            print("a3")
             let size = CGSize(width: 30, height: 30)
             
             DispatchQueue.main.async {
@@ -153,20 +157,22 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.7) {
                 self.stopAnimating()
             }
-            
-            self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
+            print("a4")
+            self.navigationController?.navigationBar.topItem?.title = User.currentLoginedUserNickName
             //self.view.setNeedsDisplay()
-            myListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+//            myListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
             myListView.ypos = 313
-            myInfoView.frame = CGRect(x: 0, y: 68, width: self.view.frame.width, height: 250)
+            print("myINFO")
+            myInfoView = MyInfoView(frame: CGRect(x: 0, y: 68, width: self.view.frame.width, height: 250))
+            print("myINFO2")
             myListView.addSubview(myInfoView)
-            
-            myProfileImageView.layer.cornerRadius = myProfileImageView.frame.width / 2
-            myProfileImageView.clipsToBounds = true
+            print("a5")
+            myInfoView.profileImageView.layer.cornerRadius =  myInfoView.profileImageView.frame.width / 2
+            myInfoView.profileImageView.clipsToBounds = true
             
             FirebaseModel().loadProfileImageFromUsers()
             FirebaseModel().loadUserInfo(pageCase: 2)
-            
+            print("a6")
             //FirebaseModel().loadPersonalFeed(username: User.currentLoginedUserNickName)
             self.view.addSubview(myListView)
             
@@ -187,6 +193,8 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
         }, finish: { (assets: [PHAsset]) -> Void in
             //self.imageAssets = assets
             //FirebaseModel().postImages(assets: assets)
+            let size = CGSize(width: 30, height: 30)
+            
             let asset = assets[0]
             let name = asset.value(forKey:"filename") as! String
             let extlist = name.components(separatedBy: ".")
@@ -194,13 +202,11 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
             let image = FirebaseModel().getAssetThumbnail(asset: asset)
             FirebaseModel().postProfileImage(asset: asset, name: ("\(Date().timeIntervalSince1970).\(ext)"), uid: (Auth.auth().currentUser?.uid)!)
             
-            self.myProfileImageView.image = image // loadprofileimage랑 약간 겹치는 듯.
+            self.myInfoView.profileImageView.image = image // loadprofileimage랑 약간 겹치는 듯.
             User.imageview.image = image
             print("image changed")
             print("image: \(image)")
-            
-            
-            
+
         }, completion: nil)
         
         

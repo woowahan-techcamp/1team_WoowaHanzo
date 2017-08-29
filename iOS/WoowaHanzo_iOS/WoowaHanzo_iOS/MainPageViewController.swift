@@ -17,7 +17,6 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     var tagResultArray : [String]?
 
     var firebaseModel = FirebaseModel()
-    var searchBar = UISearchBar()
     let cellSpacingHeight: CGFloat = 15
   
    
@@ -25,7 +24,6 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     var userListView : UserListView!
     
 
-    @IBOutlet weak var searchIconButton: UIBarButtonItem!
     
     
     override func viewDidLoad() {
@@ -40,8 +38,8 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         NotificationCenter.default.addObserver(self, selector: #selector(showTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "showTagResultPageFromMain"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(getTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "tagResultToMain"), object: nil)
         
-        searchBar.alpha = 0
-        searchBar.searchBarStyle = UISearchBarStyle.minimal
+//        searchBar.alpha = 0
+//        searchBar.searchBarStyle = UISearchBarStyle.minimal
         let titleAttributes = [
             NSFontAttributeName: UIFont(name:"NotoSans-Bold", size: 19.0)!
         ]
@@ -164,7 +162,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
 
         
       
-        searchIconButton.tintColor = UIColor.black
+        
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
             NVActivityIndicatorPresenter.sharedInstance.setMessage("Authenticating...")
@@ -191,32 +189,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         
     }
    
-    
-    @IBAction func searchIconTouched(_ sender: Any) {
-        
-        if navigationItem.titleView != nil{
-            navigationItem.titleView = nil
-            searchIconButton.title = ""
-            searchIconButton.image = #imageLiteral(resourceName: "searchIcon")
-            
-            
-        }else{
-            searchIconButton.image = nil
-            searchIconButton.title = "취소"
-            showSearchBar()
-        }
-    }
-    
-    func showSearchBar() {
-        searchBar.alpha = 0
-        navigationItem.titleView = searchBar
-        //navigationItem.setLeftBarButton(nil, animated: true)
-        UIView.animate(withDuration: 2, animations: {
-            self.searchBar.alpha = 1
-        }, completion: { finished in
-            self.searchBar.becomeFirstResponder()
-        })
-    }
+
     func tap(_ sender:UIGestureRecognizer)
     {
         let label = (sender.view as! UILabel)
