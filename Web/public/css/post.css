@@ -135,7 +135,7 @@ div.post {
   }
 
   .buttons_holder {
-    padding: 0 25px;
+    padding: 0 10px;
   }
 
   .add_photos {
@@ -157,6 +157,8 @@ div.post {
 @media (max-width: 360px) {
   .post {
     margin-bottom: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
   .post .textbox {
@@ -173,7 +175,7 @@ div.post {
   }
 
   .buttons_holder {
-    padding: 0 15px;
+    padding: 0 5px;
     min-width: 260px;
   }
 
