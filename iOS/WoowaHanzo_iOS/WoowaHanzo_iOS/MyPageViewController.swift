@@ -94,7 +94,6 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
         FirebaseModel().loadPersonalFeed(username: User.currentLoginedUserNickName)
         
     }
-
     func viewFeeds(){
         if AuthModel.isLoginStatus(), User.myUsers.count > 0 {
             print("\(User.myUsers.count)개의 피드 데이터가 존재합니다.")
@@ -103,11 +102,7 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
             postnumLabel.sizeToFit()
             postnumLabel.frame.origin.x = self.view.frame.width / 2 - postnumLabel.frame.width / 2
         }
-        
     }
-    
-    
-    
     func loadUserInfo(){
         viewload()
         FirebaseModel().loadProfileImageFromUsers() // 나중에 바꾸기.
