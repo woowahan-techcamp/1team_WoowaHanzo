@@ -34,10 +34,7 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
     
     
     var myListView : UserListView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("call view did load")
+    func registerObservers(){
         NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadUserInfo), name: NSNotification.Name(rawValue: "LoadUserInfo2"), object: nil)
         //observer 쌓이는 것 해결 필요
@@ -46,7 +43,18 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateLikeButton), name: NSNotification.Name(rawValue: "likestatus"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateLikeLabel), name: NSNotification.Name(rawValue: "likenum"), object: nil)
-        print(User.myUsers.count,1234566)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        registerObservers()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("call view did load")
+       
+       // print(User.myUsers.count,1234566)
         
         
         
@@ -71,22 +79,20 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
         
         
     }
-
-    
-        func viewload(){
-            self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
-            nameLabel.text = User.currentLoginedUserNickName
-            nameLabel.sizeToFit()
-            nameLabel.frame.origin.x = self.view.frame.width / 2 - nameLabel.frame.width / 2
-
-            sayhiLabel.text = User.currentLoginedUserSayHi
-            sayhiLabel.sizeToFit()
-            sayhiLabel.frame.origin.x = self.view.frame.width / 2 - sayhiLabel.frame.width / 2
-            
-            //지금 viewload가 두번 호출?
-            FirebaseModel().loadPersonalFeed(username: User.currentLoginedUserNickName)
-            
-        }
+    func viewload(){
+        self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
+        nameLabel.text = User.currentLoginedUserNickName
+        nameLabel.sizeToFit()
+        nameLabel.frame.origin.x = self.view.frame.width / 2 - nameLabel.frame.width / 2
+        
+        sayhiLabel.text = User.currentLoginedUserSayHi
+        sayhiLabel.sizeToFit()
+        sayhiLabel.frame.origin.x = self.view.frame.width / 2 - sayhiLabel.frame.width / 2
+        
+        //지금 viewload가 두번 호출?
+        FirebaseModel().loadPersonalFeed(username: User.currentLoginedUserNickName)
+        
+    }
     func viewFeeds(){
         if AuthModel.isLoginStatus(), User.myUsers.count > 0 {
             print("\(User.myUsers.count)개의 피드 데이터가 존재합니다.")
@@ -95,131 +101,131 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
             postnumLabel.sizeToFit()
             postnumLabel.frame.origin.x = self.view.frame.width / 2 - postnumLabel.frame.width / 2
         }
-
+        
     }
     
-   
     
-        func loadUserInfo(){
-            viewload()
-            FirebaseModel().loadProfileImageFromUsers() // 나중에 바꾸기.
-            print("loadUserInfo/////////////////////////")
+    
+    func loadUserInfo(){
+        viewload()
+        FirebaseModel().loadProfileImageFromUsers() // 나중에 바꾸기.
+        print("loadUserInfo/////////////////////////")
+        
+    }
+    
+    func loadPorfileImage(_ notification : Notification){
+        // self.myProfileImageView.image = User.imageview.image
+        let profileImageUrl = notification.userInfo?["profileImageUrl"] as! String
+        Storage.storage().reference(withPath: "profileImages/" + profileImageUrl).downloadURL { (url, error) in
+            self.myProfileImageView?.kf.setImage(with: url)
+            //self.myProfileImageView.image = User.currentLoginedProfileImage
+            //completion handler 등으로 user에 저장해놓기
+        }
+    }
+    
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        if !AuthModel.isLoginStatus(){
+            
+            let alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
+                self.tabBarController?.selectedIndex = 0
+            })
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
+                let storyboard = UIStoryboard(name: "Auth", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "loginNavigation")
+                self.show(controller, sender: self)
+                
+            })
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
+        }
+        else{
+            //로그인이 되었다면? 내 마이페이지를 보여줘야함.
+            
+            
+            let size = CGSize(width: 30, height: 30)
+            
+            DispatchQueue.main.async {
+                self.startAnimating(size, message: "Loading...", type: .ballTrianglePath)
+            }
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.7) {
+                self.stopAnimating()
+            }
+            
+            self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
+            //self.view.setNeedsDisplay()
+            myListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+            myListView.ypos = 313
+            myInfoView.frame = CGRect(x: 0, y: 68, width: self.view.frame.width, height: 250)
+            myListView.addSubview(myInfoView)
+            
+            myProfileImageView.layer.cornerRadius = myProfileImageView.frame.width / 2
+            myProfileImageView.clipsToBounds = true
+            
+            FirebaseModel().loadProfileImageFromUsers()
+            FirebaseModel().loadUserInfo(pageCase: 2)
+            
+            //FirebaseModel().loadPersonalFeed(username: User.currentLoginedUserNickName)
+            self.view.addSubview(myListView)
             
         }
         
-        func loadPorfileImage(_ notification : Notification){
-           // self.myProfileImageView.image = User.imageview.image
-            let profileImageUrl = notification.userInfo?["profileImageUrl"] as! String
-            Storage.storage().reference(withPath: "profileImages/" + profileImageUrl).downloadURL { (url, error) in
-                self.myProfileImageView?.kf.setImage(with: url)
-                //self.myProfileImageView.image = User.currentLoginedProfileImage
-                //completion handler 등으로 user에 저장해놓기
-            }
-        }
-
-    
-        
-        override func viewDidAppear(_ animated: Bool) {
-            super.viewDidAppear(true)
-          
-            if !AuthModel.isLoginStatus(){
-                
-                let alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
-                let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
-                    self.tabBarController?.selectedIndex = 0
-                })
-                let ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
-                    let storyboard = UIStoryboard(name: "Auth", bundle: nil)
-                    let controller = storyboard.instantiateViewController(withIdentifier: "loginNavigation")
-                    self.show(controller, sender: self)
-                    
-                })
-                alert.addAction(cancel)
-                alert.addAction(ok)
-                present(alert, animated: true, completion: nil)
-            }
-            else{
-                //로그인이 되었다면? 내 마이페이지를 보여줘야함.
-                
-                
-                let size = CGSize(width: 30, height: 30)
-                
-                DispatchQueue.main.async {
-                    self.startAnimating(size, message: "Loading...", type: .ballTrianglePath)
-                }
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.7) {
-                    self.stopAnimating()
-                }
-                
-                self.navigationController?.navigationBar.topItem?.title =  User.currentLoginedUserNickName
-                //self.view.setNeedsDisplay()
-                myListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-                myListView.ypos = 313
-                myInfoView.frame = CGRect(x: 0, y: 68, width: self.view.frame.width, height: 250)
-                myListView.addSubview(myInfoView)
-                
-                myProfileImageView.layer.cornerRadius = myProfileImageView.frame.width / 2
-                myProfileImageView.clipsToBounds = true
-                
-                FirebaseModel().loadProfileImageFromUsers()
-                FirebaseModel().loadUserInfo(pageCase: 2)
-
-                //FirebaseModel().loadPersonalFeed(username: User.currentLoginedUserNickName)
-                self.view.addSubview(myListView)
-                
-            }
+    }
+    func imageViewTouched(){
+        ////여기에 피커.
+        let imagePickerController = BSImagePickerViewController()
+        imagePickerController.maxNumberOfSelections = 1
+        bs_presentImagePickerController(imagePickerController, animated: true,
+                                        select: { (asset: PHAsset) -> Void in
+                                            print("Selected")
+        }, deselect: { (asset: PHAsset) -> Void in
+            print("Deselected")
+        }, cancel: { (assets: [PHAsset]) -> Void in
+            print("Cancel")
+        }, finish: { (assets: [PHAsset]) -> Void in
+            //self.imageAssets = assets
+            //FirebaseModel().postImages(assets: assets)
+            let asset = assets[0]
+            let name = asset.value(forKey:"filename") as! String
+            let extlist = name.components(separatedBy: ".")
+            let ext = extlist[extlist.count - 1]
+            let image = FirebaseModel().getAssetThumbnail(asset: asset)
+            FirebaseModel().postProfileImage(asset: asset, name: ("\(Date().timeIntervalSince1970).\(ext)"), uid: (Auth.auth().currentUser?.uid)!)
             
-        }
-        func imageViewTouched(){
-            ////여기에 피커.
-            let imagePickerController = BSImagePickerViewController()
-            imagePickerController.maxNumberOfSelections = 1
-            bs_presentImagePickerController(imagePickerController, animated: true,
-               select: { (asset: PHAsset) -> Void in
-                print("Selected")
-            }, deselect: { (asset: PHAsset) -> Void in
-                print("Deselected")
-            }, cancel: { (assets: [PHAsset]) -> Void in
-                print("Cancel")
-            }, finish: { (assets: [PHAsset]) -> Void in
-                //self.imageAssets = assets
-                //FirebaseModel().postImages(assets: assets)
-                let asset = assets[0]
-                let name = asset.value(forKey:"filename") as! String
-                let extlist = name.components(separatedBy: ".")
-                let ext = extlist[extlist.count - 1]
-                let image = FirebaseModel().getAssetThumbnail(asset: asset)
-                FirebaseModel().postProfileImage(asset: asset, name: ("\(Date().timeIntervalSince1970).\(ext)"), uid: (Auth.auth().currentUser?.uid)!)
-                
-                self.myProfileImageView.image = image // loadprofileimage랑 약간 겹치는 듯.
-                User.imageview.image = image
-                print("image changed")
-                print("image: \(image)")
-                
-                
-                
-            }, completion: nil)
-
-
-            print("touched")
-        }
+            self.myProfileImageView.image = image // loadprofileimage랑 약간 겹치는 듯.
+            User.imageview.image = image
+            print("image changed")
+            print("image: \(image)")
+            
+            
+            
+        }, completion: nil)
+        
+        
+        print("touched")
+    }
     
-        //for feeds
-        func updateProfileImg(_ notification: Notification){
-            let profileimg = notification.userInfo?["profileimg"] as? String ?? nil
-            let imageview = notification.userInfo?["imgview"] as? UIImageView ?? nil
-            let ranknamelabel = notification.userInfo?["ranklabel"] as? UILabel ?? nil
-            let rankname = notification.userInfo?["rankname"] as? String ?? ""
-            if profileimg != nil && imageview != nil {
-                Storage.storage().reference(withPath: "profileImages/" + profileimg!).downloadURL { (url, error) in
-                    imageview?.kf.setImage(with: url)
-                }
-            }
-            if ranknamelabel != nil {
-                ranknamelabel?.text = rankname
-                ranknamelabel?.sizeToFit()
+    //for feeds
+    func updateProfileImg(_ notification: Notification){
+        let profileimg = notification.userInfo?["profileimg"] as? String ?? nil
+        let imageview = notification.userInfo?["imgview"] as? UIImageView ?? nil
+        let ranknamelabel = notification.userInfo?["ranklabel"] as? UILabel ?? nil
+        let rankname = notification.userInfo?["rankname"] as? String ?? ""
+        if profileimg != nil && imageview != nil {
+            Storage.storage().reference(withPath: "profileImages/" + profileimg!).downloadURL { (url, error) in
+                imageview?.kf.setImage(with: url)
             }
         }
+        if ranknamelabel != nil {
+            ranknamelabel?.text = rankname
+            ranknamelabel?.sizeToFit()
+        }
+    }
     
     
     func updateLikeButton(_ notification: Notification){
@@ -247,7 +253,7 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
             label?.sizeToFit()
         }
     }
-
+    
     func nickNameLabelTouchedOnMainpage(_ notification:Notification){
         User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
     }
