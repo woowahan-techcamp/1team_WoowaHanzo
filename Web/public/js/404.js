@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   $(".previous_page").on("click tap", function(evt) {
     evt.preventDefault();
-    window.history.back();
+    window.history.go(-2);
   });
 
 

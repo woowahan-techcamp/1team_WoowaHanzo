@@ -17,3 +17,7 @@
   font-size: 3.4em;
   color: #3498db;
 }
+
+.previous_page:hover {
+  cursor: pointer;
+}
