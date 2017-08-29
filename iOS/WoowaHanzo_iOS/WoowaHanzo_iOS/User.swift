@@ -26,6 +26,7 @@ class User {
     static var imageview : UIImageView = UIImageView(image: UIImage(named:
         "profile.png"))
     
+    
     static var currentLoginedUserTitle : String = ""
     static var currentUserProfileImage = UIImage()
     

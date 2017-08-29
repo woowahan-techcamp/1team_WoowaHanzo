@@ -22,7 +22,7 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
     
     var postProfileImageName:String = ""
     
-    
+    var thumnailImage : UIImage = UIImage()
     
     var count  = 0
     
@@ -114,14 +114,17 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
         // self.myProfileImageView.image = User.imageview.image
         let profileImageUrl = notification.userInfo?["profileImageUrl"] as! String
         Storage.storage().reference(withPath: "profileImages/" + profileImageUrl).downloadURL { (url, error) in
-            self.myInfoView.profileImageView.kf.setImage(with: url)
+            if error == nil{
+                self.myInfoView.profileImageView.kf.setImage(with: url)
+        }
+            else{
+                self.myInfoView.profileImageView.image = self.thumnailImage
+                
+            }
             //self.myProfileImageView.image = User.currentLoginedProfileImage
             //completion handler 등으로 user에 저장해놓기
         }
     }
-    
-    
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
@@ -199,13 +202,14 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
             let name = asset.value(forKey:"filename") as! String
             let extlist = name.components(separatedBy: ".")
             let ext = extlist[extlist.count - 1]
-            let image = FirebaseModel().getAssetThumbnail(asset: asset)
+            self.thumnailImage = FirebaseModel().getAssetThumbnail(asset: asset)
             FirebaseModel().postProfileImage(asset: asset, name: ("\(Date().timeIntervalSince1970).\(ext)"), uid: (Auth.auth().currentUser?.uid)!)
             
-            self.myInfoView.profileImageView.image = image // loadprofileimage랑 약간 겹치는 듯.
-            User.imageview.image = image
-            print("image changed")
-            print("image: \(image)")
+//            self.myInfoView.profileImageView.image = image // loadprofileimage랑 약간 겹치는 듯.
+            //print(image,1213)
+            User.imageview.image = self.thumnailImage
+//            print("image changed")
+//            print("image: \(image)")
 
         }, completion: nil)
         
@@ -221,7 +225,14 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
         let rankname = notification.userInfo?["rankname"] as? String ?? ""
         if profileimg != nil && imageview != nil {
             Storage.storage().reference(withPath: "profileImages/" + profileimg!).downloadURL { (url, error) in
-                imageview?.kf.setImage(with: url)
+                //imageview?.kf.setImage(with: url)
+                if error != nil{
+                    imageview?.image = self.thumnailImage
+                }
+                else{
+                    imageview?.kf.setImage(with: url)
+                }
+                
             }
         }
         if ranknamelabel != nil {

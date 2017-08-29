@@ -79,6 +79,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         controller.tagName = tagName
         self.show(controller, sender: self)
     }
+    
     func nickNameLabelTouchedOnMainpage(_ notification:Notification){
         User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
         
