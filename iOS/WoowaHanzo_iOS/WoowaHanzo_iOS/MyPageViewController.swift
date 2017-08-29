@@ -37,15 +37,18 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("call view did load")
         NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(loadUserInfo), name: NSNotification.Name(rawValue: "LoadUserInfo"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadUserInfo), name: NSNotification.Name(rawValue: "LoadUserInfo2"), object: nil)
         //observer 쌓이는 것 해결 필요
         NotificationCenter.default.addObserver(self, selector: #selector(loadPorfileImage(_ :)), name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users3"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(viewFeeds), name: NSNotification.Name(rawValue: "users3"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateLikeButton), name: NSNotification.Name(rawValue: "likestatus"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateLikeLabel), name: NSNotification.Name(rawValue: "likenum"), object: nil)
-    
+        print(User.myUsers.count,1234566)
+        
+        
         
         UINavigationBar.appearance().backgroundColor = UIColor.white
         if AuthModel.isLoginStatus(){
@@ -79,19 +82,24 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
             sayhiLabel.text = User.currentLoginedUserSayHi
             sayhiLabel.sizeToFit()
             sayhiLabel.frame.origin.x = self.view.frame.width / 2 - sayhiLabel.frame.width / 2
-
-            if AuthModel.isLoginStatus(), User.myUsers.count > 0 {
-                print("\(User.myUsers.count)개의 피드 데이터가 존재합니다.")
-                myListView.addUserList(users: User.myUsers)
-                postnumLabel.text = "게시물 \(User.myUsers.count)"
-                postnumLabel.sizeToFit()
-                postnumLabel.frame.origin.x = self.view.frame.width / 2 - postnumLabel.frame.width / 2
-            }
+            
+            //지금 viewload가 두번 호출?
+            FirebaseModel().loadPersonalFeed(username: User.currentLoginedUserNickName)
             
         }
-        
-        
-        
+    func viewFeeds(){
+        if AuthModel.isLoginStatus(), User.myUsers.count > 0 {
+            print("\(User.myUsers.count)개의 피드 데이터가 존재합니다.")
+            myListView.addUserList(users: User.myUsers)
+            postnumLabel.text = "게시물 \(User.myUsers.count)"
+            postnumLabel.sizeToFit()
+            postnumLabel.frame.origin.x = self.view.frame.width / 2 - postnumLabel.frame.width / 2
+        }
+
+    }
+    
+   
+    
         func loadUserInfo(){
             viewload()
             FirebaseModel().loadProfileImageFromUsers() // 나중에 바꾸기.
@@ -113,8 +121,7 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
         
         override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(true)
-            
-            
+          
             if !AuthModel.isLoginStatus(){
                 
                 let alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
@@ -155,9 +162,9 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
                 myProfileImageView.clipsToBounds = true
                 
                 FirebaseModel().loadProfileImageFromUsers()
-                FirebaseModel().loadUserInfo()
+                FirebaseModel().loadUserInfo(pageCase: 2)
 
-                FirebaseModel().loadPersonalFeed(username: User.currentLoginedUserNickName)
+                //FirebaseModel().loadPersonalFeed(username: User.currentLoginedUserNickName)
                 self.view.addSubview(myListView)
                 
             }

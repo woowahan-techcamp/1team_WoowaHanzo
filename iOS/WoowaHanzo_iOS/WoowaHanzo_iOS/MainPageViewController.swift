@@ -45,6 +45,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         let titleAttributes = [
             NSFontAttributeName: UIFont(name:"NotoSans-Bold", size: 19.0)!
         ]
+        
         self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
         
        

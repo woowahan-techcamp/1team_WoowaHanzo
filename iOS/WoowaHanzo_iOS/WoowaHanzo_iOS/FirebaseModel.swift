@@ -197,6 +197,7 @@ class FirebaseModel{
                     User.myUsers.append(user)
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "users3"), object: self)
+                print("user3")
             }
             
         })
@@ -260,8 +261,9 @@ class FirebaseModel{
     }
     
     
-    func loadUserInfo()
+    func loadUserInfo(pageCase: Int)
     {
+        
         if AuthModel.isLoginStatus(){
            
             print("loadUserInfo")
@@ -275,7 +277,17 @@ class FirebaseModel{
                 User.currentLoginedUserLikes = value?["likes"] as! Int
                 User.currentLoginedUserSayHi = value?["sayhi"] as! String
                 self.downloadprofileimage(name: value?["profileImg"] as! String)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoadUserInfo"), object: self)
+                
+                if pageCase == 1{
+                    //글쓰기
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoadUserInfo1"), object: self)
+                }
+                else if pageCase == 2{
+                    
+                    //마이페이지
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoadUserInfo2"), object: self)
+                    print("noticall")
+                }
                 
                 
                 // ...

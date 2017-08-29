@@ -74,13 +74,13 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
         else{
             //로그인이 되었다면? 내 마이페이지를 보여줘야함. - did
             FirebaseModel().loadProfileImageFromUsers()
-            FirebaseModel().loadUserInfo()
+            FirebaseModel().loadUserInfo(pageCase: 1)
             loadUserInformation()
             
             if shouldloadview{
                 //여기에 프로필 이미지
                 FirebaseModel().loadProfileImageFromUsers()
-                FirebaseModel().loadUserInfo()
+                FirebaseModel().loadUserInfo(pageCase: 1)
                 print("응앙ㅇ\(User.currentLoginedUserNickName,User.currentLoginedUserTitle)")
                 
                 print(User.currentLoginedUserNickName,User.currentLoginedUserTitle)
@@ -108,7 +108,7 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
                 NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.escapecancel), name: NSNotification.Name(rawValue: "escapecancel"), object: nil)
                 NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.escapeOK), name: NSNotification.Name(rawValue: "escapeOK"), object: nil)
                 NotificationCenter.default.addObserver(self, selector: #selector(loadPorfileImage(_ :)), name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: nil)
-                NotificationCenter.default.addObserver(self, selector: #selector(loadUserInformation), name: NSNotification.Name(rawValue: "LoadUserInfo"), object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(loadUserInformation), name: NSNotification.Name(rawValue: "LoadUserInfo1"), object: nil)
                 
                 
                 
@@ -200,13 +200,13 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
             //로그인이 되었다면? 내 마이페이지를 보여줘야함.
             
             FirebaseModel().loadProfileImageFromUsers()
-            FirebaseModel().loadUserInfo()
+            FirebaseModel().loadUserInfo(pageCase: 1)
             loadUserInformation()
             print(User.currentLoginedUserNickName, User.currentLoginedUserRankName,1234)
             
             if shouldloadview{
                 FirebaseModel().loadProfileImageFromUsers()
-                FirebaseModel().loadUserInfo()
+                FirebaseModel().loadUserInfo(pageCase: 1)
                 print("응앙ㅇ\(User.currentLoginedUserNickName,User.currentLoginedUserTitle)")
                 
                 userTearLabel.text = User.currentLoginedUserRankName

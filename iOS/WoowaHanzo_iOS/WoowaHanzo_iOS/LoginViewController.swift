@@ -18,8 +18,6 @@ class LoginViewController: UIViewController,NVActivityIndicatorViewable {
     @IBOutlet weak var loginButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        FirebaseModel().loadUserInfo()
-        FirebaseModel().loadProfileImageFromUsers()
         emailValidationLabel.isHidden = true
     }
 
@@ -39,8 +37,6 @@ class LoginViewController: UIViewController,NVActivityIndicatorViewable {
                         //print(User.currentLoginedUserNickName,User.currentLoginedUserRankName)
                         //여기에 해당 유저의 정보를 파베에서 불러오도록 하자.
                         self.stopAnimating()
-                        FirebaseModel().loadUserInfo()
-                        FirebaseModel().loadProfileImageFromUsers()
                         self.dismiss(animated: true, completion: nil)
                         
                     }
