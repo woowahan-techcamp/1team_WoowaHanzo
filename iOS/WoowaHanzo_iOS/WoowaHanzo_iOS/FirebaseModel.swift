@@ -114,13 +114,11 @@ class FirebaseModel{
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
                 User.nickNameClickResult = [User]()
                 for child in result {
-                    
-                    if (child.childSnapshot(forPath: "author").value as! String == User.currentUserName)
-                    {
+                    if (child.childSnapshot(forPath: "author").value as! String == User.currentUserName){
                         var userKey = child.key as! String
                         //print(child.childSnapshot(forPath: "author").value!)
                         let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil, postDate : child.childSnapshot(forPath: "time").value as! Int, uid: child.childSnapshot(forPath: "uid").value as! String)
-                        User.nickNameClickResult.append(user)
+                            User.nickNameClickResult.append(user)
                         //print(child.childSnapshot(forPath: "body").value as! String)
                         
                         //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
@@ -199,6 +197,7 @@ class FirebaseModel{
                     User.myUsers.append(user)
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "users3"), object: self)
+                print("user3")
             }
             
         })
@@ -212,7 +211,6 @@ class FirebaseModel{
         let childUpdates = ["/likeRequest/\(key)": post]
         ref.updateChildValues(childUpdates)
         print("")
-        
     }
     
     //좋아요 버튼 초기 상태. 눌려있는지 아닌지.
@@ -241,9 +239,6 @@ class FirebaseModel{
             }
         })
     }
-    
-    
-    
     func loadProfileImageFromUsers(){
         
         if AuthModel.isLoginStatus(){
@@ -266,21 +261,33 @@ class FirebaseModel{
     }
     
     
-    func loadUserInfo()
+    func loadUserInfo(pageCase: Int)
     {
+        
         if AuthModel.isLoginStatus(){
+           
+            print("loadUserInfo")
             self.ref = Database.database().reference()
             let userID = Auth.auth().currentUser?.uid
             ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
                 // Get user value
                 let value = snapshot.value as? NSDictionary
-                
                 User.currentLoginedUserNickName = value?["username"] as! String
                 User.currentLoginedUserRankName = value?["rankName"] as! String
                 User.currentLoginedUserLikes = value?["likes"] as! Int
                 User.currentLoginedUserSayHi = value?["sayhi"] as! String
                 self.downloadprofileimage(name: value?["profileImg"] as! String)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoadUserInfo"), object: self)
+                
+                if pageCase == 1{
+                    //글쓰기
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoadUserInfo1"), object: self)
+                }
+                else if pageCase == 2{
+                    
+                    //마이페이지
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoadUserInfo2"), object: self)
+                    print("noticall")
+                }
                 
                 
                 // ...

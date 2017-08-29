@@ -28,7 +28,7 @@ class LoginViewController: UIViewController,NVActivityIndicatorViewable {
         let size = CGSize(width: 30, height: 30)
         
         self.startAnimating(size, message: "Authenticating...", type: .ballTrianglePath)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3){
             NVActivityIndicatorPresenter.sharedInstance.setMessage("Authenticating...")
             if let email = self.emailTextField.text,let pw  = self.pwTextField.text{
                 AuthModel.login(email: email, pw: pw, completion: { (success) in
@@ -43,10 +43,8 @@ class LoginViewController: UIViewController,NVActivityIndicatorViewable {
                     else{
                         self.stopAnimating()
                         self.emailValidationLabel.isHidden = false
-
                     }
                 })
-                
             }
         }
 

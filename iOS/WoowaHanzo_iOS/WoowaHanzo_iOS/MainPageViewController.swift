@@ -31,6 +31,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
         //NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users2"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
@@ -44,6 +45,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         let titleAttributes = [
             NSFontAttributeName: UIFont(name:"NotoSans-Bold", size: 19.0)!
         ]
+        
         self.navigationController?.navigationBar.titleTextAttributes = titleAttributes
         
        

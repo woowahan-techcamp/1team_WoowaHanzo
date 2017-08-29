@@ -49,18 +49,18 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         if !AuthModel.isLoginStatus(){
             //로그인이 되어있지 않은 상태
-            var alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
-            var cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
+            let alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
                 let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
                 self.present(controller, animated: false, completion: nil)
                 //self.navigationController?.pushViewController(controller, animated: true)
                 //self.show(controller, sender: self)
             })
-            var ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
                 let storyboard = UIStoryboard(name: "Auth", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "loginNavigation")
                 //self.present(controller, animated: true, completion: nil)
@@ -73,15 +73,18 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
         }
         else{
             //로그인이 되었다면? 내 마이페이지를 보여줘야함. - did
+            FirebaseModel().loadProfileImageFromUsers()
+            FirebaseModel().loadUserInfo(pageCase: 1)
+            loadUserInformation()
             
             if shouldloadview{
                 //여기에 프로필 이미지
                 FirebaseModel().loadProfileImageFromUsers()
-                FirebaseModel().loadUserInfo()
+                FirebaseModel().loadUserInfo(pageCase: 1)
                 print("응앙ㅇ\(User.currentLoginedUserNickName,User.currentLoginedUserTitle)")
                 
                 print(User.currentLoginedUserNickName,User.currentLoginedUserTitle)
-                userTearLabel.text = User.currentLoginedUserTitle
+                userTearLabel.text = User.currentLoginedUserRankName
                 shouldloadview = false
                 myCollectionView.dataSource = self
                 myCollectionView.delegate = self
@@ -105,7 +108,7 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
                 NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.escapecancel), name: NSNotification.Name(rawValue: "escapecancel"), object: nil)
                 NotificationCenter.default.addObserver(self, selector: #selector(ReviewPostPageViewController.escapeOK), name: NSNotification.Name(rawValue: "escapeOK"), object: nil)
                 NotificationCenter.default.addObserver(self, selector: #selector(loadPorfileImage(_ :)), name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: nil)
-                NotificationCenter.default.addObserver(self, selector: #selector(loadUserInformation), name: NSNotification.Name(rawValue: "LoadUserInfo"), object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(loadUserInformation), name: NSNotification.Name(rawValue: "LoadUserInfo1"), object: nil)
                 
                 
                 
@@ -166,22 +169,24 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
         }
     }
     func loadUserInformation(){
+        print("loadUserInformation")
         self.userNickNameLabel.text = User.currentLoginedUserNickName
         self.userTearLabel.text = User.currentLoginedUserRankName
     }
     
     override func viewWillAppear(_ animated: Bool) {
+
         if !AuthModel.isLoginStatus(){
             
-            var alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
-            var cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
+            let alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
                 let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
                 self.present(controller, animated: false, completion: nil)
                 //self.navigationController?.pushViewController(controller, animated: true)
                 //self.show(controller, sender: self)
             })
-            var ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (okAction) in
                 let storyboard = UIStoryboard(name: "Auth", bundle: nil)
                 let controller = storyboard.instantiateViewController(withIdentifier: "loginNavigation")
                 
@@ -194,12 +199,17 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
         else{
             //로그인이 되었다면? 내 마이페이지를 보여줘야함.
             
+            FirebaseModel().loadProfileImageFromUsers()
+            FirebaseModel().loadUserInfo(pageCase: 1)
+            loadUserInformation()
+            print(User.currentLoginedUserNickName, User.currentLoginedUserRankName,1234)
+            
             if shouldloadview{
                 FirebaseModel().loadProfileImageFromUsers()
-                FirebaseModel().loadUserInfo()
+                FirebaseModel().loadUserInfo(pageCase: 1)
                 print("응앙ㅇ\(User.currentLoginedUserNickName,User.currentLoginedUserTitle)")
                 
-                userTearLabel.text = User.currentLoginedUserTitle
+                userTearLabel.text = User.currentLoginedUserRankName
                 shouldloadview = false
                 myCollectionView.dataSource = self
                 myCollectionView.delegate = self
@@ -213,7 +223,7 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
                 //userProfileImage.image = UIImage(named: "profile.png")
                 //userTearLabel.text = "치킨왕자"
                 userNickNameLabel.text = User.currentLoginedUserNickName
-                
+                print(User.currentLoginedUserNickName, User.currentLoginedUserTitle,1234)
                 myTagView.removeFromSuperview()
                 myTagView = TagView( position: CGPoint( x: 0, y: 380 ), size: CGSize( width: 320, height: 50 ) )
                 myTextView.delegate = self as UITextViewDelegate
@@ -289,8 +299,6 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
                 //keyboardSize.height
                 keyboardmove = min((self.view.frame.height-self.myTagView.frame.origin.y-self.myTagView._scrollView.contentSize.height - 200 - keyboardSize.height), (CGFloat)(0))
                 self.myContentView.frame.origin.y += keyboardmove
-                
-                
             }
         }
         else{
