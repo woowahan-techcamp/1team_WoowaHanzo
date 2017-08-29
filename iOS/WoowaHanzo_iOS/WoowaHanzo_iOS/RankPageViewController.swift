@@ -39,8 +39,6 @@ class RankPageViewController: UIViewController {
     func nickNameLabelTouched(_ notification:Notification){
         
         User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
-       
-        
         let storyboard = UIStoryboard(name: "NickNameClickResult", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "NickNameClickResultViewController")
         FirebaseModel().ReturnNickNameClickResult()

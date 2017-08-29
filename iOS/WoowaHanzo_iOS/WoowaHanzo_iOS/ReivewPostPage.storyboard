@@ -184,7 +184,7 @@
                             <constraint firstItem="ezh-sH-mRQ" firstAttribute="leading" secondItem="iaS-MZ-tMP" secondAttribute="leading" id="qBy-5k-QvO"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="글쓰기" image="Group 2" id="O9b-Is-O5c"/>
+                    <tabBarItem key="tabBarItem" title="글쓰기" image="Path 2" id="O9b-Is-O5c"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="myButton" destination="9fm-Li-ZqK" id="McO-tT-kmk"/>
@@ -206,6 +206,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Group 2" width="19" height="19"/>
+        <image name="Path 2" width="19" height="19"/>
     </resources>
 </document>

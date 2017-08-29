@@ -52,6 +52,7 @@
 		98C563CB1F39BD930017E68A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C563CA1F39BD930017E68A /* LoginViewController.swift */; };
 		98C563CD1F39BE310017E68A /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C563CC1F39BE310017E68A /* AuthModel.swift */; };
 		98C563CF1F39C3840017E68A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C563CE1F39C3840017E68A /* RegisterViewController.swift */; };
+		98DE5BE11F54FFC500278ECC /* UIView + TouchEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DE5BE01F54FFC500278ECC /* UIView + TouchEvent.swift */; };
 		98ECA3AB1F3D87530069DA87 /* baemin.png in Resources */ = {isa = PBXBuildFile; fileRef = 98ECA3AA1F3D87530069DA87 /* baemin.png */; };
 		98ECA42D1F440E570069DA87 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98ECA42C1F440E570069DA87 /* DateExtension.swift */; };
 		98ECA4381F4557990069DA87 /* icon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98ECA4371F4557990069DA87 /* icon.xcassets */; };
@@ -135,6 +136,7 @@
 		98C563CA1F39BD930017E68A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		98C563CC1F39BE310017E68A /* AuthModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		98C563CE1F39C3840017E68A /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		98DE5BE01F54FFC500278ECC /* UIView + TouchEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView + TouchEvent.swift"; sourceTree = "<group>"; };
 		98ECA3AA1F3D87530069DA87 /* baemin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baemin.png; sourceTree = "<group>"; };
 		98ECA42C1F440E570069DA87 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		98ECA4371F4557990069DA87 /* icon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = icon.xcassets; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				98895BEC1F4BB543000D1E15 /* RankModel.swift */,
 				98895BF01F4BC2E3000D1E15 /* RankListView.swift */,
 				98B73A4F1F4D9E0300C3CCE0 /* NickNameLabel.swift */,
+				98DE5BE01F54FFC500278ECC /* UIView + TouchEvent.swift */,
 			);
 			name = RankPage;
 			sourceTree = "<group>";
@@ -699,6 +702,7 @@
 				984397641F3ACD3200743B63 /* TagFilter.swift in Sources */,
 				9854BF9F1F340806008FA337 /* MyPageViewController.swift in Sources */,
 				988C713E1F4BF2BD0044FEE0 /* TagResultViewController.swift in Sources */,
+				98DE5BE11F54FFC500278ECC /* UIView + TouchEvent.swift in Sources */,
 				984397501F3835E800743B63 /* TagPageViewController.swift in Sources */,
 				98B73A501F4D9E0300C3CCE0 /* NickNameLabel.swift in Sources */,
 				98C563CF1F39C3840017E68A /* RegisterViewController.swift in Sources */,

@@ -96,12 +96,13 @@ class RankListView: UIScrollView {
         let namelabel = NickNameLabel()
         namelabel.whenLabelTouchedOnRankPage()
         namelabel.text = rankuser.nickName
-        namelabel.textAlignment = NSTextAlignment.center
+        namelabel.textAlignment = NSTextAlignment.left
         namelabel.font = UIFont(name: "NotoSans", size: 17.0)!
         namelabel.textColor = UIColor.darkGray
         namelabel.sizeToFit()
-        namelabel.frame.size.height = namelabel.frame.size.height + 10
-        namelabel.frame.origin = CGPoint(x: 85, y: 37)
+        namelabel.frame.size.height = namelabel.frame.size.height + 50
+        namelabel.frame.size.width = namelabel.frame.size.width + 100
+        namelabel.frame.origin = CGPoint(x: 85, y: 37-20)
         
         
         cellview.addSubview(namelabel)
