@@ -8,7 +8,7 @@ div .post {
 }
 
 .container_box{
-  margin-top: 0px;
+  margin-top: 20px;
 }
 
 .tag_box {
@@ -28,8 +28,7 @@ div .post {
 }
 
 .tag_indicator {
-  /*outline: 1px solid red;*/
-  padding: 0 !important;
+  /*padding: 0 !important;*/
   -webkit-transition: all .2s;
   transition: all .2s;
 }
