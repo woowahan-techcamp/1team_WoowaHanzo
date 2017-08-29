@@ -20,7 +20,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
   setTimeout(function() {
     $(".tag_indicator").css("opacity", 0);
     $(".tag_indicator").css("height", 0);
-    // $(".tag_indicator").css("padding", 0);
+    $(".tag_indicator").on("transitionend", function() {
+      $(".tag_indicator").css("display", "none");
+    });
   }, 700);
 
 });
