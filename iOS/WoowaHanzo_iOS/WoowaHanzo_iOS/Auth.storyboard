@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="이메일을 입력해주세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6em-tW-Czn">
-                                <rect key="frame" x="65" y="139" width="237" height="23"/>
+                                <rect key="frame" x="68.830600658596609" y="138.99999999999977" width="236.99999999999997" height="23.000000000000043"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -260,7 +260,7 @@
             <objects>
                 <navigationController storyboardIdentifier="loginNavigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2aR-lG-x00" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xp7-gQ-2Rj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="xp7-gQ-2Rj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

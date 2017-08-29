@@ -197,7 +197,7 @@ class FirebaseModel{
                     User.myUsers.append(user)
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "users3"), object: self)
-                print("user3")
+                
             }
             
         })

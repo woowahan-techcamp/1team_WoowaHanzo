@@ -21,6 +21,8 @@ self.navigationController?.navigationBar.tintColor = UIColor(red: 42/255, green:
         let firebaseAuth = Auth.auth()
         do {
             User.myUsers = Array<User>()
+            //NotificationCenter.default.removeObserver(self, name:NSNotification.Name(rawValue: "LoadUserInfo2"), object:nil)
+
             try firebaseAuth.signOut()
             let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
