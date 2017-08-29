@@ -456,17 +456,22 @@ extension ReviewPostPageViewController: UITextViewDelegate{
     
     //setting placeholder to appear only when textview is empty
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentText = textView.text as NSString?
+        let updatedText = currentText?.replacingCharacters(in: range, with: text)
+        
         //글자수 제한.
         let newLength = textView.text.characters.count + text.characters.count - range.length
         if newLength > 500 {
             return false
         }
-        if textView.frame.height > 1000 {
+        //높이 제한. height가 1000이상일 때부터 줄바꿈이 입력되지 않는다. 그래도 여전히 글자들을 길게 입력하여
+        //다음줄로 넘어갈 수는 있으나, 글자수 제한 때문에 그것이 무한정 이루어지지는 않아 일정 height를 넘을 수가 없다.
+        if textView.frame.height > 1000 && text.characters.contains("\n") {
+            print(text.characters)
             return false
         }
         
-        let currentText = textView.text as NSString?
-        let updatedText = currentText?.replacingCharacters(in: range, with: text)
+       
       
         if updatedText!.isEmpty {
             
