@@ -25,10 +25,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
           console.log(key);
           return firebase.database().ref("/posts/").child(key).once("value");
         });
-<<<<<<< HEAD
-      });
-=======
->>>>>>> 44b208225b29de019e69d9151e03f875dfc488f5
 
         Promise.all(promises).then(function(snapshots) {
           console.log(snapshots);
