@@ -75,7 +75,6 @@ class FirebaseModel{
         }
     }
     
-    
     //썸네일 리턴 함수. 리뷰 포스트 뷰에서 사용
     func getAssetThumbnail(asset: PHAsset) -> UIImage {
         let manager = PHImageManager.default()

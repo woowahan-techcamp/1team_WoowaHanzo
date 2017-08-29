@@ -165,6 +165,7 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
                     User.currentUserProfileImage = image
                     self.myImageView?.kf.setImage(with: url)
                 }
+                print(error,"error!!")
             })
         }
     }
@@ -172,10 +173,11 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
         print("loadUserInformation")
         self.userNickNameLabel.text = User.currentLoginedUserNickName
         self.userTearLabel.text = User.currentLoginedUserRankName
+        self.myImageView.image = User.imageview.image
     }
     
     override func viewWillAppear(_ animated: Bool) {
-
+        print("viewWillAppear")
         if !AuthModel.isLoginStatus(){
             
             let alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
@@ -198,7 +200,7 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
         }
         else{
             //로그인이 되었다면? 내 마이페이지를 보여줘야함.
-            
+            print("login status")
             FirebaseModel().loadProfileImageFromUsers()
             FirebaseModel().loadUserInfo(pageCase: 1)
             loadUserInformation()
@@ -394,8 +396,6 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
                 
                 DispatchQueue.main.async {
                     self.startAnimating(size, message: "Loading...", type: .ballTrianglePath)
-                    
-                    
                 }
                 
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
