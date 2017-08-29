@@ -20,17 +20,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var queryKey = getParameterByName("userQuery", url);
 
       promises.push(firebase.database().ref("/userQuery/" + queryKey).once("value", function(snapshot) {
-        queryUid = snapshot.val().uid;
-        var postIdList = snapshot.val().queryResult.slice(1,snapshot.val().length);
-        var promises = postIdList.map(function(key) {
-          return firebase.database().ref("/posts/").child(key).once("value");
-        });
 
-        return Promise.all(promises).then(function(snapshots) {
-          snapshots.forEach(function(snapshot) {
-            loadPosts(snapshot, false);
+        if(snapshot.val()) {
+          queryUid = snapshot.val().uid;
+          var postIdList = snapshot.val().queryResult.slice(1,snapshot.val().length);
+          var promises = postIdList.map(function(key) {
+            return firebase.database().ref("/posts/").child(key).once("value");
           });
-        });
+
+          return Promise.all(promises).then(function(snapshots) {
+            snapshots.forEach(function(snapshot) {
+              loadPosts(snapshot, false);
+            });
+          });
+        }
+        else {
+          window.location.href = "./404.html";
+        }
+
       }));
 
     } else if(user) {
