@@ -115,60 +115,10 @@
         <input type="file" id="profile_image_input" name="file" accept="image/*"></input>
       </div>
 
-      <div class="mypage_user_post_box">
-        <script id="post_template" type="template">
-        <div class="post" id="post_{{id}}">
-          <div class="post-header" id="user_{{uid}}">
-            <div class="img-divgo">
-              <img class="profilePic" src="" style="vertical-align:bottom;"/>
-            </div>
-            <span class="Name">{{author}}</span>
-            <span class="Title">오늘의 신</span>
-          </div>
-          <div class="textbox post_body">
-            {{body}}
-          </div>
-          <div class="tags_holder">
-            {{#each tags}}
-              <span class="tagger tag_holder unselectable">
-                #{{this}}
-              </span>
-            {{/each}}
-          </div>
-          <table class="image_thumbnails">
-            <tr>
-              <td>
-                <div class="single_thumbnail">
-                  <img src="" />
-                </div>
-              </td>
-              <td>
-                <div class="single_thumbnail">
-                  <img src="" />
-                </div>
-              </td>
-              <td>
-                <div class="single_thumbnail">
-                  <img src="" />
-                  <div class="thumbnail_cover">
-                    +3
-                  </div>
-                </div>
 
-              </td>
-            </tr>
-          </table>
-          <hr />
-          <div class="post_footer">
-            <i class="fa fa-heart-o like_btn" aria-hidden="true"></i>
-            <span class="like_number">{{likes}}</span>
-            <div class="post_time">{{time}}</div>
-          </div>
-        </div>
-        </script>
-      </div>
 
-    </div>
+
+    </div><!--container end-->
 
     <div class="loading-indicator-box">
       <div class="loading-text">로딩 중입니다.</div>
@@ -180,7 +130,57 @@
         <div class="rect5"></div>
       </div>
     </div>
-    <!-- <button id="logout">로그아웃</button> -->
 
+
+    <script id="post_template" type="template">
+      <div class="post" id="post_{{id}}">
+        <div class="post-header" id="user_{{uid}}">
+          <div class="img-divgo">
+            <img class="profilePic" src="" style="vertical-align:bottom;"/>
+          </div>
+          <span class="Name">{{author}}</span>
+          <span class="Title">오늘의 신</span>
+        </div>
+        <div class="textbox post_body">
+          {{body}}
+        </div>
+        <div class="tags_holder">
+          {{#each tags}}
+            <span class="tagger tag_holder unselectable">
+              #{{this}}
+            </span>
+          {{/each}}
+        </div>
+        <table class="image_thumbnails">
+          <tr>
+            <td>
+              <div class="single_thumbnail">
+                <img src="" />
+              </div>
+            </td>
+            <td>
+              <div class="single_thumbnail">
+                <img src="" />
+              </div>
+            </td>
+            <td>
+              <div class="single_thumbnail">
+                <img src="" />
+                <div class="thumbnail_cover">
+                  +3
+                </div>
+              </div>
+
+            </td>
+          </tr>
+        </table>
+        <hr />
+        <div class="post_footer">
+          <i class="fa fa-heart-o like_btn" aria-hidden="true"></i>
+          <span class="like_number">{{likes}}</span>
+          <div class="post_time">{{time}}</div>
+        </div>
+      </div>
+    </script>
   </body>
 </html>

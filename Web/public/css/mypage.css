@@ -6,9 +6,9 @@
 }
 
 .mypage_user_box {
+  height: 283px;
   text-align: center;
   font-size: 0;
-  margin: 0;
   padding: 0;
 }
 
@@ -93,6 +93,10 @@
 
 /*width가 720 미만이 되면..*/
 @media (max-width: 720px) {
+  .mypage_user_box {
+    height: 248px;
+  }
+
   .mypage_user_image_box {
     width: 130px;
     height: 130px;
@@ -138,6 +142,15 @@
 
 /*width가 360 미만이 되면..*/
 @media (max-width: 360px) {
+  .mypage_user_box {
+    height: 194px;
+  }
+
+  .post {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
   .mypage_user_image_box {
     width: 100px;
     height: 100px;
