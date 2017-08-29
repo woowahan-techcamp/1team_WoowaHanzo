@@ -1,0 +1,23 @@
+.text_404 {
+  margin-top: 100px;
+  font-family: Jua, Helvetica;
+  font-size: 2.4em;
+  text-align: center;
+}
+
+.sub_text_404 {
+  font-family: Jua, Helvetica;
+  font-size: 2.0em;
+  text-align: center;
+}
+
+.previous_page {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 3.4em;
+  color: #3498db;
+}
+
+.previous_page:hover {
+  cursor: pointer;
+}

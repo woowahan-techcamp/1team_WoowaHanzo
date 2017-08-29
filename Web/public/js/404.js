@@ -6,7 +6,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     getCursorPosition(evt);
   });
 
-
+  $(".previous_page").on("click tap", function(evt) {
+    evt.preventDefault();
+    window.history.go(-2);
+  });
 
 
 });
