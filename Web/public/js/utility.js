@@ -387,6 +387,7 @@ function loadUserProfile(uid) {
 			pageObject.userProfileImage[this.uid] = snapshot.val().profileImg;
 			var downloadUrl = storageRef.child("profileImages/" + pageObject.userProfileImage[this.uid]).getDownloadURL();
 			downloadUrl.then(function(url) {
+				console.log(url);
 				var curPost = this.curPost;
 				var profilePic = curPost.querySelector("." + this.queryClass);
 				profilePic.classList.add("loading");
@@ -421,8 +422,6 @@ function loadUserProfile(uid) {
 
 	}.bind(this));
 }
-
-var count = 0;
 
 function loadActualPost(snapshot, likeObject, fromScrollTop) {
   var storageRef = firebase.storage().ref();
@@ -512,7 +511,6 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 			// empty heart
 			if(!$(event.target).hasClass("clicked")) {
 				// increase count
-				console.log(event.target.classList);
 				$(event.target).parent().children(".like_btn").addClass("clicked");
 				$(event.target).parent().children(".like_btn").addClass("fa-heart");
 				$(event.target).parent().children(".like_btn").removeClass("fa-heart-o");
@@ -538,11 +536,6 @@ function loadActualPost(snapshot, likeObject, fromScrollTop) {
 				firebase.database().ref("/likeRequest/" + this.requestKey + "/result").on("value", function(snapshot) {
 					if(!snapshot.val()) return;
 					if(snapshot.val().state == "default") return;
-					// if(snapshot.val().count > 0) {
-					// 	$(this.target).parent().children(".like_number").html(snapshot.val().count + "명");
-					// } else {
-					// 	$(this.target).parent().children(".like_number").html("");
-					// }
 
 					firebase.database().ref("/likeRequest/" + this.requestKey).off("value");
 					firebase.database().ref("/likeRequest/" + this.requestKey).remove();
