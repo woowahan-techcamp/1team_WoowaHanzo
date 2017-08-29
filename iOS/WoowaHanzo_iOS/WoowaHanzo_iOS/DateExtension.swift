@@ -18,7 +18,7 @@ extension Date {
     
     func postTimeDisplay(timestamp: Int) -> String{
         var timeago = ""
-        var time = -1*timestamp
+        let time = -1*timestamp
         let now = Int(1000 * Date().timeIntervalSince1970)
         let diff = now - time
         if(diff > 24 * 3600000){

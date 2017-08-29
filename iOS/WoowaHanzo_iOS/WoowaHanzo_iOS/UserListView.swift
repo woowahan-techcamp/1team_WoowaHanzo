@@ -58,7 +58,7 @@ class UserListView: UIScrollView {
     
     func addUser(user: User, index: Int){
         var inypos = 10
-        var inxpos = 20
+        let inxpos = 20
         
         
         let cellview = UIView()
@@ -151,7 +151,6 @@ class UserListView: UIScrollView {
         let scrollcontainerView = UIView(frame: scrollview.frame)
         scrollview.addSubview(scrollcontainerView)
         if let usersImageArray = user.imageArray{
-            print(user.imageArray)
             if user.imageArray! != [] {
                 if user.imageArray!.count > 0 {
                     for index in 0...user.imageArray!.count - 1{

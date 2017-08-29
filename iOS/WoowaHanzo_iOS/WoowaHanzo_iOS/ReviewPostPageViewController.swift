@@ -380,10 +380,6 @@ class ReviewPostPageViewController: UIViewController,NVActivityIndicatorViewable
     
     @IBAction func postButtonTouched(_ sender: Any) {
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let postDate = formatter.string(from: Date())
-        
         //글자가 회색이면 안보내게 하자.
         if myTextView.textColor != UIColor.lightGray{
             
