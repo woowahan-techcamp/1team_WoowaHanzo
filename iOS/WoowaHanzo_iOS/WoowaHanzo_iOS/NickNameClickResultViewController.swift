@@ -165,7 +165,7 @@ class NickNameClickResultViewController: UIViewController,NVActivityIndicatorVie
         let check = notification.userInfo?["doeslike"] as? Bool ?? false
         let button  = notification.userInfo?["button"] as? LikeButton ?? nil
         if check {
-            button?.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
+            button?.setImage(#imageLiteral(resourceName: "heartBlue_Final"), for: .normal)
         }
         else{
             button?.setImage(#imageLiteral(resourceName: "emptyHeard"), for: .normal)

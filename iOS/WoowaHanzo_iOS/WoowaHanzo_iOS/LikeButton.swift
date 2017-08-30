@@ -20,7 +20,7 @@ class LikeButton: UIButton {
     }
     func buttonTouched(){
         if let image = self.currentImage, image == #imageLiteral(resourceName: "emptyHeard") {
-            self.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
+            self.setImage(#imageLiteral(resourceName: "heartBlue_Final"), for: .normal)
             self.label.text = "\(num + 1)"
             num = num + 1
         } else {

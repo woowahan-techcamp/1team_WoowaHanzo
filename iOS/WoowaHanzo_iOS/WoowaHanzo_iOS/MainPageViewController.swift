@@ -15,7 +15,6 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     
     var ref: DatabaseReference!
     var tagResultArray : [String]?
-
     var firebaseModel = FirebaseModel()
     let cellSpacingHeight: CGFloat = 15
   
@@ -116,7 +115,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         let check = notification.userInfo?["doeslike"] as? Bool ?? false
         let button  = notification.userInfo?["button"] as? LikeButton ?? nil
         if check {
-            button?.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
+            button?.setImage(#imageLiteral(resourceName: "heartBlue_Final"), for: .normal)
         }
         else{
             button?.setImage(#imageLiteral(resourceName: "emptyHeard"), for: .normal)

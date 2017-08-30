@@ -131,6 +131,8 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
         
         if !AuthModel.isLoginStatus(){
             
+            myListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+            self.view.addSubview(myListView)
             let alert = UIAlertController(title: "로그인 후 이용하실 수 있습니다. ", message: "로그인 하시겠습니까?", preferredStyle: .alert)
             let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: { (cancelAction) in
                 self.tabBarController?.selectedIndex = 0
@@ -247,7 +249,7 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
         let check = notification.userInfo?["doeslike"] as? Bool ?? false
         let button  = notification.userInfo?["button"] as? LikeButton ?? nil
         if check {
-            button?.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
+            button?.setImage(#imageLiteral(resourceName: "heartBlue_Final"), for: .normal)
         }
         else{
             button?.setImage(#imageLiteral(resourceName: "emptyHeard"), for: .normal)

@@ -60,7 +60,7 @@ class RankListView: UIScrollView {
         numlabel.text = "\(index + 1)"
         numlabel.textAlignment = NSTextAlignment.center
         numlabel.font = UIFont(name: "NotoSansUI", size: 25.0)!
-        numlabel.frame = CGRect(x: xoffset, y: ypos, width: 58, height: 80)
+        numlabel.frame = CGRect(x: xoffset, y: ypos, width: Int(self.frame.width * 58 / 375), height: 80)
         
         self.addSubview(numlabel)
         
@@ -71,7 +71,8 @@ class RankListView: UIScrollView {
         cellview.layer.borderColor = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1.0).cgColor
         cellview.layer.borderWidth = 1
         cellview.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0)
-        cellview.frame = CGRect(x: 50, y: ypos + 10, width : 350, height: 80)
+        let margin = Int(self.frame.width * 50 / 375)
+        cellview.frame = CGRect(x: margin, y: ypos + 10, width : Int(self.frame.width) - (margin * 2) + 25, height: 80)
         self.addSubview(cellview)
         self.contentSize = CGSize(width: Int(self.frame.width), height: Int(rowHeight) * (index + 1) + yoffset + 10)
         
@@ -116,20 +117,21 @@ class RankListView: UIScrollView {
         ranknamelabel.frame.origin = CGPoint(x:85, y:15)
         cellview.addSubview(ranknamelabel)
         
+        let heartimgview = UIImageView()
+        heartimgview.image = UIImage(named: "heartBlue_Final")
+        heartimgview.sizeToFit()
+        heartimgview.frame.origin = CGPoint(x:cellview.frame.width - heartimgview.frame.width - 20, y:30)
+        cellview.addSubview(heartimgview)
         
         let likenumlabel = UILabel()
         likenumlabel.text = String(describing: rankuser.likes!)
         likenumlabel.textAlignment = NSTextAlignment.center
         likenumlabel.font = UIFont(name: "NotoSansUI", size: 14.0)!
         likenumlabel.sizeToFit()
-        likenumlabel.frame.origin = CGPoint(x:300-likenumlabel.frame.width, y : 30)
+        likenumlabel.frame.origin = CGPoint(x:heartimgview.frame.origin.x - likenumlabel.frame.width - 10, y : 30)
         cellview.addSubview(likenumlabel)
         
-        let heartimgview = UIImageView()
-        heartimgview.image = UIImage(named: "heart")
-        heartimgview.sizeToFit()
-        heartimgview.frame.origin = CGPoint(x:310, y:30)
-        cellview.addSubview(heartimgview)
+        
         
         
     }
