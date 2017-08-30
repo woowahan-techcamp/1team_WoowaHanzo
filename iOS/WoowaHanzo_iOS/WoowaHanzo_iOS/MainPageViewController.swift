@@ -128,11 +128,11 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         let numstring = notification.userInfo?["num"] as? String ?? ""
         let button = notification.userInfo?["button"] as? LikeButton ?? nil
         if numstring == "0"{
-            label?.text = ""
+            label?.text = " "
             button?.num = 0
         }
         else{
-            label?.text = numstring
+            label?.text = "\(numstring)명"
             button?.num = Int(numstring)!
             label?.sizeToFit()
         }

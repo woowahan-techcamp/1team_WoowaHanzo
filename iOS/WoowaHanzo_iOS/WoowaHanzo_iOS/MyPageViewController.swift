@@ -265,7 +265,7 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
             button?.num = 0
         }
         else{
-            label?.text = numstring
+            label?.text = "\(numstring)명"
             button?.num = Int(numstring)!
             label?.sizeToFit()
         }
