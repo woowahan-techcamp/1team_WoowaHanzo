@@ -745,6 +745,6 @@ function getTitleIcon(titleText) {
 		return '<i class="fa fa-trophy" aria-hidden="true" style="color: Sienna; margin-right: 7px;"></i>'
 	}
 	else {
-		return '<i class="fa fa-trophy" aria-hidden="true" style="margin-right: 7px;"></i>'
+		return '<i class="fa fa-trophy" aria-hidden="true" style="color: black; margin-right: 7px;"></i>'
 	}
 }

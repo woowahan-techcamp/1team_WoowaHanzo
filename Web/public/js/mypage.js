@@ -16,12 +16,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
   firebase.auth().onAuthStateChanged(user => {
     var queryUid;
     var promises = [];
-    if(getParameterByName("userQuery", url)) {
+
+    if(user && !getParameterByName("userQuery", url)) {
+      queryUid = user.uid;
+
+      handleLoggedInUser();
+
+      var postRef = firebase.database().ref("/posts");
+      promises.push(
+        postRef.orderByChild("time").on("child_added", function(snapshot) {
+          if(snapshot.val().author === currentUserName) {
+            loadPosts(snapshot, false);
+          }
+        })
+      );
+    } else if(getParameterByName("userQuery", url)) {
       var queryKey = getParameterByName("userQuery", url);
 
       promises.push(firebase.database().ref("/userQuery/" + queryKey).once("value", function(snapshot) {
         if(snapshot.val()) {
           queryUid = snapshot.val().uid;
+          if(user.uid == queryUid) {
+            handleLoggedInUser();
+          }
           var postIdList = snapshot.val().queryResult.slice(1,snapshot.val().length);
           var promises = postIdList.map(function(key) {
             return firebase.database().ref("/posts/").child(key).once("value");
@@ -39,34 +56,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
       }));
 
-    } else if(user) {
-      queryUid = user.uid;
-      $(".mypage_setting").on("click", function() {
-
-        firebase.auth().signOut().then(function() {
-          alert("로그아웃 하셨습니다.");
-        }, function(error) {
-          // An error happened.
-        });
-      });
-
-      $(".mypage_user_image_box").on("click", function() {
-        console.log("Clicked");
-        $("#profile_image_input").trigger("click");
-      });
-
-      $("#profile_image_input").on("change", function(evt) {
-        profileImageHandle(this);
-      });
-
-      var postRef = firebase.database().ref("/posts");
-      promises.push(
-        postRef.orderByChild("time").on("child_added", function(snapshot) {
-          if(snapshot.val().author === currentUserName) {
-            loadPosts(snapshot, false);
-          }
-        })
-      );
     }
 
     Promise.all(promises).then(function() {
@@ -174,4 +163,26 @@ function profileImageHandle(evt) {
     }
     reader.readAsDataURL(evt.files[0]);
   }
+}
+
+function handleLoggedInUser() {
+  $(".mypage_setting").on("click tap", function(evt) {
+    evt.preventDefault();
+
+    firebase.auth().signOut().then(function() {
+      alert("로그아웃 하셨습니다.");
+    }, function(error) {
+      // An error happened.
+    });
+  });
+
+  $(".mypage_user_image_box").on("click tap", function(evt) {
+    evt.preventDefault();
+    console.log("Clicked");
+    $("#profile_image_input").trigger("click");
+  });
+
+  $("#profile_image_input").on("change", function(evt) {
+    profileImageHandle(this);
+  });
 }

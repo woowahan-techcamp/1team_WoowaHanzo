@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   autosize($("textarea"));
 
+  $(".textbox").val("");
   $(".textbox").focus();
 
   $(".tags_holder").append('<span class="tagger tag_holder">' +
