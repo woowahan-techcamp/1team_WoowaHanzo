@@ -1,0 +1,99 @@
+[debug] [2017-08-30T04:41:20.837Z] ----------------------------------------------------------------------
+[debug] [2017-08-30T04:41:20.840Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\USER\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2017-08-30T04:41:20.840Z] CLI Version:   3.9.2
+[debug] [2017-08-30T04:41:20.840Z] Platform:      win32
+[debug] [2017-08-30T04:41:20.840Z] Node Version:  v6.11.2
+[debug] [2017-08-30T04:41:20.841Z] Time:          Wed Aug 30 2017 13:41:20 GMT+0900 (대한민국 표준시)
+[debug] [2017-08-30T04:41:20.841Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-08-30T04:41:20.852Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-08-30T04:41:20.853Z] > authorizing via signed-in user
+[debug] [2017-08-30T04:41:20.855Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/woowaproject  
+ Wed Aug 30 2017 13:41:20 GMT+0900 (대한민국 표준시)
+[debug] [2017-08-30T04:41:22.089Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-30T04:41:22.090Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/woowaproject/tokens  
+ Wed Aug 30 2017 13:41:22 GMT+0900 (대한민국 표준시)
+[debug] [2017-08-30T04:41:23.239Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'woowaproject'...
+[info] 
+[info] i  deploying functions, hosting
+[debug] [2017-08-30T04:41:26.553Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "firebase-admin": "~4.2.1",
+    "firebase-functions": "^0.5.7"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] [2017-08-30T04:41:26.572Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/woowaproject?view=CONSUMER_VIEW  
+ Wed Aug 30 2017 13:41:26 GMT+0900 (대한민국 표준시)
+[debug] [2017-08-30T04:41:26.573Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/woowaproject?view=CONSUMER_VIEW  
+ Wed Aug 30 2017 13:41:26 GMT+0900 (대한민국 표준시)
+[debug] [2017-08-30T04:41:28.217Z] <<< HTTP RESPONSE 200
+[info] +  runtimeconfig: all necessary APIs are enabled
+[debug] [2017-08-30T04:41:28.550Z] <<< HTTP RESPONSE 200
+[info] +  functions: all necessary APIs are enabled
+[debug] [2017-08-30T04:41:28.553Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/woowaproject  
+ Wed Aug 30 2017 13:41:28 GMT+0900 (대한민국 표준시)
+[debug] [2017-08-30T04:41:28.554Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/woowaproject/apiKeys  
+ Wed Aug 30 2017 13:41:28 GMT+0900 (대한민국 표준시)
+[debug] [2017-08-30T04:41:30.038Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-30T04:41:30.112Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2017-08-30T04:41:33.086Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/woowaproject/configs  
+ Wed Aug 30 2017 13:41:33 GMT+0900 (대한민국 표준시)
+[debug] [2017-08-30T04:41:34.286Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (3.01 KB) for uploading
+[debug] [2017-08-30T04:41:36.104Z] >>> HTTP REQUEST GET https://www.googleapis.com/storage/v1/b/staging.woowaproject.appspot.com  
+ Wed Aug 30 2017 13:41:36 GMT+0900 (대한민국 표준시)
+[debug] [2017-08-30T04:41:37.154Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-30T04:41:37.155Z] >>> HTTP REQUEST POST https://www.googleapis.com/upload/storage/v1/b/staging.woowaproject.appspot.com/o?uploadType=media&name=firebase-functions-source ReadStream {
+  _readableState: 
+   ReadableState {
+     objectMode: false,
+     highWaterMark: 65536,
+     buffer: BufferList { head: [Object], tail: [Object], length: 1 },
+     length: 3086,
+     pipes: null,
+     pipesCount: 0,
+     flowing: null,
+     ended: true,
+     endEmitted: false,
+     reading: false,
+     sync: false,
+     needReadable: false,
+     emittedReadable: true,
+     readableListening: false,
+     resumeScheduled: false,
+     defaultEncoding: 'utf8',
+     ranOut: false,
+     awaitDrain: 0,
+     readingMore: false,
+     decoder: null,
+     encoding: null },
+  readable: true,
+  domain: null,
+  _events: { end: [Function] },
+  _eventsCount: 1,
+  _maxListeners: undefined,
+  path: 'C:\\Users\\USER\\AppData\\Local\\Temp\\firebase-functions-25076xD65PNJuz6hS.zip',
+  fd: 5,
+  flags: 'r',
+  mode: 438,
+  start: undefined,
+  end: undefined,
+  autoClose: true,
+  pos: undefined,
+  bytesRead: 3086 } 
+ Wed Aug 30 2017 13:41:37 GMT+0900 (대한민국 표준시)
+[debug] [2017-08-30T04:41:37.939Z] <<< HTTP RESPONSE 200
+[info] +  functions: functions folder uploaded successfully
+[info] i  hosting: preparing public directory for upload...
+[debug] [2017-08-30T04:41:38.783Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/woowaproject/uploads/-KslRQZiKS8BZG4xhNpi?fileCount=147&message=  
+ Wed Aug 30 2017 13:41:38 GMT+0900 (대한민국 표준시)
+[debug] [2017-08-30T04:41:46.975Z] <<< HTTP RESPONSE 200
+[debug] [2017-08-30T04:41:46.975Z] [hosting] .tgz uploaded successfully, waiting for extraction
