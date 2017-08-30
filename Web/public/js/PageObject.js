@@ -35,7 +35,7 @@ class PageObject {
     }.bind(this));
 
     $(window).scroll(function() {
-       if($(window).scrollTop() < 10) {
+       if($(window).scrollTop() < 50) {
         while(this.frontLoadStack.length) {
           var snapshot = this.frontLoadStack[0];
           this.frontLoadStack.splice(0, 1);
