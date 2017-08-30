@@ -12,7 +12,7 @@ class NickNameLabel: UILabel {
         self.addGestureRecognizer(tap)
         self.isUserInteractionEnabled = true
     }
-    
+
     func nickNameTouchedOnRankPage(){
         print("NickNameLabel class")
        NotificationCenter.default.post(name:

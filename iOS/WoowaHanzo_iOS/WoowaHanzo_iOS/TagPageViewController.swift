@@ -33,8 +33,7 @@ class TagPageViewController: UIViewController {
         
         var Tags = [String]()
         self.ref = Database.database().reference().child("tagCounter")
-        let refHandle = ref.observe(DataEventType.value, with: { (snapshot) in
-            let postDict = snapshot.value as! [String : AnyObject] //지워도 되는 줄인지 결정
+        ref.observe(DataEventType.value, with: { (snapshot) in
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
                 for index in result{
                     Tags.append(index.key as! String)
@@ -61,12 +60,11 @@ class TagPageViewController: UIViewController {
     func handleTap(sender: UITapGestureRecognizer) {
         if let a = (sender.view as? UILabel)?.text {
             tagName = a
-            print("A")
+            //print("A")
             FirebaseModel().tagQuery(tagName: tagName)
             performSegue(withIdentifier: "ShowTagResult", sender: self)
         }
         else { return }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,7 +72,6 @@ class TagPageViewController: UIViewController {
         if segue.identifier == "ShowTagResult" {
             if let viewController = segue.destination as? TagResultViewController {
                 viewController.tagName = tagName
-                
             }
         }
     }
@@ -86,51 +83,22 @@ class TagPageViewController: UIViewController {
         //해당 태그가 있는 posts의 아이디를 담을 배열
         tagResultArray = []
         self.ref = Database.database().reference().child("tagQuery")
-        let refHandle = ref.observe(DataEventType.value, with: { (snapshot) in
+        ref.observe(DataEventType.value, with: { (snapshot) in
             if snapshot.hasChildren(){
-                let postDict = snapshot.value as! [String : Any]
                 if let result = snapshot.childSnapshot(forPath: notification.userInfo?["key"] as! String).childSnapshot(forPath: "queryResult").value {
                     self.tagResultArray = []
                     //print(result as? [String])//print(self.tagResultArray)
                     self.tagResultArray = result as? [String]
                     //print(self.tagResultArray)
-                    
                 }
+                
                 if (self.tagResultArray?.count ?? 0) > 1 {
-                    print("send table view controller tag array")
-                    print(self.tagResultArray)
-                    print("call getTagResult")
-                    
-                    //TagResultViewController로 노티를 보낸다. 
+                    //TagResultViewController로 노티를 보낸다.
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sendResultViewController"), object: self, userInfo: ["tagResultArray": self.tagResultArray])
                 }
             }
             })
     }
-    //    func tap(sender:UIGestureRecognizer)
-    //    {
-    //        let label = (sender.view as! UILabel)
-    //        print("tap from \(label.text!)")
-    //    }
-    //    func longPress(sender:UIGestureRecognizer)
-    //    {
-    //        let label = (sender.view as! UILabel)
-    //        print("long press from \(label.text!)")
-    //    }
-    
-   // @IBAction func tagButtonTouched(_ sender: Any) {
-//        let storyboard = UIStoryboard(name: "SearchPage", bundle: nil)
-//        let controller = storyboard.instantiateViewController(withIdentifier: "searchView")
-//        self.show(controller, sender: self)
-   // }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+  
     
 }

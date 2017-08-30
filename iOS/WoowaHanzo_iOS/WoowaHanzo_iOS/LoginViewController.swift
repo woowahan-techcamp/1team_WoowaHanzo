@@ -28,13 +28,13 @@ class LoginViewController: UIViewController,NVActivityIndicatorViewable {
         let size = CGSize(width: 30, height: 30)
         
         self.startAnimating(size, message: "Authenticating...", type: .ballTrianglePath)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5){
             NVActivityIndicatorPresenter.sharedInstance.setMessage("Authenticating...")
             if let email = self.emailTextField.text,let pw  = self.pwTextField.text{
                 AuthModel.login(email: email, pw: pw, completion: { (success) in
                     if success{
                         
-                        print(User.currentLoginedUserNickName,User.currentLoginedUserRankName)
+                        //print(User.currentLoginedUserNickName,User.currentLoginedUserRankName)
                         //여기에 해당 유저의 정보를 파베에서 불러오도록 하자.
                         self.stopAnimating()
                         self.dismiss(animated: true, completion: nil)
@@ -43,10 +43,8 @@ class LoginViewController: UIViewController,NVActivityIndicatorViewable {
                     else{
                         self.stopAnimating()
                         self.emailValidationLabel.isHidden = false
-
                     }
                 })
-                
             }
         }
 
@@ -56,6 +54,7 @@ class LoginViewController: UIViewController,NVActivityIndicatorViewable {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)
     }
+    
     
     @IBAction func loginCancelButtonTouched(_ sender: Any) {
         dismiss(animated: true, completion: nil)

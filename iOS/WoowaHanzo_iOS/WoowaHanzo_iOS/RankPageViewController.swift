@@ -21,7 +21,7 @@ class RankPageViewController: UIViewController {
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        FirebaseModel().loadUsers()
+        FirebaseModel().loadRanks()
         self.view.addSubview(rankListView)
     }
 
@@ -39,23 +39,12 @@ class RankPageViewController: UIViewController {
     func nickNameLabelTouched(_ notification:Notification){
         
         User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
-        
-        print("nickNameLabelTouched")
-        
         let storyboard = UIStoryboard(name: "NickNameClickResult", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "NickNameClickResultViewController")
         FirebaseModel().ReturnNickNameClickResult()
         self.show(controller, sender: self)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

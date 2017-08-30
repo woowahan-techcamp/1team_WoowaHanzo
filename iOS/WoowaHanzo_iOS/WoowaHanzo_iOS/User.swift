@@ -9,12 +9,23 @@
 import Foundation
 import Firebase
 
+
+//Feed
 class User {
     
     static var users = Array<User>()
     static var tagUsers = Array<User>()
     static var myUsers = Array<User>()
+    
+    //닉네임 클릭 용 유저 네임
     static var currentUserName : String = " "
+    static var currentUserSayHi :String = " "
+    static var currentUserProfileImageUrl :String = " "
+    
+    
+    
+    
+    
     static var nickNameClickResult = Array<User>()
     static var currentLoginedUserNickName : String = ""
     static var currentLoginedUserRankName : String = ""
@@ -23,6 +34,8 @@ class User {
     static var currentLoginedUserUid : String = ""
     static var imageview : UIImageView = UIImageView(image: UIImage(named:
         "profile.png"))
+    
+    
     
     static var currentLoginedUserTitle : String = ""
     static var currentUserProfileImage = UIImage()

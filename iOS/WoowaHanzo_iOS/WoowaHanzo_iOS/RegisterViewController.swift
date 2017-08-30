@@ -55,6 +55,8 @@ class RegisterViewController: UIViewController,NVActivityIndicatorViewable {
     
     @IBAction func registerButtonTouched(_ sender: Any) {
         
+        
+        self.view.endEditing(true)
         let size = CGSize(width: 30, height: 30)
         
         self.startAnimating(size, message: "먹소리의 회원이 되는 중...", type: .ballTrianglePath)
@@ -110,6 +112,7 @@ class RegisterViewController: UIViewController,NVActivityIndicatorViewable {
         }
         
     }
+    
     //키보드가 사라질 때 수행되는 함수
     func keyboardWillHide(_ notification:Notification){
         if (userSayTextView?.isFirstResponder)!{

@@ -11,9 +11,6 @@ import UIKit
 import Firebase
 
 class UserListView: UIScrollView {
-    var numberOfRows = 0
-    var currentRow = 0
-    var tags = [UILabel]()
     var containerView:UIView!
     var rowHeight : CGFloat = 100
     var xoffset = 0
@@ -27,7 +24,6 @@ class UserListView: UIScrollView {
         super.init(frame: frame)
         self.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
         
-        numberOfRows = Int(frame.height / rowHeight)
         containerView = UIView(frame: self.frame)
         containerView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
         self.addSubview(containerView)
@@ -35,7 +31,6 @@ class UserListView: UIScrollView {
         self.isScrollEnabled = true
     }
     override func awakeFromNib() {
-        numberOfRows = Int(self.frame.height / rowHeight)
         containerView = UIView(frame: self.frame)
         containerView.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
         
@@ -52,9 +47,9 @@ class UserListView: UIScrollView {
     func addUserList(users: [User]?){
         
         if let list = users {
-            print(users)
             if list.count > 0 {
-                for index in 0...list.count-1{
+                //for index in 0...list.count-1{
+                for index in 0...list.count-1 { // for test
                     self.addUser(user: list[index], index: index)
                 }
             }
@@ -63,20 +58,8 @@ class UserListView: UIScrollView {
     }
     
     func addUser(user: User, index: Int){
-        
-        //height를 최종적으로 결정해주어도 괜찮다.
-        
-        //addsubview는 한번만 해주면된다.
-        
-        
-        
-        
-        //image는 어떻게 할지 나중에. ! 미리 다운받아놓을 수 있도록...
-        
-        
         var inypos = 10
-        var inxpos = 20
-        
+        let inxpos = 20
         
         let cellview = UIView()
         cellview.layer.borderColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1.0).cgColor
@@ -143,19 +126,22 @@ class UserListView: UIScrollView {
         
         //tagListview//////////////////////////////////////
         let tagListView = TagPageView2(frame: CGRect(x: inxpos - 10, y: inypos, width: Int(cellview.frame.width), height: 70)) // taglistview2 파일에 있다.
-        for i in user.tags!{
-            tagListView.addTag(text: "#"+i, target: self, backgroundColor: UIColor.white, textColor: color)
+        if let tags = user.tags{
+            for i in tags{
+                tagListView.addTag(text: "#"+i, target: self, backgroundColor: UIColor.white, textColor: color)
+            }
+            if tags.count > 0 {
+                tagListView.frame.size.height = max(tagListView.contentSize.height, 40)
+            }
+            else{
+                tagListView.frame.size.height = 0
+            }
+            cellview.addSubview(tagListView)
+            lastview = tagListView
+            inypos = inypos + Int(lastview.frame.size.height) + 0
+            
+            
         }
-        if user.tags!.count > 0 {
-            tagListView.frame.size.height = max(tagListView.contentSize.height, 40)
-        }
-        else{
-            tagListView.frame.size.height = 0
-        }
-        cellview.addSubview(tagListView)
-        lastview = tagListView
-        inypos = inypos + Int(lastview.frame.size.height) + 0
-        
         
         //scrollview///////////////////////////////////////
         let scrollview = UIScrollView()
@@ -206,12 +192,12 @@ class UserListView: UIScrollView {
             //likenumlabel and likebutton ////////////////////////////////////////////////////
             let likenumLabel = UILabel()
             let likebutton = LikeButton()
-
+            
             likenumLabel.text = ""
             likenumLabel.font = UIFont(name:"NotoSansUI", size: 14.0)
             likenumLabel.frame.origin = CGPoint(x: 53, y:inypos + 4)
             cellview.addSubview(likenumLabel)
-
+            
             FirebaseModel().setNum(postkey:user.key, label: likenumLabel, button: likebutton)
             
             //likebutton///////////////////////////////////////////////////////
@@ -239,8 +225,9 @@ class UserListView: UIScrollView {
             ypos = ypos + Int(cellview.frame.size.height) + 7 // 다음 cellview의 위치를 지정해준다.
             self.contentSize = CGSize(width: Int(self.frame.width), height: max(yoffset + ypos - 35, Int(self.frame.height + 1)))
         }
-
+        
     }
+    
     func handleTap(sender: UITapGestureRecognizer) {
         if let a = (sender.view as? UILabel)?.text {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showTagResultPageFromMain"), object: self,userInfo:["tagName":a])

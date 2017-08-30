@@ -23,6 +23,8 @@
 import UIKit
 import Photos
 import BSGridCollectionViewLayout
+
+
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
@@ -44,7 +46,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 }
 
 
-final class PhotosViewController : UICollectionViewController {    
+final class PhotosViewController : UICollectionViewController {
     var selectionClosure: ((_ asset: PHAsset) -> Void)?
     var deselectionClosure: ((_ asset: PHAsset) -> Void)?
     var cancelClosure: ((_ assets: [PHAsset]) -> Void)?
@@ -161,7 +163,8 @@ final class PhotosViewController : UICollectionViewController {
     
     func doneButtonPressed(_ sender: UIBarButtonItem) {
         guard let closure = finishClosure, let photosDataSource = photosDataSource else {
-            dismiss(animated: true, completion: nil)
+        
+            self.dismiss(animated: true, completion: nil)
             return
         }
         
@@ -169,7 +172,9 @@ final class PhotosViewController : UICollectionViewController {
             closure(photosDataSource.selections)
         }
         
-        dismiss(animated: true, completion: nil)
+        
+        self.dismiss(animated: true, completion: nil)
+
     }
     
     func albumButtonPressed(_ sender: UIButton) {

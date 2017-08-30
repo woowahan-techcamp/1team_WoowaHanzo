@@ -20,11 +20,11 @@ class AuthModel{
         }
     }
     
+    
     static func login(email:String,pw:String, completion: @escaping (Bool)->()){
         Auth.auth().signIn(withEmail: email, password: pw) { (user, error) in
             if user != nil{
                 DispatchQueue.global().sync {
-                    FirebaseModel().loadUserInfo()
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadUserInfo"), object: self)
                 completion(true)
@@ -35,6 +35,7 @@ class AuthModel{
             }
         }
     }
+    
     static func register(email:String,pw:String,completion : @escaping (Bool)->()){
         Auth.auth().createUser(withEmail: email, password: pw) { (user, error) in
             if user != nil{
@@ -45,6 +46,7 @@ class AuthModel{
             }
        }
     }
+    
     static func logout(){
         let firebaseAuth = Auth.auth()
         do {
@@ -53,6 +55,7 @@ class AuthModel{
             print ("Error signing out: %@", signOutError)
         }
     }
+    
     static func isValidpassword(pw:String)-> Bool{
         if pw.characters.count >= 6{
             return true

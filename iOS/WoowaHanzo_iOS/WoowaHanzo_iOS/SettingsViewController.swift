@@ -20,6 +20,9 @@ self.navigationController?.navigationBar.tintColor = UIColor(red: 42/255, green:
     @IBAction func logoutButtonTouched(_ sender: Any) {
         let firebaseAuth = Auth.auth()
         do {
+            User.myUsers = Array<User>()
+            //NotificationCenter.default.removeObserver(self, name:NSNotification.Name(rawValue: "LoadUserInfo2"), object:nil)
+
             try firebaseAuth.signOut()
             let storyboard = UIStoryboard(name: "MainLayout", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "mainLayout")
@@ -32,16 +35,4 @@ self.navigationController?.navigationBar.tintColor = UIColor(red: 42/255, green:
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

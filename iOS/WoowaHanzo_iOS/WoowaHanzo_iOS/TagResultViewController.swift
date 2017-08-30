@@ -13,13 +13,13 @@ import NVActivityIndicatorView
 class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
     
     var ref: DatabaseReference!
-    
     var tagName:String = " "
     var tagFeedArray = [String]()
     var userListView : UserListView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(getTagFeed(_ :)), name: NSNotification.Name(rawValue: "sendResultViewController"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "tagusersdone"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
@@ -31,35 +31,29 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
         self.title = tagName
         self.navigationItem.title = tagName
         userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-
-
+        
+        
     }
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         let size = CGSize(width: 30, height: 30)
         DispatchQueue.main.async {
-            self.startAnimating(size, message: "Loading...", type: .ballTrianglePath)
+            self.startAnimating(size, message: "\(self.tagName)", type: .ballTrianglePath)
             
         }
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
             self.stopAnimating()
-            
         }
         
     }
     
     func viewload(_ notification: Notification){
-        print("viewload")
-        //print(User.tagUsers.count)
+       
         userListView.removeFromSuperview()
         userListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        print(User.tagUsers.count)
-        userListView.addUserList(users: User.tagUsers)
         //print(User.tagUsers.count)
+        userListView.addUserList(users: User.tagUsers)
         self.view.addSubview(userListView)
         User.tagUsers = [User]()
-        print("aaaa")
         
     }
     func updateProfileImg(_ notification: Notification){
@@ -69,7 +63,12 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
         let rankname = notification.userInfo?["rankname"] as? String ?? ""
         if profileimg != nil && imageview != nil {
             Storage.storage().reference(withPath: "profileImages/" + profileimg!).downloadURL { (url, error) in
-                imageview?.kf.setImage(with: url)
+                if error != nil{
+                    imageview?.image = UIImage(named: "profile.png")
+                }
+                else{
+                    imageview?.kf.setImage(with: url)
+                }
             }
         }
         if ranknamelabel != nil {
@@ -81,7 +80,7 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
         let check = notification.userInfo?["doeslike"] as? Bool ?? false
         let button  = notification.userInfo?["button"] as? LikeButton ?? nil
         if check {
-            button?.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
+            button?.setImage(#imageLiteral(resourceName: "heartBlue_Final"), for: .normal)
         }
         else{
             button?.setImage(#imageLiteral(resourceName: "emptyHeard"), for: .normal)
@@ -102,10 +101,10 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
             label?.sizeToFit()
         }
     }
-
     
     
-   
+    
+    
     //MAKR:posts id를 담은 배열(userinfo로 전달해줌.)에서 해당 피드들을 불러와 싱글톤인 User.tagUsers에 저장.
     func getTagFeed(_ notification: Notification){
         User.tagUsers = [User]()
@@ -116,10 +115,8 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
                 for j in 0..<User.users.count{
                     if User.users[j].key == tagFeedArray[i]{
                         let tagUser = User(key: tagFeedArray[i], nickName: User.users[j].nickName, contents: User.users[j].contents, tags: User.users[j].tags, imageArray: User.users[j].imageArray, postDate: User.users[j].postDate,uid:User.users[j].uid)
-                        //print(User.users[j].tags)
                         User.tagUsers.append(tagUser)
-                        //print(User.tagUsers.count)
-                        print("append", User.users[j].contents)
+                        
                     }
                 }
             }
@@ -127,12 +124,18 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagusersdone"), object: self)
             
         }
-        
     }
-    func tap(_ sender:UIGestureRecognizer)
-    {
+    func nickNameLabelTouchedOnMainpage(_ notification:Notification){
+        User.currentUserName = notification.userInfo?["NickNameLabel"] as! String
+        
+        let storyboard = UIStoryboard(name: "NickNameClickResult", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "NickNameClickResultViewController")
+        //FirebaseModel().ReturnNickNameClickResult()
+        self.show(controller, sender: self)
+    }
+    func tap(_ sender:UIGestureRecognizer){
         let label = (sender.view as! UILabel)
-        print("tap from \(label.text!)")
+        //print("tap from \(label.text!)")
     }
     
 }

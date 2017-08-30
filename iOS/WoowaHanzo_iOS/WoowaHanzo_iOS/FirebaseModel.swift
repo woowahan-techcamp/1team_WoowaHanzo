@@ -16,8 +16,7 @@ class FirebaseModel{
     var ref: DatabaseReference!
     var ref2: DatabaseReference!
 
-    
-    
+
     func postReview(review: String, userID: String, tagArray:[String], timestamp: Int, images:[String],uid: String){
         ref = Database.database().reference()
         let key = ref.child("posts").childByAutoId().key
@@ -31,8 +30,10 @@ class FirebaseModel{
         ref.updateChildValues(childUpdates)
     }
     
+    
+    
     func postImages(assets:[PHAsset], names:[String]){
-        print("posting: \(assets.count) \(names.count)")
+        //print("posting: \(assets.count) \(names.count)")
         for i in 0..<assets.count{
             let asset = assets[i]
             let manager = PHImageManager.default()
@@ -53,6 +54,8 @@ class FirebaseModel{
             }
         }
     }
+    
+    //프로필 이미지 수정할 때
     func postProfileImage(asset:PHAsset, name: String, uid:String){
         ref2 = Database.database().reference()
         let manager = PHImageManager.default()
@@ -71,19 +74,22 @@ class FirebaseModel{
             })
         }
     }
+    
+    //썸네일 리턴 함수. 리뷰 포스트 뷰에서 사용
     func getAssetThumbnail(asset: PHAsset) -> UIImage {
         let manager = PHImageManager.default()
         let option = PHImageRequestOptions()
         var thumbnail = UIImage()
         option.isSynchronous = true
-        manager.requestImage(for: asset, targetSize: CGSize(width: 100, height: 100), contentMode: .aspectFit, options: option, resultHandler: {(result, info)->Void in
+        manager.requestImage(for: asset, targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFit, options: option, resultHandler: {(result, info)->Void in
             thumbnail = result!
         })
         return thumbnail
     }
     
+    
+    //
     func tagQuery(tagName:String){
-        
         
         //태그쿼리 작성. key를 저장해서 노티로 보내준다.
         ref = Database.database().reference()
@@ -92,42 +98,13 @@ class FirebaseModel{
         let post = ["queryResult": "1" ,"tag": tagName] as [String : String]
         let childUpdates = ["/tagQuery/\(key)": post]
         ref.updateChildValues(childUpdates)
-        print("send tag result")
         
         //태그쿼리의 key를 가지는 애를 가져와야함. TagPageViewController로 이어진다. 
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResult"), object: self, userInfo: ["key":key])
-        
-        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResultToMain"), object: self, userInfo: ["key":key])
         
     }
-    
-    func loadFeed(){
-        
-        self.ref = Database.database().reference().child("posts")
-        
-        self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let result = snapshot.children.allObjects as? [DataSnapshot]{
-                User.users = [User]()
-                for child in result {
-                    //print(child)
-                    var userKey = child.key as! String
-                    //print(child.childSnapshot(forPath: "author").value!)
-                    let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil, postDate : child.childSnapshot(forPath: "time").value as! Int, uid: child.childSnapshot(forPath: "uid").value as! String)
-                    User.users.append(user)
-                    
-                    
-                    
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
-                }
-                
-                
-                
-            }
-        })
-        
-        
-    }
+
     func ReturnNickNameClickResult(){
         
         self.ref = Database.database().reference().child("posts")
@@ -136,14 +113,12 @@ class FirebaseModel{
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
                 User.nickNameClickResult = [User]()
                 for child in result {
-                    
-                    if (child.childSnapshot(forPath: "author").value as! String == User.currentUserName)
-                    {
+                    if (child.childSnapshot(forPath: "author").value as! String == User.currentUserName){
                         var userKey = child.key as! String
                         //print(child.childSnapshot(forPath: "author").value!)
                         let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil, postDate : child.childSnapshot(forPath: "time").value as! Int, uid: child.childSnapshot(forPath: "uid").value as! String)
-                        User.nickNameClickResult.append(user)
-                        print(child.childSnapshot(forPath: "body").value as! String)
+                            User.nickNameClickResult.append(user)
+                        //print(child.childSnapshot(forPath: "body").value as! String)
                         
                         //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
                     }
@@ -159,8 +134,7 @@ class FirebaseModel{
 
     
     //For RankPage////////////////////////////////////
-    func loadUsers(){
-        print("loadUsers called")
+    func loadRanks(){
         var rankUserList = [RankUser]()
         self.ref = Database.database().reference().child("users")
         //나중에 Likes가 확보되면  likes로 바꾸기.
@@ -179,9 +153,11 @@ class FirebaseModel{
         //rankUserList를 Rankviewcontroller로 보내준다.
         //사진은 어떻게 할지는 있다가.
     }
+    
+    
     //For mainPage/////////////////////////////////////
     func loadProfileimg(uid: String, imgview: UIImageView, ranklabel: UILabel){
-        print("loadProfileimg called")
+        //print("loadProfileimg called")
         self.ref = Database.database().reference().child("users").child(uid)
         self.ref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.value as? NSDictionary{
@@ -193,36 +169,30 @@ class FirebaseModel{
     }
     
     //For mainPage///////////////////////////////////
-    func loadUsers2(){
-        print("loadUsers2 called")
+    func loadMainFeed(){
         User.users = [User]()
         self.ref = Database.database().reference().child("posts")
-        //나중에 Likes가 확보되면  likes로 바꾸기.
         self.ref.queryOrdered(byChild: "time").observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
                 for child in result {
                     let user = User(snapshot: child)
-                    
                     User.users.append(user)
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "users2"), object: self)
             }
         })
     }
+    
+    
     //For my Page ////////////////////////////////
-    func loadUsers3(username: String){
-        print("loadUser3 called")
+    func loadPersonalFeed(username: String){
         User.myUsers = [User]()
         self.ref = Database.database().reference().child("posts")
         self.ref.queryOrdered(byChild: "author").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.children.allObjects as? [DataSnapshot]{
-                print(1231231231239999)
-                print(result, "result")
                 let sort = result.sorted(by:{ $1.childSnapshot(forPath: "time").value as! Int > $0.childSnapshot(forPath: "time").value as! Int})
-                print(sort)
                 for child in sort {
                     let user = User(snapshot: child)
-                    
                     User.myUsers.append(user)
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "users3"), object: self)
@@ -239,8 +209,9 @@ class FirebaseModel{
         let childUpdates = ["/likeRequest/\(key)": post]
         ref.updateChildValues(childUpdates)
         print("")
-        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tagResult"), object: self, userInfo: ["key":key])
     }
+    
+    //좋아요 버튼 초기 상태. 눌려있는지 아닌지.
     func setFirstImage(postkey: String, uid: String, button: LikeButton) {
         var check = false
         self.ref = Database.database().reference().child("postLikes").child(postkey)
@@ -254,18 +225,18 @@ class FirebaseModel{
             }
         })
     }
+    
+    //좋아요 숫자.
     func setNum(postkey:String, label: UILabel, button: LikeButton){
         self.ref = Database.database().reference().child("postLikes").child(postkey)
         self.ref.observeSingleEvent(of: .value, with: { (snapshot) in
             if let result = snapshot.value as? NSDictionary{
                 let num = result["likes"] as? Int ?? 0
-                print(num)
+                //print(num)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "likenum"), object: nil, userInfo: ["label": label, "button":button, "num":"\(num)"])
             }
         })
     }
-    
-    
     func loadProfileImageFromUsers(){
         
         if AuthModel.isLoginStatus(){
@@ -274,7 +245,6 @@ class FirebaseModel{
             ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
                 // Get user value
                 let value = snapshot.value as? NSDictionary
-                
                 let profileImg = value?["profileImg"] as? String ?? ""
                 print("did\(profileImg)")
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: self,userInfo: ["profileImageUrl":profileImg])
@@ -283,25 +253,61 @@ class FirebaseModel{
                 
                 print(error.localizedDescription)
             }
-            
-            
         }
     }
-    func loadUserInfo()
+    
+    func loadOtherUserInfo(username:String){
+        self.ref = Database.database().reference().child("users")
+        
+//        self.ref.queryOrdered(byChild: "username").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { (snapshot) in
+//            if let result = snapshot.value as? NSDictionary{
+//                User.currentUserSayHi = result["sayhi"] as! String
+//                User.currentUserProfileImageUrl = result["profileImg"] as! String
+//            }
+//            print(User.currentUserSayHi,User.currentUserProfileImageUrl,"firebase call")
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue : "LoadUserInfo3"), object: nil)
+//        })
+        self.ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let result = snapshot.children.allObjects as? [DataSnapshot]{
+                for child in result {
+                    if (child.childSnapshot(forPath: "username").value as! String == username){
+                        User.currentUserSayHi = child.childSnapshot(forPath: "sayhi").value as! String
+                        User.currentUserProfileImageUrl = child.childSnapshot(forPath: "profileImg").value as? String ?? " "
+                    }
+                }
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue : "LoadUserInfo3"), object: nil)
+            }
+        })
+    }
+    
+    
+    func loadUserInfo(pageCase: Int)
     {
+        
         if AuthModel.isLoginStatus(){
+           
+            print("loadUserInfo")
             self.ref = Database.database().reference()
             let userID = Auth.auth().currentUser?.uid
             ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
                 // Get user value
                 let value = snapshot.value as? NSDictionary
-                
                 User.currentLoginedUserNickName = value?["username"] as! String
                 User.currentLoginedUserRankName = value?["rankName"] as! String
                 User.currentLoginedUserLikes = value?["likes"] as! Int
                 User.currentLoginedUserSayHi = value?["sayhi"] as! String
                 self.downloadprofileimage(name: value?["profileImg"] as! String)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoadUserInfo"), object: self)
+                
+                if pageCase == 1{
+                    //글쓰기
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoadUserInfo1"), object: self)
+                }
+                else if pageCase == 2{
+                    
+                    //마이페이지
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LoadUserInfo2"), object: self)
+                    print("noticall")
+                }
                 
                 
                 // ...
@@ -311,6 +317,8 @@ class FirebaseModel{
             }
         }
     }
+    
+    
     func downloadprofileimage(name: String){
         Storage.storage().reference(withPath: "profileImages/" + name).downloadURL { (url, error) in
             User.imageview.kf.setImage(with: url)
