@@ -125,7 +125,7 @@ class UserListView: UIScrollView {
         inypos = Int(lastview.frame.origin.y) + Int(lastview.frame.size.height) + 0
         
         //tagListview//////////////////////////////////////
-        let tagListView = TagPageView2(frame: CGRect(x: inxpos - 10, y: inypos, width: Int(cellview.frame.width), height: 70)) // taglistview2 파일에 있다.
+        let tagListView = TagPageView2(frame: CGRect(x: inxpos - 10, y: inypos, width: Int(cellview.frame.width)-20, height: 70)) // taglistview2 파일에 있다.
         if let tags = user.tags{
             for i in tags{
                 tagListView.addTag(text: "#"+i, target: self, backgroundColor: UIColor.white, textColor: color)
@@ -193,8 +193,9 @@ class UserListView: UIScrollView {
             let likenumLabel = UILabel()
             let likebutton = LikeButton()
             
-            likenumLabel.text = ""
+            likenumLabel.text = " "
             likenumLabel.font = UIFont(name:"NotoSansUI", size: 14.0)
+            likenumLabel.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
             likenumLabel.frame.origin = CGPoint(x: 53, y:inypos + 4)
             cellview.addSubview(likenumLabel)
             

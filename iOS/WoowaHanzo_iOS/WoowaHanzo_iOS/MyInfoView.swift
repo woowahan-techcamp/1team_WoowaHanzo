@@ -21,6 +21,8 @@ class MyInfoView : UIView{
          profileImageView.image = UIImage(named: "profile.png")
         profileImageView.frame = CGRect(x: 147, y: 37, width: 120, height: 120)
         profileImageView.frame.origin.x = self.frame.width / 2 - profileImageView.frame.width / 2
+        profileImageView.contentMode = .scaleAspectFill
+        profileImageView.clipsToBounds = true
         
         nickNameLabel.frame = CGRect(x: 147, y: 167, width: 120, height: 21)
          sayHiLabel.frame = CGRect(x: 186  , y: 190, width: 42, height: 22)

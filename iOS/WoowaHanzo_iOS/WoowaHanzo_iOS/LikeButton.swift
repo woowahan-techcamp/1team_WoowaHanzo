@@ -21,12 +21,18 @@ class LikeButton: UIButton {
     func buttonTouched(){
         if let image = self.currentImage, image == #imageLiteral(resourceName: "emptyHeard") {
             self.setImage(#imageLiteral(resourceName: "heartBlue_Final"), for: .normal)
-            self.label.text = "\(num + 1)"
+            self.label.text = "\(num + 1)명"
             num = num + 1
+            self.label.sizeToFit()
+            
         } else {
             self.setImage(#imageLiteral(resourceName: "emptyHeard"), for: .normal)
-            self.label.text = "\(num - 1)"
+            self.label.text = "\(num - 1)명"
             num = num - 1
+            if num == 0{
+                self.label.text = ""
+            }
+            self.label.sizeToFit()
         }
     FirebaseModel().likeRequest(postId: postkey)
         print("\(postkey) - pressed")
