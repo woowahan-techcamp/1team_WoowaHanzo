@@ -82,7 +82,7 @@ function fadeInPost($curPost) {
 	resizeThumbnails();
 	$curPost.animate({
 		opacity: 1.0
-	}, 300, function() {
+	}, 200, function() {
 		if(this.next().length != 0) {
 			this.next().trigger("postLoaded");
 		}
@@ -387,7 +387,6 @@ function loadUserProfile(uid) {
 			pageObject.userProfileImage[this.uid] = snapshot.val().profileImg;
 			var downloadUrl = storageRef.child("profileImages/" + pageObject.userProfileImage[this.uid]).getDownloadURL();
 			downloadUrl.then(function(url) {
-				console.log(url);
 				var curPost = this.curPost;
 				var profilePic = curPost.querySelector("." + this.queryClass);
 				profilePic.classList.add("loading");
@@ -412,7 +411,6 @@ function loadUserProfile(uid) {
 			profilePic.classList.add("loading");
 			profilePic.src = pageObject.userProfileImage[this.uid];
 			profilePic.addEventListener("load", function(evt) {
-
 
 				if(prevLoaded(this) && imagesAllLoaded(evt.target)) {
 				 	fadeInPost(this);

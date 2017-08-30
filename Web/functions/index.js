@@ -203,19 +203,7 @@ exports.handleDeleteRequest = functions.database.ref("/deleteRequest/{deleteId}"
       var tagsFound = {};
       for(var i = 0; i < tags.length; ++i) {
         tagsFound[tags[i]] = false;
-      }
-      snapshots.forEach(function(child) {
-        if(child.key == key) {
-          continue;
-        } else {
-          for(var i = 0; i < tags.length; ++i) {
-            if(child.val().tags.indexOf(tags[i]) >= 0) {
-              tagsFound[tags[i]] = true;
-            }
-          }
-        }
-      });
-      
+      }    
 
     });
   });
