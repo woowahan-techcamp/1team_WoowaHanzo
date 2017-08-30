@@ -738,6 +738,9 @@ function getTitleIcon(titleText) {
 	if(titleText === "신선") {
 		return '<i class="fa fa-trophy" aria-hidden="true" style="color: gold; margin-right: 7px;"></i>'
 	}
+	else if(titleText === "임금") {
+		return '<i class="fa fa-trophy" aria-hidden="true" style="color: #cdeff2; margin-right: 7px;"></i>'
+	}
 	else if(titleText === "왕족") {
 		return '<i class="fa fa-trophy" aria-hidden="true" style="color: silver; margin-right: 7px;"></i>'
 	}
@@ -745,6 +748,6 @@ function getTitleIcon(titleText) {
 		return '<i class="fa fa-trophy" aria-hidden="true" style="color: Sienna; margin-right: 7px;"></i>'
 	}
 	else {
-		return '<i class="fa fa-trophy" aria-hidden="true" style="margin-right: 7px;"></i>'
+		return '<i class="fa fa-trophy" aria-hidden="true" style="color: black; margin-right: 7px;"></i>'
 	}
 }

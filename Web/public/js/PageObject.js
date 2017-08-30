@@ -35,7 +35,7 @@ class PageObject {
     }.bind(this));
 
     $(window).scroll(function() {
-       if($(window).scrollTop() < 10) {
+       if($(window).scrollTop() < 50) {
         while(this.frontLoadStack.length) {
           var snapshot = this.frontLoadStack[0];
           this.frontLoadStack.splice(0, 1);
@@ -69,8 +69,7 @@ class PageObject {
 
     $(document).on("recurseUpdateEvent", function(evt) {
       this.updatePostTime.bind(this)();
-      if(!this.frontLoadStack.length && this.initialPostLoads > 0 && this.initialPostLoads < 8) {
-
+      if(!this.bottomLoadStack.length) {
         if(document.querySelector(".loading-indicator-box")) {
           document.querySelector(".loading-indicator-box").style.display = "none";
         }
