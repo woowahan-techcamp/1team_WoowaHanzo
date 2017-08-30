@@ -19,6 +19,8 @@ class LikeButton: UIButton {
         self.addTarget(self, action: #selector(buttonTouched), for: .touchUpInside)
     }
     func buttonTouched(){
+        
+        if AuthModel.isLoginStatus(){
         if let image = self.currentImage, image == #imageLiteral(resourceName: "emptyHeard") {
             self.setImage(#imageLiteral(resourceName: "heartBlue_Final"), for: .normal)
             self.label.text = "\(num + 1)명"
@@ -38,6 +40,6 @@ class LikeButton: UIButton {
         print("\(postkey) - pressed")
     //postkey에 맞는 likerequest function 보내주어야 함.
     }
-    
+    }
 
 }

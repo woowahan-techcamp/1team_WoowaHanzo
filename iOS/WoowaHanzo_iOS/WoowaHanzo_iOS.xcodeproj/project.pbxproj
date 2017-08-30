@@ -53,6 +53,11 @@
 		98C563CD1F39BE310017E68A /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C563CC1F39BE310017E68A /* AuthModel.swift */; };
 		98C563CF1F39C3840017E68A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C563CE1F39C3840017E68A /* RegisterViewController.swift */; };
 		98DE5BE31F5523A300278ECC /* MyInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DE5BE21F5523A300278ECC /* MyInfoView.swift */; };
+		98DE5BE71F569BD000278ECC /* qrwkmsp49cbbzfkhpnvp.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 98DE5BE61F569BD000278ECC /* qrwkmsp49cbbzfkhpnvp.jpg */; };
+		98DE5BEC1F569F1000278ECC /* BMYEONSUNG_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 98DE5BEB1F569EBC00278ECC /* BMYEONSUNG_otf.otf */; };
+		98DE5BED1F569F1200278ECC /* BMDOHYEON_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 98DE5BEA1F569EBC00278ECC /* BMDOHYEON_otf.otf */; };
+		98DE5BEE1F569F1400278ECC /* BMHANNA_11yrs_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 98DE5BE91F569EBC00278ECC /* BMHANNA_11yrs_otf.otf */; };
+		98DE5BEF1F569F1600278ECC /* BMJUA_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 98DE5BE81F569EBC00278ECC /* BMJUA_otf.otf */; };
 		98ECA3AB1F3D87530069DA87 /* baemin.png in Resources */ = {isa = PBXBuildFile; fileRef = 98ECA3AA1F3D87530069DA87 /* baemin.png */; };
 		98ECA42D1F440E570069DA87 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98ECA42C1F440E570069DA87 /* DateExtension.swift */; };
 		98ECA4381F4557990069DA87 /* icon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98ECA4371F4557990069DA87 /* icon.xcassets */; };
@@ -137,6 +142,11 @@
 		98C563CC1F39BE310017E68A /* AuthModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		98C563CE1F39C3840017E68A /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		98DE5BE21F5523A300278ECC /* MyInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoView.swift; sourceTree = "<group>"; };
+		98DE5BE61F569BD000278ECC /* qrwkmsp49cbbzfkhpnvp.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = qrwkmsp49cbbzfkhpnvp.jpg; sourceTree = "<group>"; };
+		98DE5BE81F569EBC00278ECC /* BMJUA_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMJUA_otf.otf; sourceTree = "<group>"; };
+		98DE5BE91F569EBC00278ECC /* BMHANNA_11yrs_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMHANNA_11yrs_otf.otf; sourceTree = "<group>"; };
+		98DE5BEA1F569EBC00278ECC /* BMDOHYEON_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMDOHYEON_otf.otf; sourceTree = "<group>"; };
+		98DE5BEB1F569EBC00278ECC /* BMYEONSUNG_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMYEONSUNG_otf.otf; sourceTree = "<group>"; };
 		98ECA3AA1F3D87530069DA87 /* baemin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = baemin.png; sourceTree = "<group>"; };
 		98ECA42C1F440E570069DA87 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		98ECA4371F4557990069DA87 /* icon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = icon.xcassets; sourceTree = "<group>"; };
@@ -329,6 +339,10 @@
 		9894B7651F457B9300DAB38E /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				98DE5BE81F569EBC00278ECC /* BMJUA_otf.otf */,
+				98DE5BE91F569EBC00278ECC /* BMHANNA_11yrs_otf.otf */,
+				98DE5BEA1F569EBC00278ECC /* BMDOHYEON_otf.otf */,
+				98DE5BEB1F569EBC00278ECC /* BMYEONSUNG_otf.otf */,
 				9894B7661F457BAA00DAB38E /* NotoSans-Bold.ttf */,
 				9894B7671F457BAA00DAB38E /* NotoSans-Regular.ttf */,
 				9894B7681F457BAA00DAB38E /* NotoSansKR_Regular.woff */,
@@ -372,6 +386,7 @@
 				984397511F38389100743B63 /* profile.png */,
 				98ECA3AA1F3D87530069DA87 /* baemin.png */,
 				98FB4A271F4C174400BDE5B2 /* icons8-Message-50.png */,
+				98DE5BE61F569BD000278ECC /* qrwkmsp49cbbzfkhpnvp.jpg */,
 				98FB4A2B1F4C179900BDE5B2 /* icons8-Email-64.png */,
 				98FB4A2D1F4C184300BDE5B2 /* icons8-Edit Property-64.png */,
 				98FB4A231F4C16D800BDE5B2 /* icons8-Lock-50.png */,
@@ -511,12 +526,15 @@
 				9854BFAA1F340AEF008FA337 /* RankPage.storyboard in Resources */,
 				9854BFA81F340ADE008FA337 /* ReivewPostPage.storyboard in Resources */,
 				98FB4A241F4C16D800BDE5B2 /* icons8-Lock-50.png in Resources */,
+				98DE5BED1F569F1200278ECC /* BMDOHYEON_otf.otf in Resources */,
 				9843974D1F38355100743B63 /* TagPage.storyboard in Resources */,
 				9894B76A1F457BAA00DAB38E /* NotoSans-Bold.ttf in Resources */,
 				98FB4A2A1F4C177000BDE5B2 /* icons8-Message-64.png in Resources */,
 				9894B76D1F457BAA00DAB38E /* NotoSansUI-Regular.ttf in Resources */,
+				98DE5BE71F569BD000278ECC /* qrwkmsp49cbbzfkhpnvp.jpg in Resources */,
 				9894B76B1F457BAA00DAB38E /* NotoSans-Regular.ttf in Resources */,
 				9854BFAE1F340B4E008FA337 /* MainPage.storyboard in Resources */,
+				98DE5BEF1F569F1600278ECC /* BMJUA_otf.otf in Resources */,
 				984397521F38389100743B63 /* profile.png in Resources */,
 				98FB4A2C1F4C179900BDE5B2 /* icons8-Email-64.png in Resources */,
 				9854BFAC1F340AFC008FA337 /* MyPage.storyboard in Resources */,
@@ -525,8 +543,10 @@
 				98ECA43A1F4A95A90069DA87 /* GoogleService-Info.plist in Resources */,
 				9854BF631F331203008FA337 /* LaunchScreen.storyboard in Resources */,
 				98C563C91F39BD870017E68A /* Auth.storyboard in Resources */,
+				98DE5BEC1F569F1000278ECC /* BMYEONSUNG_otf.otf in Resources */,
 				98B73A531F4DA14000C3CCE0 /* NickNameClickResult.storyboard in Resources */,
 				98FB4A2E1F4C184300BDE5B2 /* icons8-Edit Property-64.png in Resources */,
+				98DE5BEE1F569F1400278ECC /* BMHANNA_11yrs_otf.otf in Resources */,
 				98FB4A281F4C174400BDE5B2 /* icons8-Message-50.png in Resources */,
 				98ECA4381F4557990069DA87 /* icon.xcassets in Resources */,
 				9854BF5E1F331203008FA337 /* MainLayout.storyboard in Resources */,

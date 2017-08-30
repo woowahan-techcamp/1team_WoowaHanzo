@@ -103,6 +103,13 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
             myInfoView.postNumLabel.sizeToFit()
              myInfoView.postNumLabel.frame.origin.x = self.view.frame.width / 2 -  myInfoView.postNumLabel.frame.width / 2
         }
+        else if AuthModel.isLoginStatus(), User.myUsers.count == 0{
+            myInfoView.postNumLabel.text = "게시물 0"
+            myListView.addUserList(users: [User]())
+            myInfoView.postNumLabel.sizeToFit()
+            myInfoView.postNumLabel.frame.origin.x = self.view.frame.width / 2 -  myInfoView.postNumLabel.frame.width / 2
+
+        }
     }
     func loadUserInfo(){
         viewload()

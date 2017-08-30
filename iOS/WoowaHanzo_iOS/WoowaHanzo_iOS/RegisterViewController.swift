@@ -68,6 +68,9 @@ class RegisterViewController: UIViewController,NVActivityIndicatorViewable {
                         self.stopAnimating()
                         self.dismiss(animated: true, completion: nil)
                         AuthModel.saveUser(email: email, profileImg: nil, UserSayText: self.userSayTextView.text, nickName: self.nickNameTextField.text!)
+                        User.currentLoginedUserNickName = self.nickNameTextField.text!
+                        User.currentLoginedUserRankName = "평민"
+                        User.currentLoginedUserSayHi = self.userSayTextView.text
                     }
                     else{
                         self.stopAnimating()

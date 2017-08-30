@@ -65,12 +65,19 @@ class NickNameClickResultViewController: UIViewController,NVActivityIndicatorVie
         
     }
     func viewFeeds(){
-        if AuthModel.isLoginStatus(), User.myUsers.count > 0 {
+        if User.myUsers.count > 0 {
             print("\(User.myUsers.count)개의 피드 데이터가 존재합니다.")
             myListView.addUserList(users: User.myUsers)
             myInfoView.postNumLabel.text = "게시물 \(User.myUsers.count)"
             myInfoView.postNumLabel.sizeToFit()
             myInfoView.postNumLabel.frame.origin.x = self.view.frame.width / 2 -  myInfoView.postNumLabel.frame.width / 2
+        }
+        else if User.myUsers.count == 0{
+            myInfoView.postNumLabel.text = "게시물 0"
+            myListView.addUserList(users: [User]())
+            myInfoView.postNumLabel.sizeToFit()
+            myInfoView.postNumLabel.frame.origin.x = self.view.frame.width / 2 -  myInfoView.postNumLabel.frame.width / 2
+            
         }
     }
     func loadUserInfo(){
