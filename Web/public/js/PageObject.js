@@ -69,8 +69,7 @@ class PageObject {
 
     $(document).on("recurseUpdateEvent", function(evt) {
       this.updatePostTime.bind(this)();
-      if(!this.frontLoadStack.length && this.initialPostLoads > 0 && this.initialPostLoads < 8) {
-
+      if(!this.bottomLoadStack.length) {
         if(document.querySelector(".loading-indicator-box")) {
           document.querySelector(".loading-indicator-box").style.display = "none";
         }

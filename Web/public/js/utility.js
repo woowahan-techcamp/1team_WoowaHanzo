@@ -738,6 +738,9 @@ function getTitleIcon(titleText) {
 	if(titleText === "신선") {
 		return '<i class="fa fa-trophy" aria-hidden="true" style="color: gold; margin-right: 7px;"></i>'
 	}
+	else if(titleText === "임금") {
+		return '<i class="fa fa-trophy" aria-hidden="true" style="color: #cdeff2; margin-right: 7px;"></i>'
+	}
 	else if(titleText === "왕족") {
 		return '<i class="fa fa-trophy" aria-hidden="true" style="color: silver; margin-right: 7px;"></i>'
 	}
