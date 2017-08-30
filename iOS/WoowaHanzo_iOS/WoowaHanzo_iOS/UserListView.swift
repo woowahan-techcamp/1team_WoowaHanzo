@@ -195,6 +195,7 @@ class UserListView: UIScrollView {
             
             likenumLabel.text = " "
             likenumLabel.font = UIFont(name:"NotoSansUI", size: 14.0)
+            likenumLabel.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
             likenumLabel.frame.origin = CGPoint(x: 53, y:inypos + 4)
             cellview.addSubview(likenumLabel)
             

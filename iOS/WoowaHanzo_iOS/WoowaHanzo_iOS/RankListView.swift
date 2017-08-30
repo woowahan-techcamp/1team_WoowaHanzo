@@ -127,8 +127,9 @@ class RankListView: UIScrollView {
         likenumlabel.text = String(describing: rankuser.likes!)
         likenumlabel.textAlignment = NSTextAlignment.center
         likenumlabel.font = UIFont(name: "NotoSansUI", size: 14.0)!
+        likenumlabel.textColor = UIColor(red: 70/255, green: 70/255, blue: 70/255, alpha: 1.0)
         likenumlabel.sizeToFit()
-        likenumlabel.frame.origin = CGPoint(x:heartimgview.frame.origin.x - likenumlabel.frame.width - 10, y : 30)
+        likenumlabel.frame.origin = CGPoint(x:heartimgview.frame.origin.x - likenumlabel.frame.width - 5, y : 30)
         cellview.addSubview(likenumlabel)
         
         
