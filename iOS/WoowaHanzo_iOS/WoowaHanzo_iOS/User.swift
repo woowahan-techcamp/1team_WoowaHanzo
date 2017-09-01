@@ -16,6 +16,7 @@ class User {
     static var users = Array<User>()
     static var tagUsers = Array<User>()
     static var myUsers = Array<User>()
+    static var currentFoodImageView = UIImageView()
     
     //닉네임 클릭 용 유저 네임
     static var currentUserName : String = " "

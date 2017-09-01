@@ -49,7 +49,7 @@ class UserListView: UIScrollView {
         if let list = users {
             if list.count > 0 {
                 //for index in 0...list.count-1{
-                for index in 0...list.count-1 { // for test
+                for index in 0...4 { // for test
                     self.addUser(user: list[index], index: index)
                 }
             }
@@ -163,6 +163,10 @@ class UserListView: UIScrollView {
                             imageview.frame = CGRect(x:10 + index * (imgsize + 13), y:0, width: imgsize, height: imgsize)
                             imageview.layer.cornerRadius = 3
                             
+                            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTap))
+                            imageview.addGestureRecognizer(tapGesture)
+                            imageview.isUserInteractionEnabled = true
+                            User.currentFoodImageView = imageview
                             
                             scrollview.addSubview(imageview)
                             scrollview.contentSize = CGSize(width: max(Int(scrollview.frame.width + 1),Int(10 + user.imageArray!.count * (imgsize + 13))), height: imgsize)
@@ -235,5 +239,8 @@ class UserListView: UIScrollView {
         }
         else { return }
         
+    }
+    func imageTap(sender: UITapGestureRecognizer){
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showFoodImage"), object: nil)
     }
 }

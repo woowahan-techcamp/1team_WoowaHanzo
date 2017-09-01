@@ -36,6 +36,7 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         NotificationCenter.default.addObserver(self, selector: #selector(updateLikeLabel), name: NSNotification.Name(rawValue: "likenum"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "showTagResultPageFromMain"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(getTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "tagResultToMain"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showFoodImage), name: NSNotification.Name(rawValue : "showFoodImage"), object: nil)
         
 //        searchBar.alpha = 0
 //        searchBar.searchBarStyle = UISearchBarStyle.minimal
@@ -203,6 +204,30 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         let label = (sender.view as! UILabel)
         //print("tap from \(label.text!)")
     }
+    func showFoodImage(){
+//        print("showFoodImage")
+//        var imageView = UIImageView()
+//        imageView.frame = CGRect(x: 30  , y: 30, width: self.view.frame.width, height: self.view.frame.height)
+//        imageView = User.currentFoodImageView
+//        self.
+        //let imageView = sender.view as! UIImageView
+        let newImageView = User.currentFoodImageView
+        newImageView.frame = UIScreen.main.bounds
+        newImageView.backgroundColor = .black
+        newImageView.contentMode = .scaleAspectFit
+        newImageView.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage(_ :)))
+        newImageView.addGestureRecognizer(tap)
+        self.view.addSubview(newImageView)
+        self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    func dismissFullscreenImage(_ sender: UITapGestureRecognizer) {
+        self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = false
+        sender.view?.removeFromSuperview()
+    }
+ 
  
 }
 
