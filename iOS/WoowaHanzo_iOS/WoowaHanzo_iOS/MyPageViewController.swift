@@ -29,8 +29,7 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
     var myInfoView: MyInfoView = MyInfoView(frame: CGRect(x: 0, y: 68, width: 0, height: 0))
     var myListView : UserListView!
     func registerObservers(){
-        //NotificationCenter.default.addObserver(self, selector: #selector(showTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "showTagResultPageFromMain"), object: nil)
-        //NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(loadUserInfo), name: NSNotification.Name(rawValue: "LoadUserInfo2"), object: nil)
         //observer 쌓이는 것 해결 필요
         NotificationCenter.default.addObserver(self, selector: #selector(loadPorfileImage(_ :)), name: NSNotification.Name(rawValue: "ReturnProfileImageURL"), object: nil)
@@ -39,10 +38,7 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
         NotificationCenter.default.addObserver(self, selector: #selector(updateLikeButton), name: NSNotification.Name(rawValue: "likestatus"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateLikeLabel), name: NSNotification.Name(rawValue: "likenum"), object: nil)
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        registerObservers()
-//        myListView = UserListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-//    }
+
     
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -72,10 +68,7 @@ class MyPageViewController: UIViewController,NVActivityIndicatorViewable {
                 print(index.contents)
             }
         }
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(imageViewTouched))
-//        myInfoView.profileImageView.addGestureRecognizer(tap)
-//        myInfoView.profileImageView.isUserInteractionEnabled = true
-        
+
         
     }
 
