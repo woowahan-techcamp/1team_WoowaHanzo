@@ -19,7 +19,7 @@
 		984397601F397F6E00743B63 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9843975F1F397F6E00743B63 /* User.swift */; };
 		984397641F3ACD3200743B63 /* TagFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984397631F3ACD3200743B63 /* TagFilter.swift */; };
 		984397A01F3C14A000743B63 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9843979F1F3C14A000743B63 /* TagView.swift */; };
-		984397A21F3C34B800743B63 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984397A11F3C34B800743B63 /* StringExtension.swift */; };
+		984397A21F3C34B800743B63 /* String + subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984397A11F3C34B800743B63 /* String + subscript.swift */; };
 		9854BF591F331203008FA337 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF581F331203008FA337 /* AppDelegate.swift */; };
 		9854BF5E1F331203008FA337 /* MainLayout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9854BF5C1F331203008FA337 /* MainLayout.storyboard */; };
 		9854BF6E1F331203008FA337 /* WoowaHanzo_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9854BF6D1F331203008FA337 /* WoowaHanzo_iOSTests.swift */; };
@@ -103,7 +103,7 @@
 		9843975F1F397F6E00743B63 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		984397631F3ACD3200743B63 /* TagFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagFilter.swift; sourceTree = "<group>"; };
 		9843979F1F3C14A000743B63 /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
-		984397A11F3C34B800743B63 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		984397A11F3C34B800743B63 /* String + subscript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + subscript.swift"; sourceTree = "<group>"; };
 		9854BF551F331203008FA337 /* WoowaHanzo_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WoowaHanzo_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9854BF581F331203008FA337 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9854BF5D1F331203008FA337 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainLayout.storyboard; sourceTree = "<group>"; };
@@ -242,8 +242,9 @@
 		9854BF571F331203008FA337 /* WoowaHanzo_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				98B73A511F4DA11E00C3CCE0 /* NickNameClickResult */,
+				98DE5BDF1F53D8B200278ECC /* Resources */,
 				9894B7651F457B9300DAB38E /* Font */,
+				98B73A511F4DA11E00C3CCE0 /* NickNameClickResult */,
 				98C563C71F39BD720017E68A /* LoginPage */,
 				98C563C61F39B73D0017E68A /* Firebase */,
 				9854BF881F340213008FA337 /* MainLayout */,
@@ -251,12 +252,11 @@
 				9843974E1F38357300743B63 /* TagPage */,
 				9854BF8A1F34022D008FA337 /* ReviewPostPage */,
 				9854BF8D1F340454008FA337 /* RankPage */,
-				98DE5BDF1F53D8B200278ECC /* Resources */,
 				9854BF901F3404A3008FA337 /* MyPage */,
 				9854BF581F331203008FA337 /* AppDelegate.swift */,
 				98ECA4391F4A95A90069DA87 /* GoogleService-Info.plist */,
 				9854BF641F331203008FA337 /* Info.plist */,
-				984397A11F3C34B800743B63 /* StringExtension.swift */,
+				984397A11F3C34B800743B63 /* String + subscript.swift */,
 				98ECA4371F4557990069DA87 /* icon.xcassets */,
 			);
 			path = WoowaHanzo_iOS;
@@ -742,7 +742,7 @@
 				98895BF71F4D0E0D000D1E15 /* LikeButton.swift in Sources */,
 				9854BF591F331203008FA337 /* AppDelegate.swift in Sources */,
 				98C563CB1F39BD930017E68A /* LoginViewController.swift in Sources */,
-				984397A21F3C34B800743B63 /* StringExtension.swift in Sources */,
+				984397A21F3C34B800743B63 /* String + subscript.swift in Sources */,
 				984397601F397F6E00743B63 /* User.swift in Sources */,
 				98895BED1F4BB543000D1E15 /* RankModel.swift in Sources */,
 			);
