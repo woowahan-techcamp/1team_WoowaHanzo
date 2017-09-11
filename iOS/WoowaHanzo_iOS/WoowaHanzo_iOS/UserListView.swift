@@ -49,7 +49,7 @@ class UserListView: UIScrollView {
         if let list = users {
             if list.count > 0 {
                 //for index in 0...list.count-1{
-                for index in 0...4 { // for test
+                for index in 0...list.count-1 { // for test
                     self.addUser(user: list[index], index: index)
                 }
             }
@@ -166,7 +166,10 @@ class UserListView: UIScrollView {
                             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTap))
                             imageview.addGestureRecognizer(tapGesture)
                             imageview.isUserInteractionEnabled = true
-                            User.currentFoodImageView = imageview
+                            if let image = imageview.image{
+                                User.currentFoodImage = image
+                                print("A'")
+                            }
                             
                             scrollview.addSubview(imageview)
                             scrollview.contentSize = CGSize(width: max(Int(scrollview.frame.width + 1),Int(10 + user.imageArray!.count * (imgsize + 13))), height: imgsize)

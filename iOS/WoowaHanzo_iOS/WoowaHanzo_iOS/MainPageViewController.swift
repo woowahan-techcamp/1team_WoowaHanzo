@@ -28,7 +28,6 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
         //NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users2"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
@@ -211,21 +210,22 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
 //        imageView = User.currentFoodImageView
 //        self.
         //let imageView = sender.view as! UIImageView
-        let newImageView = User.currentFoodImageView
-        newImageView.frame = UIScreen.main.bounds
-        newImageView.backgroundColor = .black
-        newImageView.contentMode = .scaleAspectFit
-        newImageView.isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage(_ :)))
-        newImageView.addGestureRecognizer(tap)
-        self.view.addSubview(newImageView)
-        self.navigationController?.isNavigationBarHidden = true
-        self.tabBarController?.tabBar.isHidden = true
+//        let newImageView = UIImageView()
+//        newImageView.frame = UIScreen.main.bounds
+//        newImageView.backgroundColor = .black
+//        newImageView.contentMode = .scaleAspectFit
+//        newImageView.isUserInteractionEnabled = true
+//        newImageView.image = User.currentFoodImage
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage(_ :)))
+//        newImageView.addGestureRecognizer(tap)
+//        self.view.addSubview(newImageView)
+//        self.navigationController?.isNavigationBarHidden = true
+//        self.tabBarController?.tabBar.isHidden = true
     }
     func dismissFullscreenImage(_ sender: UITapGestureRecognizer) {
-        self.navigationController?.isNavigationBarHidden = false
-        self.tabBarController?.tabBar.isHidden = false
-        sender.view?.removeFromSuperview()
+//        self.navigationController?.isNavigationBarHidden = false
+//        self.tabBarController?.tabBar.isHidden = false
+//        sender.view?.removeFromSuperview()
     }
  
  

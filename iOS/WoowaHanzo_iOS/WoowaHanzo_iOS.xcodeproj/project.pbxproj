@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0BB90C23FAEA70C1A1EEED9E /* Pods_WoowaHanzo_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729CE937F74A9B2CA2A628FB /* Pods_WoowaHanzo_iOS.framework */; };
 		14C4BD231F593B770035F072 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14C4BD221F593B770035F072 /* Launch Screen.storyboard */; };
-		14D1B17E1F593BFF00BF1FA2 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14D1B17D1F593BFF00BF1FA2 /* Launch Screen.storyboard */; };
+		14D1B17E1F593BFF00BF1FA2 /* Launch Screen2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14D1B17D1F593BFF00BF1FA2 /* Launch Screen2.storyboard */; };
 		153176C94E24C36C69B6D61B /* Pods_WoowaHanzo_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 361CE3EE299CCCBC66875500 /* Pods_WoowaHanzo_iOSTests.framework */; };
 		38EDC9A94F8AA0B458E0FAD3 /* Pods_WoowaHanzo_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1F64866749E63894066246D /* Pods_WoowaHanzo_iOSUITests.framework */; };
 		9843974D1F38355100743B63 /* TagPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9843974C1F38355100743B63 /* TagPage.storyboard */; };
@@ -90,7 +90,7 @@
 
 /* Begin PBXFileReference section */
 		14C4BD221F593B770035F072 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "../Launch Screen.storyboard"; sourceTree = "<group>"; };
-		14D1B17D1F593BFF00BF1FA2 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		14D1B17D1F593BFF00BF1FA2 /* Launch Screen2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen2.storyboard"; sourceTree = "<group>"; };
 		361CE3EE299CCCBC66875500 /* Pods_WoowaHanzo_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WoowaHanzo_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3869F7A31EF06B8A40C54185 /* Pods-WoowaHanzo_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoowaHanzo_iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WoowaHanzo_iOS/Pods-WoowaHanzo_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		661DCDC88C7CEB81148BE790 /* Pods-WoowaHanzo_iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WoowaHanzo_iOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WoowaHanzo_iOSTests/Pods-WoowaHanzo_iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -329,7 +329,7 @@
 		9854BF901F3404A3008FA337 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
-				14D1B17D1F593BFF00BF1FA2 /* Launch Screen.storyboard */,
+				14D1B17D1F593BFF00BF1FA2 /* Launch Screen2.storyboard */,
 				9854BFAB1F340AFC008FA337 /* MyPage.storyboard */,
 				9854BF9E1F340806008FA337 /* MyPageViewController.swift */,
 				98985D661F4FB13400380C97 /* SettingsViewController.swift */,
@@ -551,7 +551,7 @@
 				98DE5BEE1F569F1400278ECC /* BMHANNA_11yrs_otf.otf in Resources */,
 				98FB4A281F4C174400BDE5B2 /* icons8-Message-50.png in Resources */,
 				14C4BD231F593B770035F072 /* Launch Screen.storyboard in Resources */,
-				14D1B17E1F593BFF00BF1FA2 /* Launch Screen.storyboard in Resources */,
+				14D1B17E1F593BFF00BF1FA2 /* Launch Screen2.storyboard in Resources */,
 				98ECA4381F4557990069DA87 /* icon.xcassets in Resources */,
 				9854BF5E1F331203008FA337 /* MainLayout.storyboard in Resources */,
 				98FB4A261F4C16DD00BDE5B2 /* icons8-User-50.png in Resources */,
