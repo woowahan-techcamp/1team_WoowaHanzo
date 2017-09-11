@@ -67,7 +67,7 @@ class FirebaseModel{
                 if let imagedata = data{
                     let metadata = StorageMetadata()
                     metadata.contentType = "image/jpeg"
-                    var ref = Storage.storage().reference(withPath: "profileImages/" + name).putData(imagedata, metadata:metadata)
+                    let ref = Storage.storage().reference(withPath: "profileImages/" + name).putData(imagedata, metadata:metadata)
                     ref.resume()
                     self.ref2.child("users/\(uid)/profileImg").setValue(name)
                 }
@@ -114,7 +114,7 @@ class FirebaseModel{
                 User.nickNameClickResult = [User]()
                 for child in result {
                     if (child.childSnapshot(forPath: "author").value as! String == User.currentUserName){
-                        var userKey = child.key as! String
+                        let userKey = child.key as! String
                         //print(child.childSnapshot(forPath: "author").value!)
                         let user = User(key: userKey, nickName: child.childSnapshot(forPath: "author").value as! String, contents: child.childSnapshot(forPath: "body").value as! String,tags: child.childSnapshot(forPath: "tags").value as? [String] ?? nil,imageArray:child.childSnapshot(forPath: "images").value as? [String] ?? nil, postDate : child.childSnapshot(forPath: "time").value as! Int, uid: child.childSnapshot(forPath: "uid").value as! String)
                             User.nickNameClickResult.append(user)

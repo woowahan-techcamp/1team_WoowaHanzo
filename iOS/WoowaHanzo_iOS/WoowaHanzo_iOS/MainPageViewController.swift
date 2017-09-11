@@ -29,16 +29,14 @@ class MainPageViewController: UIViewController,NVActivityIndicatorViewable{
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(nickNameLabelTouchedOnMainpage(_ :)), name: NSNotification.Name(rawValue: "nickNameLabelTouchedOnMainpage"), object: nil)
-        //NotificationCenter.default.addObserver(self, selector: #selector(viewload), name: NSNotification.Name(rawValue: "users2"), object: nil)
+       
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfileImg), name: NSNotification.Name(rawValue: "profileimg"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateLikeButton), name: NSNotification.Name(rawValue: "likestatus"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateLikeLabel), name: NSNotification.Name(rawValue: "likenum"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "showTagResultPageFromMain"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(getTagResultPageFromMain(_ :)), name: NSNotification.Name(rawValue: "tagResultToMain"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showFoodImage), name: NSNotification.Name(rawValue : "showFoodImage"), object: nil)
-        
-//        searchBar.alpha = 0
-//        searchBar.searchBarStyle = UISearchBarStyle.minimal
+
         let titleAttributes = [
             NSFontAttributeName: UIFont(name:"NotoSans-Bold", size: 19.0)!
         ]

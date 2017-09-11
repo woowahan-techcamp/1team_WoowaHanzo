@@ -134,7 +134,7 @@ class TagResultViewController: UIViewController,NVActivityIndicatorViewable {
         self.show(controller, sender: self)
     }
     func tap(_ sender:UIGestureRecognizer){
-        let label = (sender.view as! UILabel)
+        //let label = (sender.view as! UILabel)
         //print("tap from \(label.text!)")
     }
     
